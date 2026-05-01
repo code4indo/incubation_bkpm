@@ -12,7 +12,8 @@ Usage:
     python bkpm_scraper.py --start-id 1 --end-id 1500 --output data/bkpm_projects.json
     
 Architecture:
-    - Uses Playwright for JavaScript rendering (Next.js ISR with client-side data)
+    - Uses public API endpoint for fast, reliable data retrieval
+    - Falls back to Playwright detail scraping for missing descriptions
     - Polite rate limiting (3-5s delay between requests)
     - Parallel scraping with semaphore (max 5 concurrent)
     - Automatic retry with exponential backoff
@@ -29,6 +30,7 @@ from dataclasses import dataclass, field, asdict
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 
+import aiohttp
 from playwright.async_api import async_playwright, Page, Browser
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
@@ -77,6 +79,7 @@ class ProjectData:
     source_url: str = ""
     scraped_at: str = ""
     last_verified_at: str = ""
+    project_type: str = ""  # IPRO | PPI | PID
     
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
@@ -178,7 +181,7 @@ class DataGovernance:
             project.name_en = project.name_id  # Will be translated by AI pipeline
         
         # Add source URL
-        project.source_url = f"https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/{project.id}"
+        project.source_url = f"https://regionalinvestment.bkpm.go.id/peluang_investasi/{project.project_type.lower()}/{project.id}"
         
         # Add timestamps
         now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
@@ -193,9 +196,12 @@ class BKPMScraper:
     """Main scraper class with polite rate limiting and parallel execution"""
     
     BASE_URL = "https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/"
+    API_LIST_URL = "https://regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_wilayah"
+    API_DETAIL_URL = "https://regionalinvestment.bkpm.go.id/be/peluang/detail"
+    DETAIL_URL = "https://regionalinvestment.bkpm.go.id/peluang_investasi"
     CONCURRENCY = 5
-    DELAY_MIN = 3
-    DELAY_MAX = 5
+    DELAY_MIN = 1
+    DELAY_MAX = 3
     MAX_RETRIES = 3
     
     def __init__(self, output_dir: str = "data"):
@@ -205,7 +211,7 @@ class BKPMScraper:
         self.results: List[ProjectData] = []
         self.failed_ids: List[int] = []
         
-    async def _init_browser(self) -> tuple[Browser, Page]:
+    async def _init_browser(self) -> tuple:
         """Initialize headless browser with stealth settings"""
         playwright = await async_playwright().start()
         browser = await playwright.chromium.launch(
@@ -222,192 +228,235 @@ class BKPMScraper:
         page = await context.new_page()
         return playwright, browser, page
     
-    async def _scrape_single(self, page: Page, project_id: int) -> Optional[ProjectData]:
-        """Scrape a single project page"""
-        url = f"{self.BASE_URL}{project_id}"
-        
-        for attempt in range(self.MAX_RETRIES):
+    def _parse_investment_value(self, text: str) -> tuple:
+        """Parse investment value text to numeric IDR"""
+        if not text:
+            return text, None
+        match = re.search(r'Rp\s*([\d.,]+)\s*(Miliar|Triliun|Juta|M|T|B)?', text, re.IGNORECASE)
+        if match:
+            val_str = match.group(1).replace('.', '').replace(',', '.')
+            multiplier_str = (match.group(2) or '').lower()
+            multiplier = {'miliar': 1e9, 'triliun': 1e12, 'juta': 1e6, 'm': 1e6, 't': 1e12, 'b': 1e9}.get(multiplier_str, 1)
             try:
-                logger.info(f"Scraping project {project_id} (attempt {attempt + 1})")
-                
-                # Navigate with wait
-                await page.goto(url, wait_until='networkidle', timeout=60000)
-                await asyncio.sleep(3)  # Wait for dynamic content
-                
-                # Get page content
-                content = await page.content()
-                soup = BeautifulSoup(content, 'html.parser')
-                
-                # Extract data
-                project = self._extract_data(soup, project_id)
-                
-                # Validate and compute quality
-                validation = DataGovernance.validate(project)
-                project.status = validation['status']
-                project.data_quality_score = validation['quality_score']
-                
-                # Enrich metadata
-                project = DataGovernance.enrich_metadata(project)
-                
-                logger.info(f"Project {project_id}: {project.name_id or 'NO NAME'} | "
-                           f"Score: {project.data_quality_score} | "
-                           f"Status: {project.status}")
-                
-                return project
-                
-            except Exception as e:
-                logger.warning(f"Attempt {attempt + 1} failed for {project_id}: {e}")
-                if attempt < self.MAX_RETRIES - 1:
-                    wait_time = 2 ** attempt  # Exponential backoff
-                    await asyncio.sleep(wait_time)
-                else:
-                    logger.error(f"Failed to scrape project {project_id} after {self.MAX_RETRIES} attempts")
-                    self.failed_ids.append(project_id)
-                    return None
+                return text, float(val_str) * multiplier
+            except ValueError:
+                return text, None
+        return text, None
     
-    def _extract_data(self, soup: BeautifulSoup, project_id: int) -> ProjectData:
-        """Extract structured data from BeautifulSoup"""
-        project = ProjectData(id=project_id)
+    def _parse_npv_value(self, text: str) -> tuple:
+        """Parse NPV text to numeric IDR"""
+        if not text:
+            return text, None
+        match = re.search(r'Rp\s*([\d.,]+)\s*(Miliar|Triliun|Juta|M|T|B)?', text, re.IGNORECASE)
+        if match:
+            val_str = match.group(1).replace('.', '').replace(',', '.')
+            multiplier_str = (match.group(2) or '').lower()
+            multiplier = {'miliar': 1e9, 'triliun': 1e12, 'juta': 1e6, 'm': 1e6, 't': 1e12, 'b': 1e9}.get(multiplier_str, 1)
+            try:
+                return text, float(val_str) * multiplier
+            except ValueError:
+                return text, None
+        return text, None
+    
+    def _parse_irr(self, text: str) -> Optional[float]:
+        """Parse IRR percentage string to float"""
+        if not text:
+            return None
+        match = re.search(r'([\d.,]+)', str(text))
+        if match:
+            try:
+                return float(match.group(1).replace(',', '.'))
+            except ValueError:
+                return None
+        return None
+    
+    async def _fetch_api_list(self, session: aiohttp.ClientSession, page_num: int = 1, page_size: int = 200) -> List[Dict]:
+        """Fetch project list from public API"""
+        url = f"{self.API_LIST_URL}?page={page_num}&page_size={page_size}&search="
+        try:
+            async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    if data.get('success') and 'data' in data:
+                        return data['data']
+                logger.warning(f"API list returned status {resp.status}")
+                return []
+        except Exception as e:
+            logger.error(f"Failed to fetch API list: {e}")
+            return []
+    
+    async def _fetch_api_detail(self, session: aiohttp.ClientSession, project_id: int) -> Optional[Dict]:
+        """Fetch project detail from public API"""
+        url = f"{self.API_DETAIL_URL}?id={project_id}"
+        try:
+            async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    if data.get('success') and 'data' in data:
+                        return data['data']
+                logger.warning(f"API detail for {project_id} returned status {resp.status}")
+                return None
+        except Exception as e:
+            logger.error(f"Failed to fetch API detail for {project_id}: {e}")
+            return None
+    
+    def _project_from_api(self, api_data: Dict) -> ProjectData:
+        """Convert API response to ProjectData"""
+        project = ProjectData(id=api_data.get('id_peluang', 0))
+        project.name_id = api_data.get('nama', '') or ''
+        project.district = api_data.get('nama_kabkot', '') or ''
+        project.province = api_data.get('nama_provinsi', '') or ''
+        project.province_code = str(api_data.get('id_adm_provinsi', '')) or ''
+        project.year = api_data.get('tahun')
+        project.project_type = api_data.get('status', '') or ''
+        project.category = api_data.get('nama_sektor_peluang', '') or ''
+        project.subcategory = api_data.get('nama_sektor', '') or ''
+        project.image_url = api_data.get('image', '') or ''
+        project.longitude = api_data.get('lon')
+        project.latitude = api_data.get('lat')
         
-        # Get all text lines
-        all_text = soup.get_text(separator='\n', strip=True)
-        lines = [l.strip() for l in all_text.split('\n') if l.strip() and len(l.strip()) > 1]
+        # Parse investment value
+        inv_text = api_data.get('nilai_investasi', '') or ''
+        project.investment_value_text, project.investment_value_idr = self._parse_investment_value(inv_text)
         
-        # Extract project name (usually near top, before "Kabupaten")
-        for i, line in enumerate(lines):
-            if 'Kabupaten' in line or 'Kota' in line:
-                # Project name is likely 1-3 lines before this
-                if i > 0:
-                    potential_names = lines[max(0, i-3):i]
-                    # Pick the longest meaningful one
-                    project.name_id = max(potential_names, key=len, default="")
-                break
+        # Parse IRR
+        irr_text = api_data.get('nilai_irr', '') or ''
+        project.irr_percent = self._parse_irr(irr_text)
         
-        # Find specific fields using regex patterns
-        for line in lines:
-            line_lower = line.lower()
-            
-            # District
-            if line.startswith('Kabupaten') or line.startswith('Kota'):
-                project.district = line
-            
-            # Province
-            if 'provinsi' in line_lower or re.match(r'^\s*[A-Z][a-z]+(\s+[A-Z][a-z]+)*\s*$', line):
-                # Check if next lines contain coordinates (then this is province)
-                pass
-            
-            # KBLI
-            kbli_match = re.search(r'Kode\s*KBLI\s*[:\s]*([\d\s]+)', line, re.IGNORECASE)
-            if kbli_match:
-                project.kbli_codes = kbli_match.group(1).strip().split()
-            
-            # Investment value
-            inv_match = re.search(r'Rp\s*([\d.,]+)\s*(Miliar|Triliun|Juta|M|T|B)', line, re.IGNORECASE)
-            if inv_match:
-                project.investment_value_text = line
-                val_str = inv_match.group(1).replace('.', '').replace(',', '.')
-                multiplier = {'miliar': 1e9, 'triliun': 1e12, 'juta': 1e6, 'm': 1e6, 't': 1e12, 'b': 1e9}.get(
-                    inv_match.group(2).lower(), 1
-                )
-                project.investment_value_idr = float(val_str) * multiplier
-            
-            # Year
-            year_match = re.search(r'Tahun\s*[:\s]*(\d{4})', line, re.IGNORECASE)
-            if year_match:
-                project.year = int(year_match.group(1))
-            
-            # IRR
-            irr_match = re.search(r'IRR\s*[:\s]*([\d.,]+)\s*%', line, re.IGNORECASE)
-            if irr_match:
-                project.irr_percent = float(irr_match.group(1).replace(',', '.'))
-            
-            # NPV
-            npv_match = re.search(r'NPV\s*[:\s]*Rp\s*([\d.,]+)\s*(Miliar|Triliun|Juta|M|T|B)?', line, re.IGNORECASE)
-            if npv_match:
-                project.npv_text = line
-                val_str = npv_match.group(1).replace('.', '').replace(',', '.')
-                multiplier = {'miliar': 1e9, 'triliun': 1e12, 'juta': 1e6}.get(
-                    (npv_match.group(2) or '').lower(), 1
-                )
-                project.npv_idr = float(val_str) * multiplier
-            
-            # Payback
-            pbp_match = re.search(r'Payback\s*Period\s*[:\s]*([\d.,]+)\s*Tahun', line, re.IGNORECASE)
-            if pbp_match:
-                project.payback_period_years = float(pbp_match.group(1).replace(',', '.'))
-            
-            # Coordinates
-            long_match = re.search(r'Longitude\s*[:\s]*([-]?\d+\.\d+)', line, re.IGNORECASE)
-            if long_match:
-                project.longitude = float(long_match.group(1))
-            
-            lat_match = re.search(r'Latitude\s*[:\s]*([-]?\d+\.\d+)', line, re.IGNORECASE)
-            if lat_match:
-                project.latitude = float(lat_match.group(1))
+        # Parse NPV
+        npv_text = api_data.get('nilai_npv', '') or ''
+        project.npv_text, project.npv_idr = self._parse_npv_value(npv_text)
         
-        # Extract description
-        desc_section = False
-        desc_lines = []
-        for line in lines:
-            if 'Deskripsi' in line or 'Description' in line:
-                desc_section = True
-                continue
-            if desc_section and len(line) > 20:
-                desc_lines.append(line)
-            if desc_section and ('Insentif' in line or 'Incentive' in line):
-                break
-        project.description_id = '\n'.join(desc_lines[:3])
+        # Parse payback period
+        pp = api_data.get('nilai_pp')
+        if pp is not None:
+            try:
+                project.payback_period_years = float(pp)
+            except (ValueError, TypeError):
+                project.payback_period_years = None
         
-        # Extract category from badge/tag
-        category_elem = soup.find(string=re.compile(r'Industri|Agro|Pertanian|Perikanan|Energi|Digital'))
-        if category_elem:
-            project.category = category_elem.strip()
-        
-        # Extract likes and views
-        likes_match = re.search(r'(\d+)\s*Sukai', all_text)
-        if likes_match:
-            project.likes_count = int(likes_match.group(1))
-        
-        views_match = re.search(r'(\d+)\s*(?:Views?|Dilihat)', all_text)
-        if views_match:
-            project.views_count = int(views_match.group(1))
+        # Description
+        desc = api_data.get('deskripsi')
+        project.description_id = desc if desc else ""
         
         return project
     
-    async def scrape_range(self, start_id: int, end_id: int) -> List[ProjectData]:
-        """Scrape a range of project IDs with parallel execution"""
-        playwright, browser, page = await self._init_browser()
+    async def _scrape_detail_playwright(self, page: Page, project_id: int, project_type: str) -> Optional[str]:
+        """Scrape detail description using Playwright as fallback"""
+        url = f"{self.DETAIL_URL}/{project_type.lower()}/{project_id}"
         
-        try:
-            tasks = []
-            for project_id in range(start_id, end_id + 1):
-                task = self._scrape_with_semaphore(page, project_id)
-                tasks.append(task)
-            
-            # Execute with progress bar
-            results = []
-            for coro in tqdm.as_completed(tasks, total=len(tasks), desc="Scraping projects"):
-                result = await coro
-                if result:
-                    results.append(result)
-            
-            self.results = results
-            return results
-            
-        finally:
-            await browser.close()
-            await playwright.stop()
+        for attempt in range(self.MAX_RETRIES):
+            try:
+                logger.info(f"Scraping detail for {project_id} (attempt {attempt + 1})")
+                await page.goto(url, wait_until='domcontentloaded', timeout=60000)
+                await asyncio.sleep(4)  # Wait for dynamic content
+                
+                # Extract description
+                content = await page.content()
+                soup = BeautifulSoup(content, 'html.parser')
+                all_text = soup.get_text(separator='\n', strip=True)
+                lines = [l.strip() for l in all_text.split('\n') if l.strip() and len(l.strip()) > 1]
+                
+                desc_lines = []
+                desc_section = False
+                for line in lines:
+                    if 'Deskripsi' in line or 'Description' in line:
+                        desc_section = True
+                        continue
+                    if desc_section and len(line) > 20:
+                        desc_lines.append(line)
+                    if desc_section and ('Insentif' in line or 'Incentive' in line):
+                        break
+                
+                description = '\n'.join(desc_lines[:5])
+                return description if description else None
+                
+            except Exception as e:
+                logger.warning(f"Detail scrape attempt {attempt + 1} failed for {project_id}: {e}")
+                if attempt < self.MAX_RETRIES - 1:
+                    wait_time = 2 ** attempt
+                    await asyncio.sleep(wait_time)
+        
+        return None
     
-    async def _scrape_with_semaphore(self, page: Page, project_id: int) -> Optional[ProjectData]:
-        """Wrap scraping with semaphore for concurrency control"""
+    async def _enrich_single(self, session: aiohttp.ClientSession, page: Page, project: ProjectData) -> ProjectData:
+        """Enrich a single project with API detail and optional Playwright fallback"""
         async with self.semaphore:
-            result = await self._scrape_single(page, project_id)
+            # Try API detail first
+            detail_data = await self._fetch_api_detail(session, project.id)
+            if detail_data:
+                desc = detail_data.get('deskripsi')
+                if desc and not project.description_id:
+                    project.description_id = desc
+            
+            # If still no description, try Playwright
+            if not project.description_id and page:
+                try:
+                    desc = await self._scrape_detail_playwright(page, project.id, project.project_type)
+                    if desc:
+                        project.description_id = desc
+                except Exception as e:
+                    logger.warning(f"Playwright detail failed for {project.id}: {e}")
+            
+            # Validate
+            validation = DataGovernance.validate(project)
+            project.status = validation['status']
+            project.data_quality_score = validation['quality_score']
+            project = DataGovernance.enrich_metadata(project)
+            
+            logger.info(f"Project {project.id}: {project.name_id or 'NO NAME'} | "
+                       f"Score: {project.data_quality_score} | "
+                       f"Status: {project.status}")
             
             # Polite delay
-            delay = self.DELAY_MIN + (project_id % (self.DELAY_MAX - self.DELAY_MIN))
+            delay = self.DELAY_MIN + (project.id % (self.DELAY_MAX - self.DELAY_MIN + 1))
             await asyncio.sleep(delay)
             
-            return result
+            return project
+    
+    async def scrape_all(self, use_playwright: bool = False, max_projects: Optional[int] = None) -> List[ProjectData]:
+        """Scrape all projects via API with optional Playwright enrichment"""
+        async with aiohttp.ClientSession() as session:
+            # Fetch all projects from API
+            logger.info("Fetching project list from API...")
+            api_projects = await self._fetch_api_list(session, page_num=1, page_size=200)
+            
+            if not api_projects:
+                logger.error("No projects returned from API")
+                return []
+            
+            logger.info(f"API returned {len(api_projects)} projects")
+            
+            if max_projects:
+                api_projects = api_projects[:max_projects]
+            
+            # Convert to ProjectData
+            projects = [self._project_from_api(p) for p in api_projects]
+            
+            # Optional: init Playwright for detail enrichment
+            playwright = None
+            browser = None
+            page = None
+            if use_playwright:
+                playwright, browser, page = await self._init_browser()
+            
+            try:
+                # Enrich all projects
+                tasks = [self._enrich_single(session, page, p) for p in projects]
+                results = []
+                for coro in tqdm.as_completed(tasks, total=len(tasks), desc="Enriching projects"):
+                    result = await coro
+                    if result:
+                        results.append(result)
+                
+                self.results = results
+                return results
+                
+            finally:
+                if browser:
+                    await browser.close()
+                if playwright:
+                    await playwright.stop()
     
     def save_results(self, filename: str = "bkpm_projects.json"):
         """Save scraped data to JSON with metadata"""
@@ -425,11 +474,11 @@ class BKPMScraper:
                     sum(p.data_quality_score for p in self.results) / len(self.results), 1
                 ) if self.results else 0,
                 "scraped_at": time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
-                "scraper_version": "1.0.0",
+                "scraper_version": "2.0.0",
                 "data_governance": {
                     "validation_rules": "REQUIRED_FIELDS + FINANCIAL_FIELDS + COORDINATE_VALIDATION",
                     "quality_threshold": 60.0,
-                    "enrichment_pipeline": "METADATA_ENRICHMENT + NLP_TRANSLATION(optional)"
+                    "enrichment_pipeline": "API_PRIMARY + PLAYWRIGHT_FALLBACK"
                 }
             },
             "projects": [p.to_dict() for p in self.results]
@@ -450,12 +499,13 @@ class BKPMScraper:
 
 def main():
     parser = argparse.ArgumentParser(description='BKPM Portal Scraper')
-    parser.add_argument('--start-id', type=int, default=1, help='Start project ID')
-    parser.add_argument('--end-id', type=int, default=1500, help='End project ID')
-    parser.add_argument('--output', type=str, default='data/bkpm_projects.json', help='Output file')
-    parser.add_argument('--concurrency', type=int, default=5, help='Max concurrent scrapes')
-    parser.add_argument('--delay-min', type=int, default=3, help='Min delay between requests')
-    parser.add_argument('--delay-max', type=int, default=5, help='Max delay between requests')
+    parser.add_argument('--output', type=str, default='bkpm_projects.json', help='Output file')
+    parser.add_argument('--output-dir', type=str, default='data', help='Output directory')
+    parser.add_argument('--use-playwright', action='store_true', help='Use Playwright for detail enrichment')
+    parser.add_argument('--max-projects', type=int, default=None, help='Max projects to scrape')
+    parser.add_argument('--concurrency', type=int, default=5, help='Max concurrent operations')
+    parser.add_argument('--delay-min', type=int, default=1, help='Min delay between requests')
+    parser.add_argument('--delay-max', type=int, default=3, help='Max delay between requests')
     
     args = parser.parse_args()
     
@@ -464,10 +514,10 @@ def main():
     BKPMScraper.DELAY_MIN = args.delay_min
     BKPMScraper.DELAY_MAX = args.delay_max
     
-    scraper = BKPMScraper()
+    scraper = BKPMScraper(output_dir=args.output_dir)
     
     # Run scraper
-    asyncio.run(scraper.scrape_range(args.start_id, args.end_id))
+    asyncio.run(scraper.scrape_all(use_playwright=args.use_playwright, max_projects=args.max_projects))
     scraper.save_results(args.output)
     
     # Print summary
@@ -477,7 +527,7 @@ def main():
     print(f"Total projects scraped: {len(scraper.results)}")
     print(f"Total failed: {len(scraper.failed_ids)}")
     print(f"Avg quality score: {sum(p.data_quality_score for p in scraper.results) / len(scraper.results):.1f}%" if scraper.results else "N/A")
-    print(f"Output: {args.output}")
+    print(f"Output: {args.output_dir}/{args.output}")
     print("="*60)
 
 
