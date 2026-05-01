@@ -1,0 +1,96 @@
+version: '3.8'
+
+services:
+  # ============================================================================
+  # BKPM DATA API SERVICE
+  # ============================================================================
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: bkpm-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data:ro
+      - ./api:/app:ro
+    environment:
+      - DATA_FILE=/app/data/bkpm_projects.json
+      - API_KEY=${API_KEY:-demo-key}
+      - LOG_LEVEL=info
+    networks:
+      - bkpm-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # ============================================================================
+  # VECTOR DATABASE (for RAG pipeline)
+  # ============================================================================
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: bkpm-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    networks:
+      - bkpm-network
+    restart: unless-stopped
+
+  # ============================================================================
+  # FRONTEND WEBAPP (React build served by nginx)
+  # ============================================================================
+  webapp:
+    image: nginx:alpine
+    container_name: bkpm-webapp
+    ports:
+      - "3000:80"
+    volumes:
+      - ./app/dist:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - bkpm-network
+    restart: unless-stopped
+
+  # ============================================================================
+  # GPU INFERENCE SERVICE (32GB deployment)
+  # ============================================================================
+  # Uncomment and configure for GPU deployment
+  # vllm-generator:
+  #   image: vllm/vllm-openai:v0.6.0
+  #   container_name: bkpm-vllm
+  #   command: >
+  #     --model qwen/Qwen3.5-122B-A10B
+  #     --quantization awq
+  #     --tensor-parallel-size 1
+  #     --max-model-len 65536
+  #     --gpu-memory-utilization 0.85
+  #     --enable-prefix-caching
+  #     --port 8000
+  #   runtime: nvidia
+  #   environment:
+  #     - CUDA_VISIBLE_DEVICES=0
+  #   ports:
+  #     - "8001:8000"
+  #   networks:
+  #     - bkpm-network
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             count: 1
+  #             capabilities: [gpu]
+
+networks:
+  bkpm-network:
+    driver: bridge
+
+volumes:
+  qdrant_storage:
