@@ -1,0 +1,97 @@
+[
+  {
+    "path": "/be/peluang/detail/1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/peluang/detail/100",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/peluang/peluang_investasi_wilayah?page=1&page_size=10",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/peluang/peluang_investasi_wilayah?page=1&page_size=10&search=test",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/probis/proposal_bisnis_wilayah?page=1&page_size=10",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/probis/proposal_bisnis_wilayah?page=1&page_size=10&search=test",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/hilirisasi/komoditas/list/get?limit=10",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/hilirisasi/komoditas/list/get?limit=10&page=1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/global/getReferensi/tb_negara?id=1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/global/getReferensi/vw_kawasan?id=1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/home/sektor_nasional_detail/id/1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/home/sektor_unggulan_wilayah/id/1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/home/sektor_unggulan_nasional/id/2",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/daerah/get_prov/11",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/daerah/get_zona_waktu",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/menu?id=1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/slider?id=1",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/home/running_text?_t=123",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  },
+  {
+    "path": "/be/peluang/count_viewer?id_halaman_pengunjung=2",
+    "status": "200",
+    "ctype": "application/json; charset=utf-8"
+  }
+]

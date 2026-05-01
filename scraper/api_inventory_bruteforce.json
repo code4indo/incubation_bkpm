@@ -1,0 +1,243 @@
+{
+  "source": "bruteforce",
+  "results": [
+    {
+      "path": "/be/",
+      "status": "401",
+      "content_type": "application/json; charset=utf-8",
+      "size": "33",
+      "url": "https://regionalinvestment.bkpm.go.id/be/"
+    },
+    {
+      "path": "/api/v1/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/"
+    },
+    {
+      "path": "/api/v2/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v2/"
+    },
+    {
+      "path": "/api/docs",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/docs"
+    },
+    {
+      "path": "/be/daerah/",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "10520",
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah/"
+    },
+    {
+      "path": "/be/daerah",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "10520",
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah"
+    },
+    {
+      "path": "/be/menu/",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "17498",
+      "url": "https://regionalinvestment.bkpm.go.id/be/menu/"
+    },
+    {
+      "path": "/be/menu",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "17498",
+      "url": "https://regionalinvestment.bkpm.go.id/be/menu"
+    },
+    {
+      "path": "/be/slider/",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "2769",
+      "url": "https://regionalinvestment.bkpm.go.id/be/slider/"
+    },
+    {
+      "path": "/be/slider",
+      "status": "200",
+      "content_type": "application/json; charset=utf-8",
+      "size": "2769",
+      "url": "https://regionalinvestment.bkpm.go.id/be/slider"
+    },
+    {
+      "path": "/api/content/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/content/"
+    },
+    {
+      "path": "/api/menu/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/menu/"
+    },
+    {
+      "path": "/api/slider/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/slider/"
+    },
+    {
+      "path": "/api/search/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/search/"
+    },
+    {
+      "path": "/api/home/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/home/"
+    },
+    {
+      "path": "/api/daerah/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/daerah/"
+    },
+    {
+      "path": "/api/probis/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/probis/"
+    },
+    {
+      "path": "/api/global/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/global/"
+    },
+    {
+      "path": "/api/peluang/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/peluang/"
+    },
+    {
+      "path": "/api/informasi/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/informasi/"
+    },
+    {
+      "path": "/api/hilirisasi/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/hilirisasi/"
+    },
+    {
+      "path": "/api/ipro/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/ipro/"
+    },
+    {
+      "path": "/api/v1/content/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/content/"
+    },
+    {
+      "path": "/api/v1/menu/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/menu/"
+    },
+    {
+      "path": "/api/v1/slider/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/slider/"
+    },
+    {
+      "path": "/api/v1/search/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/search/"
+    },
+    {
+      "path": "/api/v1/home/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/home/"
+    },
+    {
+      "path": "/api/v1/daerah/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/daerah/"
+    },
+    {
+      "path": "/api/v1/probis/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/probis/"
+    },
+    {
+      "path": "/api/v1/global/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/global/"
+    },
+    {
+      "path": "/api/v1/peluang/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/peluang/"
+    },
+    {
+      "path": "/api/v1/informasi/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/informasi/"
+    },
+    {
+      "path": "/api/v1/hilirisasi/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/hilirisasi/"
+    },
+    {
+      "path": "/api/v1/ipro/",
+      "status": "500",
+      "content_type": "text/html; charset=utf-8",
+      "size": "2148",
+      "url": "https://regionalinvestment.bkpm.go.id/api/v1/ipro/"
+    }
+  ]
+}

@@ -1,0 +1,1147 @@
+{
+  "source": "playwright_network_capture",
+  "base_url": "https://regionalinvestment.bkpm.go.id",
+  "endpoints": [
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Kawasan_Industri_56_putih.svg",
+      "path": "/be/uploads/icon-web/Kawasan_Industri_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_wilayah?page=1&page_size=9&search=",
+      "path": "/be/peluang/peluang_investasi_wilayah",
+      "page": "homepage",
+      "method": "GET",
+      "params": "page=1&page_size=9&search="
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/sektor_nasional_detail/id/11",
+      "path": "/be/home/sektor_nasional_detail/id/11",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/sektor_unggulan_wilayah/id/11",
+      "path": "/be/home/sektor_unggulan_wilayah/id/11",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/slider/id",
+      "path": "/be/home/slider/id",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/peluang_investasi_wilayah/1/",
+      "path": "/be/home/peluang_investasi_wilayah/1/",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/sektor_nasonal_ref/id",
+      "path": "/be/home/sektor_nasonal_ref/id",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/prov_ref/id",
+      "path": "/be/home/prov_ref/id",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/ikn/detail/",
+      "path": "/be/ikn/detail/",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/link_terkait",
+      "path": "/be/home/link_terkait",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/running_text?_t=1777664433910",
+      "path": "/be/home/running_text",
+      "page": "homepage",
+      "method": "GET",
+      "params": "_t=1777664433910"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/ikn?_t=1777664433911",
+      "path": "/be/home/ikn",
+      "page": "homepage",
+      "method": "GET",
+      "params": "_t=1777664433911"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/count_viewer?id_halaman_pengunjung=1",
+      "path": "/be/peluang/count_viewer",
+      "page": "homepage",
+      "method": "GET",
+      "params": "id_halaman_pengunjung=1"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/slider_background/",
+      "path": "/be/home/slider_background/",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/home/sektor_unggulan_nasional/id/1",
+      "path": "/be/home/sektor_unggulan_nasional/id/1",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Kontruksi_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Kontruksi_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pertanian_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Pertanian_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Perikanan_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Perikanan_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pertambangan_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Pertambangan_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Perindustrian_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Perindustrian_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Perdagangan_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Perdagangan_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Energy_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Energy_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pengangkutan_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Pengangkutan_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Keuangan_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Keuangan_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pariwisata_56_putih_atas.svg",
+      "path": "/be/uploads/icon-web/Pariwisata_56_putih_atas.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/202410300311095685.webp",
+      "path": "/be/uploads/icon-web/202410300311095685.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/202410210336048429.webp",
+      "path": "/be/uploads/icon-web/202410210336048429.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/202410210336259263.webp",
+      "path": "/be/uploads/icon-web/202410210336259263.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pertanian_56_putih.svg",
+      "path": "/be/uploads/icon-web/Pertanian_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pengangkutan_56_putih.svg",
+      "path": "/be/uploads/icon-web/Pengangkutan_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/1108/peluang/2020/1/ki_ladong2.png?t=1777664434239&t=1777664434269",
+      "path": "/be/uploads/peluang/1108/peluang/2020/1/ki_ladong2.png",
+      "page": "homepage",
+      "method": "GET",
+      "params": "t=1777664434239&t=1777664434269"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang_daerah/208/eba66b7e-451c-4a02-9e79-29e07da1793d.jpg?t=1777664434239&t=1777664434269",
+      "path": "/be/uploads/peluang_daerah/208/eba66b7e-451c-4a02-9e79-29e07da1793d.jpg",
+      "page": "homepage",
+      "method": "GET",
+      "params": "t=1777664434239&t=1777664434269"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang_daerah/389/sabang_cov.webp?t=1777664434239&t=1777664434270",
+      "path": "/be/uploads/peluang_daerah/389/sabang_cov.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": "t=1777664434239&t=1777664434270"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Kontruksi_56_putih.svg",
+      "path": "/be/uploads/icon-web/Kontruksi_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Perikanan_56_putih.svg",
+      "path": "/be/uploads/icon-web/Perikanan_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Perdagangan_56_putih.svg",
+      "path": "/be/uploads/icon-web/Perdagangan_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/icon-web/Pariwisata_56_putih.svg",
+      "path": "/be/uploads/icon-web/Pariwisata_56_putih.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202505090520556215.webp",
+      "path": "/be/uploads/slider/202505090520556215.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202505081431558694.webp",
+      "path": "/be/uploads/slider/202505081431558694.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202505081428501423.webp",
+      "path": "/be/uploads/slider/202505081428501423.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202505081423015413.webp",
+      "path": "/be/uploads/slider/202505081423015413.webp",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/probis/proposal_bisnis_wilayah?page=1&page_size=9&search=",
+      "path": "/be/probis/proposal_bisnis_wilayah",
+      "page": "homepage",
+      "method": "GET",
+      "params": "page=1&page_size=9&search="
+    },
+    {
+      "url": "https://www.youtube.com/youtubei/v1/player?prettyPrint=false",
+      "path": "/youtubei/v1/player",
+      "page": "homepage",
+      "method": "POST",
+      "params": "prettyPrint=false"
+    },
+    {
+      "url": "https://www.youtube.com/api/stats/qoe?fmt=243&cpn=QyKfsuqLUHocYtz6&el=embedded&ns=yt&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&cl=904778756&seq=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&event=streamingstats&plid=AAZQxsE4DOco07tK&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&vps=0.000:N,0.014:B,0.087:B,0.087:B&ctmp=dttg:t.0;dtt.0;gl.0&cat=streaming&cmt=0.014:0.000,0.087:0.000&vfs=0.087:243:243::r:sms.0&view=0.087:640:288&bwe=0.087:596378&bat=0.087:1:1&vis=0.087:0&bh=0.087:0.000&qclc=ChBReUtmc3VxTFVIb2NZdHo2EAE",
+      "path": "/api/stats/qoe",
+      "page": "homepage",
+      "method": "POST",
+      "params": "fmt=243&cpn=QyKfsuqLUHocYtz6&el=embedded&ns=yt&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&cl=904778756&seq=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&event=streamingstats&plid=AAZQxsE4DOco07tK&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&vps=0.000:N,0.014:B,0.087:B,0.087:B&ctmp=dttg:t.0;dtt.0;gl.0&cat=streaming&cmt=0.014:0.000,0.087:0.000&vfs=0.087:243:243::r:sms.0&view=0.087:640:288&bwe=0.087:596378&bat=0.087:1:1&vis=0.087:0&bh=0.087:0.000&qclc=ChBReUtmc3VxTFVIb2NZdHo2EAE"
+    },
+    {
+      "url": "https://www.youtube.com/youtubei/v1/account/get_setting_values?prettyPrint=false",
+      "path": "/youtubei/v1/account/get_setting_values",
+      "page": "homepage",
+      "method": "POST",
+      "params": "prettyPrint=false"
+    },
+    {
+      "url": "https://www.youtube.com/youtubei/v1/next?prettyPrint=false",
+      "path": "/youtubei/v1/next",
+      "page": "homepage",
+      "method": "POST",
+      "params": "prettyPrint=false"
+    },
+    {
+      "url": "https://www.gstatic.com/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+      "path": "/youtube/img/icons/mweb/youtube_fill/logo/v2/67px.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://fonts.gstatic.com/s/i/youtube_outline_experimental/player_full_enter_alt/v1/24px.svg",
+      "path": "/s/i/youtube_outline_experimental/player_full_enter_alt/v1/24px.svg",
+      "page": "homepage",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://www.youtube.com/youtubei/v1/log_event?alt=json",
+      "path": "/youtubei/v1/log_event",
+      "page": "homepage",
+      "method": "POST",
+      "params": "alt=json"
+    },
+    {
+      "url": "https://www.youtube.com/api/stats/playback?ns=yt&el=embedded&cpn=QyKfsuqLUHocYtz6&ver=2&cmt=0.059&fmt=243&fs=0&rt=0.673&euri=https%3A%2F%2Fregionalinvestment.bkpm.go.id%2F&lact=702&cl=904778756&mos=1&volume=100&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=id_ID&cr=ID&len=249.141&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&rtn=6&afmt=251&size=640%3A288&inview=0&muted=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&plid=AAZQxsE4DOco07tK&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FOXMdg_bySFE%3Fautoplay%3D1%26controls%3D0%26mute%3D1%26rel%3D0%26showinfo%3D0%26loop%3D1%26playlist%3DOXMdg_bySFE%26enablejsapi%3D1%26origin%3Dhttps%253A%252F%252Fregionalinvestment.bkpm.go.id%26widgetid%3D1%26forigin%3Dhttps%253A%252F%252Fregionalinvestment.bkpm.go.id%252F%26aoriginsup%3D1%26vf%3D1&list=TLGG8dqv5pNTzEswMTA1MjAyNg&of=fGyYUHhtlCV-8aetoPc_CA&vm=CAQQARgCOjJBSHFpSlRLaXVzbUlpVGFUSVY0Z1o2Ry14ajNUN24yNS1BOUhVUWIyN2hwM0pMelJuQWJkQUxkcUFQSUIzOXNIN0VVYTBlM0tWeFIyVFFOcHdGLU50WDZYaEp2NEpON0RndHNBcUNXUnlOMkFrQ2h1VV8wY0F1a1BaTC1KYk1TdHZueW9FVDdxQ1NuNzlWaXlXY1A4YUxmVA",
+      "path": "/api/stats/playback",
+      "page": "homepage",
+      "method": "POST",
+      "params": "ns=yt&el=embedded&cpn=QyKfsuqLUHocYtz6&ver=2&cmt=0.059&fmt=243&fs=0&rt=0.673&euri=https%3A%2F%2Fregionalinvestment.bkpm.go.id%2F&lact=702&cl=904778756&mos=1&volume=100&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=id_ID&cr=ID&len=249.141&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&rtn=6&afmt=251&size=640%3A288&inview=0&muted=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&plid=AAZQxsE4DOco07tK&referrer=https%3A%2F%2Fwww.youtube.com%2Fembed%2FOXMdg_bySFE%3Fautoplay%3D1%26controls%3D0%26mute%3D1%26rel%3D0%26showinfo%3D0%26loop%3D1%26playlist%3DOXMdg_bySFE%26enablejsapi%3D1%26origin%3Dhttps%253A%252F%252Fregionalinvestment.bkpm.go.id%26widgetid%3D1%26forigin%3Dhttps%253A%252F%252Fregionalinvestment.bkpm.go.id%252F%26aoriginsup%3D1%26vf%3D1&list=TLGG8dqv5pNTzEswMTA1MjAyNg&of=fGyYUHhtlCV-8aetoPc_CA&vm=CAQQARgCOjJBSHFpSlRLaXVzbUlpVGFUSVY0Z1o2Ry14ajNUN24yNS1BOUhVUWIyN2hwM0pMelJuQWJkQUxkcUFQSUIzOXNIN0VVYTBlM0tWeFIyVFFOcHdGLU50WDZYaEp2NEpON0RndHNBcUNXUnlOMkFrQ2h1VV8wY0F1a1BaTC1KYk1TdHZueW9FVDdxQ1NuNzlWaXlXY1A4YUxmVA"
+    },
+    {
+      "url": "https://www.youtube.com/api/stats/atr?ns=yt&el=embedded&cpn=QyKfsuqLUHocYtz6&ver=2&cmt=3.065&fmt=243&fs=0&rt=3.678&euri=https%3A%2F%2Fregionalinvestment.bkpm.go.id%2F&lact=3706&cl=904778756&mos=1&volume=100&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=id_ID&cr=ID&len=249.141&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&afmt=251&muted=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&plid=AAZQxsE4DOco07tK&vm=CAQQARgCOjJBSHFpSlRLaXVzbUlpVGFUSVY0Z1o2Ry14ajNUN24yNS1BOUhVUWIyN2hwM0pMelJuQWJkQUxkcUFQSUIzOXNIN0VVYTBlM0tWeFIyVFFOcHdGLU50WDZYaEp2NEpON0RndHNBcUNXUnlOMkFrQ2h1VV8wY0F1a1BaTC1KYk1TdHZueW9FVDdxQ1NuNzlWaXlXY1A4YUxmVA",
+      "path": "/api/stats/atr",
+      "page": "homepage",
+      "method": "POST",
+      "params": "ns=yt&el=embedded&cpn=QyKfsuqLUHocYtz6&ver=2&cmt=3.065&fmt=243&fs=0&rt=3.678&euri=https%3A%2F%2Fregionalinvestment.bkpm.go.id%2F&lact=3706&cl=904778756&mos=1&volume=100&cbr=Chrome&cbrver=120.0.0.0&c=WEB_EMBEDDED_PLAYER&cver=2.20260501.01.00&cplayer=UNIPLAYER&cos=X11&cplatform=DESKTOP&autoplay=1&epm=1&delay=4&hl=id_ID&cr=ID&len=249.141&fexp=v1%2C23848212%2C156432%2C27005591%2C53408%2C34656%2C106030%2C18644%2C117689%2C9252%2C3479%2C13030%2C23206%2C68548%2C1248%2C30906%2C15105%2C25059%2C4174%2C30446%2C13518%2C5188%2C21437%2C4571%2C11038%2C17403%2C662%2C9404%2C23826%2C9500%2C1840%2C22474%2C11771%2C11471%2C13159%2C21520%2C10985%2C9705%2C14341%2C3305%2C2306%2C2754%2C24323%2C1625%2C8030%2C3571%2C7020%2C3426%2C1304%2C8445%2C4170%2C7181%2C5073%2C3881%2C3103%2C3464%2C4687%2C2429%2C3951%2C5444%2C2316%2C3342&afmt=251&muted=1&docid=OXMdg_bySFE&ei=swH1adeXKeWt4-EPs6PhEA&plid=AAZQxsE4DOco07tK&vm=CAQQARgCOjJBSHFpSlRLaXVzbUlpVGFUSVY0Z1o2Ry14ajNUN24yNS1BOUhVUWIyN2hwM0pMelJuQWJkQUxkcUFQSUIzOXNIN0VVYTBlM0tWeFIyVFFOcHdGLU50WDZYaEp2NEpON0RndHNBcUNXUnlOMkFrQ2h1VV8wY0F1a1BaTC1KYk1TdHZueW9FVDdxQ1NuNzlWaXlXY1A4YUxmVA"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/slider/",
+      "path": "/be/peluang/slider/",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_card/",
+      "path": "/be/peluang/peluang_investasi_card/",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_sektor/",
+      "path": "/be/peluang/peluang_investasi_sektor/",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/17/FOTO_MNF_PANELSURYA_BANTEN_2022_01.jpg",
+      "path": "/be/uploads/sektor/img/17/FOTO_MNF_PANELSURYA_BANTEN_2022_01.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/3/11.jpg",
+      "path": "/be/uploads/sektor/img/3/11.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/15/KawasanIndustridanAnekaindustriPhoto.jpg",
+      "path": "/be/uploads/sektor/img/15/KawasanIndustridanAnekaindustriPhoto.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/6/img-sample-pariwisata.png",
+      "path": "/be/uploads/sektor/img/6/img-sample-pariwisata.png",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/18/14.jpg",
+      "path": "/be/uploads/sektor/img/18/14.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/14/15.jpg",
+      "path": "/be/uploads/sektor/img/14/15.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/13/img-agro-industri.jpg",
+      "path": "/be/uploads/sektor/img/13/img-agro-industri.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/19/_74a7516a-e990-40c6-b062-40dc93db5eb1.jpeg",
+      "path": "/be/uploads/sektor/img/19/_74a7516a-e990-40c6-b062-40dc93db5eb1.jpeg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor/img/2/333.jpg",
+      "path": "/be/uploads/sektor/img/2/333.jpg",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202412180255472376.webp",
+      "path": "/be/uploads/slider/202412180255472376.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202412180711428690.webp",
+      "path": "/be/uploads/slider/202412180711428690.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/202412180712479664.webp",
+      "path": "/be/uploads/slider/202412180712479664.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/slider/infrastrukturbg.webp",
+      "path": "/be/uploads/slider/infrastrukturbg.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah/get_zona_waktu/?_t=1777664440434",
+      "path": "/be/daerah/get_zona_waktu/",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": "_t=1777664440434"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah/get_prov/id?_t=1777664440434",
+      "path": "/be/daerah/get_prov/id",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": "_t=1777664440434"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449238199.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449238199.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/1805/peluang/2024/1/202507311053295251.webp",
+      "path": "/be/uploads/peluang/1805/peluang/2024/1/202507311053295251.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3325/peluang/2024/1/202505051645389018.webp",
+      "path": "/be/uploads/peluang/3325/peluang/2024/1/202505051645389018.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3210/peluang/2024/1/202507311528132463.webp",
+      "path": "/be/uploads/peluang/3210/peluang/2024/1/202507311528132463.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/5202/peluang/2024/1/202506252348375156.webp",
+      "path": "/be/uploads/peluang/5202/peluang/2024/1/202506252348375156.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3524/peluang/2024/1/202505021117193478.webp",
+      "path": "/be/uploads/peluang/3524/peluang/2024/1/202505021117193478.webp",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/global/getReferensi/vw_peluang_kabkot_id",
+      "path": "/be/global/getReferensi/vw_peluang_kabkot_id",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/global/getReferensi/vw_peluang_daerah_id",
+      "path": "/be/global/getReferensi/vw_peluang_daerah_id",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/global/getReferensi/vw_kawasan",
+      "path": "/be/global/getReferensi/vw_kawasan",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/iam/login",
+      "path": "/geoportal/be/iam/login",
+      "page": "peluang_investasi",
+      "method": "POST",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/cms/layer/ZlMvBZEjgInDPeYR/info",
+      "path": "/geoportal/be/cms/layer/ZlMvBZEjgInDPeYR/info",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/cms/layer/UzqvFzNKdKwqHdVS/info",
+      "path": "/geoportal/be/cms/layer/UzqvFzNKdKwqHdVS/info",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/cms/layer/rVWHLDywkDsNrxtw/info",
+      "path": "/geoportal/be/cms/layer/rVWHLDywkDsNrxtw/info",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/cms/layer/SeliAFmdDopWUDDq/info",
+      "path": "/geoportal/be/cms/layer/SeliAFmdDopWUDDq/info",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/geoportal/be/cms/layer/KJPnBNNfbcnAuoJc/info",
+      "path": "/geoportal/be/cms/layer/KJPnBNNfbcnAuoJc/info",
+      "page": "peluang_investasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/gambar-slider/get",
+      "path": "/be/hilirisasi/gambar-slider/get",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/about/dashboard/get",
+      "path": "/be/hilirisasi/about/dashboard/get",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/sektor/list/get",
+      "path": "/be/hilirisasi/sektor/list/get",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/komoditas/list/get?limit=1000",
+      "path": "/be/hilirisasi/komoditas/list/get",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": "limit=1000"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/count-viewer",
+      "path": "/be/hilirisasi/count-viewer",
+      "page": "hilirisasi",
+      "method": "POST",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah/?_t=1777664446997",
+      "path": "/be/daerah/",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": "_t=1777664446997"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/hilirisasi/peta/get/geojson?_t=1777664447089",
+      "path": "/be/hilirisasi/peta/get/geojson",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": "_t=1777664447089"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/slider/202601071449264766.webp",
+      "path": "/be/uploads/hilirisasi/slider/202601071449264766.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/slider/202601071457137060.webp",
+      "path": "/be/uploads/hilirisasi/slider/202601071457137060.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632337166.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632337166.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632374156.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632374156.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632409084.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632409084.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632439157.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632439157.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632461911.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632461911.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632497914.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632497914.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632534368.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632534368.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/sektor_his/cover/202601120632579225.webp",
+      "path": "/be/uploads/sektor_his/cover/202601120632579225.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/detail-komoditas/hero/202601140934512673.webp",
+      "path": "/be/uploads/hilirisasi/detail-komoditas/hero/202601140934512673.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/detail-komoditas/hero/202601131720045187.webp",
+      "path": "/be/uploads/hilirisasi/detail-komoditas/hero/202601131720045187.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/detail-komoditas/hero/202601131547387915.webp",
+      "path": "/be/uploads/hilirisasi/detail-komoditas/hero/202601131547387915.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/hilirisasi/detail-komoditas/hero/202601131546064652.webp",
+      "path": "/be/uploads/hilirisasi/detail-komoditas/hero/202601131546064652.webp",
+      "page": "hilirisasi",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/daerah/get_prov/?_t=1777664453572",
+      "path": "/be/daerah/get_prov/",
+      "page": "daerah",
+      "method": "GET",
+      "params": "_t=1777664453572"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/11/Coat_of_arms_of_Aceh.svg.webp",
+      "path": "/be/uploads/daerah/11/Coat_of_arms_of_Aceh.svg.webp",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/12/sumut.JPG",
+      "path": "/be/uploads/daerah/12/sumut.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/13/Lg-Sumbar.jpg",
+      "path": "/be/uploads/daerah/13/Lg-Sumbar.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/14/Riau.jpg",
+      "path": "/be/uploads/daerah/14/Riau.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/15/Jambi.JPG",
+      "path": "/be/uploads/daerah/15/Jambi.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/16/logo_sumsel.gif",
+      "path": "/be/uploads/daerah/16/logo_sumsel.gif",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/17/1702956439_logo_pemda.png",
+      "path": "/be/uploads/daerah/17/1702956439_logo_pemda.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/18/Lampung.JPG",
+      "path": "/be/uploads/daerah/18/Lampung.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/19/Babel.jpg",
+      "path": "/be/uploads/daerah/19/Babel.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/21/1740641716_Kepulauan_Riau.jpeg",
+      "path": "/be/uploads/daerah/21/1740641716_Kepulauan_Riau.jpeg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/31/DKI.jpg",
+      "path": "/be/uploads/daerah/31/DKI.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/32/Jawa%20barat.JPG",
+      "path": "/be/uploads/daerah/32/Jawa%20barat.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/33/Logo_Provinsi_Jawa_Tengah.webp",
+      "path": "/be/uploads/daerah/33/Logo_Provinsi_Jawa_Tengah.webp",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/34/yogya.JPG",
+      "path": "/be/uploads/daerah/34/yogya.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/35/1737534049_IMG_1548.png",
+      "path": "/be/uploads/daerah/35/1737534049_IMG_1548.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/36/1740370425_Logo_Provinsi_Banten_(PNG-1080p)_-_FileVector69.png",
+      "path": "/be/uploads/daerah/36/1740370425_Logo_Provinsi_Banten_(PNG-1080p)_-_FileVector69.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/61/Kalbar.jpg",
+      "path": "/be/uploads/daerah/61/Kalbar.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/62/1708309960_Logo-Provinsi-Kalimantan-Tengah.png",
+      "path": "/be/uploads/daerah/62/1708309960_Logo-Provinsi-Kalimantan-Tengah.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/51/1691368514_unnamed.jpg",
+      "path": "/be/uploads/daerah/51/1691368514_unnamed.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/52/Logo%20NTB.jpg",
+      "path": "/be/uploads/daerah/52/Logo%20NTB.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/53/NTT.JPG",
+      "path": "/be/uploads/daerah/53/NTT.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/63/Kalsel.jpg",
+      "path": "/be/uploads/daerah/63/Kalsel.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/64/Kaltim.JPG",
+      "path": "/be/uploads/daerah/64/Kaltim.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/65/1742261206_kaltara.jpg",
+      "path": "/be/uploads/daerah/65/1742261206_kaltara.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/71/1683623976_Coat_of_arms_of_North_Sulawesi.svg.png",
+      "path": "/be/uploads/daerah/71/1683623976_Coat_of_arms_of_North_Sulawesi.svg.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/72/sulteng.JPG",
+      "path": "/be/uploads/daerah/72/sulteng.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/73/Logo_Sulsel.gif",
+      "path": "/be/uploads/daerah/73/Logo_Sulsel.gif",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/74/sultra.JPG",
+      "path": "/be/uploads/daerah/74/sultra.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/75/Gorontalo.JPG",
+      "path": "/be/uploads/daerah/75/Gorontalo.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/76/sulbar.JPG",
+      "path": "/be/uploads/daerah/76/sulbar.JPG",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/81/logo%20maluku.png",
+      "path": "/be/uploads/daerah/81/logo%20maluku.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/82/Malut.gif",
+      "path": "/be/uploads/daerah/82/Malut.gif",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/91/Papua.GIF",
+      "path": "/be/uploads/daerah/91/Papua.GIF",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/92/papua-barat.jpg",
+      "path": "/be/uploads/daerah/92/papua-barat.jpg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/93/1685327054_papua_selatan.jpeg",
+      "path": "/be/uploads/daerah/93/1685327054_papua_selatan.jpeg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/94/1685328460_papua_tengah.jpeg",
+      "path": "/be/uploads/daerah/94/1685328460_papua_tengah.jpeg",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/95/1685327731_Lambang_Papua_Pegunungan.png",
+      "path": "/be/uploads/daerah/95/1685327731_Lambang_Papua_Pegunungan.png",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/daerah/96/papua_barat_daya.webp",
+      "path": "/be/uploads/daerah/96/papua_barat_daya.webp",
+      "page": "daerah",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/detail/1531",
+      "path": "/be/peluang/detail/1531",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/get_ppi_like/1531?_t=1777664460621",
+      "path": "/be/peluang/get_ppi_like/1531",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": "_t=1777664460621"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295027278.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295027278.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295116592.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295116592.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295146238.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295146238.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295157505.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295157505.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295136446.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295136446.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/2026012610295197670.jpg",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/2026012610295197670.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449234928.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449234928.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449234099.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449234099.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449237483.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449237483.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449239143.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449239143.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449238057.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449238057.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/3510/peluang/2025/1/202601231449233498.webp",
+      "path": "/be/uploads/peluang/3510/peluang/2025/1/202601231449233498.webp",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/6409/peluang/2023/1/05_Lowrise%20Apartment.jpg",
+      "path": "/be/uploads/peluang/6409/peluang/2023/1/05_Lowrise%20Apartment.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/6409/peluang/2023/1/Industri%20Material%20Konstruksi%201.jpg",
+      "path": "/be/uploads/peluang/6409/peluang/2023/1/Industri%20Material%20Konstruksi%201.jpg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/uploads/peluang/1809/peluang/2021/1/FOTO_KI_PESAWARAN_2021_1_R1.jpeg",
+      "path": "/be/uploads/peluang/1809/peluang/2021/1/FOTO_KI_PESAWARAN_2021_1_R1.jpeg",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/peluang/is_ppi_like/1531?_t=1777664460685",
+      "path": "/be/peluang/is_ppi_like/1531",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": "_t=1777664460685"
+    },
+    {
+      "url": "https://regionalinvestment.bkpm.go.id/be/global/getReferensi/tb_negara",
+      "path": "/be/global/getReferensi/tb_negara",
+      "page": "detail_ipro",
+      "method": "GET",
+      "params": ""
+    }
+  ]
+}

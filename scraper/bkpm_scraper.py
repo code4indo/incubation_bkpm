@@ -180,8 +180,12 @@ class DataGovernance:
         if project.name_id and not project.name_en:
             project.name_en = project.name_id  # Will be translated by AI pipeline
         
-        # Add source URL
-        project.source_url = f"https://regionalinvestment.bkpm.go.id/peluang_investasi/{project.project_type.lower()}/{project.id}"
+        # Add source URL based on project type
+        if project.project_type == "PID":
+            project.source_url = f"https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/{project.id}"
+        else:
+            # IPRO and PPI share the same /ipro/ route
+            project.source_url = f"https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/{project.id}"
         
         # Add timestamps
         now = time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
@@ -287,7 +291,7 @@ class BKPMScraper:
     
     async def _fetch_api_detail(self, session: aiohttp.ClientSession, project_id: int) -> Optional[Dict]:
         """Fetch project detail from public API"""
-        url = f"{self.API_DETAIL_URL}?id={project_id}"
+        url = f"{self.API_DETAIL_URL}/{project_id}"
         try:
             async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as resp:
                 if resp.status == 200:
@@ -379,24 +383,33 @@ class BKPMScraper:
         
         return None
     
-    async def _enrich_single(self, session: aiohttp.ClientSession, page: Page, project: ProjectData) -> ProjectData:
+    async def _enrich_single(self, session: aiohttp.ClientSession, page: Page, project: ProjectData, pid_descriptions: Dict[int, str] = None) -> ProjectData:
         """Enrich a single project with API detail and optional Playwright fallback"""
         async with self.semaphore:
-            # Try API detail first
-            detail_data = await self._fetch_api_detail(session, project.id)
-            if detail_data:
-                desc = detail_data.get('deskripsi')
-                if desc and not project.description_id:
-                    project.description_id = desc
-            
-            # If still no description, try Playwright
-            if not project.description_id and page:
-                try:
-                    desc = await self._scrape_detail_playwright(page, project.id, project.project_type)
-                    if desc:
+            # For PID projects, use pre-fetched descriptions (detail endpoint doesn't work for PID)
+            if project.project_type == "PID" and pid_descriptions and project.id in pid_descriptions:
+                project.description_id = pid_descriptions[project.id]
+            else:
+                # Try API detail first (works for IPRO and PPI)
+                detail_data = await self._fetch_api_detail(session, project.id)
+                if detail_data:
+                    detail = detail_data.get('detail', {})
+                    desc = detail.get('deskripsi')
+                    if desc and not project.description_id:
                         project.description_id = desc
-                except Exception as e:
-                    logger.warning(f"Playwright detail failed for {project.id}: {e}")
+                    # Enrich KBLI from detail
+                    kbli = detail.get('kode_kbli')
+                    if kbli and not project.kbli_codes:
+                        project.kbli_codes = [k.strip() for k in str(kbli).split(',') if k.strip()]
+                
+                # If still no description, try Playwright
+                if not project.description_id and page:
+                    try:
+                        desc = await self._scrape_detail_playwright(page, project.id, project.project_type)
+                        if desc:
+                            project.description_id = desc
+                    except Exception as e:
+                        logger.warning(f"Playwright detail failed for {project.id}: {e}")
             
             # Validate
             validation = DataGovernance.validate(project)
@@ -413,6 +426,33 @@ class BKPMScraper:
             await asyncio.sleep(delay)
             
             return project
+    
+    async def _fetch_pid_descriptions(self, session: aiohttp.ClientSession) -> Dict[int, str]:
+        """Fetch PID (Potensi Investasi Daerah) descriptions from reference API"""
+        url = "https://regionalinvestment.bkpm.go.id/be/global/getReferensi/vw_peluang_daerah_id"
+        try:
+            async with session.get(url, timeout=aiohttp.ClientTimeout(total=60)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    if data.get('success') and 'data' in data:
+                        desc_map = {}
+                        for item in data['data']:
+                            pid_id = item.get('id_peluang_daerah')
+                            keterangan = item.get('keterangan', '')
+                            if pid_id and keterangan:
+                                # Strip HTML tags
+                                import re
+                                clean = re.sub(r'<[^>]+>', '', keterangan)
+                                clean = re.sub(r'&\w+;', ' ', clean)
+                                clean = ' '.join(clean.split())
+                                desc_map[pid_id] = clean
+                        logger.info(f"Fetched {len(desc_map)} PID descriptions")
+                        return desc_map
+                logger.warning(f"PID descriptions returned status {resp.status}")
+                return {}
+        except Exception as e:
+            logger.error(f"Failed to fetch PID descriptions: {e}")
+            return {}
     
     async def scrape_all(self, use_playwright: bool = False, max_projects: Optional[int] = None) -> List[ProjectData]:
         """Scrape all projects via API with optional Playwright enrichment"""
@@ -433,6 +473,9 @@ class BKPMScraper:
             # Convert to ProjectData
             projects = [self._project_from_api(p) for p in api_projects]
             
+            # Pre-fetch PID descriptions (needed because /be/peluang/detail/{id} doesn't work for PID)
+            pid_descriptions = await self._fetch_pid_descriptions(session)
+            
             # Optional: init Playwright for detail enrichment
             playwright = None
             browser = None
@@ -442,7 +485,7 @@ class BKPMScraper:
             
             try:
                 # Enrich all projects
-                tasks = [self._enrich_single(session, page, p) for p in projects]
+                tasks = [self._enrich_single(session, page, p, pid_descriptions) for p in projects]
                 results = []
                 for coro in tqdm.as_completed(tasks, total=len(tasks), desc="Enriching projects"):
                     result = await coro

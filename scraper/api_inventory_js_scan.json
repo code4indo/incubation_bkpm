@@ -1,0 +1,38 @@
+{
+  "source": "js_bundle_scan",
+  "chunks_scanned": 28,
+  "endpoints": [
+    "/be/uploads/icon-web/Lokasi_56_putih",
+    "/be/uploads/ikn/202410150551401042",
+    "/be/uploads/ikn/33bb0e85-62b9-417e-a4ab-91b598df8da2",
+    "/be/uploads/ikn/34ad7958-4b2e-44e6-83af-96057023811c",
+    "/be/uploads/ikn/36825b0e-d94d-4d5c-ac18-31c93a4f6348",
+    "/be/uploads/ikn/401e796a-76ee-48b8-a1bd-b508bc6c4521",
+    "/be/uploads/ikn/4cc155cb-605f-4f06-bc41-15deac38342e",
+    "/be/uploads/peluang/6471/peluang/2023/1/1",
+    "/be/uploads/peluang/6471/peluang/2023/1/Logistik",
+    "/be/uploads/slider/202410171001284440"
+  ],
+  "chunk_details": [
+    {
+      "chunk": "https://regionalinvestment.bkpm.go.id/_next/static/chunks/8059-efe57e3fcad3f297.js",
+      "endpoints": [
+        "/be/uploads/icon-web/Lokasi_56_putih",
+        "/be/uploads/ikn/202410150551401042",
+        "/be/uploads/ikn/33bb0e85-62b9-417e-a4ab-91b598df8da2",
+        "/be/uploads/ikn/34ad7958-4b2e-44e6-83af-96057023811c",
+        "/be/uploads/ikn/36825b0e-d94d-4d5c-ac18-31c93a4f6348",
+        "/be/uploads/ikn/401e796a-76ee-48b8-a1bd-b508bc6c4521",
+        "/be/uploads/ikn/4cc155cb-605f-4f06-bc41-15deac38342e",
+        "/be/uploads/peluang/6471/peluang/2023/1/1",
+        "/be/uploads/peluang/6471/peluang/2023/1/Logistik"
+      ]
+    },
+    {
+      "chunk": "https://regionalinvestment.bkpm.go.id/_next/static/chunks/app/page-7f8e025b52ad0568.js",
+      "endpoints": [
+        "/be/uploads/slider/202410171001284440"
+      ]
+    }
+  ]
+}
