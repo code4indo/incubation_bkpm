@@ -3,6 +3,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 import type { Project } from '@/types';
+import { getProjectImage } from '@/lib/projectImage';
+import { formatIdrCompact } from '@/lib/formatters';
+import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
 import { MapPin, ArrowRight, Star, Cpu, Users, TrendingUp } from 'lucide-react';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { useMemo } from 'react';
@@ -13,6 +16,7 @@ interface FeaturedProjectsProps {
 
 export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
   const { getRecommendations, trackInteraction } = useRecommendations();
+  const { language: _lang } = useLanguage(); void _lang; // subscribe for re-render
   
   const recommendations = useMemo(() => {
     return getRecommendations(3);
@@ -23,18 +27,24 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
     onProjectClick(project);
   };
 
+  const getDisplayName = (project: Project) => {
+    const currentLang = getStoredLanguage();
+    if (currentLang === 'en' && project.nameEn) return project.nameEn;
+    return project.nameId || project.name;
+  };
+
   return (
     <section className="py-20 px-4 sm:px-8 lg:px-16 bg-[#F5F3EF]">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-10">
-          <div>
-            <h2 className="text-3xl font-bold text-[#1B4D5C] mb-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-10 gap-4">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#1B4D5C] mb-2">
               AI-Recommended Projects
             </h2>
-            <p className="text-[#6B7B8D]">
+            <p className="text-sm sm:text-base text-[#6B7B8D]">
               Personalized matches powered by hybrid Content-Based + Collaborative Filtering
             </p>
-            <div className="flex items-center gap-4 mt-3 text-xs text-[#6B7B8D]">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 mt-3 text-xs text-[#6B7B8D]">
               <span className="flex items-center gap-1">
                 <Cpu className="w-3 h-3" /> Content-Based Filtering
               </span>
@@ -45,7 +55,7 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
           </div>
           <Button
             variant="outline"
-            className="border-[#1B4D5C] text-[#1B4D5C] hover:bg-[#1B4D5C] hover:text-white"
+            className="border-[#1B4D5C] text-[#1B4D5C] hover:bg-[#1B4D5C] hover:text-white flex-shrink-0"
             onClick={() => {}}
           >
             View All <ArrowRight className="ml-2 w-4 h-4" />
@@ -64,6 +74,9 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
                   src={rec.project.image}
                   alt={rec.project.nameEn}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => {
+                    e.currentTarget.src = getProjectImage(rec.project.sector);
+                  }}
                 />
                 <div className="absolute top-3 left-3 flex items-center gap-2">
                   <Badge className="bg-[#C9963B] text-white font-bold flex items-center gap-1">
@@ -112,10 +125,21 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
                   {rec.project.province}
                 </div>
                 <h3 className="text-lg font-bold text-[#1C2A33] mb-1 group-hover:text-[#1B4D5C] transition-colors">
-                  {rec.project.nameEn}
+                  {getDisplayName(rec.project)}
                 </h3>
+                {(() => {
+                  const currentLang = getStoredLanguage();
+                  return currentLang === 'en' && rec.project.nameId && rec.project.nameEn && (
+                    <p className="text-xs text-[#6B7B8D] italic mb-2">{rec.project.nameId}</p>
+                  );
+                })()}
                 <p className="text-sm text-[#6B7B8D] mb-4 line-clamp-2">
-                  {rec.project.name}
+                  {(() => {
+                    const currentLang = getStoredLanguage();
+                    return currentLang === 'en' && rec.project.descriptionEn
+                      ? rec.project.descriptionEn
+                      : rec.project.descriptionId || rec.project.name;
+                  })()}
                 </p>
                 
                 {/* Top match reason */}
@@ -128,7 +152,7 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
                 <div className="grid grid-cols-3 gap-3 pt-3 border-t">
                   <div className="text-center">
                     <p className="text-xs text-[#6B7B8D]">Investment</p>
-                    <p className="text-sm font-bold text-[#1B4D5C]">Rp {rec.project.investmentValue}T</p>
+                    <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(rec.project.investmentValue * 1_000_000)}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-[#6B7B8D]">IRR</p>

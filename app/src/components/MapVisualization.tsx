@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { projects, regions, ports, airports } from '@/data/mockData';
 import { computeRegionalScores, scoreProjectRegionAlignment } from '@/lib/scoringEngine';
+import { formatIdrCompact } from '@/lib/formatters';
 import type { Project, Region } from '@/types';
 import { Anchor, TrendingUp, DollarSign, Users, Activity } from 'lucide-react';
 
@@ -186,7 +187,7 @@ export function MapVisualization({
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <span className="text-gray-500">Investment</span>
-                      <p className="font-bold text-[#1B4D5C]">Rp {project.investmentValue}T</p>
+                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000)}</p>
                     </div>
                     <div>
                       <span className="text-gray-500">IRR</span>

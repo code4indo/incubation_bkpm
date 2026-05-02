@@ -5,23 +5,27 @@ export interface Coordinates {
 
 export interface Project {
   id: number;
-  name: string;
-  nameEn: string;
-  description: string;
+  name: string;          // Display name (fallback to ID if EN unavailable)
+  nameEn: string;        // English name (if translated)
+  nameId: string;        // Original Indonesian name
+  description: string;   // Display description (fallback)
+  descriptionEn: string; // English description (if translated)
+  descriptionId: string; // Original Indonesian description
   sector: string;
   subSector: string;
   category: 'Primer' | 'Sekunder' | 'Tersier';
   province: string;
   location: string;
-  investmentValue: number; // in Billion IDR
+  investmentValue: number; // in Million IDR (use formatIdr() for display)
   irr: number; // percentage
-  npv: number; // in Billion IDR
+  npv: number; // in Million IDR (use formatIdr() for display)
   paybackPeriod: number; // years
   status: 'Verified' | 'In Progress' | 'Planning';
   image: string;
   tags: string[];
   coordinates: Coordinates;
   matchScore?: number;
+  hasTranslation?: boolean; // true if EN version is available
 }
 
 export interface Region {

@@ -8,6 +8,7 @@ import {
   ShieldCheck, Globe, Loader2, CheckCircle
 } from 'lucide-react';
 import type { Project } from '@/types';
+import { formatIdr } from '@/lib/formatters';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -39,14 +40,14 @@ function generateMockResponse(query: string, project: Project): { content: strin
 
 **Tax Holiday Eligibility for ${project.nameEn}:**
 
-1. **Status:** ${project.investmentValue >= 500 ? '✅ ELIGIBLE' : '❌ NOT ELIGIBLE (investment below Rp 500B threshold)'}
+1. **Status:** ${project.investmentValue >= 500_000 ? '✅ ELIGIBLE' : '❌ NOT ELIGIBLE (investment below Rp 500B threshold)'}
 
 2. **Type Available:** ${project.sector === 'Manufacturing' || project.sector === 'Energy' ? '100% Corporate Income Tax Reduction' : '50% Investment Allowance'}
 
 3. **Duration:** ${project.sector === 'Manufacturing' ? '20 years' : project.sector === 'Digital' ? '10 years' : '15 years'}
 
-4. **Minimum Investment Required:** Rp ${project.sector === 'Energy' || project.sector === 'Infrastructure' ? '700B - 1,000B' : '500B'}
-   • Your project: Rp ${project.investmentValue}T
+4. **Minimum Investment Required:** ${project.sector === 'Energy' || project.sector === 'Infrastructure' ? 'Rp 700B - 1T' : 'Rp 500B'}
+   • Your project: ${formatIdr(project.investmentValue * 1_000_000)}
 
 5. **Application Process:**
    • Submit via OSS RBA (Online Single Submission)
@@ -149,9 +150,9 @@ Based on the regulatory framework for ${project.sector} sector in ${project.prov
    • ${project.tags.includes('KEK') ? 'KEK-registered: Eligible for 100% tax allowance, import duty exemption, and streamlined OSS processing.' : 'Non-KEK: Standard incentive regime applies.'}
 
 3. **Investment Value Context:**
-   • Your project: Rp ${project.investmentValue}T
-   • Tax holiday threshold: Rp 500B - 1,000B (depending on sector)
-   • ${project.investmentValue >= 500 ? '✅ Above threshold — tax holiday available' : '⚠️ Below threshold — consider phasing investment to reach threshold'}
+   • Your project: ${formatIdr(project.investmentValue * 1_000_000)}
+   • Tax holiday threshold: Rp 500B - 1T (depending on sector)
+   • ${project.investmentValue >= 500_000 ? '✅ Above threshold — tax holiday available' : '⚠️ Below threshold — consider phasing investment to reach threshold'}
 
 4. **Key Documents You Should Review:**
    • Peraturan Pemerintah No. 45/2019 (Tax Holiday Procedures)

@@ -1,11 +1,20 @@
 import type { Project, Region } from '@/types';
 
-export const projects: Project[] = [
+// ===== REAL DATA FROM BKPM PORTAL =====
+// 181 projects scraped from https://regionalinvestment.bkpm.go.id/peluang_investasi
+// Use real data as primary source
+import { realProjects } from './realData';
+
+export const projects: Project[] = realProjects.length > 0 ? realProjects : [
   {
     id: 1,
     name: "Kawasan Industri Terpadu Batang",
     nameEn: "Batang Integrated Industrial Zone",
+    nameId: "Kawasan Industri Terpadu Batang",
     description: "Integrated industrial zone with steel, petrochemical, and manufacturing facilities. Strategic location on the north coast of Java with direct port access.",
+    descriptionEn: "Integrated industrial zone with steel, petrochemical, and manufacturing facilities. Strategic location on the north coast of Java with direct port access.",
+    descriptionId: "Kawasan industri terpadu dengan fasilitas baja, petrokimia, dan manufaktur. Lokasi strategis di pantai utara Jawa dengan akses pelabuhan langsung.",
+    hasTranslation: true,
     sector: "Industri",
     subSector: "Industri Pengolahan Baja",
     category: "Sekunder",
@@ -25,7 +34,11 @@ export const projects: Project[] = [
     id: 2,
     name: "Pusat Data Center Hyperscale",
     nameEn: "Hyperscale Data Center Hub",
+    nameId: "Pusat Data Center Hyperscale",
     description: "Tier-4 data center campus targeting cloud providers and hyperscalers. Located in Greater Jakarta with renewable energy access.",
+    descriptionEn: "Tier-4 data center campus targeting cloud providers and hyperscalers. Located in Greater Jakarta with renewable energy access.",
+    descriptionId: "Kampus data center Tier-4 yang menargetkan penyedia cloud dan hyperscaler. Terletak di Jakarta Raya dengan akses energi terbarukan.",
+    hasTranslation: true,
     sector: "Digital",
     subSector: "Data Center & Cloud",
     category: "Tersier",
@@ -45,7 +58,11 @@ export const projects: Project[] = [
     id: 3,
     name: "Agroindustri Sawit Terintegrasi",
     nameEn: "Integrated Palm Oil Agroindustry",
+    nameId: "Agroindustri Sawit Terintegrasi",
     description: "Sustainable palm oil processing facility with downstream oleochemical production. RSPO-certified supply chain integration.",
+    descriptionEn: "Sustainable palm oil processing facility with downstream oleochemical production. RSPO-certified supply chain integration.",
+    descriptionId: "Fasilitas pengolahan kelapa sawit berkelanjutan dengan produksi oleokimia hilir. Integrasi rantai pasok bersertifikat RSPO.",
+    hasTranslation: true,
     sector: "Pertanian",
     subSector: "Agroindustri Sawit",
     category: "Primer",
@@ -65,7 +82,11 @@ export const projects: Project[] = [
     id: 4,
     name: "Pembangkit Listrik Panas Bumi",
     nameEn: "Geothermal Power Plant Cluster",
+    nameId: "Pembangkit Listrik Panas Bumi",
     description: "350 MW geothermal power plant in the volcanic belt of Sumatra. PPA agreements in place with PLN.",
+    descriptionEn: "350 MW geothermal power plant in the volcanic belt of Sumatra. PPA agreements in place with PLN.",
+    descriptionId: "Pembangkit listrik panas bumi 350 MW di sabuk vulkanik Sumatera. Perjanjian PPA telah ditandatangani dengan PLN.",
+    hasTranslation: true,
     sector: "Energi",
     subSector: "Energi Terbarukan",
     category: "Sekunder",
@@ -85,7 +106,11 @@ export const projects: Project[] = [
     id: 5,
     name: "Kota Cerdas Nusantara",
     nameEn: "Nusantara Smart City",
+    nameId: "Kota Cerdas Nusantara",
     description: "Smart city infrastructure for Indonesia's new capital. Includes digital infrastructure, smart utilities, and green building systems.",
+    descriptionEn: "Smart city infrastructure for Indonesia's new capital. Includes digital infrastructure, smart utilities, and green building systems.",
+    descriptionId: "Infrastruktur kota cerdas untuk ibu kota baru Indonesia. Termasuk infrastruktur digital, utilitas pintar, dan sistem gedung hijau.",
+    hasTranslation: true,
     sector: "Infrastruktur",
     subSector: "Pembangunan Kota",
     category: "Tersier",
@@ -105,7 +130,11 @@ export const projects: Project[] = [
     id: 6,
     name: "Fasilitas Pengolahan Nikel HPAL",
     nameEn: "HPAL Nickel Processing Facility",
+    nameId: "Fasilitas Pengolahan Nikel HPAL",
     description: "High Pressure Acid Leaching plant for battery-grade nickel. Critical supply chain for EV battery manufacturing.",
+    descriptionEn: "High Pressure Acid Leaching plant for battery-grade nickel. Critical supply chain for EV battery manufacturing.",
+    descriptionId: "Pabrik High Pressure Acid Leaching untuk nikel baterai grade. Rantai pasok kritis untuk manufaktur baterai EV.",
+    hasTranslation: true,
     sector: "Industri",
     subSector: "Pengolahan Mineral",
     category: "Sekunder",

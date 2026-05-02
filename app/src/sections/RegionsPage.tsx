@@ -78,13 +78,15 @@ export function RegionsPage() {
         </div>
 
         {/* Interactive Map */}
-        <MapVisualization
-          selectedProject={selectedProject}
-          showHeatmap={showHeatmap}
-          showProjects={showProjects}
-          showInfrastructure={showInfrastructure}
-          height="550px"
-        />
+        <div className="h-[50vh] sm:h-[55vh] md:h-[550px] lg:h-[600px]">
+          <MapVisualization
+            selectedProject={selectedProject}
+            showHeatmap={showHeatmap}
+            showProjects={showProjects}
+            showInfrastructure={showInfrastructure}
+            height="100%"
+          />
+        </div>
 
         {/* Scoring Methodology */}
         <div className="mt-10 bg-white rounded-xl shadow-sm border p-6">

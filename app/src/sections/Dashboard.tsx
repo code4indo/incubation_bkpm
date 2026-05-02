@@ -3,11 +3,22 @@ import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { projects } from '@/data/mockData';
+import { formatIdrCompact } from '@/lib/formatters';
+import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
+import type { Project } from '@/types';
 import { Star, Target, Zap, Bookmark, Eye, ThumbsUp } from 'lucide-react';
 
 export function Dashboard() {
+  const { language: _lang } = useLanguage(); void _lang; // subscribe to context changes for re-render
+  
   const recommendedProjects = projects.slice(0, 3);
   const savedProjects = projects.slice(2, 4);
+
+  const getDisplayName = (project: Project) => {
+    const currentLang = getStoredLanguage();
+    if (currentLang === 'en' && project.nameEn) return project.nameEn;
+    return project.nameId || project.name;
+  };
 
   return (
     <div className="min-h-screen bg-[#F5F3EF] pt-20 pb-12">
@@ -85,7 +96,7 @@ export function Dashboard() {
               {recommendedProjects.map((project) => (
                 <Card key={project.id} className="border-0 shadow-lg">
                   <div className="relative h-40 overflow-hidden rounded-t-lg">
-                    <img src={project.image} alt={project.nameEn} className="w-full h-full object-cover" />
+                    <img src={project.image} alt={getDisplayName(project)} className="w-full h-full object-cover" />
                     <div className="absolute top-2 left-2">
                       <Badge className="bg-[#C9963B] text-white">
                         <Star className="w-3 h-3 mr-1" /> {project.matchScore}% Match
@@ -93,10 +104,10 @@ export function Dashboard() {
                     </div>
                   </div>
                   <CardContent className="p-4">
-                    <h3 className="font-bold text-[#1B4D5C] mb-1">{project.nameEn}</h3>
+                    <h3 className="font-bold text-[#1B4D5C] mb-1">{getDisplayName(project)}</h3>
                     <p className="text-sm text-[#6B7B8D] mb-3">{project.province} — {project.location}</p>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#1B4D5C] font-semibold">Rp {project.investmentValue}T</span>
+                      <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000)}</span>
                       <span className="text-[#C9963B] font-semibold">{project.irr}% IRR</span>
                     </div>
                   </CardContent>
@@ -106,18 +117,18 @@ export function Dashboard() {
           </TabsContent>
 
           <TabsContent value="saved">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
               {savedProjects.map((project) => (
                 <Card key={project.id} className="border-0 shadow-lg">
                   <div className="flex">
-                    <div className="w-32 h-32 flex-shrink-0">
-                      <img src={project.image} alt={project.nameEn} className="w-full h-full object-cover rounded-l-lg" />
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0">
+                      <img src={project.image} alt={getDisplayName(project)} className="w-full h-full object-cover rounded-l-lg" />
                     </div>
                     <CardContent className="p-4 flex-1">
-                      <h3 className="font-bold text-[#1B4D5C] mb-1">{project.nameEn}</h3>
+                      <h3 className="font-bold text-[#1B4D5C] mb-1">{getDisplayName(project)}</h3>
                       <p className="text-sm text-[#6B7B8D] mb-2">{project.province}</p>
                       <div className="flex gap-4 text-sm">
-                        <span className="text-[#1B4D5C] font-semibold">Rp {project.investmentValue}T</span>
+                        <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000)}</span>
                         <span className="text-[#C9963B] font-semibold">{project.irr}% IRR</span>
                       </div>
                     </CardContent>

@@ -2,6 +2,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import type { Project } from '@/types';
+import { getProjectImage } from '@/lib/projectImage';
+import { formatIdr } from '@/lib/formatters';
+import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
 import { ArrowLeft, MapPin, TrendingUp, DollarSign, Clock, BarChart3, FileText, CheckCircle, Share2, Bookmark, Cpu, Users, Sparkles, Target, Globe, Zap, Calendar, Bot } from 'lucide-react';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { assessFinancial } from '@/lib/enhancedFinancialEngine';
@@ -17,6 +20,7 @@ interface ProjectDetailProps {
 }
 
 export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
+  const { language: _lang } = useLanguage(); void _lang; // subscribe for re-render
   const { getMatchScore, trackInteraction } = useRecommendations();
   
   const score = useMemo(() => getMatchScore(project), [getMatchScore, project]);
@@ -49,24 +53,30 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
 
   return (
     <div className="min-h-screen bg-[#F5F3EF]">
-      <div className="relative h-80 md:h-96 overflow-hidden">
+      <div className="relative h-48 sm:h-64 md:h-80 lg:h-96 overflow-hidden">
         <img
           src={project.image}
-          alt={project.nameEn}
+          alt={(() => {
+            const currentLang = getStoredLanguage();
+            return currentLang === 'en' && project.nameEn ? project.nameEn : project.nameId || project.name;
+          })()}
           className="w-full h-full object-cover"
+          onError={(e) => {
+            e.currentTarget.src = getProjectImage(project.sector);
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A33] via-[#1C2A33]/40 to-transparent" />
-        <div className="absolute top-4 left-4">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
           <Button
             variant="secondary"
             size="sm"
-            className="bg-white/90 text-[#1B4D5C] hover:bg-white"
+            className="bg-white/90 text-[#1B4D5C] hover:bg-white text-xs sm:text-sm"
             onClick={onBack}
           >
-            <ArrowLeft className="w-4 h-4 mr-1" /> Back to Projects
+            <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1" /> Back
           </Button>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-10">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center gap-3 mb-3 flex-wrap">
               <Badge className="bg-green-500 text-white">{project.status}</Badge>
@@ -83,9 +93,29 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
                 {score.confidence === 'High' ? 'High Confidence' : 
                  score.confidence === 'Medium' ? 'Medium Confidence' : 'Profile-Based'}
               </Badge>
+              {/* Language indicator */}
+              {project.hasTranslation && (
+                <Badge className="bg-[#27AE60] text-white flex items-center gap-1">
+                  <Globe className="w-3 h-3" />
+                  {(() => {
+                    const currentLang = getStoredLanguage();
+                    return currentLang === 'en' ? 'EN' : 'ID';
+                  })()}
+                </Badge>
+              )}
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{project.nameEn}</h1>
-            <p className="text-lg text-white/80">{project.name}</p>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">
+              {(() => {
+                const currentLang = getStoredLanguage();
+                return currentLang === 'en' && project.nameEn ? project.nameEn : project.nameId || project.name;
+              })()}
+            </h1>
+            {(() => {
+              const currentLang = getStoredLanguage();
+              return currentLang === 'en' && project.nameId && (
+                <p className="text-lg text-white/60 italic">{project.nameId}</p>
+              );
+            })()}
           </div>
         </div>
       </div>
@@ -97,8 +127,18 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
               <CardContent className="p-6">
                 <h2 className="text-xl font-bold text-[#1B4D5C] mb-4 flex items-center gap-2">
                   <FileText className="w-5 h-5" /> Project Description
+                  {project.hasTranslation && (
+                    <Badge className="bg-[#27AE60] text-white text-[10px] ml-2">
+                      <Globe className="w-3 h-3 mr-1" /> EN Available
+                    </Badge>
+                  )}
                 </h2>
-                <p className="text-[#1C2A33] leading-relaxed text-lg">{project.description}</p>
+                <p className="text-[#1C2A33] leading-relaxed text-lg">
+                  {(() => {
+                    const currentLang = getStoredLanguage();
+                    return currentLang === 'en' && project.descriptionEn ? project.descriptionEn : project.descriptionId || project.description;
+                  })()}
+                </p>
               </CardContent>
             </Card>
 
@@ -210,7 +250,7 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
                       <DollarSign className="w-5 h-5 text-[#C9963B]" />
                       <span className="text-white/80">Investment Value</span>
                     </div>
-                    <span className="font-bold text-lg">Rp {project.investmentValue}T</span>
+                    <span className="font-bold text-lg">{formatIdr(project.investmentValue * 1_000_000)}</span>
                   </div>
                   <div className="flex items-center justify-between pb-3 border-b border-white/20">
                     <div className="flex items-center gap-2">
@@ -224,7 +264,7 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
                       <BarChart3 className="w-5 h-5 text-[#C9963B]" />
                       <span className="text-white/80">NPV</span>
                     </div>
-                    <span className="font-bold text-lg">Rp {project.npv}T</span>
+                    <span className="font-bold text-lg">{formatIdr(project.npv * 1_000_000)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">

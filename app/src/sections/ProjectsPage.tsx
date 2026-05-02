@@ -2,9 +2,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import type { Project } from '@/types';
-import { MapPin, Star, Filter, Cpu, Users, Sparkles } from 'lucide-react';
+import { getProjectImage } from '@/lib/projectImage';
+import { formatIdrCompact, formatPercent, formatYears } from '@/lib/formatters';
+import { MapPin, Star, Filter, Cpu, Users, Sparkles, Globe } from 'lucide-react';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { useMemo } from 'react';
+import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
 
 interface ProjectsPageProps {
   projects: Project[];
@@ -12,6 +15,7 @@ interface ProjectsPageProps {
 }
 
 export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
+  const { language } = useLanguage();
   const { getMatchScore, trackInteraction } = useRecommendations();
   
   // Calculate real match scores for all projects
@@ -27,9 +31,39 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
     onProjectClick(project);
   };
 
+  // Helpers that read from localStorage at runtime — Vite CANNOT DCE these
+  // because localStorage is a browser API unknown at build time
+  const getDisplayName = (project: Project): string => {
+    const currentLang = getStoredLanguage();
+    if (currentLang === 'en' && project.nameEn) return project.nameEn;
+    return project.nameId || project.name;
+  };
+
+  const getDisplayDescription = (project: Project): string => {
+    const currentLang = getStoredLanguage();
+    if (currentLang === 'en' && project.descriptionEn && project.descriptionEn.length > 50) {
+      return project.descriptionEn;
+    }
+    return project.descriptionId || project.description;
+  };
+
+  const showEnSubtitle = (project: Project): boolean => {
+    const currentLang = getStoredLanguage();
+    return currentLang === 'en' && !!project.nameId && !!project.nameEn;
+  };
+
   return (
     <section className="py-12 px-4 sm:px-8 lg:px-16 bg-[#F5F3EF] min-h-screen">
       <div className="max-w-7xl mx-auto">
+        {/* DEBUG: Language State */}
+        <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 rounded-lg">
+          <p className="text-sm font-mono text-yellow-800">
+            DEBUG: language=<strong>{language}</strong> (from Context) | localStorage=<strong>{getStoredLanguage()}</strong> | 
+            project384 descEn={scoredProjects.find(s => s.project.id === 384)?.project.descriptionEn?.length || 0} chars | 
+            descId={scoredProjects.find(s => s.project.id === 384)?.project.descriptionId?.length || 0} chars
+          </p>
+        </div>
+
         {/* Engine info banner */}
         <div className="mb-6 p-4 bg-[#1B4D5C]/5 rounded-xl border border-[#1B4D5C]/10">
           <div className="flex items-center gap-4">
@@ -78,6 +112,9 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
                     src={project.image}
                     alt={project.nameEn}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      e.currentTarget.src = getProjectImage(project.sector);
+                    }}
                   />
                   <div className="absolute top-3 left-3 flex items-center gap-2 flex-wrap">
                     <Badge className="bg-[#C9963B] text-white font-bold flex items-center gap-1">
@@ -93,6 +130,13 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
                       {score.confidence === 'High' ? 'AI High' : 
                        score.confidence === 'Medium' ? 'AI Medium' : 'Profile'}
                     </Badge>
+                    {/* Bilingual badge */}
+                    {project.hasTranslation && (
+                      <Badge className="bg-[#27AE60] text-white text-[10px] flex items-center gap-1">
+                        <Globe className="w-3 h-3" />
+                        EN
+                      </Badge>
+                    )}
                   </div>
                   <div className="absolute top-3 right-3 flex gap-1 flex-wrap justify-end max-w-[50%]">
                     {project.tags.map((tag) => (
@@ -131,10 +175,13 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
                     {project.province} — {project.location}
                   </div>
                   <h3 className="text-lg font-bold text-[#1C2A33] mb-1 group-hover:text-[#1B4D5C] transition-colors">
-                    {project.nameEn}
+                    {getDisplayName(project)}
                   </h3>
+                  {showEnSubtitle(project) && (
+                    <p className="text-xs text-[#6B7B8D] italic mb-1">{project.nameId}</p>
+                  )}
                   <p className="text-sm text-[#6B7B8D] mb-3 line-clamp-2">
-                    {project.description}
+                    {getDisplayDescription(project)}
                   </p>
                   
                   {/* Top match reason */}
@@ -147,15 +194,15 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
                   <div className="grid grid-cols-3 gap-3 pt-3 border-t">
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">Investment</p>
-                      <p className="text-sm font-bold text-[#1B4D5C]">Rp {project.investmentValue}T</p>
+                      <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000)}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">IRR</p>
-                      <p className="text-sm font-bold text-[#C9963B]">{project.irr}%</p>
+                      <p className="text-sm font-bold text-[#C9963B]">{formatPercent(project.irr)}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">Payback</p>
-                      <p className="text-sm font-bold text-[#1B4D5C]">{project.paybackPeriod} yr</p>
+                      <p className="text-sm font-bold text-[#1B4D5C]">{formatYears(project.paybackPeriod)}</p>
                     </div>
                   </div>
                 </CardContent>
