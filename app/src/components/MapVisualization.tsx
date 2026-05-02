@@ -291,21 +291,21 @@ export function MapVisualization({
 
       {/* Project-Region Alignment Panel */}
       {selectedProject && alignments.length > 0 && (
-        <Card className="border-0 shadow-md">
-          <CardContent className="p-5">
-            <h4 className="font-bold text-[#1B4D5C] mb-3 flex flex-wrap items-center gap-2">
+        <Card className="border-0 shadow-md overflow-hidden">
+          <CardContent className="p-5 overflow-hidden">
+            <h4 className="font-bold text-[#1B4D5C] mb-3 flex flex-wrap items-center gap-2 min-w-0">
               <Activity className="w-5 h-5 flex-shrink-0" />
-              <span className="break-words">AI Alignment: <span className="text-[#C9963B]">{selectedProject.nameEn}</span> × Regional Potential</span>
+              <span className="break-words min-w-0">AI Alignment: <span className="text-[#C9963B]">{selectedProject.nameEn}</span> × Regional Potential</span>
             </h4>
             <div className="grid md:grid-cols-2 gap-3">
               {alignments.slice(0, 6).map((alignment, idx) => (
                 <div
                   key={idx}
-                  className={`p-3 rounded-lg border ${idx === 0 ? 'border-[#C9963B] bg-[#C9963B]/5' : 'border-gray-100 bg-white'}`}
+                  className={`p-3 rounded-lg border min-w-0 ${idx === 0 ? 'border-[#C9963B] bg-[#C9963B]/5' : 'border-gray-100 bg-white'}`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold text-sm text-[#1C2A33]">{alignment.regionName}</span>
-                    <span className={`text-sm font-bold ${alignment.alignmentScore >= 70 ? 'text-green-600' : alignment.alignmentScore >= 50 ? 'text-[#C9963B]' : 'text-gray-500'}`}>
+                  <div className="flex items-center justify-between mb-2 gap-2 min-w-0">
+                    <span className="font-semibold text-sm text-[#1C2A33] truncate min-w-0 flex-1">{alignment.regionName}</span>
+                    <span className={`text-sm font-bold flex-shrink-0 ${alignment.alignmentScore >= 70 ? 'text-green-600' : alignment.alignmentScore >= 50 ? 'text-[#C9963B]' : 'text-gray-500'}`}>
                       {alignment.alignmentScore}%
                     </span>
                   </div>
@@ -320,7 +320,7 @@ export function MapVisualization({
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {alignment.reasons.slice(0, 2).map((reason, ridx) => (
-                      <span key={ridx} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                      <span key={ridx} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full truncate max-w-full">
                         {reason}
                       </span>
                     ))}
