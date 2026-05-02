@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { MapPin, Search, BarChart3, LayoutDashboard, User, Globe, Menu } from 'lucide-react';
+import { MapPin, Search, BarChart3, LayoutDashboard, Activity, User, Globe, Menu } from 'lucide-react';
 import { useState } from 'react';
 
 interface NavbarProps {
   currentPage: string;
-  onNavigate: (page: 'home' | 'projects' | 'regions' | 'dashboard' | 'profile') => void;
+  onNavigate: (page: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile') => void;
 }
 
 export function Navbar({ currentPage, onNavigate }: NavbarProps) {
@@ -18,6 +18,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { id: 'projects', label: 'Projects', labelId: 'Proyek', icon: Search },
     { id: 'regions', label: 'Regions', labelId: 'Wilayah', icon: MapPin },
     { id: 'dashboard', label: 'Dashboard', labelId: 'Dasbor', icon: LayoutDashboard },
+    { id: 'analysis', label: 'Analysis', labelId: 'Analisis', icon: Activity },
     { id: 'profile', label: 'My Profile', labelId: 'Profil', icon: User },
   ];
 

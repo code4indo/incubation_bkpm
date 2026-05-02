@@ -8,6 +8,7 @@ import { ProjectDetail } from '@/sections/ProjectDetail';
 import { RegionsPage } from '@/sections/RegionsPage';
 import { Dashboard } from '@/sections/Dashboard';
 import { InvestorProfilePage } from '@/sections/InvestorProfilePage';
+import { AnalysisPage } from '@/sections/AnalysisPage';
 import { Footer } from '@/sections/Footer';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -19,7 +20,7 @@ import { Search, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function App() {
-  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'profile'>('home');
+  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'analysis' | 'profile'>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSector, setSelectedSector] = useState('All Sectors');
@@ -56,7 +57,7 @@ export function App() {
     if (target !== 'project') setSelectedProject(null);
     window.scrollTo(0, 0);
   };
-  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'profile') => {
+  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile') => {
     handleNavigate(target);
   };
 
@@ -203,6 +204,18 @@ export function App() {
             transition={{ duration: 0.3 }}
           >
             <Dashboard />
+          </motion.main>
+        )}
+
+        {page === 'analysis' && (
+          <motion.main
+            key="analysis"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AnalysisPage />
           </motion.main>
         )}
 
