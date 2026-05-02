@@ -293,9 +293,9 @@ export function MapVisualization({
       {selectedProject && alignments.length > 0 && (
         <Card className="border-0 shadow-md">
           <CardContent className="p-5">
-            <h4 className="font-bold text-[#1B4D5C] mb-3 flex items-center gap-2">
-              <Activity className="w-5 h-5" />
-              AI Alignment: <span className="text-[#C9963B]">{selectedProject.nameEn}</span> × Regional Potential
+            <h4 className="font-bold text-[#1B4D5C] mb-3 flex flex-wrap items-center gap-2">
+              <Activity className="w-5 h-5 flex-shrink-0" />
+              <span className="break-words">AI Alignment: <span className="text-[#C9963B]">{selectedProject.nameEn}</span> × Regional Potential</span>
             </h4>
             <div className="grid md:grid-cols-2 gap-3">
               {alignments.slice(0, 6).map((alignment, idx) => (
