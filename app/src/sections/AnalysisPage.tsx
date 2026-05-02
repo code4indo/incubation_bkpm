@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge';
 import { AnalystReportPanel } from './AnalystReportPanel';
 import { runAnalystAgent } from '@/lib/analystAgent';
-import { runEnhancedAnalystAgent, checkLLMHealth } from '@/lib/analystLLM';
+import { runEnhancedAnalystAgent } from '@/lib/analystLLM';
 import type { AnalystReport } from '@/lib/analystAgent';
 import type { EnhancedAnalystReport } from '@/lib/analystLLM';
 import { projects, regions, ports, airports } from '@/data/mockData';
@@ -27,6 +27,7 @@ import {
   Cpu,
   Sparkles,
   Bot,
+  AlertTriangle,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -36,7 +37,9 @@ export function AnalysisPage() {
   const [enhancedReport, setEnhancedReport] = useState<EnhancedAnalystReport | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [useAI, setUseAI] = useState(true);
-  const [llmHealth, setLlmHealth] = useState<{ available: boolean; model: string } | null>(null);
+  // Default AI as available — will verify during actual analysis call
+  const [llmHealth, setLlmHealth] = useState<{ available: boolean; model: string }>({ available: true, model: 'qwen2.5:14b' });
+  const [aiError, setAiError] = useState<string | null>(null);
 
   // Find selected project
   const selectedProject = useMemo(() => {
@@ -53,22 +56,24 @@ export function AnalysisPage() {
     ) || regions[0]; // Fallback to first region
   }, [selectedProject]);
 
-  // Check LLM health on mount
+  // Default AI as available — CORS prevents health check from browser, verify during actual call
   useEffect(() => {
-    checkLLMHealth().then(setLlmHealth);
+    // Skip browser health check due to CORS — verify during actual analysis instead
+    setLlmHealth({ available: true, model: 'qwen2.5:14b' });
   }, []);
 
   const handleRunAnalysis = async () => {
     if (!selectedProject || !matchingRegion) return;
     setIsAnalyzing(true);
     setEnhancedReport(null);
+    setAiError(null);
 
     // Step 1: Rule-based analysis (always runs — fast & deterministic)
     const baseReport = runAnalystAgent(selectedProject, matchingRegion, ports, airports);
     setReport(baseReport);
 
-    // Step 2: LLM enhancement (if enabled and available)
-    if (useAI && llmHealth?.available) {
+    // Step 2: LLM enhancement (if enabled)
+    if (useAI) {
       try {
         const enhanced = await runEnhancedAnalystAgent(
           baseReport,
@@ -77,8 +82,14 @@ export function AnalysisPage() {
           selectedProject.province,
         );
         setEnhancedReport(enhanced);
+        if (!enhanced.llmSuccess) {
+          setAiError('AI enhancement unavailable (CORS/network). Showing rule-based analysis only.');
+        }
       } catch (err) {
-        console.warn('[AnalysisPage] LLM enhancement failed:', err);
+        const msg = err instanceof Error ? err.message : String(err);
+        console.warn('[AnalysisPage] LLM enhancement failed:', msg);
+        setAiError(`AI unavailable: ${msg}. Rule-based analysis shown.`);
+        setLlmHealth({ available: false, model: 'none' });
       }
     }
 
@@ -182,12 +193,12 @@ export function AnalysisPage() {
                   {isAnalyzing ? (
                     <>
                       <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                      {useAI && llmHealth?.available ? 'AI Analyzing...' : 'Analyzing...'}
+                      {useAI && llmHealth.available ? 'AI Analyzing...' : 'Analyzing...'}
                     </>
                   ) : (
                     <>
-                      {useAI && llmHealth?.available ? <Sparkles className="w-5 h-5 mr-2" /> : <Activity className="w-5 h-5 mr-2" />}
-                      {useAI && llmHealth?.available ? 'Run AI Analysis' : 'Run Analysis'}
+                      {useAI && llmHealth.available ? <Sparkles className="w-5 h-5 mr-2" /> : <Activity className="w-5 h-5 mr-2" />}
+                      {useAI && llmHealth.available ? 'Run AI Analysis' : 'Run Analysis'}
                     </>
                   )}
                 </Button>
@@ -195,18 +206,21 @@ export function AnalysisPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setUseAI(!useAI)}
-                    disabled={!llmHealth?.available}
+                    disabled={!llmHealth.available}
                     className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded-full border transition-colors ${
-                      useAI && llmHealth?.available
+                      useAI && llmHealth.available
                         ? 'bg-purple-100 text-purple-700 border-purple-200'
                         : 'bg-gray-100 text-gray-400 border-gray-200'
                     }`}
                   >
                     <Bot className="w-3 h-3" />
-                    {llmHealth?.available ? (useAI ? 'AI ON' : 'AI OFF') : 'AI Unavailable'}
+                    {llmHealth.available ? (useAI ? 'AI ON' : 'AI OFF') : 'AI Unavailable'}
                   </button>
-                  {llmHealth?.available && (
-                    <span className="text-[10px] text-gray-400">{llmHealth.model}</span>
+                  {aiError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-xs text-red-700 flex items-center gap-1.5">
+                      <AlertTriangle className="w-3 h-3 flex-shrink-0" />
+                      {aiError}
+                    </div>
                   )}
                 </div>
               </div>
