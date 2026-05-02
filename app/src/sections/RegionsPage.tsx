@@ -4,8 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { MapVisualization } from '@/components/MapVisualization';
 import { regions, projects, ports, airports } from '@/data/mockData';
-import { computeRegionalScores } from '@/lib/scoringEngine';
-import { MapPin, Users, TrendingUp, DollarSign, Building2, Anchor, BarChart3 } from 'lucide-react';
+import { computeRegionalScores, scoreProjectRegionAlignment } from '@/lib/scoringEngine';
+import type { ProjectRegionAlignment } from '@/lib/scoringEngine';
+import { MapPin, Users, TrendingUp, DollarSign, Building2, Anchor, BarChart3, Activity } from 'lucide-react';
 
 export function RegionsPage() {
   const [showHeatmap, setShowHeatmap] = useState(true);
@@ -19,6 +20,14 @@ export function RegionsPage() {
     projects.find(p => p.id === selectedProjectId) || null,
     [selectedProjectId]
   );
+
+  // Compute project-region alignment for selected project
+  const alignments = useMemo(() => {
+    if (!selectedProject) return [] as ProjectRegionAlignment[];
+    return regions.map(region =>
+      scoreProjectRegionAlignment(selectedProject, region)
+    ).sort((a, b) => b.alignmentScore - a.alignmentScore);
+  }, [selectedProject]);
 
   // Sort regions by score for ranking table
   const rankedRegions = useMemo(() => {
@@ -87,6 +96,51 @@ export function RegionsPage() {
             height="100%"
           />
         </div>
+
+        {/* Project-Region Alignment Panel */}
+        {selectedProject && alignments.length > 0 && (
+          <div className="mt-8">
+            <Card className="border-0 shadow-md">
+              <CardContent className="p-5">
+                <h4 className="font-bold text-[#1B4D5C] mb-3 flex flex-wrap items-center gap-2 min-w-0">
+                  <Activity className="w-5 h-5 flex-shrink-0" />
+                  <span className="break-words min-w-0">AI Alignment: <span className="text-[#C9963B]">{selectedProject.nameEn}</span> × Regional Potential</span>
+                </h4>
+                <div className="grid md:grid-cols-2 gap-3">
+                  {alignments.slice(0, 6).map((alignment, idx) => (
+                    <div
+                      key={idx}
+                      className={`p-3 rounded-lg border min-w-0 ${idx === 0 ? 'border-[#C9963B] bg-[#C9963B]/5' : 'border-gray-100 bg-white'}`}
+                    >
+                      <div className="flex items-center justify-between mb-2 gap-2 min-w-0">
+                        <span className="font-semibold text-sm text-[#1C2A33] truncate min-w-0 flex-1">{alignment.regionName}</span>
+                        <span className={`text-sm font-bold flex-shrink-0 ${alignment.alignmentScore >= 70 ? 'text-green-600' : alignment.alignmentScore >= 50 ? 'text-[#C9963B]' : 'text-gray-500'}`}>
+                          {alignment.alignmentScore}%
+                        </span>
+                      </div>
+                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-2">
+                        <div
+                          className="h-1.5 rounded-full transition-all"
+                          style={{
+                            width: `${alignment.alignmentScore}%`,
+                            backgroundColor: alignment.alignmentScore >= 70 ? '#22c55e' : alignment.alignmentScore >= 50 ? '#C9963B' : '#9ca3af'
+                          }}
+                        />
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {alignment.reasons.slice(0, 2).map((reason, ridx) => (
+                          <span key={ridx} className="text-[10px] bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full truncate max-w-full">
+                            {reason}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
 
         {/* Scoring Methodology */}
         <div className="mt-10 bg-white rounded-xl shadow-sm border p-6">
