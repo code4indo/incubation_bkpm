@@ -96,18 +96,18 @@ export function RegionsPage() {
           <p className="text-gray-600 mb-6">
             Each province is scored on a 0-100 scale using a composite algorithm that weights five dimensions:
           </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
             {[
               { label: 'Infrastructure', weight: '30%', desc: 'Roads, ports, airports, energy access + distance to nearest logistics hub', icon: Anchor, color: 'text-blue-600', bg: 'bg-blue-50' },
               { label: 'Market Access', weight: '25%', desc: 'Export/import volume, port proximity, consumer market size', icon: TrendingUp, color: 'text-green-600', bg: 'bg-green-50' },
               { label: 'Workforce', weight: '25%', desc: 'Labor pool size, education level, UMR competitiveness', icon: Users, color: 'text-purple-600', bg: 'bg-purple-50' },
               { label: 'Investment Climate', weight: '20%', desc: 'Realization value, project count, policy stability', icon: DollarSign, color: 'text-[#C9963B]', bg: 'bg-yellow-50' },
             ].map((dim) => (
-              <div key={dim.label} className={`${dim.bg} rounded-lg p-4 border`}>
-                <dim.icon className={`w-6 h-6 ${dim.color} mb-2`} />
+              <div key={dim.label} className={`${dim.bg} rounded-lg p-4 border h-full flex flex-col`}>
+                <dim.icon className={`w-6 h-6 ${dim.color} mb-2 flex-shrink-0`} />
                 <p className="font-bold text-[#1C2A33] text-sm">{dim.label}</p>
                 <p className="text-xs text-[#C9963B] font-semibold mb-1">Weight: {dim.weight}</p>
-                <p className="text-xs text-gray-500">{dim.desc}</p>
+                <p className="text-xs text-gray-500 line-clamp-3 mt-auto">{dim.desc}</p>
               </div>
             ))}
           </div>
