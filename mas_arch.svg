@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created for Inkscape 1.x+ compatibility -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1600"
+   height="1000"
+   viewBox="0 0 1600 1000"
+   version="1.1"
+   id="mas-arch"
+   sodipodi:docname="mas_arch.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   inkscape:export-filename="mas_arch.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="800"
+     inkscape:cy="500"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer-flow"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     showgrid="false"
+     units="px">
+    <inkscape:grid
+       type="xygrid"
+       id="grid-snapping"
+       spacingx="20"
+       spacingy="20"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"/>
+  </sodipodi:namedview>
+
+  <defs id="defs">
+    <!-- Inkscape-compatible drop-shadow filters (feDropShadow works in Inkscape 1.x+) -->
+    <filter id="shadow-sm" x="-4%" y="-4%" width="108%" height="108%"
+            inkscape:label="Shadow Small"
+            inkscape:menu="Shadows and Glows"
+            inkscape:menu-tooltip="Small drop shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.07"/>
+    </filter>
+    <filter id="shadow-md" x="-6%" y="-6%" width="112%" height="112%"
+            inkscape:label="Shadow Medium"
+            inkscape:menu="Shadows and Glows"
+            inkscape:menu-tooltip="Medium drop shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.09"/>
+    </filter>
+    <filter id="shadow-lg" x="-8%" y="-8%" width="116%" height="116%"
+            inkscape:label="Shadow Large"
+            inkscape:menu="Shadows and Glows"
+            inkscape:menu-tooltip="Large drop shadow">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#0f172a" flood-opacity="0.11"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="mk-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"
+            inkscape:stockid="Arrow1Mend"
+            inkscape:isstock="true">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="mk-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"
+            inkscape:stockid="Arrow1Mend"
+            inkscape:isstock="true">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b"/>
+    </marker>
+    <marker id="mk-sky" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"
+            inkscape:stockid="Arrow1Mend"
+            inkscape:isstock="true">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0ea5e9"/>
+    </marker>
+    <marker id="mk-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"
+            inkscape:stockid="Arrow1Mend"
+            inkscape:isstock="true">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16a34a"/>
+    </marker>
+
+    <!-- Gradients -->
+    <linearGradient id="g-orchestrator" x1="0" y1="0" x2="1" y2="1"
+                    inkscape:collect="always"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1e40af"/>
+    </linearGradient>
+    <linearGradient id="g-card" x1="0" y1="0" x2="0" y2="1"
+                    inkscape:collect="always"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="g-data" x1="0" y1="0" x2="0" y2="1"
+                    inkscape:collect="always"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
+    </linearGradient>
+    <linearGradient id="g-output" x1="0" y1="0" x2="0" y2="1"
+                    inkscape:collect="always"
+                    gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+
+    <!-- Background grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"
+             inkscape:stockid="Grid"
+             inkscape:isstock="true"
+             inkscape:label="Grid 40px">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- ===================== LAYER: Background ===================== -->
+  <g inkscape:groupmode="layer" id="layer-bg" inkscape:label="01 Background"
+     style="display:inline">
+    <rect width="1600" height="1000" fill="#ffffff" id="bg-white"/>
+    <rect x="0" y="0" width="1600" height="1000" fill="#f8fafc" opacity="0.5" id="bg-tint"/>
+    <rect width="1600" height="1000" fill="url(#grid)" opacity="0.4" id="bg-grid"/>
+  </g>
+
+  <!-- ===================== LAYER: Title Bar ===================== -->
+  <g inkscape:groupmode="layer" id="layer-title" inkscape:label="02 Title"
+     style="display:inline">
+    <rect x="0" y="0" width="1600" height="60" fill="#0f172a" id="title-bar"/>
+    <text x="800" y="38"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="18"
+          font-weight="bold"
+          fill="#f8fafc"
+          text-anchor="middle"
+          id="title-text"
+          xml:space="preserve">ARSITEKTUR MULTI-AGENT SYSTEM (MAS) — PLATFORM INVESTASI REGIONAL</text>
+  </g>
+
+  <!-- ===================== LAYER: Input Panel ===================== -->
+  <g inkscape:groupmode="layer" id="layer-input" inkscape:label="03 Input Panel"
+     style="display:inline" transform="translate(60,120)">
+    <rect width="280" height="220" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-sm)" id="input-box"/>
+    <rect x="0" y="0" width="280" height="32" rx="12" fill="#f1f5f9" id="input-header"/>
+    <rect x="0" y="16" width="280" height="16" fill="#f1f5f9" id="input-header-fill"/>
+    <text x="140" y="22"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="11"
+          font-weight="bold"
+          fill="#475569"
+          text-anchor="middle"
+          id="input-label"
+          xml:space="preserve">INPUT &amp; PROFILE BUILDER</text>
+
+    <!-- Investor -->
+    <g transform="translate(20,46)" id="investor-card">
+      <rect width="240" height="70" rx="8" fill="url(#g-card)" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <circle cx="35" cy="35" r="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="35" y="41"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="16"
+            text-anchor="middle"
+            xml:space="preserve">🌍</text>
+      <text x="65" y="28"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#1e3a5f"
+            xml:space="preserve">Foreign Investor</text>
+      <text x="65" y="45"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Query / Upload ND</text>
+      <text x="65" y="59"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Natural Language</text>
+    </g>
+
+    <!-- Internal arrow -->
+    <line x1="140" y1="116" x2="140" y2="126" stroke="#94a3b8" stroke-width="2" marker-end="url(#mk-slate)"/>
+
+    <!-- Concierge -->
+    <g transform="translate(20,136)" id="concierge-card">
+      <rect width="240" height="70" rx="8" fill="url(#g-card)" stroke="#3b82f6" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="35" cy="35" r="20" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+      <text x="35" y="41"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="16"
+            text-anchor="middle"
+            xml:space="preserve">🤝</text>
+      <text x="65" y="28"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#1e3a5f"
+            xml:space="preserve">Concierge Agent</text>
+      <text x="65" y="45"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Profile Builder &amp;</text>
+      <text x="65" y="59"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Intent Clarification</text>
+    </g>
+  </g>
+
+  <!-- ===================== LAYER: Output Panel ===================== -->
+  <g inkscape:groupmode="layer" id="layer-output" inkscape:label="04 Output Panel"
+     style="display:inline" transform="translate(1260,120)">
+    <rect width="280" height="220" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <rect x="0" y="0" width="280" height="32" rx="12" fill="#f0fdf4"/>
+    <rect x="0" y="16" width="280" height="16" fill="#f0fdf4"/>
+    <text x="140" y="22"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="11"
+          font-weight="bold"
+          fill="#166534"
+          text-anchor="middle"
+          xml:space="preserve">OUTPUT &amp; DELIVERY</text>
+
+    <!-- Output Generator -->
+    <g transform="translate(20,46)">
+      <rect width="240" height="70" rx="8" fill="url(#g-output)" stroke="#16a34a" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="35" cy="35" r="20" fill="#ffffff" stroke="#86efac" stroke-width="1.5"/>
+      <text x="35" y="41"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="16"
+            text-anchor="middle"
+            xml:space="preserve">📋</text>
+      <text x="65" y="28"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#14532d"
+            xml:space="preserve">Output Generator</text>
+      <text x="65" y="45"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#166534"
+            xml:space="preserve">Synthesis + Explainability</text>
+      <text x="65" y="59"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#166534"
+            xml:space="preserve">JSON:API Formatter</text>
+    </g>
+
+    <!-- Internal arrow -->
+    <line x1="140" y1="116" x2="140" y2="126" stroke="#16a34a" stroke-width="2" marker-end="url(#mk-green)"/>
+
+    <!-- Dashboard -->
+    <g transform="translate(20,136)">
+      <rect width="240" height="70" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <circle cx="35" cy="35" r="20" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5"/>
+      <text x="35" y="41"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="16"
+            text-anchor="middle"
+            xml:space="preserve">📊</text>
+      <text x="65" y="28"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#14532d"
+            xml:space="preserve">Investor Dashboard</text>
+      <text x="65" y="45"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Match Scores · Risk Flags</text>
+      <text x="65" y="59"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Zone Maps · Contact DPMPTSP</text>
+    </g>
+  </g>
+
+  <!-- ===================== LAYER: Orchestrator ===================== -->
+  <g inkscape:groupmode="layer" id="layer-orchestrator" inkscape:label="05 Orchestrator"
+     style="display:inline">
+    <!-- Outer glow ring -->
+    <circle cx="800" cy="360" r="95" fill="none" stroke="#bfdbfe" stroke-width="3" stroke-dasharray="6,4" opacity="0.6"/>
+    <!-- Main circle -->
+    <circle cx="800" cy="360" r="85" fill="url(#g-orchestrator)" stroke="#1e40af" stroke-width="3" filter="url(#shadow-md)"/>
+    <text x="800" y="355"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="15"
+          font-weight="bold"
+          fill="#ffffff"
+          text-anchor="middle"
+          xml:space="preserve">🎹 ORCHESTRATOR</text>
+    <text x="800" y="375"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="10"
+          fill="#dbeafe"
+          text-anchor="middle"
+          xml:space="preserve">Conditional Routing</text>
+    <text x="800" y="390"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="10"
+          fill="#dbeafe"
+          text-anchor="middle"
+          xml:space="preserve">&amp; State Manager</text>
+  </g>
+
+  <!-- ===================== LAYER: 4 Agents ===================== -->
+  <g inkscape:groupmode="layer" id="layer-agents" inkscape:label="06 Agents"
+     style="display:inline">
+
+    <!-- Scout -->
+    <g id="scout" transform="translate(520,170)">
+      <rect width="200" height="75" rx="10" fill="url(#g-card)" stroke="#f59e0b" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="30" cy="37" r="18" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+      <text x="30" y="43"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="15"
+            text-anchor="middle"
+            xml:space="preserve">🕵️</text>
+      <text x="58" y="30"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#92400e"
+            xml:space="preserve">Scout Agent</text>
+      <text x="58" y="47"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Crawl &amp; Freshness Check</text>
+      <text x="58" y="61"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Official Sources</text>
+    </g>
+
+    <!-- Harmonizer -->
+    <g id="harmonizer" transform="translate(1060,170)">
+      <rect width="200" height="75" rx="10" fill="url(#g-card)" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="30" cy="37" r="18" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1.5"/>
+      <text x="30" y="43"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="15"
+            text-anchor="middle"
+            xml:space="preserve">🌐</text>
+      <text x="58" y="30"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#5b21b6"
+            xml:space="preserve">Harmonizer Agent</text>
+      <text x="58" y="47"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">ID→EN · KBLI→ISIC</text>
+      <text x="58" y="61"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">JSON-LD Standardization</text>
+    </g>
+
+    <!-- Guardian -->
+    <g id="guardian" transform="translate(520,470)">
+      <rect width="200" height="75" rx="10" fill="url(#g-card)" stroke="#10b981" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="30" cy="37" r="18" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="1.5"/>
+      <text x="30" y="43"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="15"
+            text-anchor="middle"
+            xml:space="preserve">🛡️</text>
+      <text x="58" y="30"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#065f46"
+            xml:space="preserve">Guardian Agent</text>
+      <text x="58" y="47"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Regulatory &amp; Legal Audit</text>
+      <text x="58" y="61"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Compliance Scoring 0-100</text>
+    </g>
+
+    <!-- Analyst -->
+    <g id="analyst" transform="translate(1060,470)">
+      <rect width="200" height="75" rx="10" fill="url(#g-card)" stroke="#ef4444" stroke-width="2" filter="url(#shadow-sm)"/>
+      <circle cx="30" cy="37" r="18" fill="#fef2f2" stroke="#fecaca" stroke-width="1.5"/>
+      <text x="30" y="43"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="15"
+            text-anchor="middle"
+            xml:space="preserve">📊</text>
+      <text x="58" y="30"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#991b1b"
+            xml:space="preserve">Analyst Agent</text>
+      <text x="58" y="47"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">Feasibility &amp; Risk Assessment</text>
+      <text x="58" y="61"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">+ PIR Zone Validator</text>
+    </g>
+  </g>
+
+  <!-- ===================== LAYER: Flow Lines ===================== -->
+  <g inkscape:groupmode="layer" id="layer-flow" inkscape:label="07 Flow Lines"
+     style="display:inline" fill="none">
+
+    <!-- 1. Concierge → Orchestrator -->
+    <polyline points="320,291 500,291 500,360 715,360"
+              stroke="#2563eb" stroke-width="2.5" marker-end="url(#mk-blue)"
+              id="flow-concierge-orchestrator"/>
+
+    <!-- 2. Orchestrator → Scout (dispatch) -->
+    <polyline points="740,300 620,300 620,170"
+              stroke="#64748b" stroke-width="1.8" marker-end="url(#mk-slate)"
+              id="flow-orch-scout"/>
+
+    <!-- 3. Orchestrator → Harmonizer (dispatch) -->
+    <polyline points="860,300 1160,300 1160,170"
+              stroke="#64748b" stroke-width="1.8" marker-end="url(#mk-slate)"
+              id="flow-orch-harmonizer"/>
+
+    <!-- 4. Orchestrator → Guardian (dispatch) -->
+    <polyline points="740,420 620,420 620,545"
+              stroke="#64748b" stroke-width="1.8" marker-end="url(#mk-slate)"
+              id="flow-orch-guardian"/>
+
+    <!-- 5. Orchestrator → Analyst (dispatch) -->
+    <polyline points="860,420 1160,420 1160,545"
+              stroke="#64748b" stroke-width="1.8" marker-end="url(#mk-slate)"
+              id="flow-orch-analyst"/>
+
+    <!-- 6. Return lines: Agents → Orchestrator (offset orthogonal) -->
+    <polyline points="640,170 640,320 730,320"
+              stroke="#0ea5e9" stroke-width="1.5"
+              id="flow-return-scout"/>
+    <polyline points="1140,170 1140,320 870,320"
+              stroke="#0ea5e9" stroke-width="1.5"
+              id="flow-return-harmonizer"/>
+    <polyline points="640,545 640,400 730,400"
+              stroke="#0ea5e9" stroke-width="1.5"
+              id="flow-return-guardian"/>
+    <polyline points="1140,545 1140,400 870,400"
+              stroke="#0ea5e9" stroke-width="1.5"
+              id="flow-return-analyst"/>
+
+    <!-- 7. Orchestrator → Output Generator -->
+    <polyline points="885,360 1200,360 1200,201 1280,201"
+              stroke="#2563eb" stroke-width="2.5" marker-end="url(#mk-blue)"
+              id="flow-orch-output"/>
+
+    <!-- 8. Feedback loop: Dashboard → Investor (bottom U-shaped elbow) -->
+    <polyline points="1400,326 1400,430 200,430 200,236"
+              stroke="#94a3b8" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#mk-slate)"
+              id="flow-feedback"/>
+    <text x="800" y="450"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="11"
+          fill="#94a3b8"
+          text-anchor="middle"
+          font-style="italic"
+          id="feedback-label"
+          xml:space="preserve">Feedback Loop — Refine &amp; Re-run</text>
+
+    <!-- 9. Agents → Data Layer (orthogonal dashed) -->
+    <polyline points="610,245 610,740"
+              stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,4"
+              id="flow-data-scout"/>
+    <polyline points="630,545 630,740"
+              stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,4"
+              id="flow-data-guardian"/>
+    <polyline points="1150,245 1150,740"
+              stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,4"
+              id="flow-data-harmonizer"/>
+    <polyline points="1170,545 1170,740"
+              stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="5,4"
+              id="flow-data-analyst"/>
+  </g>
+
+  <!-- ===================== LAYER: Data Layer ===================== -->
+  <g inkscape:groupmode="layer" id="layer-data" inkscape:label="08 Data Layer"
+     style="display:inline" transform="translate(60,740)">
+    <rect width="1480" height="140" rx="12" fill="url(#g-data)" stroke="#0284c7" stroke-width="1.5" filter="url(#shadow-sm)"/>
+    <rect x="0" y="0" width="1480" height="28" rx="12" fill="url(#g-data)"/>
+    <rect x="0" y="14" width="1480" height="14" fill="url(#g-data)"/>
+    <text x="740" y="20"
+          font-family="Segoe UI, Arial, Helvetica, sans-serif"
+          font-size="11"
+          font-weight="bold"
+          fill="#0369a1"
+          text-anchor="middle"
+          xml:space="preserve">DATA &amp; KNOWLEDGE LAYER</text>
+
+    <!-- 7 Data Source Cards -->
+    <g transform="translate(40,40)" id="data-pir">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">🗄️ PIR Database</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Investment Projects</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">regionalinvestment.bkpm</text>
+    </g>
+
+    <g transform="translate(245,40)" id="data-regional">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">📡 Regional Sources</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Pemda · OSS · BPS</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Official Government Data</text>
+    </g>
+
+    <g transform="translate(450,40)" id="data-regulatory">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">⚖️ Regulatory KG</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Perpres · Perda · Omnibus</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Knowledge Graph</text>
+    </g>
+
+    <g transform="translate(655,40)" id="data-gis">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">🗺️ GIS &amp; Zone Maps</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">RTRW · KEK · Kawasan Industri</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">PostGIS / Shapefiles</text>
+    </g>
+
+    <g transform="translate(860,40)" id="data-vector">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">🔢 Vector Index</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Qwen3-Embedding-8B</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Semantic Search / Qdrant</text>
+    </g>
+
+    <g transform="translate(1065,40)" id="data-benchmark">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">📊 Benchmark DB</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">IRR · Payback · NPV</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">OECD FDI Benchmarks</text>
+    </g>
+
+    <g transform="translate(1270,40)" id="data-audit">
+      <rect width="185" height="60" rx="8" fill="#ffffff" stroke="#0ea5e9" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="92" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#0c4a6e"
+            text-anchor="middle"
+            xml:space="preserve">🔐 Audit Ledger</text>
+      <text x="92" y="42"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Traceability &amp; Logs</text>
+      <text x="92" y="55"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">LangSmith / OpenTelemetry</text>
+    </g>
+  </g>
+
+  <!-- ===================== LAYER: Annotations ===================== -->
+  <g inkscape:groupmode="layer" id="layer-annotations" inkscape:label="09 Annotations"
+     style="display:inline">
+
+    <!-- Audit Trail Badge -->
+    <g id="audit-trail" transform="translate(1280,355)">
+      <rect width="240" height="50" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="2" filter="url(#shadow-sm)"/>
+      <text x="120" y="20"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="bold"
+            fill="#92400e"
+            text-anchor="middle"
+            xml:space="preserve">📜 Audit Trail &amp; Explainability</text>
+      <text x="120" y="38"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            text-anchor="middle"
+            xml:space="preserve">Trace ID · Confidence Score · Source Ref</text>
+    </g>
+
+    <!-- Legend -->
+    <g id="legend" transform="translate(60,560)">
+      <rect width="400" height="150" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="20" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#0f172a"
+            xml:space="preserve">LEGENDA &amp; ALUR KERJA</text>
+
+      <g transform="translate(20,38)">
+        <rect width="14" height="14" rx="3" fill="#2563eb"/>
+        <text x="24" y="13"
+              font-family="Segoe UI, Arial, Helvetica, sans-serif"
+              font-size="11"
+              fill="#334155"
+              xml:space="preserve">Alur Kontrol &amp; Routing (Orchestrator)</text>
+      </g>
+      <g transform="translate(20,60)">
+        <rect width="14" height="14" rx="3" fill="#0ea5e9"/>
+        <text x="24" y="13"
+              font-family="Segoe UI, Arial, Helvetica, sans-serif"
+              font-size="11"
+              fill="#334155"
+              xml:space="preserve">Alur Data &amp; Validasi (Agent ↔ Data Layer)</text>
+      </g>
+      <g transform="translate(20,82)">
+        <rect width="14" height="14" rx="3" fill="#16a34a"/>
+        <text x="24" y="13"
+              font-family="Segoe UI, Arial, Helvetica, sans-serif"
+              font-size="11"
+              fill="#334155"
+              xml:space="preserve">Output &amp; Delivery ke Investor</text>
+      </g>
+      <g transform="translate(20,104)">
+        <rect width="14" height="14" rx="3" fill="#fef3c7" stroke="#d97706" stroke-width="1"/>
+        <text x="24" y="13"
+              font-family="Segoe UI, Arial, Helvetica, sans-serif"
+              font-size="11"
+              fill="#334155"
+              xml:space="preserve">Audit Trail (Wajib untuk Due Diligence)</text>
+      </g>
+
+      <line x1="20" y1="126" x2="360" y2="126" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="20" y="142"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#475569"
+            xml:space="preserve">✅ Memecahkan: No English · Unclear Location · No Easy Matching</text>
+    </g>
+
+    <!-- Capabilities -->
+    <g id="capabilities" transform="translate(1120,560)">
+      <rect width="420" height="150" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow-sm)"/>
+      <text x="20" y="24"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="bold"
+            fill="#0f172a"
+            xml:space="preserve">🎯 CAPABILITIES VERIFIED</text>
+
+      <text x="20" y="48"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            fill="#334155"
+            font-weight="bold"
+            xml:space="preserve">1️⃣  Match investors with PIR projects</text>
+      <text x="36" y="63"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">→ Concierge + Vector DB + Analyst Scoring</text>
+
+      <text x="20" y="86"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            fill="#334155"
+            font-weight="bold"
+            xml:space="preserve">2️⃣  Sector / Project search by profile</text>
+      <text x="36" y="101"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">→ Profile Builder + Semantic Routing</text>
+
+      <text x="20" y="124"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="11"
+            fill="#334155"
+            font-weight="bold"
+            xml:space="preserve">3️⃣  Surface regional potential (PIR zones)</text>
+      <text x="36" y="139"
+            font-family="Segoe UI, Arial, Helvetica, sans-serif"
+            font-size="10"
+            fill="#64748b"
+            xml:space="preserve">→ Zone Validator + GIS Overlay + RTRW Check</text>
+    </g>
+  </g>
+
+</svg>

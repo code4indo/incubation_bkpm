@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /login
+
+
+# AdsBot
+User-agent: AdsBot-Google
+
+# Crawlers of certain social media sites are allowed to access page markup when google.com/imgres* links are shared. To learn more, please contact images-robots-allowlist@google.com.
+User-agent: Twitterbot
+
+User-agent: facebookexternalhit
+
+Sitemap: https://bkpm.go.id/sitemap.xml
+Sitemap: https://www.bkpm.go.id/sitemap.xml/Users/admin/Desktop/Screen Shot 2023-07-28 at 16.55.25.png

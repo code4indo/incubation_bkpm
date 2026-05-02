@@ -1,0 +1,266 @@
+🚀 Batch Translation Agent
+   Model: qwen2.5:14b
+   Total projects: 181
+   Already translated: 0
+   Remaining: 181
+   Progress file: /media/lambda_one/DFSSD04/project/incubation/incubation_bkpm/app/src/data/translationProgress.json
+------------------------------------------------------------
+[001/181] 🔄 Translating — Pabrik Pengolahan Pakan Ternak... ✅ (6356ms)
+[002/181] 🔄 Translating — Kopi Speciality Wamena Arabica Roasted Bean & Kopi... ✅ (2627ms)
+[003/181] 🔄 Translating — Industri Pengolahan Kopi Robusta dan Kopi Arabika... ✅ (6207ms)
+[004/181] 🔄 Translating — Mautika Mandalika Hotel... ✅ (1587ms)
+[005/181] 🔄 Translating — 4-Star Resort & Convention Center... ✅ (2765ms)
+
+  💾 Saved progress: 5/181
+[006/181] 🔄 Translating — Breda Pala Resort... ✅ (2500ms)
+[007/181] 🔄 Translating — Investasi Peternakan Modern Sapi Potong Terintegra... ✅ (6492ms)
+[008/181] 🔄 Translating — Industri Mono-Ethylene Glycol (MEG) Berbasis Batu ... ✅ (3366ms)
+[009/181] 🔄 Translating — Pengembangan Agroeduwisata Kota Terpadu Mandiri (K... ✅ (5477ms)
+[010/181] 🔄 Translating — Hargomulyo Smart Agro-Ecotourism... ✅ (4969ms)
+
+  💾 Saved progress: 10/181
+[011/181] 🔄 Translating — Industri Pengolahan Limbah Bahan Berbahaya dan Ber... ✅ (4237ms)
+[012/181] 🔄 Translating — THE URBAN OASIS... ✅ (4253ms)
+[013/181] 🔄 Translating — Peluang Investasi Rumah Sakit Pariwisata - Sabang ... ✅ (5222ms)
+[014/181] 🔄 Translating — Industri Pengolahan Cocoa Butter & Cocoa Powder... ✅ (3588ms)
+[015/181] 🔄 Translating — MODERN FULFILLMENT... ✅ (5171ms)
+
+  💾 Saved progress: 15/181
+[016/181] 🔄 Translating — Terminal Dan Regasifikasi Liquefied Natural Gas (L... ✅ (3506ms)
+[017/181] 🔄 Translating — Pembangunan Pabrik Minyak Goreng... ✅ (12535ms)
+[018/181] 🔄 Translating — Industri Soda Ash Terintegrasi... ✅ (3031ms)
+[019/181] 🔄 Translating — Industri Hijau Pengolahan Kelapa Terintegrasi... ✅ (3353ms)
+[020/181] 🔄 Translating — PEMBANGUNAN MALL LIFE STYLE AMPERA... ✅ (6928ms)
+
+  💾 Saved progress: 20/181
+[021/181] 🔄 Translating — Industri Pengolahan Pati Sagu Terintegrasi... ✅ (5870ms)
+[022/181] 🔄 Translating — Industri Pengolahan Udang Provinsi Sulawesi Tengah... ✅ (6841ms)
+[023/181] 🔄 Translating — Pengembangan Perkebunan Pala Terintegrasi dengan I... ✅ (3579ms)
+[024/181] 🔄 Translating — Investasi Ikan Asap... ✅ (4702ms)
+[025/181] 🔄 Translating — Investasi Perikanan Budidaya... ✅ (6295ms)
+
+  💾 Saved progress: 25/181
+[026/181] 🔄 Translating — Industri Komponen Brake System dan Suspension Syst... ✅ (3445ms)
+[027/181] 🔄 Translating — Industri Ekstrusi Aluminium... ✅ (1875ms)
+[028/181] 🔄 Translating — Eco Luxury 5 Star Hotel... ✅ (2285ms)
+[029/181] 🔄 Translating — Investasi Jamur Tiram... ✅ (4665ms)
+[030/181] 🔄 Translating — Investasi Industri Kopi Bubuk... ✅ (4695ms)
+
+  💾 Saved progress: 30/181
+[031/181] 🔄 Translating — Pengembangan Perumda Air Minum Tirta Ratu Samban A... ✅ (12495ms)
+[032/181] 🔄 Translating — Industri Minyak Goreng... ✅ (2546ms)
+[033/181] 🔄 Translating — Pembangunan Pusat Pasar Kabupaten Karo... ✅ (2203ms)
+[034/181] 🔄 Translating — Pengembangan Desa Wisata Dewi Buiser Desa Lubuk Sa... ✅ (9595ms)
+[035/181] 🔄 Translating — The Dehegila Resort: Traditional Style Meets Moder... ✅ (4127ms)
+
+  💾 Saved progress: 35/181
+[036/181] 🔄 Translating — Industri Fatty Alkohol... ✅ (1969ms)
+[037/181] 🔄 Translating — Perkebunan Kelapa Sawit... ✅ (4920ms)
+[038/181] 🔄 Translating — Kawasan Pergudangan Terintegrasi Cargo Village... ✅ (3960ms)
+[039/181] 🔄 Translating — investasi peternakan sapi... ✅ (5725ms)
+[040/181] 🔄 Translating — Tumpak Sewu Leisure Park... ✅ (3288ms)
+
+  💾 Saved progress: 40/181
+[041/181] 🔄 Translating — Industri Pewarna Tekstil Alami Berbahan Utama Gamb... ✅ (3819ms)
+[042/181] 🔄 Translating — Industri Bahan Baku Obat Paracetamol, Clopidogrel ... ✅ (3809ms)
+[043/181] 🔄 Translating — Investasi Perkebunan Kopi ... ✅ (5445ms)
+[044/181] 🔄 Translating — Budidaya Udang Vannamei... ✅ (3619ms)
+[045/181] 🔄 Translating — Convention Center Pariaman... ✅ (4209ms)
+
+  💾 Saved progress: 45/181
+[046/181] 🔄 Translating — Toba Resort & Natural Park... ✅ (2421ms)
+[047/181] 🔄 Translating — Industri Daur Ulang Tembaga Dengan Proses Elektrol... ✅ (2492ms)
+[048/181] 🔄 Translating — Industri Fatty Acid... ✅ (2371ms)
+[049/181] 🔄 Translating — Pembangunan Objek Wisata Seribu Gua Desa Banuarea ... ✅ (10446ms)
+[050/181] 🔄 Translating — Investasi Industri Serat Nanas... ✅ (4485ms)
+
+  💾 Saved progress: 50/181
+[051/181] 🔄 Translating — Industri Hilirisasi Crude Palm Oil (CPO)... ✅ (4220ms)
+[052/181] 🔄 Translating — Pembangunan Pabrik Jagung Kabupaten Dairi... ✅ (6208ms)
+[053/181] 🔄 Translating — Smart Eco-Industrial Park (SEIP) Lamongan... ✅ (2501ms)
+[054/181] 🔄 Translating — Smelter Sponge Iron... ✅ (5628ms)
+[055/181] 🔄 Translating — Peluang Investasi Tankos dan Produk Turunan Kab. M... ✅ (7556ms)
+
+  💾 Saved progress: 55/181
+[056/181] 🔄 Translating — Pengembangan Industri Pengalengan Ikan... ✅ (5984ms)
+[057/181] 🔄 Translating — Manufaktur Alumunium Wire Rod... ✅ (1756ms)
+[058/181] 🔄 Translating — Usaha Pembekuan Produk Perikanan... ✅ (5218ms)
+[059/181] 🔄 Translating — Industri Penyosohan Beras di Kabupaten OKU Timur (... ✅ (7414ms)
+[060/181] 🔄 Translating — Smelter Nikel Cobalt - Sulfat Industry For Batteri... ✅ (4842ms)
+
+  💾 Saved progress: 60/181
+[061/181] 🔄 Translating — Pengembangan Toronipa Resort Hotel dan MICE... ✅ (3988ms)
+[062/181] 🔄 Translating — Matahora Cottage by the Beach... ✅ (4162ms)
+[063/181] 🔄 Translating — Akasha Bromo co-Resort... ✅ (4977ms)
+[064/181] 🔄 Translating — Kerang Darah... ✅ (6901ms)
+[065/181] 🔄 Translating — Pelabuhan Internasional Bitung... ✅ (4276ms)
+
+  💾 Saved progress: 65/181
+[066/181] 🔄 Translating — Mandalika Convention Hotel and Resort... ✅ (4473ms)
+[067/181] 🔄 Translating — Industri Fatty Amine... ✅ (5074ms)
+[068/181] 🔄 Translating — Kawasan Wisata Muara Indah Kota Gunungsitoli... ✅ (5557ms)
+[069/181] 🔄 Translating — Pengembangan Investasi Budidaya Ubi Kayu Terintegr... ✅ (3745ms)
+[070/181] 🔄 Translating — Industri Pengolahan Udang Terintegrasi... ✅ (6514ms)
+
+  💾 Saved progress: 70/181
+[071/181] 🔄 Translating — Kawasan Industri Ladong... ✅ (5266ms)
+[072/181] 🔄 Translating — Banyuwangi Eco Industrial Park... ✅ (6223ms)
+[073/181] 🔄 Translating — Budidaya Ikan Nila Salin di Kabupaten Pati... ✅ (15047ms)
+[074/181] 🔄 Translating — Industri Hilirisasi Bauksit... ✅ (6150ms)
+[075/181] 🔄 Translating — Pengelolaan Sampah Menjadi Energi Alternatif Refus... ✅ (6569ms)
+
+  💾 Saved progress: 75/181
+[076/181] 🔄 Translating — Kertajati Aircraft Maintenance Center (KAMC) - Mai... ✅ (3612ms)
+[077/181] 🔄 Translating — Smelter Nikel Sulfate Industry... ✅ (5942ms)
+[078/181] 🔄 Translating — Industri Hilirisasi Timah... ✅ (3516ms)
+[079/181] 🔄 Translating — Infrastruktur Energi Terbarukan (Limbah) untuk Ind... ✅ (4194ms)
+[080/181] 🔄 Translating — Smelter Alumina Refinery... ✅ (4087ms)
+
+  💾 Saved progress: 80/181
+[081/181] 🔄 Translating — Industri Pengolahan Biji Cokelat... ✅ (5940ms)
+[082/181] 🔄 Translating — MRT... ✅ (858ms)
+[083/181] 🔄 Translating — Industri Kelapa dan Produk Turunan ... ✅ (12514ms)
+[084/181] 🔄 Translating — Peta Potensi Dan Peluang Usaha Kabupaten Sukamara ... ✅ (8588ms)
+[085/181] 🔄 Translating — Pembuatan Pabrik Minyak Goreng... ✅ (4623ms)
+
+  💾 Saved progress: 85/181
+[086/181] 🔄 Translating — Industri Hilirisasi Crude Palm Oil (CPO)... ✅ (5335ms)
+[087/181] 🔄 Translating — Smelter Slab Billet Steel... ✅ (4419ms)
+[088/181] 🔄 Translating — PROYEK BUDIDAYA UDANG VANAME (SHRIMP ESTATE) di Ka... ✅ (5414ms)
+[089/181] 🔄 Translating — Budidaya Ikan Gabus Terintegrasi Industri Pengolah... ✅ (3848ms)
+[090/181] 🔄 Translating — Geo-Culture Theme Park Sigulatti Toba... ✅ (5447ms)
+
+  💾 Saved progress: 90/181
+[091/181] 🔄 Translating — Infrastruktur  Penyediaan dan Pengelolaan Air... ✅ (4477ms)
+[092/181] 🔄 Translating — Smelter Steel Billet... ✅ (5657ms)
+[093/181] 🔄 Translating — Transformasi TKL Ecopark ... ✅ (16610ms)
+[094/181] 🔄 Translating — Pabrik CPO Mini dan Minyak Goreng... ✅ (9101ms)
+[095/181] 🔄 Translating — Pengembangan Kawasan Marina Pantai Surawaya... ✅ (4321ms)
+
+  💾 Saved progress: 95/181
+[096/181] 🔄 Translating — Peternakan Unggas Terintegrasi... ✅ (5629ms)
+[097/181] 🔄 Translating — Hotel Resort & Culture - Leisure Park... ✅ (4502ms)
+[098/181] 🔄 Translating — Budidaya Sapi Potong... ✅ (4738ms)
+[099/181] 🔄 Translating — Eksipien Amilum dalam Formulasi Sediaan Obat... ✅ (2094ms)
+[100/181] 🔄 Translating — Industri Katoda Baterai EV... ✅ (2882ms)
+
+  💾 Saved progress: 100/181
+[101/181] 🔄 Translating — Properti... ✅ (4001ms)
+[102/181] 🔄 Translating — Transito Hotel and Convention Borobudur... ✅ (5777ms)
+[103/181] 🔄 Translating — Live on Board (LoB) Raja Ampat... ✅ (4352ms)
+[104/181] 🔄 Translating — Potensi Pelabuhan Sorong Sebagai Simpul Tol Laut... ✅ (3982ms)
+[105/181] 🔄 Translating — Kajian Kelayakan Investasi rumah makan beras merah... ✅ (12449ms)
+
+  💾 Saved progress: 105/181
+[106/181] 🔄 Translating — Industri Modified Cassava Flour (Mocaf)... ✅ (5426ms)
+[107/181] 🔄 Translating — Pengembangan Kawasan Industri Buluminung... ✅ (4290ms)
+[108/181] 🔄 Translating — Pengembangan Pariwisata Terintegrasi Dikawasan Gun... ✅ (4234ms)
+[109/181] 🔄 Translating — Nusantara Convention Center... ✅ (4312ms)
+[110/181] 🔄 Translating — LEBAK BULUS PARK & RIDE... ✅ (4145ms)
+
+  💾 Saved progress: 110/181
+[111/181] 🔄 Translating — The Kelors Gateway Hotels and Villas... ✅ (4765ms)
+[112/181] 🔄 Translating — XGL MIXED USE DEVELOPMENT... ✅ (3525ms)
+[113/181] 🔄 Translating — Logistik dan Pergudangan Terintegrasi... ✅ (2853ms)
+[114/181] 🔄 Translating — Pembanunan Pabrik Karet Remah (Crumb Rubber)... ✅ (4752ms)
+[115/181] 🔄 Translating — Pembangunan Resort Villa Bintang 5 dan Eco Luxury ... ✅ (4367ms)
+
+  💾 Saved progress: 115/181
+[116/181] 🔄 Translating — Pembangunan RSUD Tipe C ... ✅ (5343ms)
+[117/181] 🔄 Translating — AB DARMAWANGSA... ✅ (4396ms)
+[118/181] 🔄 Translating — Bromo Volcano Eco Safari... ✅ (4762ms)
+[119/181] 🔄 Translating — Budidaya Udang Terintegrasi... ✅ (3916ms)
+[120/181] 🔄 Translating — LRT TRASE 2.A... ✅ (3629ms)
+
+  💾 Saved progress: 120/181
+[121/181] 🔄 Translating — HAILAI INTEGRATED LIFESTYLE DISTRICT... ✅ (3518ms)
+[122/181] 🔄 Translating — Hortikultura Komoditas Jeruk Siam Madu... ✅ (2899ms)
+[123/181] 🔄 Translating — Proyek KPBU Bendungan Bodri... ✅ (3247ms)
+[124/181] 🔄 Translating — Pembangunan Pelabuhan Barang Bebatu... ✅ (6067ms)
+[125/181] 🔄 Translating — Pengembangan Kawasan Industri Tenayan... ✅ (4826ms)
+
+  💾 Saved progress: 125/181
+[126/181] 🔄 Translating — Budidaya Ternak Sapi Pedaging... ✅ (6797ms)
+[127/181] 🔄 Translating — Perikanan Tangkap Terintegrasi Dengan Pengolahanny... ✅ (5133ms)
+[128/181] 🔄 Translating — LRT TRASE 1.C... ✅ (4643ms)
+[129/181] 🔄 Translating — BLOK C MIXED USE... ✅ (3660ms)
+[130/181] 🔄 Translating — Pembangunan Pabrik Tepung Pisang Enggano 2... ✅ (3281ms)
+
+  💾 Saved progress: 130/181
+[131/181] 🔄 Translating — Industri Alat dan Mesin Pertanian... ✅ (3770ms)
+[132/181] 🔄 Translating — COMBINE BUILDING... ✅ (3429ms)
+[133/181] 🔄 Translating — RETAIL GARDEN & 4 STAR HOTEL... ✅ (3643ms)
+[134/181] 🔄 Translating — Pembangkit Listrik Tenaga Surya di Provinsi Kalima... ✅ (5961ms)
+[135/181] 🔄 Translating — Pengembangan Kawasan Wisata Danau Maninjau... ✅ (5145ms)
+
+  💾 Saved progress: 135/181
+[136/181] 🔄 Translating — Industri Panel Surya... ✅ (3933ms)
+[137/181] 🔄 Translating — Unit Pengolahan Ikan Bandeng Bernilai Tambah... ✅ (6420ms)
+[138/181] 🔄 Translating — Industri Pengolahan Udang... ✅ (4959ms)
+[139/181] 🔄 Translating — GOR DANAU SUNTER... ✅ (4112ms)
+[140/181] 🔄 Translating — Industri Pengolahan Logam Tembaga... ✅ (2881ms)
+
+  💾 Saved progress: 140/181
+[141/181] 🔄 Translating — E-Sport Hotel Academy... ✅ (4324ms)
+[142/181] 🔄 Translating — C ONE CEMPAKA PUTIH... ✅ (4023ms)
+[143/181] 🔄 Translating — Agrobisnis Peternakan Sapi Potong Terintegrasi Pro... ✅ (3139ms)
+[144/181] 🔄 Translating — Industri Pengolahan Jagung... ✅ (4689ms)
+[145/181] 🔄 Translating — Industri Bioetanol... ✅ (3976ms)
+
+  💾 Saved progress: 145/181
+[146/181] 🔄 Translating — Peternakan Sapi Pedaging Terintegrasi Nusa Tenggar... ✅ (5158ms)
+[147/181] 🔄 Translating — Pembangunan Pembangkit Listrik Tenaga Minihidro Su... ✅ (6163ms)
+[148/181] 🔄 Translating — SISTEM PENGEMBANGAN SAMBUNGAN RUMAH... ✅ (5619ms)
+[149/181] 🔄 Translating — PALM COURT APARTMENT... ✅ (3783ms)
+[150/181] 🔄 Translating — Agripark Kemiling Kota Bandar Lampung... ✅ (6810ms)
+
+  💾 Saved progress: 150/181
+[151/181] 🔄 Translating — Perkebunan Tebu Terintegrasi Industri Pengolahanny... ✅ (5010ms)
+[152/181] 🔄 Translating — Investasi Perkebunan Kentang... ✅ (5119ms)
+[153/181] 🔄 Translating — ANCOL HOTEL... ✅ (3783ms)
+[154/181] 🔄 Translating — TRANSIT PARK PRAPANCA... ✅ (3413ms)
+[155/181] 🔄 Translating — Perkebunan Pisang Terintegrasi dengan Industri Pen... ✅ (4488ms)
+
+  💾 Saved progress: 155/181
+[156/181] 🔄 Translating — Pembangunan Pabrik Garam Indutri... ✅ (10931ms)
+[157/181] 🔄 Translating — Industri Pengolahan Rumput Laut Terpadu... ✅ (5417ms)
+[158/181] 🔄 Translating — Industri High Purity Aluminium Ingot Sebagai Bahan... ✅ (5338ms)
+[159/181] 🔄 Translating — TEBET HOTEL... ✅ (3707ms)
+[160/181] 🔄 Translating — LIFESTYLE SPORTSHUB... ✅ (3639ms)
+
+  💾 Saved progress: 160/181
+[161/181] 🔄 Translating — Pembangkit Listrik Tenaga Surya di Provinsi Banten... ✅ (5041ms)
+[162/181] 🔄 Translating — Industri Pengolahan Jagung untuk Pakan Ternak... ✅ (4323ms)
+[163/181] 🔄 Translating — Industri Ban Pesawat Terbang dari Karet Alam... ✅ (4028ms)
+[164/181] 🔄 Translating — Ancol Ecopark... ✅ (3677ms)
+[165/181] 🔄 Translating — TRANSIT HUB MEGA KUNINGAN... ✅ (3688ms)
+
+  💾 Saved progress: 165/181
+[166/181] 🔄 Translating — PASAR SENI... ✅ (5567ms)
+[167/181] 🔄 Translating — Tanaman Pangan Budi Daya Kedelai... ✅ (4817ms)
+[168/181] 🔄 Translating — Pengembangan Kawasan Hilirisasi Perikanan Budidaya... ✅ (6759ms)
+[169/181] 🔄 Translating — Industri Motor Listrik untuk Kendaraan Listrik... ✅ (4744ms)
+[170/181] 🔄 Translating — Budi Daya Rumput Laut... ✅ (3104ms)
+
+  💾 Saved progress: 170/181
+[171/181] 🔄 Translating — Industri Mandiri Garam Farmasi... ✅ (4034ms)
+[172/181] 🔄 Translating — Pembangunan Rice Milling Unit (RMU) ... ✅ (6503ms)
+[173/181] 🔄 Translating — Industri Wing in Ground... ✅ (4039ms)
+[174/181] 🔄 Translating — Pengolahan Sampah menjadi Refuse Derived Fuel (RDF... ✅ (7922ms)
+[175/181] 🔄 Translating — Investasi Industri Batik  ... ✅ (1492ms)
+
+  💾 Saved progress: 175/181
+[176/181] 🔄 Translating — Industri Alat Kesehatan dari Karet Alam... ✅ (4791ms)
+[177/181] 🔄 Translating — Perikanan Budi Daya Komoditas Udang Nusa Tenggara ... ✅ (3982ms)
+[178/181] 🔄 Translating — Fasilitas SPKLU Terintegrasi... ✅ (2487ms)
+[179/181] 🔄 Translating — Industri Briket Arang Berbahan Cangkang Sawit... ✅ (6694ms)
+[180/181] 🔄 Translating — Pembangunan Pabrik Pakan Ikan... ✅ (3998ms)
+
+  💾 Saved progress: 180/181
+[181/181] 🔄 Translating — Pengembangan Kawasan Industri Pesawaran... ✅ (1842ms)
+
+  💾 Saved progress: 181/181
+
+============================================================
+🎉 DONE! Translated 181/181 projects.
+   Output: /media/lambda_one/DFSSD04/project/incubation/incubation_bkpm/app/src/data/translationProgress.json

@@ -7,7 +7,7 @@ app/dist/
 dist/
 build/
 *.egg-info/
-data/*.json
+# data/*.json
 !data/.gitkeep
 *.log
 .vscode/

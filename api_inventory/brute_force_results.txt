@@ -1,0 +1,272 @@
+=== BRUTE FORCE COMMON API PATHS ===
+--- Testing: https://www.bkpm.go.id/ ---
+Status: 200 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/api/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/ ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/api/v1/ ---
+Status: 405 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/graphql ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/swagger ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/openapi.json ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/rest/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/json/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/feed/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/rss/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/rss ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/feed ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/posts ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/pages ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/media ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/categories ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/tags ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/types ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/users ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/taxonomies ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/comments ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/search ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/blocks ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/block-types ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/templates ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/template-parts ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/settings ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/menu-items ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/menus ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/menu-locations ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/themes ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/plugins ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/sidebars ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/widgets ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/widget-types ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/navigation ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/font-families ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2/font-collections ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-json/wp/v2 ---
+Status: 404 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/xmlrpc.php ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-admin/admin-ajax.php ---
+Status: 405 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-includes/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-content/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-content/plugins/ ---
+Status: 405 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-content/themes/ ---
+Status: 405 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/sitemap.xml ---
+Status: 200 | Content-Type: application/xml
+
+
+
+--- Testing: https://www.bkpm.go.id/sitemap_index.xml ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/robots.txt ---
+Status: 200 | Content-Type: text/plain; charset=utf-8
+
+
+
+--- Testing: https://www.bkpm.go.id/.well-known/ ---
+Status: 403 | Content-Type: text/html
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-login.php ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+--- Testing: https://www.bkpm.go.id/wp-admin/ ---
+Status: 401 | Content-Type: text/html; charset=UTF-8
+
+
+
+=== BRUTE FORCE DONE ===

@@ -31,8 +31,8 @@ export interface OllamaPayload {
   };
 }
 
-const OLLAMA_URL = 'https://llm.jatnikonm.tech/api/chat';
-const MODEL = 'qwen3.5:9b';
+const OLLAMA_URL = 'http://localhost:11434/api/chat';
+const MODEL = 'qwen2.5:14b';
 
 // System prompt yang menghormati thinking mode tapi meminta output terstruktur
 const SYSTEM_PROMPT = `You are an expert translator for Indonesian investment and business documents, specializing in projects from BKPM (Indonesia Investment Coordinating Board).

@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "total_projects": 181,
+    "translated_count": 10,
+    "pending_count": 171,
+    "model": "qwen2.5:14b",
+    "mode": "direct-fast",
+    "last_updated": "2026-05-02T03:58:17Z",
+    "strategy": "Qwen2.5 batch translation"
+  },
+  "translations": [
+    {
+      "id": 384,
+      "name_id": "Pabrik Pengolahan Pakan Ternak",
+      "name_en": "Animal Feed Processing Plant",
+      "description_id": "Peluang investasi dalam pembangunan pabrik pengolahan pakan ternak di Kabupaten Tuban merupakan sebuah inisiatif strategis yang selaras dengan visi pembangunan berkelanjutan Jawa Timur. Proyek ini menawarkan prospek yang menjanjikan dengan memanfaatkan surplus komoditas jagung lokal yang melimpah. Memanfaatkan status Kabupaten Tuban sebagai sentra produksi jagung unggulan untuk dihilirisasi menjadi pakan ternak berkualitas tinggi. Proyeksi kapasitas produksi awal adalah 208.704 ton per tahun. Lahan seluas 8,79 hektare yang berlokasi di Kawasan Industri Tuban ini dikelola sepenuhnya oleh PT. Kawasan Industri Gresik.Proyek ini diperkirakan akan memberikan kontribusi signifikan terhadap ekonomi daerah, dengan peningkatan PDRB Kabupaten Tuban sebesar Rp360 miliar pada tahun ke-10 dan penciptaan 932 lapangan kerja baru. Proyek ini juga berpotensi menurunkan tingkat pengangguran di Kabupaten Tuban dan mendukung pencapaian SDGs terkait keberlanjutan.",
+      "description_en": "Investment opportunities in the construction of an animal feed processing plant in Tuban Regency represent a strategic initiative aligned with the vision of sustainable development in East Java. This project offers promising prospects by utilizing the abundant local surplus of corn commodities. Leveraging Tuban’s status as a leading corn production center, the project aims to downstream process corn into high-quality animal feed. Initial production capacity is projected at 208,704 tons per year. The land, covering 8.79 hectares, is located within the Tuban Industrial Zone and is fully managed by PT. Gresik Industrial Zone. The project is expected to make a significant contribution to the local economy, increasing Tuban Regency’s GRDP by Rp360 billion in the tenth year and creating 932 new jobs. Additionally, the project has the potential to reduce unemployment in Tuban Regency and support the achievement of SDGs related to sustainability.",
+      "status": "translated",
+      "latency": 12.1
+    },
+    {
+      "id": 1131,
+      "name_id": "Kopi Speciality Wamena Arabica Roasted Bean & Kopi Bubuk Papua Cenderawasih",
+      "name_en": "Wamena Arabica Roasted Beans & Papua Cenderawasih Coffee Powder",
+      "description_id": "Kopi jenis arabica yang ditanam di pegunungan Papua memiliki aroma yang lebih manis dibandingkan kopi arabica dari wilayah lain di Indonesia. Potensi ini menjadikan kopi arabica Papua khususnya dari Wamena diharapkan oleh penggemar kopi dalam dan luar negeri menjadi jenis kopi specialty unggulan Papua.",
+      "description_en": "Arabica coffee grown in the mountains of Papua has a sweeter aroma compared to arabica coffee from other regions in Indonesia. This potential makes Papua's arabica coffee, particularly from Wamena, expected by coffee enthusiasts both domestically and internationally to become a premium specialty coffee of Papua.",
+      "status": "translated",
+      "latency": 3.6
+    },
+    {
+      "id": 385,
+      "name_id": "Industri Pengolahan Kopi Robusta dan Kopi Arabika",
+      "name_en": "Arabica and Robusta Coffee Processing Plant",
+      "description_id": "Pembangunan Pabrik Kopi Arabika dan Robusta di Kabupaten Mamasa dirancang untuk meningkatkan nilai tambah komoditas kopi lokal melalui industrialisasi pengolahan berbasis teknologi modern. Mamasa dikenal sebagai sentra kopi terbesar di Sulawesi Barat, menghasilkan Arabika dan Robusta berkualitas tinggi yang selama ini banyak dijual sebagai bahan baku ke luar daerah. Lokasi pengembangan berada di Desa Rante Kamase, Kecamatan Sumarorong, di atas lahan seluas 3,6 hektare, yang akan diperoleh melalui skema pembelian lahan masyarakat dengan harga Rp 100.000/m². Proyek ini menjadi bagian penting dari strategi hilirisasi kopi yang didukung penuh oleh kebijakan nasional dalam RPJMN 2025–2029, RPJMD Provinsi Sulawesi Barat, dan RPJMD Kabupaten Mamasa, serta selaras dengan RTRW yang menetapkan kawasan ini sebagai zona pengembangan perkebunan dan industri kopi.",
+      "description_en": "The construction of an Arabica and Robusta coffee processing plant in Mamasa Regency is designed to enhance the value-added of local coffee commodities through modern technology-based industrialization. Mamasa is known as the largest coffee center in West Sulawesi, producing high-quality Arabica and Robusta coffee, which has traditionally been sold as raw materials to other regions. The development site is located in Rante Kamase Village, Sumarorong District, on a 3.6-hectare plot of land to be acquired through a community land purchase scheme at a price of Rp 100,000/m². This project is a crucial component of the national coffee downstream strategy supported by the National Medium-Term Development Plan (RPJMN) 2025–2029, the Medium-Term Development Plan for West Sulawesi Province (RPJMD), and the Medium-Term Development Plan for Mamasa Regency (RPJMD), and is in line with the Regional Spatial Plan (RTRW) which designates this area as a plantation and coffee industry development zone.",
+      "status": "translated",
+      "latency": 9.2
+    },
+    {
+      "id": 1516,
+      "name_id": "Mautika Mandalika Hotel",
+      "name_en": "Mautika Mandalika Hotel",
+      "description_id": "Kawasan Lombok-Gili Tramena yang berada di Kabupaten Lombok Tengah termasuk Kemudahan akses menuju Destinasi Pariwisata Nasional (DPN).",
+      "description_en": "The Lombok-Gili Tramena area in Lombok Tengah Regency includes ease of access to National Tourism Destinations (NTD).",
+      "status": "translated",
+      "latency": 2.6
+    },
+    {
+      "id": 1141,
+      "name_id": "4-Star Resort & Convention Center",
+      "name_en": "4-Star Resort & Convention Center",
+      "description_id": "Sungailiat, ibukota Kabupaten Bangka, memanggil Anda untuk menjelajahi kekayaan alamnya yang berlimpah. Diberkati dengan banyak pantai indah di sepanjang garis pantainya, Bangka juga kaya akan aset sejarah dan budaya. Pantai-pantai di Pulau Bangka sangat khas dengan bebatuan granit yang menjulang tinggi. Hal ini menjadikan Sungailiat menjadi salah satu destinasi impian wisatawan domestik maupun mancanegara.",
+      "description_en": "Sungailiat, the capital of Bangka Regency, invites you to explore its abundant natural wealth. Blessed with numerous beautiful beaches along its coastline, Bangka is also rich in historical and cultural assets. The beaches of Bangka Island are distinctive for their towering granite boulders. This makes Sungailiat one of the dream destinations for both domestic and international tourists.",
+      "status": "translated",
+      "latency": 3.4
+    },
+    {
+      "id": 1140,
+      "name_id": "Breda Pala Resort",
+      "name_en": "Breda Pala Resort",
+      "description_id": "Pulau Rhun merupakan salah satu pulau di Kecamatan Banda yang menjadi lokasi proyek. Pulau Rhun memiliki sejarah pertukaran pulau yang ditawarkan ditukar dengan Pulau Manhattan lewat perjanjian Breda karena kekayaan Pala yang dimiliki kawasan pariwisata Banda khususnya Pulau Rhun.",
+      "description_en": "Rhun Island is one of the islands in the Banda District and is the location of the project. Rhun Island has a history of being offered in exchange for Manhattan Island through the Treaty of Breda due to the wealth of nutmeg in the Banda tourism area, particularly on Rhun Island.",
+      "status": "translated",
+      "latency": 3.5
+    },
+    {
+      "id": 387,
+      "name_id": "Investasi Peternakan Modern Sapi Potong Terintegrasi",
+      "name_en": "Integrated Modern Beef Cattle Farming Investment PPU",
+      "description_id": "Proyek Peternakan Modern Sapi Potong Kabupaten Penajam Paser Utara (PPU) dirancang untuk mengintegrasikan rantai usaha peternakan sapi dari hulu hingga hilir guna memenuhi kebutuhan daging sapi segar di wilayah Kalimantan Timur, termasuk Ibu Kota Nusantara (IKN). Proyek ini berlokasi di Kelurahan Sotek, pada lahan seluas 40 hektare yang merupakan aset milik Pemerintah Kabupaten PPU dan dikelola secara profesional oleh Perumda Benuo Taka.Proyek ini mencakup unit penggemukan sapi, rumah potong hewan modern, fasilitas pengolahan daging, serta pemanfaatan limbah menjadi kompos, pupuk organik cair, dan biogas sebagai sumber energi alternatif. Konsep ini memastikan bahwa seluruh bagian sapi dapat dimanfaatkan secara optimal, mendukung efisiensi produksi, dan memperkuat ketahanan pangan daerah. Selain itu, posisi Kelurahan Sotek yang bersebelahan dengan Desa Buluminung—kawasan peruntukan industri dalam RTRW PPU—memberikan nilai strategis bagi pengembangan kawasan peternakan terpadu",
+      "description_en": "The Modern Beef Cattle Farming Project in Penajam Paser Utara Regency (PPU) is designed to integrate the beef cattle farming value chain from upstream to downstream to meet the demand for fresh beef in East Kalimantan, including the Nusantara Capital (IKN). The project is located in Sotek Village on a 40-hectare land owned by the PPU Regency Government and professionally managed by Perumda Benuo Taka. The project includes beef fattening units, modern animal slaughterhouses, meat processing facilities, and the utilization of waste for compost, liquid organic fertilizer, and biogas as an alternative energy source. This concept ensures optimal utilization of all parts of the cattle, supporting production efficiency and enhancing regional food security. Additionally, Sotek Village's adjacency to Buluminung Village, an industrial zone designated in the PPU Regional Spatial Plan (RTRW), provides strategic value for the development of an integrated livestock complex.",
+      "status": "translated",
+      "latency": 7.9
+    },
+    {
+      "id": 1128,
+      "name_id": "Industri Mono-Ethylene Glycol (MEG) Berbasis Batu Bara",
+      "name_en": "Mono-Ethylene Glycol (MEG) Industry Based on Coal",
+      "description_id": "KI Tanjung Enim merupakan kawasan industri yang berada di mulut tambang dengan sumber daya batu bara sebesar 5,05 miliar ton dan cadangan batu bara sebesar 2,77 miliar ton. Rencana pengembangan kegiatan industri yang akan dikembangkan adalah pada jenis industri hilirisari batu bara menjadi produk turunan yaitu Mono Ethylene Glycol (MEG) yang akan dikembangkan pada Blok A dengan luas yang dikembangkan sebesar sebagai industri MEG 100 hektar..",
+      "description_en": "KI Tanjung Enim is an industrial zone located at the mouth of a coal mine with coal resources amounting to 5.05 billion tons and coal reserves of 2.77 billion tons. The planned industrial development activities to be developed are downstream coal industries producing derivative products, namely Mono Ethylene Glycol (MEG), which will be developed in Block A with an area of 100 hectares for the MEG industry.",
+      "status": "translated",
+      "latency": 4.5
+    },
+    {
+      "id": 386,
+      "name_id": "Pengembangan Agroeduwisata Kota Terpadu Mandiri (KTM) Geragai",
+      "name_en": "Integrated Agroedutourism City Development Geragai (KTM Geragai)",
+      "description_id": "Proyek Agroeduwisata Kota terpadu Mandiri Geragai terletak di Kecamatan Geragai Kabupaten Tanjung Jabung Timur. Lokasi proyek cukup strategis yang mana jalur jalan darat berada di antara Kota Jambi (47 km) dan Ibukota Provinsi Tanjung Jabung Timur, Muara Sabak (53 km).Agroeduwisata KTM Geragai bukan sekadar destinasi wisata, melainkan sebuah ekosistem bisnis terintegrasi yang menggabungkan ketangguhan sektor agrikultur, inovasi edukasi, dan pesona pariwisata alam. Kawasan Kota Terpadu Mandiri (KTM) Geragai telah ditetapkan sebagai pusat pertumbuhan ekonomi baru berbasis agropolitan yang didukung oleh aksesibilitas yang semakin baik menuju Kota Jambi dan pelabuhan ekspor.",
+      "description_en": "The Integrated Agroedutourism City Project Geragai is located in the Geragai District of Tanjung Jabung Timur Regency. The project site is strategically situated, with a land route between the city of Jambi (47 km) and the provincial capital of Tanjung Jabung Timur, Muara Sabak (53 km). KTM Geragai is not merely a tourist destination but an integrated business ecosystem combining the resilience of the agricultural sector, educational innovation, and the allure of natural tourism. The Integrated Mandiri City (KTM) Geragai has been designated as a new economic growth center based on an agropolitan model, supported by improved accessibility to the city of Jambi and export ports.",
+      "status": "translated",
+      "latency": 6.4
+    },
+    {
+      "id": 388,
+      "name_id": "Hargomulyo Smart Agro-Ecotourism",
+      "name_en": "Hargomulyo Smart Agro-Ecotourism",
+      "description_id": "Terletak hinterland Bandara Internasional Yogyakarta (YIA), proyek ini dirancang dengan konsep Smart Tourism dan Sustainable Development yang mengintegrasikan pertanian modern (greenhouse), pariwisata alam, dan edukasi. Tidak hanya sekadar destinasi wisata, namun juga ekosistem bisnis yang menangkap pasar transit bandara dan wisatawan domestik/asing dengan pendekatan konservasi lingkungan dan pemberdayaan ekonomi lokal. Berkonsep Smart Agriculture Integrated Ecotourism (Agrowisata Buah Sayur, Wisata Alam, Glamping, dan Edutainment). Diproyeksikan Menjadi penyangga ekonomi hijau di kawasan Aerotropolis YIA dan destinasi Smart Tourism unggulan di DIY.",
+      "description_en": "Located in the hinterland of Yogyakarta International Airport (YIA), this project is designed with a Smart Tourism and Sustainable Development concept that integrates modern agriculture (greenhouses), nature tourism, and education. It is not merely a tourist destination but also a business ecosystem that captures the airport transit market and domestic/international tourists through an environmental conservation and local economic empowerment approach. The project is based on a Smart Agriculture Integrated Ecotourism concept (Fruit and Vegetable Agrotourism, Nature Tourism, Glamping, and Edutainment). It is projected to become a green economic support in the YIA Aerotropolis area and a premier Smart Tourism destination in DIY.",
+      "status": "translated",
+      "latency": 5.6
+    }
+  ]
+}

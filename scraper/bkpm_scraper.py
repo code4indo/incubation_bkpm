@@ -57,6 +57,7 @@ class ProjectData:
     province: str = ""
     province_code: str = ""
     kbli_codes: List[str] = field(default_factory=list)
+    contacts: List[Dict[str, Any]] = field(default_factory=list)
     investment_value_text: str = ""
     investment_value_idr: Optional[float] = None
     year: Optional[int] = None
@@ -202,6 +203,7 @@ class BKPMScraper:
     BASE_URL = "https://regionalinvestment.bkpm.go.id/peluang_investasi/detailed/"
     API_LIST_URL = "https://regionalinvestment.bkpm.go.id/be/peluang/peluang_investasi_wilayah"
     API_DETAIL_URL = "https://regionalinvestment.bkpm.go.id/be/peluang/detail"
+    API_DETAIL_PID_URL = "https://regionalinvestment.bkpm.go.id/be/peluang/detail_pid"
     DETAIL_URL = "https://regionalinvestment.bkpm.go.id/peluang_investasi"
     CONCURRENCY = 5
     DELAY_MIN = 1
@@ -290,7 +292,7 @@ class BKPMScraper:
             return []
     
     async def _fetch_api_detail(self, session: aiohttp.ClientSession, project_id: int) -> Optional[Dict]:
-        """Fetch project detail from public API"""
+        """Fetch project detail from public API (for PPI and IPRO)"""
         url = f"{self.API_DETAIL_URL}/{project_id}"
         try:
             async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as resp:
@@ -302,6 +304,21 @@ class BKPMScraper:
                 return None
         except Exception as e:
             logger.error(f"Failed to fetch API detail for {project_id}: {e}")
+            return None
+    
+    async def _fetch_api_detail_pid(self, session: aiohttp.ClientSession, project_id: int) -> Optional[Dict]:
+        """Fetch project detail from public API (for PID projects)"""
+        url = f"{self.API_DETAIL_PID_URL}/{project_id}"
+        try:
+            async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as resp:
+                if resp.status == 200:
+                    data = await resp.json()
+                    if data.get('success') and 'data' in data:
+                        return data['data']
+                logger.warning(f"API detail_pid for {project_id} returned status {resp.status}")
+                return None
+        except Exception as e:
+            logger.error(f"Failed to fetch API detail_pid for {project_id}: {e}")
             return None
     
     def _project_from_api(self, api_data: Dict) -> ProjectData:
@@ -383,14 +400,71 @@ class BKPMScraper:
         
         return None
     
+    @staticmethod
+    def _parse_kbli_codes(raw_kbli: Any) -> List[str]:
+        """Parse KBLI from API response. Handles single, multiple (slash-separated), and null values."""
+        if raw_kbli is None:
+            return []
+        if isinstance(raw_kbli, str):
+            raw = raw_kbli.strip()
+            if raw.lower() == 'null' or raw == '':
+                return []
+            codes = []
+            for part in raw.replace(',', ' ').split('/'):
+                part = part.strip()
+                if part.isdigit():
+                    codes.append(part)
+            return codes
+        if isinstance(raw_kbli, list):
+            return [str(k).strip() for k in raw_kbli if str(k).strip().lower() != 'null']
+        return []
+    
+    @staticmethod
+    def _clean_contacts(raw_contacts: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Clean contact data from API response. Strip whitespace and normalize empty values."""
+        cleaned = []
+        for c in raw_contacts:
+            if not isinstance(c, dict):
+                continue
+            contact = {}
+            for key in ['Kontak', 'Alamat', 'Telepon', 'Email', 'Website']:
+                val = c.get(key)
+                if val is not None:
+                    val = str(val).strip()
+                    if val in ['', '-', 'None', 'null']:
+                        val = ''
+                else:
+                    val = ''
+                contact[key] = val
+            if contact.get('Kontak') or contact.get('Email') or contact.get('Telepon'):
+                cleaned.append(contact)
+        return cleaned
+    
     async def _enrich_single(self, session: aiohttp.ClientSession, page: Page, project: ProjectData, pid_descriptions: Dict[int, str] = None) -> ProjectData:
         """Enrich a single project with API detail and optional Playwright fallback"""
         async with self.semaphore:
-            # For PID projects, use pre-fetched descriptions (detail endpoint doesn't work for PID)
-            if project.project_type == "PID" and pid_descriptions and project.id in pid_descriptions:
-                project.description_id = pid_descriptions[project.id]
+            if project.project_type == "PID":
+                # PID: use pre-fetched descriptions + detail_pid API for KBLI and contacts
+                if pid_descriptions and project.id in pid_descriptions:
+                    project.description_id = pid_descriptions[project.id]
+                
+                # Fetch detail_pid for KBLI, contacts, and other metadata
+                detail_data = await self._fetch_api_detail_pid(session, project.id)
+                if detail_data:
+                    detail = detail_data.get('detail', {})
+                    kbli = detail.get('kode_kbli')
+                    if kbli and not project.kbli_codes:
+                        project.kbli_codes = self._parse_kbli_codes(kbli)
+                    # Enrich contacts
+                    contacts = detail_data.get('kontak', [])
+                    if contacts and not project.contacts:
+                        project.contacts = self._clean_contacts(contacts)
+                    # Also enrich description from detail_pid if available
+                    desc = detail_data.get('deskripsi')
+                    if desc and not project.description_id:
+                        project.description_id = desc
             else:
-                # Try API detail first (works for IPRO and PPI)
+                # IPRO and PPI: use standard detail API
                 detail_data = await self._fetch_api_detail(session, project.id)
                 if detail_data:
                     detail = detail_data.get('detail', {})
@@ -400,7 +474,11 @@ class BKPMScraper:
                     # Enrich KBLI from detail
                     kbli = detail.get('kode_kbli')
                     if kbli and not project.kbli_codes:
-                        project.kbli_codes = [k.strip() for k in str(kbli).split(',') if k.strip()]
+                        project.kbli_codes = self._parse_kbli_codes(kbli)
+                    # Enrich contacts
+                    contacts = detail_data.get('kontak', [])
+                    if contacts and not project.contacts:
+                        project.contacts = self._clean_contacts(contacts)
                 
                 # If still no description, try Playwright
                 if not project.description_id and page:

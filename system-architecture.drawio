@@ -1,0 +1,347 @@
+<mxfile host="app.diagrams.net" modified="2026-05-02T06:15:00.000Z" agent="Kimi-Code-CLI" etag="bkpm-architecture-v1" version="24.0.0" type="device">
+  <diagram name="BKPM-AI-Architecture" id="bkpm-arch-001">
+    <mxGraphModel dx="2000" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;BKPM AI-Powered Investment Platform&lt;/b&gt;&lt;br&gt;System Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontColor=#1B4D5C;" vertex="1" parent="1">
+          <mxGeometry x="540" y="20" width="520" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- USER INTERFACE LAYER                        -->
+        <!-- ========================================== -->
+        <mxCell id="ui-container" value="&lt;b&gt;USER INTERFACE LAYER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#01579B;swimlaneFillColor=#E1F5FE;startSize=30;fontSize=14;fontColor=#01579B;" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="1480" height="180" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-browser" value="&lt;b&gt;Web Browser&lt;/b&gt;&lt;br&gt;Chrome / Firefox / Safari" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#01579B;fontSize=11;" vertex="1" parent="ui-container">
+          <mxGeometry x="40" y="50" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-react" value="&lt;b&gt;React SPA&lt;/b&gt;&lt;br&gt;Vite + Tailwind CSS&lt;br&gt;shadcn/ui Components&lt;br&gt;Framer Motion" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BBDEFB;strokeColor=#1565C0;fontSize=11;" vertex="1" parent="ui-container">
+          <mxGeometry x="240" y="50" width="160" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-pages" value="&lt;b&gt;Pages&lt;/b&gt;&lt;br&gt;• Home / Hero&lt;br&gt;• Projects Listing&lt;br&gt;• Project Detail&lt;br&gt;• Regional Map&lt;br&gt;• Dashboard&lt;br&gt;• Investor Profile" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=10;" vertex="1" parent="ui-container">
+          <mxGeometry x="460" y="50" width="140" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-map" value="&lt;b&gt;Interactive Map&lt;/b&gt;&lt;br&gt;Leaflet + React-Leaflet&lt;br&gt;OpenStreetMap Tiles&lt;br&gt;Project Markers&lt;br&gt;Regional Heatmap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;fontSize=10;" vertex="1" parent="ui-container">
+          <mxGeometry x="640" y="50" width="150" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-chatbot" value="&lt;b&gt;Legal Document Chatbot&lt;/b&gt;&lt;br&gt;AI-Powered Q&amp;A&lt;br&gt;Investment Law&lt;br&gt;Regulatory Guidance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;fontSize=10;" vertex="1" parent="ui-container">
+          <mxGeometry x="830" y="50" width="160" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-i18n" value="&lt;b&gt;I18n / Bilingual&lt;/b&gt;&lt;br&gt;ID ↔ EN&lt;br&gt;LanguageContext&lt;br&gt;Translation Toggle" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=10;" vertex="1" parent="ui-container">
+          <mxGeometry x="1030" y="50" width="140" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="ui-localstorage" value="&lt;b&gt;localStorage&lt;/b&gt;&lt;br&gt;User Preferences&lt;br&gt;Language Setting&lt;br&gt;Session Cache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#F9A825;fontSize=10;" vertex="1" parent="ui-container">
+          <mxGeometry x="1210" y="50" width="120" height="90" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-ui-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ui-container" source="ui-browser" target="ui-react">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ui-container" source="ui-react" target="ui-pages">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ui-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ui-container" source="ui-pages" target="ui-map">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- PLATFORM SERVICE LAYER                      -->
+        <!-- ========================================== -->
+        <mxCell id="ps-container" value="&lt;b&gt;PLATFORM SERVICE LAYER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#2E7D32;swimlaneFillColor=#E8F5E9;startSize=30;fontSize=14;fontColor=#2E7D32;" vertex="1" parent="1">
+          <mxGeometry x="40" y="320" width="1480" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- Nginx -->
+        <mxCell id="ps-nginx" value="&lt;b&gt;Nginx Reverse Proxy&lt;/b&gt;&lt;br&gt;Port 3002&lt;br&gt;Static File Serving&lt;br&gt;SPA Routing Fallback&lt;br&gt;API Proxy /api/ → backend" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11;" vertex="1" parent="ps-container">
+          <mxGeometry x="40" y="50" width="170" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- FastAPI -->
+        <mxCell id="ps-fastapi" value="&lt;b&gt;FastAPI Service&lt;/b&gt;&lt;br&gt;Port 8003&lt;br&gt;REST API + OpenAPI&lt;br&gt;CORS Enabled&lt;br&gt;Rate Limiting Ready&lt;br&gt;Health Check /health" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#A5D6A7;strokeColor=#2E7D32;fontSize=11;" vertex="1" parent="ps-container">
+          <mxGeometry x="260" y="50" width="170" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- API Endpoints -->
+        <mxCell id="ps-endpoints" value="&lt;b&gt;API Endpoints&lt;/b&gt;&lt;br&gt;GET /projects&lt;br&gt;GET /projects/{id}&lt;br&gt;GET /search?q=...&lt;br&gt;GET /provinces&lt;br&gt;GET /sectors&lt;br&gt;POST/DELETE /projects" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#689F38;fontSize=10;" vertex="1" parent="ps-container">
+          <mxGeometry x="470" y="50" width="140" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Data Governance -->
+        <mxCell id="ps-governance" value="&lt;b&gt;Data Governance&lt;/b&gt;&lt;br&gt;Field Validation&lt;br&gt;Quality Scoring (0-100)&lt;br&gt;Coordinate Validation&lt;br&gt;Financial Sanity Checks&lt;br&gt;Data Lineage Tracking" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#FBC02D;fontSize=10;" vertex="1" parent="ps-container">
+          <mxGeometry x="660" y="50" width="160" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Scraper -->
+        <mxCell id="ps-scraper" value="&lt;b&gt;BKPM Scraper&lt;/b&gt;&lt;br&gt;Playwright Headless&lt;br&gt;Parallel Execution (max 5)&lt;br&gt;Rate Limiting 3-5s&lt;br&gt;Retry + Exponential Backoff&lt;br&gt;JavaScript Rendering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#EF6C00;fontSize=10;" vertex="1" parent="ps-container">
+          <mxGeometry x="860" y="50" width="170" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- Docker Compose -->
+        <mxCell id="ps-docker" value="&lt;b&gt;Docker Compose&lt;/b&gt;&lt;br&gt;Orchestration&lt;br&gt;• api (FastAPI)&lt;br&gt;• webapp (Nginx)&lt;br&gt;• qdrant (Vector DB)&lt;br&gt;Network: bkpm-network" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B3E5FC;strokeColor=#0288D1;fontSize=10;" vertex="1" parent="ps-container">
+          <mxGeometry x="1070" y="50" width="160" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- External API -->
+        <mxCell id="ps-external" value="&lt;b&gt;External Integration&lt;/b&gt;&lt;br&gt;BKPM Portal&lt;br&gt;regionalinvestment.&lt;br&gt;bkpm.go.id&lt;br&gt;Playwright Browser" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;fontSize=10;" vertex="1" parent="ps-container">
+          <mxGeometry x="1270" y="50" width="150" height="110" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-ps-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ps-container" source="ps-nginx" target="ps-fastapi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ps-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ps-container" source="ps-fastapi" target="ps-endpoints">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ps-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ps-container" source="ps-scraper" target="ps-external">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ps-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ps-container" source="ps-docker" target="ps-nginx">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- AI SOLUTION LAYER                           -->
+        <!-- ========================================== -->
+        <mxCell id="ai-container" value="&lt;b&gt;AI SOLUTION LAYER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;swimlaneFillColor=#F3E5F5;startSize=30;fontSize=14;fontColor=#7B1FA2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="620" width="1480" height="260" as="geometry" />
+        </mxCell>
+
+        <!-- Ollama -->
+        <mxCell id="ai-ollama" value="&lt;b&gt;Ollama Local Server&lt;/b&gt;&lt;br&gt;localhost:11434&lt;br&gt;&lt;br&gt;• qwen2.5:14b (9GB)&lt;br&gt;• qwen3.5:9b (6.6GB)&lt;br&gt;• qwen3:30b (18GB)&lt;br&gt;• glm-4.7:cloud&lt;br&gt;• kimi-k2-thinking:cloud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CE93D8;strokeColor=#6A1B9A;fontSize=11;" vertex="1" parent="ai-container">
+          <mxGeometry x="40" y="50" width="180" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- Translation Agent -->
+        <mxCell id="ai-translation" value="&lt;b&gt;Translation Agent&lt;/b&gt;&lt;br&gt;qwen2.5:14b&lt;br&gt;Direct-Fast Mode&lt;br&gt;~3-6s/project&lt;br&gt;&lt;br&gt;181 Projects&lt;br&gt;ID → EN (Bilingual)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1BEE7;strokeColor=#8E24AA;fontSize=10;" vertex="1" parent="ai-container">
+          <mxGeometry x="260" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Recommendation Engine -->
+        <mxCell id="ai-recommendation" value="&lt;b&gt;Recommendation Engine&lt;/b&gt;&lt;br&gt;AI Matching Algorithm&lt;br&gt;Project-Investor Fit&lt;br&gt;Sector Alignment&lt;br&gt;Regional Scoring&lt;br&gt;Match Score 0-100" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D1C4E9;strokeColor=#5E35B1;fontSize=10;" vertex="1" parent="ai-container">
+          <mxGeometry x="450" y="50" width="160" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Scoring Engines -->
+        <mxCell id="ai-scoring" value="&lt;b&gt;Scoring Engines&lt;/b&gt;&lt;br&gt;• Technical Assessment&lt;br&gt;• Regulatory Assessment&lt;br&gt;• Enhanced Financial&lt;br&gt;• Regional Score (0-100)&lt;br&gt;5-Dimension Weighting" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C5CAE9;strokeColor=#3949AB;fontSize=10;" vertex="1" parent="ai-container">
+          <mxGeometry x="650" y="50" width="160" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- AI Architecture Config -->
+        <mxCell id="ai-config" value="&lt;b&gt;AI Architecture Config&lt;/b&gt;&lt;br&gt;NVIDIA 32GB Stack&lt;br&gt;• Nemotron Embed 1B&lt;br&gt;• Nemotron Rerank 1B&lt;br&gt;• Qwen3.5-122B-A10B&lt;br&gt;• Nemotron OCR 1B&lt;br&gt;• Safety Guard 8B" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B39DDB;strokeColor='#4527A0';fontSize=10;" vertex="1" parent="ai-container">
+          <mxGeometry x="850" y="50" width="170" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Chatbot AI -->
+        <mxCell id="ai-chatbot" value="&lt;b&gt;Legal Chatbot AI&lt;/b&gt;&lt;br&gt;RAG Pipeline&lt;br&gt;Vector Search&lt;br&gt;Document Q&amp;A&lt;br&gt;Investment Law&lt;br&gt;Regulatory Compliance" style="rounded=1;whiteSpace=wrap;html=1;fillColor='#FFCC80';strokeColor='#EF6C00';fontSize=10;" vertex="1" parent="ai-container">
+          <mxGeometry x="1060" y="50" width="150" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- vLLM Generator (future) -->
+        <mxCell id="ai-vllm" value="&lt;b&gt;vLLM Generator&lt;/b&gt;&lt;br&gt;(Future/GPU)&lt;br&gt;NVIDIA Stack 32GB&lt;br&gt;Tensor Parallelism&lt;br&gt;AWQ Quantization&lt;br&gt;Prefix Caching" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D7CCC8;strokeColor=#5D4037;fontSize=10;dashed=1;" vertex="1" parent="ai-container">
+          <mxGeometry x="1250" y="50" width="150" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-ai-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ai-container" source="ai-ollama" target="ai-translation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ai-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ai-container" source="ai-translation" target="ai-recommendation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ai-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ai-container" source="ai-recommendation" target="ai-scoring">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-ai-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="ai-container" source="ai-config" target="ai-vllm">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- DATA LAYER                                  -->
+        <!-- ========================================== -->
+        <mxCell id="data-container" value="&lt;b&gt;DATA LAYER&lt;/b&gt;" style="swimlane;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;swimlaneFillColor=#FFF3E0;startSize=30;fontSize=14;fontColor=#E65100;" vertex="1" parent="1">
+          <mxGeometry x="40" y="920" width="1480" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- JSON Data -->
+        <mxCell id="data-json" value="&lt;b&gt;JSON Data Files&lt;/b&gt;&lt;br&gt;&lt;br&gt;• bkpm_projects.json&lt;br&gt;  (181 projects, 325KB)&lt;br&gt;• bkpmRealData.json&lt;br&gt;  (frontend bundle)&lt;br&gt;• translationProgress.json&lt;br&gt;  (181 translations)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE0B2;strokeColor=#EF6C00;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="40" y="50" width="170" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Qdrant -->
+        <mxCell id="data-qdrant" value="&lt;b&gt;Qdrant Vector DB&lt;/b&gt;&lt;br&gt;Port 6333/6334&lt;br&gt;&lt;br&gt;RAG Pipeline&lt;br&gt;Vector Search&lt;br&gt;Embeddings Storage&lt;br&gt;Document Indexing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCC80;strokeColor=#E65100;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="250" y="50" width="150" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Data Storage Types -->
+        <mxCell id="data-types" value="&lt;b&gt;Data Classification&lt;/b&gt;&lt;br&gt;&lt;br&gt;CRITICAL: id, name, district,&lt;br&gt;province, lat, lng&lt;br&gt;&lt;br&gt;REQUIRED: investment, year,&lt;br&gt;category, kbli&lt;br&gt;&lt;br&gt;OPTIONAL: irr, npv, payback&lt;br&gt;&lt;br&gt;ENRICHED: AI translations,&lt;br&gt;quality_score" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#FBC02D;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="440" y="50" width="180" height="170" as="geometry" />
+        </mxCell>
+
+        <!-- Quality Scoring -->
+        <mxCell id="data-quality" value="&lt;b&gt;Quality Scoring Engine&lt;/b&gt;&lt;br&gt;0-100 Scale&lt;br&gt;&lt;br&gt;• Field Completeness (40%)&lt;br&gt;• Financial Validity (20%)&lt;br&gt;• Coordinate Precision (15%)&lt;br&gt;• Temporal Validity (10%)&lt;br&gt;• Investment Magnitude (15%)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCEDC8;strokeColor=#689F38;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="660" y="50" width="180" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- Docker Volume -->
+        <mxCell id="data-volume" value="&lt;b&gt;Docker Volumes&lt;/b&gt;&lt;br&gt;&lt;br&gt;qdrant_storage&lt;br&gt;→ /qdrant/storage&lt;br&gt;&lt;br&gt;./data:/app/data&lt;br&gt;→ bkpm_projects.json&lt;br&gt;→ API data source" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B2DFDB;strokeColor=#00796B;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="880" y="50" width="160" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Backup/Mock -->
+        <mxCell id="data-mock" value="&lt;b&gt;Fallback Data&lt;/b&gt;&lt;br&gt;Mock Data (Demo)&lt;br&gt;• 2 sample projects&lt;br&gt;• Region profiles&lt;br&gt;• Port &amp; Airport data&lt;br&gt;• Investor mock data&lt;br&gt;&lt;br&gt;Auto-load when&lt;br&gt;real data missing" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#546E7A;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="1080" y="50" width="150" height="150" as="geometry" />
+        </mxCell>
+
+        <!-- External Source -->
+        <mxCell id="data-source" value="&lt;b&gt;External Data Source&lt;/b&gt;&lt;br&gt;BKPM Portal&lt;br&gt;regionalinvestment.&lt;br&gt;bkpm.go.id&lt;br&gt;&lt;br&gt;Scraped via Playwright&lt;br&gt;Auto-refresh pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFCDD2;strokeColor=#C62828;fontSize=10;" vertex="1" parent="data-container">
+          <mxGeometry x="1270" y="50" width="150" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-data-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="data-container" source="data-source" target="data-json">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-data-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;" edge="1" parent="data-container" source="data-json" target="data-qdrant">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- INTEROPERABILITAS / INTEGRATION             -->
+        <!-- ========================================== -->
+        <mxCell id="interop-label" value="&lt;b&gt;INTEROPERABILITAS&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#616161;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1190" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1220" width="1480" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-rest" value="&lt;b&gt;REST API&lt;/b&gt;&lt;br&gt;JSON / OpenAPI&lt;br&gt;HTTP/1.1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#1976D2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1235" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-cors" value="&lt;b&gt;CORS&lt;/b&gt;&lt;br&gt;allow_origins=[*]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#388E3C;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="200" y="1235" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-proxy" value="&lt;b&gt;Nginx Proxy&lt;/b&gt;&lt;br&gt;/api/ → backend&lt;br&gt;SPA fallback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#F57C00;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="330" y="1235" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-docker" value="&lt;b&gt;Docker Network&lt;/b&gt;&lt;br&gt;bkpm-network&lt;br&gt;Bridge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F7FA;strokeColor=#0097A7;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1235" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-ollama" value="&lt;b&gt;Ollama API&lt;/b&gt;&lt;br&gt;/api/chat&lt;br&gt;Local Inference" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#7B1FA2;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1235" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-vector" value="&lt;b&gt;Vector API&lt;/b&gt;&lt;br&gt;Qdrant REST&lt;br&gt;Port 6333" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#FBC02D;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="750" y="1235" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-playwright" value="&lt;b&gt;Web Scraping&lt;/b&gt;&lt;br&gt;Playwright&lt;br&gt;Chromium" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#546E7A;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="880" y="1235" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-health" value="&lt;b&gt;Health Checks&lt;/b&gt;&lt;br&gt;/health&lt;br&gt;30s interval" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#C62828;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="1235" width="100" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-env" value="&lt;b&gt;Environment&lt;/b&gt;&lt;br&gt;.env / docker-compose&lt;br&gt;API_KEY, DATA_FILE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#689F38;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="1235" width="120" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="interop-vol" value="&lt;b&gt;Volume Mounts&lt;/b&gt;&lt;br&gt;ro (read-only)&lt;br&gt;Data persistence" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;strokeColor=#3F51B5;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="1235" width="110" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ========================================== -->
+        <!-- CROSS-LAYER CONNECTIONS                     -->
+        <!-- ========================================== -->
+        <mxCell id="cross-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1976D2;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ui-react" target="ps-nginx">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1976D2;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ui-react" target="ps-fastapi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7B1FA2;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ui-chatbot" target="ai-chatbot">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="960" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#7B1FA2;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ui-i18n" target="ai-translation">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1130" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#388E3C;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ps-endpoints" target="data-json">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#E65100;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ps-scraper" target="data-source">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1360" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6A1B9A;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ai-translation" target="data-json">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#5E35B1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ai-recommendation" target="ui-map">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="620" />
+              <mxPoint x="580" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="cross-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0288D1;strokeWidth=2;dashed=1;" edge="1" parent="1" source="ps-docker" target="data-volume">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1190" y="920" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -93,12 +93,12 @@ export function MapVisualization({
   return (
     <div className="space-y-4">
       {/* Map */}
-      <div style={{ height }} className="rounded-xl overflow-hidden border border-gray-200 shadow-md">
+      <div style={{ height: height === '100%' ? '500px' : height }} className="rounded-xl overflow-hidden border border-gray-200 shadow-md relative">
         <MapContainer
           center={[-2.5, 118]}
           zoom={5}
           scrollWheelZoom={true}
-          style={{ height: '100%', width: '100%' }}
+          style={{ height: '100%', width: '100%', position: 'absolute', top: 0, left: 0 }}
           minZoom={4}
           maxZoom={10}
         >

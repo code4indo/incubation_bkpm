@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="1600"
+   height="950"
+   viewBox="0 0 1600 950"
+   version="1.1"
+   id="mas-executive">
+
+  <defs id="defs">
+    <!-- Soft drop shadow for cards -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+    <filter id="shadow-lg" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.10"/>
+    </filter>
+
+    <!-- Arrowhead solid -->
+    <marker id="arr" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 Z" fill="#64748b"/>
+    </marker>
+
+    <!-- Arrowhead accent -->
+    <marker id="arr-accent" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 Z" fill="#d97706"/>
+    </marker>
+
+    <!-- Arrowhead green -->
+    <marker id="arr-green" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 Z" fill="#15803d"/>
+    </marker>
+  </defs>
+
+  <!-- ===== BACKGROUND ===== -->
+  <rect width="1600" height="950" fill="#ffffff" rx="0"/>
+
+  <!-- Subtle top accent bar -->
+  <rect width="1600" height="6" fill="#1e3a5f" rx="0"/>
+
+  <!-- ===== TITLE AREA ===== -->
+  <text x="800" y="60" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="32" font-weight="600" fill="#0f172a">
+    BKPM AI Investment Matching Platform
+  </text>
+  <text x="800" y="92" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="16" fill="#64748b">
+    From Investor Query to Verified Opportunity — in One Seamless Flow
+  </text>
+
+  <!-- ===== MAIN FLOW: INVESTOR → CONCIERGE ===== -->
+
+  <!-- Investor Card -->
+  <g transform="translate(60, 260)">
+    <rect width="200" height="130" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="100" cy="42" r="28" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <text x="100" y="50" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="22">🌍</text>
+    <text x="100" y="90" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Investor</text>
+    <text x="100" y="110" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">Submits preferences &amp; goals</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="270" y1="325" x2="330" y2="325" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="300" y="315" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">1</text>
+
+  <!-- AI Concierge -->
+  <g transform="translate(350, 260)">
+    <rect width="220" height="130" rx="16" fill="#ffffff" stroke="#bfdbfe" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="110" cy="42" r="28" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+    <text x="110" y="50" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="22">🤝</text>
+    <text x="110" y="90" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">AI Concierge</text>
+    <text x="110" y="108" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">Builds detailed investor profile</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="580" y1="325" x2="640" y2="325" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="610" y="315" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">2</text>
+
+  <!-- AI Orchestrator -->
+  <g transform="translate(660, 260)">
+    <rect width="240" height="130" rx="16" fill="#fffbeb" stroke="#fcd34d" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="120" cy="42" r="28" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5"/>
+    <text x="120" y="50" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="22">🎹</text>
+    <text x="120" y="90" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#92400e">AI Orchestrator</text>
+    <text x="120" y="108" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#b45309">Chooses the right experts</text>
+  </g>
+
+  <!-- ===== AI PROCESSING ENGINE (CENTER BLOCK) ===== -->
+
+  <!-- Big background container for 3 agents -->
+  <g transform="translate(940, 155)">
+    <rect width="380" height="340" rx="20" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow-lg)"/>
+    <text x="190" y="32" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#475569" letter-spacing="1">AI PROCESSING ENGINE</text>
+    <line x1="30" y1="42" x2="350" y2="42" stroke="#e2e8f0" stroke-width="1.5"/>
+
+    <!-- Agent 1: Discover -->
+    <g transform="translate(30, 58)">
+      <rect width="320" height="80" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="40" cy="40" r="22" fill="#eff6ff"/>
+      <text x="40" y="47" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="18">🔎</text>
+      <text x="75" y="32" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#1e3a5f">Discover Opportunities</text>
+      <text x="75" y="50" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">Searches projects across Indonesia</text>
+      <text x="75" y="66" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">from official government sources</text>
+    </g>
+
+    <!-- Agent 2: Compliance -->
+    <g transform="translate(30, 150)">
+      <rect width="320" height="80" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="40" cy="40" r="22" fill="#fef2f2"/>
+      <text x="40" y="47" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="18">🛡️</text>
+      <text x="75" y="32" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#1e3a5f">Verify Compliance</text>
+      <text x="75" y="50" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">Checks laws, permits &amp; regulations</text>
+      <text x="75" y="66" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">flags any legal risks</text>
+    </g>
+
+    <!-- Agent 3: Feasibility -->
+    <g transform="translate(30, 242)">
+      <rect width="320" height="80" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1" filter="url(#shadow)"/>
+      <circle cx="40" cy="40" r="22" fill="#f0fdf4"/>
+      <text x="40" y="47" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="18">📊</text>
+      <text x="75" y="32" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#1e3a5f">Analyze &amp; Match</text>
+      <text x="75" y="50" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">Validates location, zoning &amp; finances</text>
+      <text x="75" y="66" font-family="'Segoe UI', sans-serif" font-size="11" fill="#64748b">against investor profile</text>
+    </g>
+  </g>
+
+  <!-- Arrows from Orchestrator to Processing Engine -->
+  <line x1="900" y1="295" x2="940" y2="230" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr-accent)"/>
+  <line x1="900" y1="325" x2="940" y2="325" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr-accent)"/>
+  <line x1="900" y1="355" x2="940" y2="420" stroke="#d97706" stroke-width="2" stroke-dasharray="5,4" marker-end="url(#arr-accent)"/>
+  <text x="910" y="315" font-family="'Segoe UI', sans-serif" font-size="11" fill="#d97706" font-weight="600">3</text>
+
+  <!-- ===== OUTPUT SIDE ===== -->
+
+  <!-- Arrow from Engine to Report Builder -->
+  <line x1="1320" y1="325" x2="1370" y2="325" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="1345" y="315" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">4</text>
+
+  <!-- AI Report Builder -->
+  <g transform="translate(1390, 260)">
+    <rect width="200" height="130" rx="16" fill="#ffffff" stroke="#bbf7d0" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="100" cy="42" r="28" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1.5"/>
+    <text x="100" y="50" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="22">📋</text>
+    <text x="100" y="90" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#15803d">AI Report Builder</text>
+    <text x="100" y="108" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#15803d">Clear, transparent insights</text>
+  </g>
+
+  <!-- ===== FINAL OUTPUT: DASHBOARD ===== -->
+
+  <!-- Arrow 5 -->
+  <line x1="1490" y1="400" x2="1490" y2="460" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="1505" y="435" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">5</text>
+
+  <!-- Personalized Dashboard -->
+  <g transform="translate(1360, 480)">
+    <rect width="260" height="140" rx="20" fill="#f0fdf4" stroke="#86efac" stroke-width="2" filter="url(#shadow-lg)"/>
+    <circle cx="130" cy="45" r="30" fill="#ffffff" stroke="#86efac" stroke-width="2"/>
+    <text x="130" y="54" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="24">📤</text>
+    <text x="130" y="98" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="15" font-weight="600" fill="#14532d">Personalized Dashboard</text>
+    <text x="130" y="118" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#166534">Match scores · Risk flags · Zone maps</text>
+    <text x="130" y="136" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#166534">Incentives · One-click contact</text>
+  </g>
+
+  <!-- ===== FEEDBACK LOOP ===== -->
+
+  <!-- Curved feedback arrow -->
+  <path d="M 1390 550 Q 1200 620, 900 620 Q 600 620, 160 550" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8,5" marker-end="url(#arr)"/>
+  <text x="800" y="645" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#94a3b8" font-style="italic">Feedback loop — investor refines criteria, system learns &amp; improves</text>
+
+  <!-- ===== BOTTOM: 3 KEY BENEFITS ===== -->
+
+  <text x="800" y="715" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#0f172a">
+    Why This Matters for Investors
+  </text>
+
+  <!-- Benefit 1 -->
+  <g transform="translate(100, 750)">
+    <rect width="440" height="100" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="50" cy="50" r="24" fill="#eff6ff"/>
+    <text x="50" y="57" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="20">⏱️</text>
+    <text x="90" y="38" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Save Time</text>
+    <text x="90" y="58" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">No more browsing hundreds of project pages.</text>
+    <text x="90" y="76" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">AI filters only what matches your profile.</text>
+  </g>
+
+  <!-- Benefit 2 -->
+  <g transform="translate(580, 750)">
+    <rect width="440" height="100" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="50" cy="50" r="24" fill="#fffbeb"/>
+    <text x="50" y="57" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="20">🛡️</text>
+    <text x="90" y="38" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Reduce Risk</text>
+    <text x="90" y="58" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">Every recommendation is checked against</text>
+    <text x="90" y="76" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">current regulations and zoning rules.</text>
+  </g>
+
+  <!-- Benefit 3 -->
+  <g transform="translate(1060, 750)">
+    <rect width="440" height="100" rx="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5" filter="url(#shadow)"/>
+    <circle cx="50" cy="50" r="24" fill="#f0fdf4"/>
+    <text x="50" y="57" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="20">🔍</text>
+    <text x="90" y="38" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="600" fill="#1e3a5f">Full Transparency</text>
+    <text x="90" y="58" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">Every result shows why it matched,</text>
+    <text x="90" y="76" font-family="'Segoe UI', sans-serif" font-size="12" fill="#64748b">with sources and confidence scores.</text>
+  </g>
+
+  <!-- ===== FOOTER ===== -->
+  <text x="800" y="920" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="11" fill="#94a3b8">
+    BKPM AI-Powered Investment Platform  ·  Executive Overview  ·  Compatible with Inkscape
+  </text>
+</svg>
