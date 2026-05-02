@@ -9,14 +9,16 @@
  * - Risk flag calculation
  */
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
 import { AnalystReportPanel } from './AnalystReportPanel';
 import { runAnalystAgent } from '@/lib/analystAgent';
+import { runEnhancedAnalystAgent, checkLLMHealth } from '@/lib/analystLLM';
 import type { AnalystReport } from '@/lib/analystAgent';
+import type { EnhancedAnalystReport } from '@/lib/analystLLM';
 import { projects, regions, ports, airports } from '@/data/mockData';
 import {
   Activity,
@@ -24,13 +26,17 @@ import {
   BarChart3,
   Cpu,
   Sparkles,
+  Bot,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function AnalysisPage() {
   const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [report, setReport] = useState<AnalystReport | null>(null);
+  const [enhancedReport, setEnhancedReport] = useState<EnhancedAnalystReport | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [useAI, setUseAI] = useState(true);
+  const [llmHealth, setLlmHealth] = useState<{ available: boolean; model: string } | null>(null);
 
   // Find selected project
   const selectedProject = useMemo(() => {
@@ -47,16 +53,36 @@ export function AnalysisPage() {
     ) || regions[0]; // Fallback to first region
   }, [selectedProject]);
 
-  const handleRunAnalysis = () => {
+  // Check LLM health on mount
+  useEffect(() => {
+    checkLLMHealth().then(setLlmHealth);
+  }, []);
+
+  const handleRunAnalysis = async () => {
     if (!selectedProject || !matchingRegion) return;
     setIsAnalyzing(true);
+    setEnhancedReport(null);
 
-    // Simulate processing delay (like real MAS pipeline)
-    setTimeout(() => {
-      const result = runAnalystAgent(selectedProject, matchingRegion, ports, airports);
-      setReport(result);
-      setIsAnalyzing(false);
-    }, 800);
+    // Step 1: Rule-based analysis (always runs — fast & deterministic)
+    const baseReport = runAnalystAgent(selectedProject, matchingRegion, ports, airports);
+    setReport(baseReport);
+
+    // Step 2: LLM enhancement (if enabled and available)
+    if (useAI && llmHealth?.available) {
+      try {
+        const enhanced = await runEnhancedAnalystAgent(
+          baseReport,
+          selectedProject.nameEn || selectedProject.name,
+          selectedProject.sector,
+          selectedProject.province,
+        );
+        setEnhancedReport(enhanced);
+      } catch (err) {
+        console.warn('[AnalysisPage] LLM enhancement failed:', err);
+      }
+    }
+
+    setIsAnalyzing(false);
   };
 
   // Get pre-analyzed projects for dropdown (translated projects first)
@@ -146,24 +172,44 @@ export function AnalysisPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <Button
-                size="lg"
-                className="bg-[#1B4D5C] hover:bg-[#163a47] text-white px-8 py-6"
-                disabled={!selectedProject || isAnalyzing}
-                onClick={handleRunAnalysis}
-              >
-                {isAnalyzing ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-                    Analyzing...
-                  </>
-                ) : (
-                  <>
-                    <Activity className="w-5 h-5 mr-2" />
-                    Run Analysis
-                  </>
-                )}
-              </Button>
+              <div className="flex flex-col gap-2">
+                <Button
+                  size="lg"
+                  className="bg-[#1B4D5C] hover:bg-[#163a47] text-white px-8 py-6"
+                  disabled={!selectedProject || isAnalyzing}
+                  onClick={handleRunAnalysis}
+                >
+                  {isAnalyzing ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+                      {useAI && llmHealth?.available ? 'AI Analyzing...' : 'Analyzing...'}
+                    </>
+                  ) : (
+                    <>
+                      {useAI && llmHealth?.available ? <Sparkles className="w-5 h-5 mr-2" /> : <Activity className="w-5 h-5 mr-2" />}
+                      {useAI && llmHealth?.available ? 'Run AI Analysis' : 'Run Analysis'}
+                    </>
+                  )}
+                </Button>
+                {/* AI Toggle */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setUseAI(!useAI)}
+                    disabled={!llmHealth?.available}
+                    className={`flex items-center gap-1.5 text-xs px-2 py-1 rounded-full border transition-colors ${
+                      useAI && llmHealth?.available
+                        ? 'bg-purple-100 text-purple-700 border-purple-200'
+                        : 'bg-gray-100 text-gray-400 border-gray-200'
+                    }`}
+                  >
+                    <Bot className="w-3 h-3" />
+                    {llmHealth?.available ? (useAI ? 'AI ON' : 'AI OFF') : 'AI Unavailable'}
+                  </button>
+                  {llmHealth?.available && (
+                    <span className="text-[10px] text-gray-400">{llmHealth.model}</span>
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* Selected Project Preview */}
@@ -203,7 +249,7 @@ export function AnalysisPage() {
         </Card>
 
         {/* Analyst Report */}
-        <AnalystReportPanel report={report} />
+        <AnalystReportPanel report={report} enhancedReport={enhancedReport} />
       </div>
     </motion.main>
   );

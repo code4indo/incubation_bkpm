@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 import type { AnalystReport, RiskFlag, InfrastructureGap } from '@/lib/analystAgent';
+import type { EnhancedAnalystReport } from '@/lib/analystLLM';
 import {
   getRiskSeverityColor,
   getInfrastructureSeverityColor,
@@ -31,13 +32,15 @@ import {
   Clock,
   FileSearch,
   Activity,
+  Sparkles,
 } from 'lucide-react';
 
 interface AnalystReportPanelProps {
   report: AnalystReport | null;
+  enhancedReport?: EnhancedAnalystReport | null;
 }
 
-export function AnalystReportPanel({ report }: AnalystReportPanelProps) {
+export function AnalystReportPanel({ report, enhancedReport }: AnalystReportPanelProps) {
   if (!report) {
     return (
       <Card className="border-0 shadow-md">
@@ -48,6 +51,9 @@ export function AnalystReportPanel({ report }: AnalystReportPanelProps) {
       </Card>
     );
   }
+
+  const hasLLM = enhancedReport?.llmSuccess;
+  const displaySummary = hasLLM ? enhancedReport!.llmSummary : report.summary;
 
   const feasibilityColor = getFeasibilityColor(report.overallFeasibility);
   const feasibilityLabel = getFeasibilityLabel(report.overallFeasibility);
@@ -87,7 +93,15 @@ export function AnalystReportPanel({ report }: AnalystReportPanelProps) {
               )}
             </div>
           </div>
-          <p className="text-sm text-gray-600 mt-3">{report.summary}</p>
+          {hasLLM && (
+            <div className="flex items-center gap-2 mt-2">
+              <Badge className="bg-purple-100 text-purple-700 border-purple-200">
+                <Sparkles className="w-3 h-3 mr-1" /> AI Enhanced · {enhancedReport!.llmModel}
+              </Badge>
+              <span className="text-[10px] text-gray-400">{enhancedReport!.llmLatencyMs}ms</span>
+            </div>
+          )}
+          <p className="text-sm text-gray-600 mt-3">{displaySummary}</p>
           <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-400 font-mono">
             <span>Trace: {report.traceId}</span>
             <span>·</span>
@@ -253,6 +267,64 @@ export function AnalystReportPanel({ report }: AnalystReportPanelProps) {
             ))}
           </CardContent>
         </Card>
+      )}
+
+      {/* LLM Enhanced Insights */}
+      {hasLLM && enhancedReport && (
+        <>
+          {/* AI Risk Insights */}
+          {enhancedReport.llmRiskInsights.length > 0 && (
+            <Card className="border-0 shadow-md" style={{ borderLeft: '4px solid #9333ea' }}>
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base text-purple-700 flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" /> AI Nuanced Risk Insights
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-4 pt-0">
+                <div className="space-y-2">
+                  {enhancedReport.llmRiskInsights.map((insight, i) => (
+                    <div key={i} className="flex items-start gap-2 bg-purple-50 rounded-lg p-3">
+                      <Sparkles className="w-4 h-4 text-purple-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-purple-800">{insight}</p>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* AI Mitigation Strategy */}
+          <Card className="border-0 shadow-md" style={{ borderLeft: '4px solid #0d9488' }}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-teal-700 flex items-center gap-2">
+                <Sparkles className="w-4 h-4" /> AI Mitigation Strategy
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 pt-0">
+              <div className="bg-teal-50 rounded-lg p-4 border border-teal-100">
+                <p className="text-xs text-teal-800 whitespace-pre-line leading-relaxed">
+                  {enhancedReport.llmMitigationStrategy}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* AI Zone Recommendation */}
+          <Card className="border-0 shadow-md" style={{ borderLeft: '4px solid #2563eb' }}>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base text-blue-700 flex items-center gap-2">
+                <Sparkles className="w-4 h-4" /> AI Zone Assessment
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-4 pt-0">
+              <div className="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                <p className="text-xs text-blue-800 leading-relaxed">
+                  {enhancedReport.llmZoneRecommendation}
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </>
       )}
     </div>
   );
