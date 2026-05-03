@@ -1,0 +1,238 @@
+{
+  "_meta": {
+    "title": "Schema Mapping — Indonesian Geospatial Data Sources",
+    "version": "1.0.0",
+    "date": "2026-05-03",
+    "description": "Field name mapping and normalization rules for converting various source schemas to the platform's canonical GeoJSON schema"
+  },
+
+  "canonical_schema": {
+    "feature_id": "string",
+    "properties": {
+      "name": "string — display name",
+      "name_en": "string — English name (if available)",
+      "type": "string — KEK | KI | KIAP | KILK | Port | Airport | TollRoad | etc",
+      "subtype": "string — e.g., 'Agroindustry', 'Manufacturing'",
+      "province": "string — standardized province name",
+      "regency": "string — kabupaten/kota",
+      "district": "string — kecamatan (if available)",
+      "operator": "string — pengelola/operator",
+      "status": "string — Operational | Planning | Construction | etc",
+      "priority": "string — High | Medium | Low",
+      "area_ha": "number — area in hectares",
+      "sectors": "string[] — array of sector names",
+      "incentives": "string[] — array of incentive names",
+      "focus_industry": "string — primary industry focus",
+      "anchor_industry": "string — anchor tenant (if known)",
+      "contact_name": "string",
+      "contact_phone": "string",
+      "contact_email": "string",
+      "source_url": "string — URL to official source",
+      "source_authority": "string — Kemenperin | BIG | ATRBPN | etc",
+      "source_date": "string — YYYY-MM-DD",
+      "legal_basis": "string",
+      "crs": "string — EPSG:4326",
+      "geometry_type": "string — Polygon | MultiPolygon | Point | LineString"
+    },
+    "geometry": {
+      "type": "Polygon | MultiPolygon | Point",
+      "coordinates": "GeoJSON RFC 7946 format"
+    }
+  },
+
+  "source_mappings": {
+    "big_kawasan_industri_mapserver": {
+      "source_name": "BIG Satu Peta MapServer",
+      "source_key": "big_kawasan_industri",
+      "geometry_type": "Polygon|MultiPolygon",
+      "crs": "EPSG:4326",
+      "field_map": {
+        "namobj": { "canonical": "name", "transform": "to_title_case" },
+        "pengelola": { "canonical": "operator", "transform": "passthrough" },
+        "luas": { "canonical": "area_ha", "transform": "parse_numeric" },
+        "fokus_ind": { "canonical": "focus_industry", "transform": "passthrough" },
+        "anchor_ind": { "canonical": "anchor_industry", "transform": "passthrough" },
+        "status": { "canonical": "status", "transform": "map_status_code" }
+      },
+      "status_mapping": {
+        "1": "Operational",
+        "2": "Planning",
+        "3": "Construction",
+        "0": "Unknown"
+      },
+      "province_inference": "from geometry centroid using point-in-polygon with admin boundaries",
+      "notes": "Fields are lowercase. Province not explicit — must infer from coordinates."
+    },
+
+    "kemenperin_shapefile": {
+      "source_name": "Kemenperin Kawasan Industri Shapefile",
+      "source_key": "kemenperin_kawasan_industri_shapefile",
+      "geometry_type": "PolygonZ",
+      "crs": "EPSG:4326",
+      "field_map": {
+        "NAMOBJ": { "canonical": "name", "transform": "passthrough" },
+        "PENGELOLA": { "canonical": "operator", "transform": "passthrough" },
+        "Kab_Kota": { "canonical": "regency", "transform": "passthrough" },
+        "Provinsi": { "canonical": "province", "transform": "standardize_province_name" },
+        "Luas_IUKI": { "canonical": "area_ha", "transform": "parse_numeric_comma_decimal" },
+        "ID_KI": { "canonical": "feature_id", "transform": "prefix_id_ki" },
+        "FCODE": { "canonical": null, "transform": "ignore" }
+      },
+      "province_standardization": {
+        "Nanggroe Aceh Darussalam": "Aceh",
+        "Daerah Khusus Jakarta": "DKI Jakarta",
+        "Daerah Khusus Ibukota Jakarta": "DKI Jakarta",
+        "Di Yogyakarta": "DI Yogyakarta",
+        "Daerah Istimewa Yogyakarta": "DI Yogyakarta"
+      },
+      "numeric_parsing_rules": {
+        "decimal_separator": ",",
+        "thousand_separator": ".",
+        "example": "65,6" → 65.6
+      },
+      "geometry_extraction": {
+        "shape_type": 15,
+        "shape_type_name": "PolygonZ",
+        "extraction_rule": "extract_xy_only",
+        "z_handling": "discard",
+        "m_handling": "discard",
+        "parts_handling": "multi_ring_to_multipolygon"
+      },
+      "notes": "Field names are UPPERCASE. Geometry is PolygonZ — must extract x,y only."
+    },
+
+    "dewan_kek_webscrape": {
+      "source_name": "Dewan KEK Website",
+      "source_key": "dewan_kek",
+      "geometry_type": null,
+      "crs": null,
+      "field_map": {
+        "nama_kek": { "canonical": "name", "transform": "passthrough" },
+        "lokasi": { "canonical": "regency", "transform": "passthrough" },
+        "provinsi": { "canonical": "province", "transform": "standardize_province_name" },
+        "sektor": { "canonical": "sectors", "transform": "split_by_comma" },
+        "status": { "canonical": "status", "transform": "passthrough" },
+        "insentif": { "canonical": "incentives", "transform": "split_by_comma" },
+        "luas": { "canonical": "area_ha", "transform": "parse_numeric" }
+      },
+      "notes": "No geometry data — only metadata enrichment. Must be merged with polygon sources."
+    },
+
+    "infrastructure_manual": {
+      "source_name": "Manual Compilation from Open Data",
+      "source_key": "infrastructure_manual",
+      "geometry_type": "Point",
+      "crs": "EPSG:4326",
+      "field_map": {
+        "name": { "canonical": "name", "transform": "passthrough" },
+        "lat": { "canonical": null, "transform": "to_geometry_y" },
+        "lng": { "canonical": null, "transform": "to_geometry_x" },
+        "province": { "canonical": "province", "transform": "standardize_province_name" },
+        "capacity": { "canonical": "subtype", "transform": "passthrough" },
+        "status": { "canonical": "status", "transform": "passthrough" },
+        "detail": { "canonical": null, "transform": "append_to_name" }
+      },
+      "notes": "Point data from Wikipedia, OpenStreetMap, and official websites. No polygons."
+    }
+  },
+
+  "geometry_normalization_rules": {
+    "PolygonZ_to_Polygon": {
+      "description": "Extract only x,y from (x,y,z,m) tuples",
+      "implementation": "shape.points = [(x,y) for (x,y,z,m) in shape.points]"
+    },
+    "multi_ring_handling": {
+      "description": "Shapefile parts[] → GeoJSON rings",
+      "single_ring": "Polygon with one coordinates array",
+      "multiple_rings": "MultiPolygon with each ring as separate polygon",
+      "inner_ring": "Hole in polygon (not yet encountered in KI data)"
+    },
+    "bbox_validation": {
+      "indonesia_bounds": {
+        "min_lat": -11.0,
+        "max_lat": 6.5,
+        "min_lng": 95.0,
+        "max_lng": 141.0
+      },
+      "action_if_outside": "reject_feature_and_log_warning"
+    }
+  },
+
+  "sector_normalization": {
+    "canonical_sectors": [
+      "Agroindustry",
+      "Manufacturing",
+      "Tourism",
+      "Energy",
+      "Infrastructure",
+      "Fisheries",
+      "Trade",
+      "Digital",
+      "Mining",
+      "Chemicals",
+      "Logistics",
+      "Health",
+      "Education"
+    ],
+    "alias_mapping": {
+      "Agro Industri": "Agroindustry",
+      "Agroindustri": "Agroindustry",
+      "Pertanian": "Agroindustry",
+      "Perkebunan": "Agroindustry",
+      "Pangan": "Agroindustry",
+      "Agrobisnis": "Agroindustry",
+      "Peternakan": "Agroindustry",
+      "Hortikultura": "Agroindustry",
+      "Industri": "Manufacturing",
+      "Manufaktur": "Manufacturing",
+      "Pabrik": "Manufacturing",
+      "Perindustrian": "Manufacturing",
+      "Pariwisata": "Tourism",
+      "Wisata": "Tourism",
+      "Perhotelan": "Tourism",
+      "Hotel": "Tourism",
+      "Energi": "Energy",
+      "Listrik": "Energy",
+      "Pembangkit": "Energy",
+      "Gas": "Energy",
+      "LNG": "Energy",
+      "Baterai": "Energy",
+      "EV": "Energy",
+      "Infrastruktur": "Infrastructure",
+      "Jalan Tol": "Infrastructure",
+      "Jembatan": "Infrastructure",
+      "Perikanan": "Fisheries",
+      "Ikan": "Fisheries",
+      "Udang": "Fisheries",
+      "Rumput Laut": "Fisheries",
+      "Akuakultur": "Fisheries",
+      "Budidaya": "Fisheries",
+      "Perdagangan": "Trade",
+      "Digital": "Digital",
+      "Teknologi": "Digital",
+      "IT": "Digital",
+      "Data": "Digital",
+      "Pertambangan": "Mining",
+      "Tambang": "Mining",
+      "Mineral": "Mining",
+      "Nikel": "Mining",
+      "Bauksit": "Mining",
+      "Smelter": "Mining",
+      "Kimia": "Chemicals",
+      "Petrokimia": "Chemicals",
+      "Oleokimia": "Chemicals",
+      "Biodiesel": "Chemicals",
+      "Logistik": "Logistics",
+      "Pergudangan": "Logistics",
+      "Pengangkutan": "Logistics",
+      "Transportasi": "Logistics",
+      "Kesehatan": "Health",
+      "Rumah Sakit": "Health",
+      "Farmasi": "Health",
+      "Obat": "Health",
+      "Pendidikan": "Education",
+      "Pelatihan": "Education",
+      "Vokasi": "Education"
+    }
+  }
+}

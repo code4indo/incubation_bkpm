@@ -1,0 +1,279 @@
+# Geospatial Data Source Catalog — Indonesia Investment Platform
+# ================================================================
+# This file catalogs all known official sources for geospatial data
+# related to PIR zones, KEK, Kawasan Industri, and infrastructure.
+# AI agents should use this catalog to discover, download, and validate data.
+#
+# Reliability scale: high / medium / low / unknown
+#   high    = Stable REST API or permanent open download
+#   medium  = Web portal with semi-stable URLs (may change on update)
+#   low     = Requires authentication or manual navigation
+#   unknown = URL discovered empirically, may break anytime
+
+sources:
+  # ─────────────────────────────────────────────────────────────────
+  # 1. BADAN INFORMASI GEOSPASIAL (BIG) — Satu Peta MapServer
+  # ─────────────────────────────────────────────────────────────────
+  big_kawasan_industri:
+    name: "BIG Satu Peta — Kawasan Industri"
+    authority: "Badan Informasi Geospasial"
+    legal_basis: "Perpres No. 9/2016 (Kebijakan Satu Peta)"
+    reliability: high
+    access_type: arcgis_rest
+    url:
+      base: "https://kspservices.big.go.id/satupeta/rest/services/PUBLIK/KAWASAN_KHUSUS_DAN_TRANSMIGRASI/MapServer/4"
+      query_template: "{base}/query?where=1%3D1&outFields={fields}&returnGeometry=true&f=geojson&outSR=4326&resultRecordCount={limit}"
+    fields:
+      - namobj
+      - pengelola
+      - luas
+      - fokus_ind
+      - anchor_ind
+      - status
+      - metadata
+    geometry_type: "Polygon|MultiPolygon"
+    crs: "EPSG:4326"
+    coverage: "Nasional"
+    last_verified: "2026-05-03"
+    notes: "Live REST API — most stable source for KI polygons"
+
+  big_kawasan_khusus:
+    name: "BIG Satu Peta — Kawasan Khusus"
+    authority: "Badan Informasi Geospasial"
+    legal_basis: "Perpres No. 9/2016"
+    reliability: high
+    access_type: arcgis_rest
+    url:
+      base: "https://kspservices.big.go.id/satupeta/rest/services/PUBLIK/KAWASAN_KHUSUS_DAN_TRANSMIGRASI/MapServer"
+      layers:
+        - id: 1
+          name: "Kawasan Perkebunan"
+        - id: 2
+          name: "Kawasan Kehutanan"
+        - id: 3
+          name: "Kawasan Pertambangan"
+        - id: 4
+          name: "Kawasan Industri"
+        - id: 5
+          name: "Kawasan Pariwisata"
+        - id: 6
+          name: "Kawasan Perikanan"
+        - id: 7
+          name: "Kawasan Pertanian"
+        - id: 8
+          name: "Transmigrasi"
+    crs: "EPSG:4326"
+    last_verified: "2026-05-03"
+    notes: "Multiple layers — layer 4 is Kawasan Industri"
+
+  # ─────────────────────────────────────────────────────────────────
+  # 2. KEMENTERIAN PERINDUSTRIAN (Kemenperin) — Portal Satu Data
+  # ─────────────────────────────────────────────────────────────────
+  kemenperin_kawasan_industri_shapefile:
+    name: "Kemenperin — Peta Kawasan Industri Eksisting"
+    authority: "Direktorat Perwilayahan Industri, Kemenperin"
+    legal_basis: "UU No. 3/2014; PP No. 142/2015"
+    reliability: medium
+    access_type: ckan_portal
+    url:
+      portal: "https://satudata.kemenperin.go.id"
+      search: "https://satudata.kemenperin.go.id/id/dataset/?tags=industri&tags=peta&tags=kawasan&res_format=ZIP"
+      dataset_pattern: "https://satudata.kemenperin.go.id/id/dataset/YYYY-peta-kawasan-industri-eksisting-skala-1-50-000"
+      # NOTE: UUID below is from 2025 dataset. WILL CHANGE on portal update.
+      current_download: "https://satudata.kemenperin.go.id/id/dataset/2025-peta-kawasan-industri-eksisting-skala-1-50-000/resource/88ec537e-60ac-4a66-bed5-2b04c9758219/download"
+    format: "Shapefile (ZIP)"
+    scale: "1:50.000"
+    fields:
+      - ID_KI
+      - FCODE
+      - NAMOBJ
+      - PENGELOLA
+      - Kab_Kota
+      - Provinsi
+      - Luas_IUKI
+    geometry_type: "PolygonZ"
+    crs: "EPSG:4326"
+    coverage: "Nasional"
+    last_verified: "2026-05-03"
+    update_frequency: "Annual"
+    notes: |
+      Most authoritative source for KI boundaries (Direktorat Perwilayahan).
+      URL changes yearly (new dataset UUID).
+      AI agent MUST use browser automation or CKAN API search to find current URL.
+      Fallback to BIG MapServer if portal URL broken.
+
+  # ─────────────────────────────────────────────────────────────────
+  # 3. ATR/BPN — GISTARU (GIS Tata Ruang)
+  # ─────────────────────────────────────────────────────────────────
+  atrbpn_gistaru_kek:
+    name: "ATR/BPN GISTARU — Delineasi KEK"
+    authority: "Kementerian ATR/BPN"
+    legal_basis: "UU No. 26/2007; PP tentang Penetapan KEK"
+    reliability: low
+    access_type: arcgis_rest_protected
+    url:
+      base: "https://gistaru.atrbpn.go.id/arcgis/rest/services"
+      # Services list requires login. Known service paths (may change):
+      known_services:
+        - "Delineasi_KEK"
+        - "Pola_Ruang_Nasional"
+    crs: "EPSG:4326"
+    last_verified: "2026-05-03"
+    notes: |
+      HIGHLY AUTHORITATIVE for legal KEK boundaries.
+      REST services require ATR/BPN login token.
+      AI agent cannot access without credentials.
+      Human operator with ATR/BPN access should export and upload.
+
+  # ─────────────────────────────────────────────────────────────────
+  # 4. DEWAN KEK / Kemenperin — KEK Portal
+  # ─────────────────────────────────────────────────────────────────
+  dewan_kek:
+    name: "Dewan KEK / kek.go.id"
+    authority: "Dewan Nasional KEK"
+    legal_basis: "UU No. 39/2009; PP tentang KEK"
+    reliability: medium
+    access_type: web_scrape
+    url:
+      portal: "https://kek.go.id"
+      list: "https://kek.go.id/daftar-kek"
+    format: "HTML tables + PDF docs"
+    coverage: "20+ KEK"
+    last_verified: "2026-05-03"
+    notes: |
+      Contains KEK metadata (sectors, status, incentives) but NOT precise polygon boundaries.
+      Useful for enriching GeoJSON properties.
+      AI agent can scrape with Playwright or requests+BeautifulSoup.
+
+  # ─────────────────────────────────────────────────────────────────
+  # 5. PELINDO — Pelabuhan
+  # ─────────────────────────────────────────────────────────────────
+  pelindo_ports:
+    name: "Pelindo — Daftar Pelabuhan"
+    authority: "Pelindo (BUMN)"
+    reliability: medium
+    access_type: web_scrape
+    url:
+      portal: "https://www.pelindo.co.id"
+    format: "HTML / PDF"
+    last_verified: "2026-05-03"
+    notes: "No open API. Scrape manually or use Wikipedia fallback."
+
+  # ─────────────────────────────────────────────────────────────────
+  # 6. KEMENHUB — Bandara
+  # ─────────────────────────────────────────────────────────────────
+  kemenhub_airports:
+    name: "Kemenhub — Data Bandara"
+    authority: "Kementerian Perhubungan"
+    reliability: medium
+    access_type: web_scrape
+    url:
+      portal: "https://hubud.dephub.go.id"
+    format: "HTML tables"
+    last_verified: "2026-05-03"
+    notes: "No open API. Use Wikipedia + OpenStreetMap fallback for coordinates."
+
+  # ─────────────────────────────────────────────────────────────────
+  # 7. PUPR — Jalan Tol
+  # ─────────────────────────────────────────────────────────────────
+  pupr_toll_roads:
+    name: "PUPR — Jalan Tol"
+    authority: "Kementerian PUPR"
+    reliability: medium
+    access_type: web_scrape
+    url:
+      portal: "https://www.bina-marga.pu.go.id"
+    format: "HTML / PDF"
+    last_verified: "2026-05-03"
+    notes: "No open API. Use OpenStreetMap + Wikipedia fallback."
+
+  # ─────────────────────────────────────────────────────────────────
+  # 8. INA-GEOPORTAL / BIG — RBI Open Data
+  # ─────────────────────────────────────────────────────────────────
+  big_rbi_opendata:
+    name: "BIG — Rupa Bumi Indonesia (RBI) Open Data"
+    authority: "Badan Informasi Geospasial"
+    legal_basis: "Perpres No. 9/2016"
+    reliability: high
+    access_type: direct_download
+    url:
+      portal: "https://tanahair.indonesia.go.id/portal-web/unduh"
+      rbi_by_region: "https://tanahair.indonesia.go.id/portal-web/unduh/rbi-{region}"
+      batnas: "https://tanahair.indonesia.go.id/portal-web/unduh/batnas"
+    format: "Shapefile (ZIP)"
+    scales:
+      - "1:25.000"
+      - "1:50.000"
+      - "1:250.000"
+    crs: "EPSG:4326"
+    last_verified: "2026-05-03"
+    notes: |
+      Base map layers (batas administrasi, jalan, sungai, etc).
+      Not specific to investment zones but useful for context layers.
+
+  # ─────────────────────────────────────────────────────────────────
+  # 9. GEOPORTAL KSP — Peta Tematik
+  # ─────────────────────────────────────────────────────────────────
+  geoportal_ksp:
+    name: "Geoportal Kebijakan Satu Peta (KSP)"
+    authority: "KSP / BIG"
+    legal_basis: "Keppres No. 20/2018"
+    reliability: low
+    access_type: restricted_portal
+    url:
+      portal: "https://portalksp.ina-sdi.or.id"
+    format: "Shapefile (ZIP)"
+    crs: "EPSG:4326"
+    last_verified: "2026-05-03"
+    notes: |
+      85+ peta tematik hasil KSP (overlap analysis).
+      Access RESTRICTED to pemegang akses (Presiden, Menko, Menteri PPN, Kepala BIG, Gubernur, Bupati).
+      AI agent cannot access without institutional credential.
+
+# ───────────────────────────────────────────────────────────────────
+# FALLBACK CHAIN — Priority order for each data type
+# ───────────────────────────────────────────────────────────────────
+fallback_chains:
+  kawasan_industri_polygons:
+    - source: big_kawasan_industri
+      reason: "Live API, always current"
+    - source: kemenperin_kawasan_industri_shapefile
+      reason: "Most authoritative, but URL changes"
+    - source: atrbpn_gistaru_kek
+      reason: "Legal boundaries, but requires login"
+
+  kek_polygons:
+    - source: big_kawasan_khusus
+      reason: "Layer 5 = Kawasan Pariwisata / KEK"
+    - source: atrbpn_gistaru_kek
+      reason: "Legal delineation, requires login"
+    - source: dewan_kek
+      reason: "Metadata only, no polygons"
+
+  infrastructure_points:
+    ports:
+      - pelindo_ports
+      - big_rbi_opendata
+    airports:
+      - kemenhub_airports
+      - big_rbi_opendata
+    toll_roads:
+      - pupr_toll_roads
+      - big_rbi_opendata
+
+# ───────────────────────────────────────────────────────────────────
+# AI AGENT INSTRUCTIONS
+# ───────────────────────────────────────────────────────────────────
+ai_instructions: |
+  When collecting geospatial data:
+
+  1. ALWAYS try the HIGHEST reliability source first (big_kawasan_industri).
+  2. If REST API fails (404, timeout), try the next source in fallback chain.
+  3. For CKAN portals (Kemenperin), use browser automation (Playwright) to find
+     current download URL if hardcoded UUID fails.
+  4. NEVER guess polygon boundaries — always use official survey data.
+  5. If ALL official sources fail, use cached local GeoJSON (if available).
+  6. Log every attempt, failure reason, and final source used.
+  7. After successful download, RUN validation (bbox, geometry, schema).
+  8. Convert to GeoJSON (EPSG:4326) immediately.
+  9. Store metadata: source URL, download date, legal basis, update frequency.
