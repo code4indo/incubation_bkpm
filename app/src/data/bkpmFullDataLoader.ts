@@ -1,6 +1,6 @@
 /**
  * BKPM Full Data Loader
- * Loads enriched project data from bkpm_full.json (scraped with incentives, contacts, gallery)
+ * Loads enriched project data from bkpmFullData.json (scraped with incentives, contacts, gallery)
  */
 
 import bkpmFullData from './bkpmFullData.json';
@@ -53,15 +53,14 @@ interface ScrapedProject {
   source_url: string;
 }
 
-// Scraped enrichment data (attached to any project)
-export interface ProjectEnrichment {
+// Extended Project with enrichment data
+export interface EnrichedProject extends Project {
   shortTitle?: string;
   industrialZone?: string;
   kbliCode?: string;
   investmentValueIdr?: string;
   npvIdr?: string;
   paybackYears?: number;
-  scrapedStatus?: string;
   visitorCount?: number;
   incentives: ScrapedIncentive[];
   contacts: ScrapedContact[];
@@ -70,10 +69,10 @@ export interface ProjectEnrichment {
   videoUrl?: string;
   mainImageUrl?: string;
   sourceUrl: string;
+  roi?: number;
+  riskLevel?: string;
+  projectType?: string;
 }
-
-// Extended Project with enrichment
-export interface EnrichedProject extends Project, ProjectEnrichment {}
 
 // Map sector names from scraped data to our sector system
 function mapSector(scrapedSector: string): string {
@@ -94,7 +93,7 @@ function mapSector(scrapedSector: string): string {
     'Kesehatan': 'Health',
     'Pendidikan': 'Education',
   };
-  
+
   for (const [key, val] of Object.entries(sectorMap)) {
     if (scrapedSector.toLowerCase().includes(key.toLowerCase())) {
       return val;
@@ -103,28 +102,36 @@ function mapSector(scrapedSector: string): string {
   return 'General';
 }
 
+// Validate status to match Project type
+function validateStatus(status?: string): 'Verified' | 'In Progress' | 'Planning' {
+  if (status === 'Verified' || status === 'In Progress' || status === 'Planning') {
+    return status;
+  }
+  return 'Planning';
+}
+
 // Load and convert scraped data
 export function loadEnrichedProjects(): EnrichedProject[] {
   const scraped = bkpmFullData as ScrapedProject[];
-  
+
   return scraped.map((sp) => {
     const baseId = sp.project_id;
     const sector = mapSector(sp.sector);
-    
+
     // Calculate investment value in IDR millions (our format)
     const investmentValue = sp.investment_value_raw_millions || 0;
-    
+
     // NPV in our format
     const npv = sp.npv_raw_millions || 0;
-    
+
     // IRR
     const irr = sp.irr_percent || 0;
-    
+
     // Use full description if available
     const descriptionId = sp.description_id || sp.description_short || '';
-    
+
     return {
-      // Base Project fields
+      // Base Project fields (required)
       id: baseId,
       name: sp.title,
       nameId: sp.short_title || sp.title,
@@ -145,15 +152,12 @@ export function loadEnrichedProjects(): EnrichedProject[] {
       irr,
       npv,
       paybackPeriod: sp.payback_years || 0,
-      status: (sp.status === 'Verified' || sp.status === 'In Progress' || sp.status === 'Planning') 
-        ? sp.status 
-        : 'Planning' as const,
+      status: validateStatus(sp.status),
       image: sp.main_image_url || '',
       tags: [sector, sp.province],
-      matchScore: undefined,
       hasTranslation: false,
-      
-      // Enrichment data
+
+      // Extended enrichment fields
       shortTitle: sp.short_title,
       industrialZone: sp.industrial_zone,
       kbliCode: sp.kbli_code,
@@ -168,8 +172,18 @@ export function loadEnrichedProjects(): EnrichedProject[] {
       videoUrl: sp.video_url,
       mainImageUrl: sp.main_image_url,
       sourceUrl: sp.source_url,
+      roi: irr * 1.2,
+      riskLevel: irr > 15 ? 'Low' : irr > 10 ? 'Medium' : 'High',
+      projectType: 'detailed',
     };
   });
+}
+
+// Merge with existing realData to get projects not in scraped set
+export function getAllProjectsWithEnrichment(): EnrichedProject[] {
+  const enriched = loadEnrichedProjects();
+  // Currently returns only enriched projects from scraped data
+  return enriched;
 }
 
 // Get single enriched project

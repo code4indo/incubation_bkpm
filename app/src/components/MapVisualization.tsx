@@ -3,7 +3,8 @@ import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from 're
 import L from 'leaflet';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { projects, regions, ports, airports } from '@/data/mockData';
+import { projects, regions } from '@/data/mockData';
+import { ports, airports, keks, tollRoads, typedPorts, typedAirports } from '@/data/infrastructureData';
 import { computeRegionalScores } from '@/lib/scoringEngine';
 import { formatIdrCompact } from '@/lib/formatters';
 import type { Project, Region } from '@/types';
@@ -43,6 +44,20 @@ const airportIcon = L.divIcon({
   iconAnchor: [5, 5]
 });
 
+const kekIcon = L.divIcon({
+  className: 'custom-div-icon',
+  html: '<div style="background:#22c55e;width:10px;height:10px;border-radius:3px;border:2px solid white;"></div>',
+  iconSize: [10, 10],
+  iconAnchor: [5, 5]
+});
+
+const tollIcon = L.divIcon({
+  className: 'custom-div-icon',
+  html: '<div style="background:#9333ea;width:8px;height:8px;border-radius:50%;border:2px solid white;opacity:0.8;"></div>',
+  iconSize: [8, 8],
+  iconAnchor: [4, 4]
+});
+
 // Map bounds fitter
 function MapBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   const map = useMap();
@@ -70,7 +85,7 @@ export function MapVisualization({
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
 
-  const scores = useMemo(() => computeRegionalScores(regions, ports, airports), []);
+  const scores = useMemo(() => computeRegionalScores(regions, typedPorts, typedAirports), []);
 
   // Map bounds for Indonesia
   const indonesiaBounds: L.LatLngBoundsExpression = [
@@ -217,7 +232,41 @@ export function MapVisualization({
               <Popup>
                 <div>
                   <p className="font-semibold text-sm">{airport.name}</p>
-                  <p className="text-xs text-gray-500">{airport.type} ({airport.iata})</p>
+                  <p className="text-xs text-gray-500">{airport.province}</p>
+                  <p className="text-xs text-gray-600 mt-1">{airport.detail}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
+          {/* KEK markers */}
+          {showInfrastructure && keks.map((kek) => (
+            <Marker
+              key={kek.name}
+              position={[kek.lat, kek.lng]}
+              icon={kekIcon}
+            >
+              <Popup>
+                <div>
+                  <p className="font-semibold text-sm">{kek.name}</p>
+                  <p className="text-xs text-gray-500">{kek.province}</p>
+                  <p className="text-xs text-gray-600 mt-1">{kek.detail}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
+          {/* Toll Road markers */}
+          {showInfrastructure && tollRoads.map((toll) => (
+            <Marker
+              key={toll.name}
+              position={[toll.lat, toll.lng]}
+              icon={tollIcon}
+            >
+              <Popup>
+                <div>
+                  <p className="font-semibold text-sm">{toll.name}</p>
+                  <p className="text-xs text-gray-500">{toll.detail}</p>
                 </div>
               </Popup>
             </Marker>
@@ -270,11 +319,19 @@ export function MapVisualization({
             <>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-blue-600 inline-block"></span>
-                <span className="text-xs text-gray-600">Port</span>
+                <span className="text-xs text-gray-600">Port (30)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-cyan-600 inline-block"></span>
-                <span className="text-xs text-gray-600">Airport</span>
+                <span className="text-xs text-gray-600">Airport (22)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-sm bg-green-500 inline-block"></span>
+                <span className="text-xs text-gray-600">KEK (20)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-purple-600 inline-block opacity-80"></span>
+                <span className="text-xs text-gray-600">Toll (20)</span>
               </div>
             </>
           )}

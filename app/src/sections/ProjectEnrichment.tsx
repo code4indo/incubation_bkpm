@@ -31,6 +31,7 @@ export function ProjectEnrichment({ project }: ProjectEnrichmentProps) {
   const hasGallery = project.galleryUrls && project.galleryUrls.length > 0;
   const hasDocuments = project.documentUrls && project.documentUrls.length > 0;
   const hasVideo = !!project.videoUrl;
+  const hasMainImage = !!project.mainImageUrl;
 
   if (!hasIncentives && !hasContacts && !hasGallery && !hasDocuments && !hasVideo) {
     return null;
@@ -228,7 +229,7 @@ function GalleryCard({ urls, mainImage }: { urls: string[]; mainImage?: string }
   );
 }
 
-function VideoCard({ url }: { url?: string }) {
+function VideoCard({ url }: { url: string }) {
   return (
     <Card className="border-0 shadow-md">
       <CardHeader className="pb-2">
