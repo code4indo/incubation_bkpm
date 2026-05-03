@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { MapVisualization } from '@/components/MapVisualization';
-import { regions, projects, ports, airports } from '@/data/mockData';
+import { regions, projects, ports, airports } from '@/data/realData';
 import { computeRegionalScores, scoreProjectRegionAlignment } from '@/lib/scoringEngine';
 import type { ProjectRegionAlignment } from '@/lib/scoringEngine';
 import { MapPin, Users, TrendingUp, DollarSign, Building2, Anchor, BarChart3, Activity } from 'lucide-react';
