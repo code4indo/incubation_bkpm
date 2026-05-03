@@ -7,6 +7,9 @@ import { formatIdr } from '@/lib/formatters';
 import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
 import { ArrowLeft, MapPin, TrendingUp, DollarSign, Clock, BarChart3, FileText, CheckCircle, Share2, Bookmark, Cpu, Users, Sparkles, Target, Globe, Zap, Calendar, Bot } from 'lucide-react';
 import { useRecommendations } from '@/hooks/useRecommendations';
+import { getEnrichedProject } from '@/data/bkpmFullDataLoader';
+import type { EnrichedProject } from '@/data/bkpmFullDataLoader';
+import { ProjectEnrichment } from '@/sections/ProjectEnrichment';
 import { assessFinancial } from '@/lib/enhancedFinancialEngine';
 import { assessRegulatory } from '@/lib/regulatoryAssessmentEngine';
 import { assessTechnical } from '@/lib/technicalAssessmentEngine';
@@ -42,6 +45,15 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
   const handleSave = () => trackInteraction(project.id, 'save');
   const handleShare = () => trackInteraction(project.id, 'share');
   const handleExpressInterest = () => trackInteraction(project.id, 'inquiry');
+
+  // Check if we have enriched data for this project
+  const enrichedProject = useMemo(() => {
+    const enriched = getEnrichedProject(project.id);
+    if (enriched) return enriched;
+    // Cast existing project if it already has enrichment fields
+    if ('incentives' in project) return project as unknown as EnrichedProject;
+    return null;
+  }, [project]);
 
   // Color helper for score bars
   const getScoreColor = (value: number) => {
@@ -416,6 +428,11 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Enrichment Data (Incentives, Contacts, Gallery, etc.) */}
+            {enrichedProject && (
+              <ProjectEnrichment project={enrichedProject} />
+            )}
 
             <div className="space-y-3">
               <Button 
