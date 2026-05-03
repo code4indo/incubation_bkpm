@@ -11,6 +11,7 @@
 
 import type { Project, Region, Port, Airport } from '@/types';
 import { haversineDistance, nearestPortDistance, nearestAirportDistance } from './scoringEngine';
+import { checkZoneContainment, findNearestZones, findCompatibleZones, getPirZoneFeatures } from './geoJsonUtil';
 
 // ============================================================
 // TYPES — Analyst Agent Output Schemas
@@ -130,29 +131,15 @@ const SECTOR_BENCHMARKS: SectorBenchmark[] = [
   { sector: 'General', irrMin: 8, irrMax: 20, irrTypical: 14, paybackMaxYears: 8, riskLevel: 'Medium' },
 ];
 
-// KEK (Kawasan Ekonomi Khusus) and KI (Kawasan Industri) database
-const INDUSTRIAL_ZONES: { name: string; lat: number; lng: number; sectors: string[] }[] = [
-  { name: 'KEK Sei Mangkei', lat: 2.9, lng: 99.3, sectors: ['Agroindustry', 'Manufacturing', 'Chemicals'] },
-  { name: 'KEK Kendal', lat: -6.9, lng: 110.3, sectors: ['Manufacturing', 'Digital', 'Logistics'] },
-  { name: 'KEK Batang', lat: -6.9, lng: 109.8, sectors: ['Manufacturing', 'Energy', 'Infrastructure'] },
-  { name: 'KEK Maloy', lat: -8.2, lng: 117.4, sectors: ['Mining', 'Energy', 'Manufacturing'] },
-  { name: 'KEK Bitung', lat: 1.4, lng: 125.1, sectors: ['Fisheries', 'Agroindustry', 'Trade'] },
-  { name: 'KEK Mandalika', lat: -8.9, lng: 116.3, sectors: ['Tourism', 'Trade', 'Infrastructure'] },
-  { name: 'KEK Lido', lat: -6.7, lng: 106.8, sectors: ['Tourism', 'Digital', 'Health'] },
-  { name: 'KEK Tanjung Kelayang', lat: -2.3, lng: 106.0, sectors: ['Tourism', 'Infrastructure'] },
-  { name: 'KEK Morotai', lat: 2.3, lng: 128.4, sectors: ['Fisheries', 'Tourism', 'Agroindustry'] },
-  { name: 'KEK Singhasari', lat: -7.9, lng: 112.5, sectors: ['Digital', 'Tourism', 'Education'] },
-  { name: 'KEK Palu', lat: -0.9, lng: 119.8, sectors: ['Manufacturing', 'Agroindustry', 'Mining'] },
-  { name: 'KI Tanjung Uncang', lat: 1.1, lng: 104.0, sectors: ['Manufacturing', 'Chemicals', 'Energy'] },
-  { name: 'KI Pasuruan', lat: -7.6, lng: 112.8, sectors: ['Manufacturing', 'Agroindustry'] },
-  { name: 'KI Gresik', lat: -7.1, lng: 112.6, sectors: ['Manufacturing', 'Energy', 'Chemicals'] },
-  { name: 'KI Cilegon', lat: -6.0, lng: 106.0, sectors: ['Manufacturing', 'Energy', 'Steel'] },
-  { name: 'KI Tuban', lat: -6.9, lng: 111.9, sectors: ['Manufacturing', 'Energy', 'Agroindustry'] },
-  { name: 'KI Terpadu Batang', lat: -6.9, lng: 109.8, sectors: ['Manufacturing', 'Energy', 'Digital'] },
-  { name: 'KI Medan', lat: 3.6, lng: 98.7, sectors: ['Manufacturing', 'Agroindustry', 'Fisheries'] },
-  { name: 'KI Makassar', lat: -5.1, lng: 119.4, sectors: ['Manufacturing', 'Fisheries', 'Agroindustry'] },
-  { name: 'KI Banjarmasin', lat: -3.3, lng: 114.6, sectors: ['Manufacturing', 'Mining', 'Agroindustry'] },
-];
+// PIR Zones are loaded from GeoJSON (pirZones.geojson) for polygon-accurate spatial queries.
+// Fallback: if GeoJSON fails to load, zone validation degrades gracefully to centroid-based distance.
+function getIndustrialZones() {
+  try {
+    return getPirZoneFeatures();
+  } catch {
+    return [];
+  }
+}
 
 // ============================================================
 // UTILITY FUNCTIONS
@@ -282,47 +269,80 @@ export function validateZone(
     alternativeZones.push(`Consider regions with ${project.sector} focus`);
   }
 
-  // Find nearest KEK/KI zones
-  const sortedZones = INDUSTRIAL_ZONES
-    .map(z => ({
-      ...z,
-      dist: haversineDistance(project.coordinates.lat, project.coordinates.lng, z.lat, z.lng),
-    }))
-    .filter(z => z.sectors.some(s => project.sector.toLowerCase().includes(s.toLowerCase())))
-    .sort((a, b) => a.dist - b.dist)
-    .slice(0, 3);
+  // GeoJSON-based PIR zone containment check
+  const zoneContainment = checkZoneContainment(
+    project.coordinates.lat,
+    project.coordinates.lng,
+    project.sector
+  );
 
-  nearestIndustrialZones.push(...sortedZones.map(z => `${z.name} (${Math.round(z.dist)}km)`));
+  // Find nearest compatible PIR zones via polygon-accurate distance
+  const compatibleZones = findCompatibleZones(
+    project.coordinates.lat,
+    project.coordinates.lng,
+    project.sector,
+    3
+  );
 
-  // Zone alignment score
+  nearestIndustrialZones.push(...compatibleZones.map(z =>
+    `${z.zone.properties.name} [${z.zone.properties.type}] (${Math.round(z.distanceKm)}km, match:${z.sectorAlignmentScore}%)`
+  ));
+
+  // Zone alignment score using GeoJSON spatial analysis
   let alignmentScore = 50; // Base
 
-  // + Sector match
-  if (sectorMatch) alignmentScore += 20;
+  // + Zone containment bonus (point-in-polygon: project IS inside a PIR zone)
+  if (zoneContainment.insideZone) {
+    alignmentScore += 25;
+    if (zoneContainment.bestMatch) {
+      alignmentScore += zoneContainment.sectorAlignmentScore * 0.25;
+    }
+  } else {
+    // Project outside any zone — check proximity
+    const nearestAll = findNearestZones(
+      project.coordinates.lat, project.coordinates.lng, project.sector, 1
+    );
+    if (nearestAll.length > 0 && nearestAll[0].distanceKm <= 50) {
+      alignmentScore += 15;
+    } else if (nearestAll.length > 0 && nearestAll[0].distanceKm <= 100) {
+      alignmentScore += 10;
+    } else if (nearestAll.length > 0 && nearestAll[0].distanceKm <= 200) {
+      alignmentScore += 5;
+    }
+  }
+
+  // + Sector match with region
+  if (sectorMatch) alignmentScore += 15;
+
+  // + Zone sector compatibility
+  if (compatibleZones.length > 0) {
+    alignmentScore += compatibleZones[0].sectorAlignmentScore * 0.10;
+  }
 
   // + Infrastructure proximity
-  if (portDist <= 50) alignmentScore += 15;
-  else if (portDist <= 150) alignmentScore += 10;
-  else if (portDist <= 300) alignmentScore += 5;
+  if (portDist <= 50) alignmentScore += 10;
+  else if (portDist <= 150) alignmentScore += 5;
 
-  if (airportDist <= 100) alignmentScore += 10;
-  else if (airportDist <= 200) alignmentScore += 5;
+  if (airportDist <= 100) alignmentScore += 8;
+  else if (airportDist <= 200) alignmentScore += 4;
 
   // + Infrastructure status bonus
-  if (infrastructureStatus === 'Ready') alignmentScore += 5;
-
-  // + Industrial zone proximity bonus
-  if (sortedZones.length > 0 && sortedZones[0].dist <= 100) {
-    alignmentScore += 10;
-  }
+  if (infrastructureStatus === 'Ready') alignmentScore += 7;
 
   // - Conflicts penalty
-  alignmentScore -= conflicts.length * 10;
+  alignmentScore -= conflicts.length * 12;
 
-  // If conflicts exist, suggest alternatives
-  if (conflicts.length > 0 && sortedZones.length > 0) {
-    alternativeZones.push(sortedZones[0].name);
+  // Suggest alternative zones
+  if (conflicts.length > 0 && compatibleZones.length > 0) {
+    alternativeZones.push(compatibleZones[0].zone.properties.name);
   }
+  if (zoneContainment.bestMatch && !zoneContainment.insideZone) {
+    alternativeZones.push(zoneContainment.bestMatch.properties.name);
+  }
+  // Deduplicate
+  const uniqueZones = [...new Set([...alternativeZones, ...compatibleZones.map(z => z.zone.properties.name)])];
+  alternativeZones.length = 0;
+  alternativeZones.push(...uniqueZones.slice(0, 3));
 
   return {
     alignmentScore: Math.min(100, Math.max(0, alignmentScore)),

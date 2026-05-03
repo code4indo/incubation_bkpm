@@ -13,6 +13,7 @@ export function RegionsPage() {
   const [showHeatmap, setShowHeatmap] = useState(true);
   const [showProjects, setShowProjects] = useState(true);
   const [showInfrastructure, setShowInfrastructure] = useState(false);
+  const [showZones, setShowZones] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
   const scores = useMemo(() => computeRegionalScores(regions, ports, airports), []);
@@ -72,6 +73,12 @@ export function RegionsPage() {
                 <Anchor className="w-3.5 h-3.5" /> Infrastructure
               </label>
             </div>
+            <div className="flex items-center gap-3">
+              <Switch checked={showZones} onCheckedChange={setShowZones} id="zones" />
+              <label htmlFor="zones" className="text-sm font-medium cursor-pointer flex items-center gap-1">
+                🟩 PIR Zones
+              </label>
+            </div>
             <div className="ml-auto">
               <select
                 className="border rounded-lg px-3 py-1.5 text-sm bg-white"
@@ -94,6 +101,7 @@ export function RegionsPage() {
             showHeatmap={showHeatmap}
             showProjects={showProjects}
             showInfrastructure={showInfrastructure}
+            showZones={showZones}
             height="100%"
           />
         </div>

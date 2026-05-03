@@ -1,13 +1,15 @@
-import { useEffect, useState, useMemo } from 'react';
-import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from 'react-leaflet';
+import { useEffect, useState, useMemo, useRef } from 'react';
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap, GeoJSON } from 'react-leaflet';
 import L from 'leaflet';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { projects, regions } from '@/data/mockData';
 import { ports, airports, keks, tollRoads, typedPorts, typedAirports } from '@/data/infrastructureData';
 import { computeRegionalScores } from '@/lib/scoringEngine';
+import { getPirZoneFeatures } from '@/lib/geoJsonUtil';
 import { formatIdrCompact } from '@/lib/formatters';
 import type { Project, Region } from '@/types';
+import type { GeoJSON as LeafletGeoJSON } from 'leaflet';
 import { Anchor, TrendingUp, DollarSign, Users } from 'lucide-react';
 
 // Fix Leaflet default icon issue
@@ -58,11 +60,15 @@ const tollIcon = L.divIcon({
   iconAnchor: [4, 4]
 });
 
-// Map bounds fitter
+// Map bounds fitter — only fires on initial mount, not on every re-render
 function MapBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   const map = useMap();
+  const hasFit = useRef(false);
   useEffect(() => {
-    map.fitBounds(bounds, { padding: [30, 30] });
+    if (!hasFit.current) {
+      map.fitBounds(bounds, { padding: [30, 30] });
+      hasFit.current = true;
+    }
   }, [map, bounds]);
   return null;
 }
@@ -72,6 +78,7 @@ interface MapVisualizationProps {
   showHeatmap?: boolean;
   showProjects?: boolean;
   showInfrastructure?: boolean;
+  showZones?: boolean;
   height?: string;
 }
 
@@ -80,18 +87,48 @@ export function MapVisualization({
   showHeatmap = true,
   showProjects = true,
   showInfrastructure = false,
+  showZones = false,
   height = '500px'
 }: MapVisualizationProps) {
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
+  const [hoveredZone, setHoveredZone] = useState<string | null>(null);
 
   const scores = useMemo(() => computeRegionalScores(regions, typedPorts, typedAirports), []);
 
-  // Map bounds for Indonesia
-  const indonesiaBounds: L.LatLngBoundsExpression = [
+  // Load PIR zone features from GeoJSON
+  const pirZones = useMemo(() => {
+    try {
+      return getPirZoneFeatures();
+    } catch {
+      return [];
+    }
+  }, []);
+
+  // Convert to Leaflet-compatible GeoJSON
+  const pirGeoJsonData = useMemo(() => ({
+    type: 'FeatureCollection' as const,
+    features: pirZones,
+  }), [pirZones]);
+
+  // Style function for PIR zone polygons
+  const zoneStyle = (feature: any) => {
+    const isHovered = hoveredZone === feature?.properties?.name;
+    const isKEK = feature?.properties?.type === 'KEK';
+    return {
+      fillColor: isKEK ? '#22c55e' : '#3b82f6',
+      fillOpacity: isHovered ? 0.35 : 0.15,
+      color: isKEK ? '#16a34a' : '#2563eb',
+      weight: isHovered ? 3 : 1.5,
+      dashArray: isKEK ? undefined : '5, 5',
+    };
+  };
+
+  // Map bounds for Indonesia (memoized to avoid re-fitBounds on every render)
+  const indonesiaBounds = useMemo<L.LatLngBoundsExpression>(() => [
     [-11.0, 95.0],
     [6.5, 141.0]
-  ];
+  ], []);
 
   const selectedProjectRegion = selectedProject
     ? regions.find(r => r.name === selectedProject.province)
@@ -272,6 +309,41 @@ export function MapVisualization({
             </Marker>
           ))}
 
+          {/* PIR Zone GeoJSON Polygon Overlay */}
+          {showZones && (
+            <GeoJSON
+              key="pir-zones"
+              data={pirGeoJsonData as any}
+              style={zoneStyle}
+              onEachFeature={(feature: any, layer: LeafletGeoJSON) => {
+                const props = feature.properties;
+                layer.bindPopup(`
+                  <div style="min-width:200px">
+                    <h4 style="font-weight:700;margin-bottom:4px;color:#1B4D5C">
+                      ${props.name} [${props.type}]
+                    </h4>
+                    <p style="font-size:12px;color:#666;margin-bottom:6px">${props.province} — ${props.status}</p>
+                    <p style="font-size:12px;color:#444;margin-bottom:4px">${props.description}</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px">
+                      ${props.sectors.map((s: string) =>
+                        `<span style="background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:10px">${s}</span>`
+                      ).join('')}
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:3px">
+                      ${(props.incentives || []).map((inc: string) =>
+                        `<span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:3px;font-size:10px">${inc}</span>`
+                      ).join('')}
+                    </div>
+                  </div>
+                `);
+                layer.on({
+                  mouseover: () => setHoveredZone(props.name),
+                  mouseout: () => setHoveredZone(null),
+                });
+              }}
+            />
+          )}
+
           {/* Selected project highlight */}
           {selectedProject && selectedProjectRegion && (
             <CircleMarker
@@ -332,6 +404,14 @@ export function MapVisualization({
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-purple-600 inline-block opacity-80"></span>
                 <span className="text-xs text-gray-600">Toll (20)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-4 h-3 bg-green-500 border border-green-700 inline-block opacity-30 rounded-sm"></span>
+                <span className="text-xs text-gray-600">KEK Zone (20)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-4 h-3 bg-blue-500 border border-blue-700 inline-block opacity-30 rounded-sm border-dashed"></span>
+                <span className="text-xs text-gray-600">KI Zone (9)</span>
               </div>
             </>
           )}
