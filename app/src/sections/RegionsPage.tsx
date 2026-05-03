@@ -14,6 +14,7 @@ export function RegionsPage() {
   const [showProjects, setShowProjects] = useState(true);
   const [showInfrastructure, setShowInfrastructure] = useState(false);
   const [showZones, setShowZones] = useState(false);
+  const [showKawasanIndustri, setShowKawasanIndustri] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
   const scores = useMemo(() => computeRegionalScores(regions, ports, airports), []);
@@ -79,6 +80,12 @@ export function RegionsPage() {
                 🟩 PIR Zones
               </label>
             </div>
+            <div className="flex items-center gap-3">
+              <Switch checked={showKawasanIndustri} onCheckedChange={setShowKawasanIndustri} id="ki" />
+              <label htmlFor="ki" className="text-sm font-medium cursor-pointer flex items-center gap-1">
+                🟪 Kawasan Industri (114)
+              </label>
+            </div>
             <div className="ml-auto">
               <select
                 className="border rounded-lg px-3 py-1.5 text-sm bg-white"
@@ -102,6 +109,7 @@ export function RegionsPage() {
             showProjects={showProjects}
             showInfrastructure={showInfrastructure}
             showZones={showZones}
+            showKawasanIndustri={showKawasanIndustri}
             height="100%"
           />
         </div>

@@ -7,10 +7,11 @@ import { projects, regions } from '@/data/mockData';
 import { ports, airports, keks, tollRoads, typedPorts, typedAirports } from '@/data/infrastructureData';
 import { computeRegionalScores } from '@/lib/scoringEngine';
 import { getPirZoneFeatures } from '@/lib/geoJsonUtil';
+import { getKawasanIndustriFeatures } from '@/data/kemenperinKILoader';
 import { formatIdrCompact } from '@/lib/formatters';
 import type { Project, Region } from '@/types';
 import type { GeoJSON as LeafletGeoJSON } from 'leaflet';
-import { Anchor, TrendingUp, DollarSign, Users } from 'lucide-react';
+import { Anchor, TrendingUp, DollarSign, Users, Factory } from 'lucide-react';
 
 // Fix Leaflet default icon issue
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -79,6 +80,7 @@ interface MapVisualizationProps {
   showProjects?: boolean;
   showInfrastructure?: boolean;
   showZones?: boolean;
+  showKawasanIndustri?: boolean;
   height?: string;
 }
 
@@ -88,6 +90,7 @@ export function MapVisualization({
   showProjects = true,
   showInfrastructure = false,
   showZones = false,
+  showKawasanIndustri = false,
   height = '500px'
 }: MapVisualizationProps) {
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
@@ -111,7 +114,31 @@ export function MapVisualization({
     features: pirZones,
   }), [pirZones]);
 
-  // Style function for PIR zone polygons
+  // Load Kawasan Industri features from Kemenperin
+  const kiFeatures = useMemo(() => {
+    try {
+      return getKawasanIndustriFeatures();
+    } catch {
+      return [];
+    }
+  }, []);
+
+  const kiGeoJsonData = useMemo(() => ({
+    type: 'FeatureCollection' as const,
+    features: kiFeatures,
+  }), [kiFeatures]);
+
+  // Style function for Kawasan Industri polygons
+  const kiStyle = (feature: any) => {
+    const isHovered = hoveredZone === feature?.properties?.name;
+    return {
+      fillColor: '#9333ea',
+      fillOpacity: isHovered ? 0.4 : 0.2,
+      color: '#7c3aed',
+      weight: isHovered ? 3 : 1.5,
+      dashArray: '4, 4',
+    };
+  };
   const zoneStyle = (feature: any) => {
     const isHovered = hoveredZone === feature?.properties?.name;
     const isKEK = feature?.properties?.type === 'KEK';
@@ -344,6 +371,41 @@ export function MapVisualization({
             />
           )}
 
+          {/* Kawasan Industri GeoJSON Polygon Overlay */}
+          {showKawasanIndustri && (
+            <GeoJSON
+              key="kawasan-industri"
+              data={kiGeoJsonData as any}
+              style={kiStyle}
+              onEachFeature={(feature: any, layer: LeafletGeoJSON) => {
+                const props = feature.properties;
+                layer.bindPopup(`
+                  <div style="min-width:200px">
+                    <h4 style="font-weight:700;margin-bottom:4px;color:#7c3aed">
+                      ${props.name}
+                    </h4>
+                    <p style="font-size:12px;color:#666;margin-bottom:4px">
+                      ${props.kabupaten}, ${props.provinsi}
+                    </p>
+                    <p style="font-size:12px;color:#444;margin-bottom:4px">
+                      <b>Pengelola:</b> ${props.pengelola}
+                    </p>
+                    <p style="font-size:12px;color:#444;margin-bottom:6px">
+                      <b>Luas:</b> ${props.luas_ha}
+                    </p>
+                    <span style="background:#f3e8ff;color:#7c3aed;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600">
+                      KAWASAN INDUSTRI RESMI
+                    </span>
+                  </div>
+                `);
+                layer.on({
+                  mouseover: () => setHoveredZone(props.name),
+                  mouseout: () => setHoveredZone(null),
+                });
+              }}
+            />
+          )}
+
           {/* Selected project highlight */}
           {selectedProject && selectedProjectRegion && (
             <CircleMarker
@@ -410,8 +472,8 @@ export function MapVisualization({
                 <span className="text-xs text-gray-600">KEK Zone (20)</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <span className="w-4 h-3 bg-blue-500 border border-blue-700 inline-block opacity-30 rounded-sm border-dashed"></span>
-                <span className="text-xs text-gray-600">KI Zone (9)</span>
+                <span className="w-4 h-3 bg-purple-500 border border-purple-700 inline-block opacity-30 rounded-sm border-dashed"></span>
+                <span className="text-xs text-gray-600">KI Zone (114)</span>
               </div>
             </>
           )}
