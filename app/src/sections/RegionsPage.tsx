@@ -15,7 +15,7 @@ export function RegionsPage() {
   const [showProjects, setShowProjects] = useState(true);
   const [showInfrastructure, setShowInfrastructure] = useState(false);
   const [showZones, setShowZones] = useState(false);
-  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
+  const [showRailways, setShowRailways] = useState(false);
 
   const alignmentPanelRef = useRef<HTMLDivElement>(null);
 
@@ -91,6 +91,12 @@ export function RegionsPage() {
                 🟩🟪 KEK + Kawasan Industri
               </label>
             </div>
+            <div className="flex items-center gap-3">
+              <Switch checked={showRailways} onCheckedChange={setShowRailways} id="rail" />
+              <label htmlFor="rail" className="text-sm font-medium cursor-pointer flex items-center gap-1">
+                🚆 Railways
+              </label>
+            </div>
             <div className="ml-auto">
               <select
                 className="border rounded-lg px-3 py-1.5 text-sm bg-white max-w-xs"
@@ -116,6 +122,7 @@ export function RegionsPage() {
             showProjects={showProjects}
             showInfrastructure={showInfrastructure}
             showZones={showZones}
+            showRailways={showRailways}
             height="100%"
           />
         </div>

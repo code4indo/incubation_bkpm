@@ -3,8 +3,8 @@ import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap, GeoJSON }
 import L from 'leaflet';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
-import { projects, regions } from '@/data/mockData';
-import { ports, airports, keks, tollRoads, typedPorts, typedAirports } from '@/data/infrastructureData';
+import { projects, regions } from '@/data/realData';
+import { ports, airports, keks, tollRoads, railwayStations, typedPorts, typedAirports } from '@/data/infrastructureData';
 import { computeRegionalScores } from '@/lib/scoringEngine';
 import { getPirZones } from '@/lib/geoJsonUtil';
 import { formatIdrCompact } from '@/lib/formatters';
@@ -60,6 +60,20 @@ const tollIcon = L.divIcon({
   iconAnchor: [4, 4]
 });
 
+const railIcon = L.divIcon({
+  className: 'custom-div-icon',
+  html: '<div style="background:#f59e0b;width:7px;height:7px;border-radius:1px;border:1.5px solid white;transform:rotate(45deg);"></div>',
+  iconSize: [7, 7],
+  iconAnchor: [3, 3]
+});
+
+const railIcon = L.divIcon({
+  className: 'custom-div-icon',
+  html: '<div style="background:#f59e0b;width:7px;height:7px;border-radius:1px;border:1.5px solid white;transform:rotate(45deg);"></div>',
+  iconSize: [7, 7],
+  iconAnchor: [3, 3]
+});
+
 // Map bounds fitter — only fires on initial mount, not on every re-render
 function MapBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   const map = useMap();
@@ -93,6 +107,7 @@ interface MapVisualizationProps {
   showProjects?: boolean;
   showInfrastructure?: boolean;
   showZones?: boolean;
+  showRailways?: boolean;
   height?: string;
 }
 
@@ -102,6 +117,7 @@ export function MapVisualization({
   showProjects = true,
   showInfrastructure = false,
   showZones = false,
+  showRailways = false,
   height = '500px'
 }: MapVisualizationProps) {
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
@@ -340,6 +356,22 @@ export function MapVisualization({
             </Marker>
           ))}
 
+          {/* Railway Station markers */}
+          {showRailways && railwayStations.map((station) => (
+            <Marker
+              key={station.name}
+              position={[station.lat, station.lng]}
+              icon={railIcon}
+            >
+              <Popup>
+                <div>
+                  <p className="font-semibold text-sm">{station.name}</p>
+                  <p className="text-xs text-gray-500">{station.detail}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))}
+
           {/* PIR Zone GeoJSON Polygon Overlay — merged KEK + KI (Kemenperin) */}
           {showZones && (
             <GeoJSON
@@ -468,11 +500,11 @@ export function MapVisualization({
             <>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-blue-600 inline-block"></span>
-                <span className="text-xs text-gray-600">Port (30)</span>
+                <span className="text-xs text-gray-600">Port (132)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-full bg-cyan-600 inline-block"></span>
-                <span className="text-xs text-gray-600">Airport (22)</span>
+                <span className="text-xs text-gray-600">Airport (106)</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="w-3 h-3 rounded-sm bg-green-500 inline-block"></span>
@@ -482,14 +514,12 @@ export function MapVisualization({
                 <span className="w-3 h-3 rounded-full bg-purple-600 inline-block opacity-80"></span>
                 <span className="text-xs text-gray-600">Toll (20)</span>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-4 h-3 bg-green-500 border border-green-700 inline-block opacity-30 rounded-sm"></span>
-                <span className="text-xs text-gray-600">KEK Zone (20)</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <span className="w-4 h-3 bg-purple-500 border border-purple-700 inline-block opacity-30 rounded-sm border-dashed"></span>
-                <span className="text-xs text-gray-600">KI Zone (114)</span>
-              </div>
+              {showRailways && (
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rotate-45 bg-amber-500 inline-block border border-white"></span>
+                  <span className="text-xs text-gray-600">Railway (20)</span>
+                </div>
+              )}
             </>
           )}
         </div>
