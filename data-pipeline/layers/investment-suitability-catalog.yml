@@ -1,0 +1,364 @@
+---
+name: investment-suitability-layers
+description: |
+  Weighted Overlay GIS layer catalog for Indonesian Investment Suitability Analysis.
+  21 spatial, socio-economic, regulatory, and PIR-specific layers for BKPM AI model.
+version: "1.0.0"
+date: "2026-05-03"
+---
+
+# Investment Suitability Layer Catalog
+
+## Layer Summary Matrix
+
+| # | Layer | Category | Data Type | Spatial | Status | Source | Weight |
+|---|-------|----------|-----------|---------|--------|--------|--------|
+| 1 | Road Network Distance | Spatial | Vector (Line) | National | 🟡 Partial | OSM + Bina Marga | 12% |
+| 2 | Port Distance | Spatial | Vector (Point) | National | 🟢 Ready | Existing + BIG | 10% |
+| 3 | Airport Distance | Spatial | Vector (Point) | National | 🟢 Ready | Existing + BIG | 8% |
+| 4 | Industrial Zone Proximity | Spatial | Vector (Polygon) | National | 🟢 Ready | Kemenperin | 15% |
+| 5 | Land Use / Land Cover | Spatial | Raster 30m | National | 🟡 Available | BIG (OSM/LULC) | 8% |
+| 6 | Slope / Elevation | Spatial | Raster 30m | National | 🟢 Ready | SRTM NASA | 6% |
+| 7 | Flood Risk | Spatial | Vector/Raster | National | 🟡 Available | BNPB + BIG | 5% |
+| 8 | Utility Infrastructure | Spatial | Vector (Point) | National | 🔴 Missing | PLN + Kominfo | 5% |
+| 9 | Population Density | Socio-Economic | Tabular | Provincial | 🟢 Ready | BPS + existing | 8% |
+| 10 | Workforce Availability | Socio-Economic | Tabular | Provincial | 🟢 Ready | BPS + existing | 8% |
+| 11 | UMR (Minimum Wage) | Socio-Economic | Tabular | Provincial | 🟢 Ready | Existing | 5% |
+| 12 | Education Level | Socio-Economic | Tabular | Provincial | 🟡 Available | BPS (Angka Partisipasi Sekolah) | 4% |
+| 13 | Existing Economic Activity | Socio-Economic | Tabular | Provincial | 🟡 Available | BPS (PDRB) | 5% |
+| 14 | Zoning (RTRW) | Regulatory | Vector (Polygon) | National | 🔴 Missing | ATR/BPN | 0% (constraint) |
+| 15 | Protected Areas | Regulatory | Vector (Polygon) | National | 🟡 Available | KLHK | 0% (constraint) |
+| 16 | Forest Status | Regulatory | Raster/Vector | National | 🟡 Available | KLHK / BIG | 0% (constraint) |
+| 17 | Mining Concessions | Regulatory | Vector (Polygon) | National | 🟡 Available | ESDM Minerba One Map | 0% (constraint) |
+| 18 | Existing Investment Realization | PIR-Specific | Tabular | Provincial | 🟢 Ready | Existing + BKPM | 5% |
+| 19 | Project Density | PIR-Specific | Derived | Provincial | 🟢 Ready | Computed from project list | 4% |
+| 20 | Sector Specialization | PIR-Specific | Derived | Provincial | 🟢 Ready | Computed from project sectors | 4% |
+| 21 | Commodity Availability | PIR-Specific | Tabular | Provincial | 🟢 Ready | Existing commodities array | 4% |
+
+---
+
+## Layer Detail
+
+### 1. Road Network Distance
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (LineString network) |
+| Purpose | Proximity to national road network |
+| Current Data | 20 toll road centerline points (existing) |
+| Gap | Need full road network, not just toll endpoints |
+| Open Data Source | OpenStreetMap (OSM) — `highway=motorway,trunk,primary` |
+| Alternative | Bina Marga PUPR — shapefile jalan nasional |
+| Acquisition | Overpass API query or GeoFabrik Indonesia extract |
+| Suitability Rule | Lower distance = higher score (exponential decay) |
+| Preprocessing | Calculate distance from project/zone centroid to nearest road |
+
+### 2. Port Distance
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Point) |
+| Purpose | Proximity to sea port for export-oriented projects |
+| Current Data | 30 ports with lat/lng (existing) |
+| Source | Pelindo + BIG Satu Peta |
+| Suitability Rule | Lower distance = higher score |
+| Preprocessing | Haversine distance from project to nearest port |
+
+### 3. Airport Distance
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Point) |
+| Purpose | Proximity to airport for logistics and accessibility |
+| Current Data | 22 airports with lat/lng (existing) |
+| Source | Kemenhub + BIG |
+| Suitability Rule | Lower distance = higher score |
+
+### 4. Industrial Zone Proximity
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Polygon) |
+| Purpose | Proximity to existing industrial zones (agglomeration benefit) |
+| Current Data | 153 KI polygons (Kemenperin) + 20 KEK points |
+| Source | Kemenperin + Dewan KEK |
+| Suitability Rule | Inside KI = 100, <5km = 80, <10km = 60, <25km = 40, >25km = 20 |
+| Preprocessing | Point-in-polygon + nearest zone centroid distance |
+
+### 5. Land Use / Land Cover
+| Attribute | Value |
+|-----------|-------|
+| Type | Raster 30m or Vector |
+| Purpose | Avoid protected/natural land; prefer industrial/ vacant land |
+| Open Data | BIG — Peta Rupa Bumi Indonesia (RBI) |
+| Alternative | ESA WorldCover (10m, global, free) — esaworldcover.esa.int |
+| Suitability Classes | Built-up = 100, Cropland = 70, Grassland = 50, Forest = 20, Water = 0 |
+| Constraint | Protected forest = exclusion zone |
+
+### 6. Slope / Elevation
+| Attribute | Value |
+|-----------|-------|
+| Type | Raster 30m (DEM) |
+| Purpose | Avoid steep slopes for construction cost |
+| Open Data | NASA SRTM 30m — earthexplorer.usgs.gov |
+| Alternative | ALOS World 3D 30m — JAXA |
+| Suitability Rule | Flat (0-2%) = 100, Gentle (2-8%) = 80, Moderate (8-15%) = 50, Steep (>15%) = 0 |
+| Preprocessing | Calculate slope from DEM, resample to province-level average |
+
+### 7. Flood Risk
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Polygon) or Raster |
+| Purpose | Avoid flood-prone areas |
+| Open Data | BNPB — Peta Risiko Bencana Indonesia |
+| Alternative | BIG — layer banjir |
+| Suitability Rule | Low risk = 100, Medium = 60, High = 0 |
+| Constraint | High flood risk = exclusion zone |
+
+### 8. Utility Infrastructure
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Point/Polygon) |
+| Purpose | Availability of electricity, water, telecom |
+| Electricity | PLN — data pembangkit & jaringan (terbatas) |
+| Water | PDAM per provinsi (tidak terpusat) |
+| Internet | Kominfo — BTS/tower data (terbatas) |
+| Suitability Rule | Composite index: elec × 0.5 + water × 0.3 + internet × 0.2 |
+| Current Gap | Tidak ada open data nasional terpusat untuk utilities |
+| Workaround | Gunakan proxy: % desa berlistrik dari BPS, kepadatan BTS dari OpenCellID |
+
+### 9. Population Density
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Market size + labor pool |
+| Current Data | `region.population / region.area` for 38 provinces |
+| Source | BPS Sensus Penduduk 2020 + existing portal data |
+| Suitability Rule | Higher density = higher score (labor & market) |
+| Normalization | Log scale to prevent Jakarta from dominating |
+
+### 10. Workforce Availability
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Labor pool size |
+| Current Data | `region.workforce` for 38 provinces |
+| Source | BPS + existing portal data |
+| Suitability Rule | Higher workforce = higher score |
+| Enhancement | Could weight by education level (SD/SMP/SMA/S1) |
+
+### 11. UMR (Minimum Wage)
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Labor cost competitiveness |
+| Current Data | `region.umr` for 38 provinces |
+| Source | Kemenaker / existing portal data |
+| Suitability Rule | Lower UMR = higher score for cost-sensitive manufacturing |
+| Inversion | Score = max(UMR) - current + 1 (lower is better) |
+
+### 12. Education Level
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Skill level of workforce |
+| Open Data | BPS — Angka Partisipasi Sekolah (APS), Rasio Guru-Murid |
+| Alternative | BPS — Pendidikan dalam Angka |
+| Suitability Rule | Higher SMA/S1 ratio = higher score for tech sectors |
+| Current Gap | Tidak ada di portal sekarang — perlu di-fetch dari BPS |
+
+### 13. Existing Economic Activity
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Economic vibrancy / PDRB |
+| Open Data | BPS — PDRB per Provinsi (kuartalan) |
+| Alternative | BPS — Indeks Pembangunan Manusia (IPM) |
+| Suitability Rule | Higher PDRB = higher score (existing economic ecosystem) |
+| Current Gap | Tidak ada di portal — perlu di-fetch dari BPS API |
+
+### 14. Zoning (RTRW — Rencana Tata Ruang Wilayah)
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Polygon) |
+| Purpose | Ensure project location aligns with spatial plan |
+| Source | ATR/BPN — GISTARU |
+| Access | 🔒 Restricted — requires ATR/BPN login |
+| Use | Constraint layer, not weighted — if outside zone = exclusion |
+| Open Alternative | BIG — RBI batas administrasi (rough proxy) |
+
+### 15. Protected Areas
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Polygon) |
+| Purpose | Avoid conservation areas |
+| Source | KLHK — Kementerian Lingkungan Hidup dan Kehutanan |
+| Open Data | worlddatabase.protectedplanet.net (UNEP-WCMC) |
+| Alternative | KLHK geoportal — geoportal.menlhk.go.id |
+| Use | Constraint layer — inside protected area = exclusion |
+
+### 16. Forest Status
+| Attribute | Value |
+|-----------|-------|
+| Type | Raster or Vector |
+| Purpose | Avoid converting forest land |
+| Source | KLHK — Land Cover / Forest Status |
+| Alternative | Global Forest Watch (gfw.global) — Hansen data |
+| Open Data | UMD Global Forest Change (Hansen et al.) |
+| Use | Constraint — primary forest = exclusion, production forest = penalty |
+
+### 17. Mining Concessions
+| Attribute | Value |
+|-----------|-------|
+| Type | Vector (Polygon) |
+| Purpose | Avoid overlapping with mining permits |
+| Source | ESDM — Minerba One Map (minerba.esdm.go.id) |
+| Access | ⚠️ Semi-open — some layers public |
+| Alternative | BIG — Kawasan Pertambangan layer |
+| Use | Constraint — overlap with mining concession = exclusion or penalty |
+
+### 18. Existing Investment Realization
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Track record of investment absorption |
+| Current Data | `region.investmentRealization` (Billion IDR) for 38 provinces |
+| Source | BKPM / existing portal data |
+| Suitability Rule | Higher realization = higher score (proven absorptive capacity) |
+| Normalization | Per capita or per area to avoid large provinces dominating |
+
+### 19. Project Density
+| Attribute | Value |
+|-----------|-------|
+| Type | Derived (count per area) |
+| Purpose | Agglomeration / clustering indicator |
+| Current Data | `region.projects` count for 38 provinces |
+| Source | Computed from existing project list |
+| Suitability Rule | Higher density = higher score (ecosystem effect) |
+| Enhancement | Could be sector-specific density |
+
+### 20. Sector Specialization
+| Attribute | Value |
+|-----------|-------|
+| Type | Derived (entropy / dominance index) |
+| Purpose | Identify provinces with established sector ecosystems |
+| Current Data | `region.topSectors` array for 38 provinces |
+| Source | Computed from existing project list |
+| Suitability Rule | Province with matching sector specialization = bonus score |
+| Calculation | Count projects by sector per province, calculate dominance index |
+
+### 21. Commodity Availability
+| Attribute | Value |
+|-----------|-------|
+| Type | Tabular per Province |
+| Purpose | Raw material proximity for agro/mining projects |
+| Current Data | `region.commodities` array for 38 provinces |
+| Source | Existing portal data |
+| Suitability Rule | Province producing target commodity = high score |
+| Matching | Match project sector with province commodities |
+
+---
+
+## Weighted Overlay Formula
+
+```
+Suitability Score = Σ (Layer_i × Weight_i) × Constraint_Multiplier
+
+Where:
+  Layer_i = normalized score 0-100 for each layer
+  Weight_i = layer weight (must sum to 100% for opportunity layers)
+  Constraint_Multiplier = 0 if any constraint violated, 1 otherwise
+```
+
+### Opportunity Weights (sum to 100%)
+
+| Category | Layers | Total Weight |
+|----------|--------|-------------|
+| Spatial/Physical | Road, Port, Airport, KI, Land Cover, Slope, Flood | 64% |
+| Socio-Economic | Pop Density, Workforce, UMR, Education, Economy | 34% |
+| PIR-Specific | Investment Realization, Project Density, Sector Spec, Commodity | 18% |
+
+### Constraint Weights (binary: 0 or 1)
+
+| Constraint | Effect |
+|------------|--------|
+| Outside RTRW zone | Multiplier = 0 (exclusion) |
+| Inside protected area | Multiplier = 0 (exclusion) |
+| Primary forest conversion | Multiplier = 0 (exclusion) |
+| Mining concession overlap | Multiplier = 0 (exclusion) |
+| High flood risk | Multiplier = 0 (exclusion) |
+
+### Sector-Specific Weight Adjustments
+
+| Sector | Adjusted Weights |
+|--------|-----------------|
+| Export Manufacturing | Port ↑ +20%, UMR ↑ +10% |
+| Domestic Market | Pop Density ↑ +20%, Workforce ↑ +10% |
+| Mining | Mining Concession check, Slope ↓ -10% |
+| Tourism | Airport ↑ +15%, Protected Area constraint relax |
+| Agroindustry | Commodity ↑ +25%, Land Cover (cropland) ↑ +15% |
+| Digital | Education ↑ +20%, Internet ↑ +15% |
+
+---
+
+## Data Acquisition Roadmap
+
+### Phase 1: Ready Now (Week 1)
+- [x] Port Distance (existing)
+- [x] Airport Distance (existing)
+- [x] Industrial Zone Proximity (existing)
+- [x] Population Density (existing)
+- [x] Workforce Availability (existing)
+- [x] UMR (existing)
+- [x] Project Density (computed)
+- [x] Sector Specialization (computed)
+- [x] Commodity Availability (existing)
+- [x] Existing Investment Realization (existing)
+
+### Phase 2: Fetch from Open Data (Week 2)
+- [ ] Road Network (OSM Overpass API)
+- [ ] Slope/Elevation (NASA SRTM)
+- [ ] Land Cover (ESA WorldCover)
+- [ ] Flood Risk (BNPB / BIG)
+- [ ] Education Level (BPS API)
+- [ ] Economic Activity / PDRB (BPS API)
+
+### Phase 3: Restricted/Institutional (Week 3-4)
+- [ ] Zoning RTRW (ATR/BPN — need credential)
+- [ ] Protected Areas (KLHK — limited open data)
+- [ ] Forest Status (KLHK / GFW)
+- [ ] Mining Concessions (ESDM — limited open)
+- [ ] Utility Infrastructure (PLN/Kominfo — no open data)
+
+---
+
+## Open Data URLs
+
+### BIG (Geospatial)
+- Satu Peta MapServer: https://kspservices.big.go.id/satupeta/rest/services
+- RBI Open Data: https://tanahair.indonesia.go.id/portal-web/unduh
+
+### BPS (Socio-Economic)
+- API: https://webapi.bps.go.id
+- PDRB: https://www.bps.go.id/exim.html
+- Pendidikan: https://www.bps.go.id/subjek/28/pendidikan.html
+
+### NASA (Elevation)
+- SRTM: https://earthexplorer.usgs.gov
+- SRTM 30m global coverage
+
+### ESA (Land Cover)
+- WorldCover: https://esa-worldcover.org/en
+- 10m resolution, annual
+
+### OpenStreetMap (Roads)
+- Overpass API: https://overpass-api.de/api/interpreter
+- Indonesia extract: https://download.geofabrik.de/asia/indonesia.html
+
+### BNPB (Disaster Risk)
+- InaRISK: https://inarisk.bnpb.go.id
+- Peta Risiko Bencana
+
+### Global Forest Watch
+- Forest data: https://www.globalforestwatch.org
+- Hansen UMD data (open)
+
+### Protected Planet
+- Protected areas: https://www.protectedplanet.net
+- UNEP-WCMC data
