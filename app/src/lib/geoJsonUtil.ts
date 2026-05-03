@@ -1,28 +1,33 @@
 /**
  * GeoJSON Utility Module — PIR Zone Overlay Engine
  *
+ * Merges two official data sources:
+ *   1. KEK zones (pirZones.json — approximate boundaries, sector data, incentives)
+ *   2. KI zones (kemenperinKawasanIndustri.geojson — Kemenperin official 1:50k boundaries)
+ *
  * Provides:
- *  - Point-in-polygon (Ray Casting)
+ *  - Point-in-polygon (Ray Casting) — Polygon + MultiPolygon
  *  - Zone containment query
  *  - Nearest zone finder
  *  - Zone-sector compatibility checking
  *  - GeoJSON data loading
  *
- * Standards: RFC 7946 (GeoJSON) / OGC Simple Features
+ * Standards: RFC 7946 (GeoJSON) / OGC Simple Features / Kemenperin Portal Satu Data
  */
 
-import pirZonesData from '@/data/pirZones.json';
+import kekZonesData from '@/data/pirZones.json';
+import kiZonesData from '@/data/kemenperinKawasanIndustri.json';
 
 // ── GeoJSON Types (RFC 7946) ────────────────────────────────────────────────
 
 export interface GeoJsonPoint {
   type: 'Point';
-  coordinates: [number, number]; // [lng, lat]
+  coordinates: [number, number];
 }
 
 export interface GeoJsonPolygon {
   type: 'Polygon';
-  coordinates: number[][][]; // Array of linear rings
+  coordinates: number[][][];
 }
 
 export interface GeoJsonMultiPolygon {
@@ -37,28 +42,24 @@ export interface PirZoneProperties {
   type: 'KEK' | 'KI';
   province: string;
   sectors: string[];
-  status: string;
-  priority: 'High' | 'Medium' | 'Low';
-  incentives: string[];
-  description: string;
+  status?: string;
+  priority?: 'High' | 'Medium' | 'Low';
+  incentives?: string[];
+  description?: string;
+  pengelola?: string;
+  kabupaten?: string;
+  luas_ha?: string;
 }
 
 export interface PirZoneFeature {
   type: 'Feature';
   id: string;
   properties: PirZoneProperties;
-  geometry: GeoJsonPolygon;
+  geometry: GeoJsonGeometry;
 }
 
 export interface PirZoneCollection {
   type: 'FeatureCollection';
-  metadata: {
-    title: string;
-    source: string;
-    date: string;
-    crs: { type: string; properties: { name: string } };
-    note: string;
-  };
   features: PirZoneFeature[];
 }
 
@@ -66,9 +67,14 @@ export interface PirZoneCollection {
 
 export function pointInPolygon(lat: number, lng: number, polygon: number[][][]): boolean {
   for (const ring of polygon) {
-    if (rayCasting(lng, lat, ring)) {
-      return true;
-    }
+    if (rayCasting(lng, lat, ring)) return true;
+  }
+  return false;
+}
+
+export function pointInMultiPolygon(lat: number, lng: number, multiPolygon: number[][][][]): boolean {
+  for (const polygon of multiPolygon) {
+    if (pointInPolygon(lat, lng, polygon)) return true;
   }
   return false;
 }
@@ -85,39 +91,120 @@ function rayCasting(x: number, y: number, ring: number[][]): boolean {
   return inside;
 }
 
+export function pointInGeometry(lat: number, lng: number, geometry: GeoJsonGeometry): boolean {
+  if (geometry.type === 'Polygon') {
+    return pointInPolygon(lat, lng, geometry.coordinates);
+  }
+  if (geometry.type === 'MultiPolygon') {
+    return pointInMultiPolygon(lat, lng, geometry.coordinates);
+  }
+  return false;
+}
+
+// ── Data Merging — KEK (pirZones) + KI (Kemenperin) ─────────────────────────
+
+interface RawKekProperties {
+  name: string;
+  type: string;
+  province: string;
+  sectors: string[];
+  status: string;
+  priority: string;
+  incentives: string[];
+  description: string;
+}
+
+interface RawKiProperties {
+  name: string;
+  pengelola: string;
+  kabupaten: string;
+  provinsi: string;
+  luas_ha: string;
+  id_ki: string;
+  fcode: string;
+}
+
+function normalizeKekFeature(f: any): PirZoneFeature {
+  const p = f.properties as RawKekProperties;
+  return {
+    type: 'Feature',
+    id: f.id || `KEK_${f.properties.name}`,
+    properties: {
+      name: p.name,
+      type: 'KEK',
+      province: p.province,
+      sectors: p.sectors || [],
+      status: p.status,
+      priority: p.priority as PirZoneProperties['priority'],
+      incentives: p.incentives,
+      description: p.description,
+    },
+    geometry: f.geometry,
+  };
+}
+
+function normalizeKiFeature(f: any, index: number): PirZoneFeature {
+  const p = f.properties as RawKiProperties;
+  return {
+    type: 'Feature',
+    id: `KI_${p.id_ki}_${index}`,
+    properties: {
+      name: p.name,
+      type: 'KI',
+      province: p.provinsi || '',
+      sectors: [], // Kemenperin data does not include sector classification
+      pengelola: p.pengelola,
+      kabupaten: p.kabupaten,
+      luas_ha: p.luas_ha,
+    },
+    geometry: f.geometry,
+  };
+}
+
+let _mergedFeatures: PirZoneFeature[] | null = null;
+
+function loadAllZones(): PirZoneFeature[] {
+  if (_mergedFeatures) return _mergedFeatures;
+
+  const kekFeatures = ((kekZonesData as any).features || []).map(normalizeKekFeature);
+  const kiFeatures = ((kiZonesData as any).features || [])
+    .map((f: any, i: number) => normalizeKiFeature(f, i));
+
+  _mergedFeatures = [...kekFeatures, ...kiFeatures];
+  return _mergedFeatures;
+}
+
+const allFeatures = loadAllZones();
+
 // ── GeoJSON Data Access ────────────────────────────────────────────────────
 
-const zoneCollection = pirZonesData as PirZoneCollection;
-
 export function getPirZones(): PirZoneCollection {
-  return zoneCollection;
+  return { type: 'FeatureCollection', features: allFeatures };
 }
 
 export function getPirZoneFeatures(): PirZoneFeature[] {
-  return zoneCollection.features;
+  return allFeatures;
 }
 
 export function getZoneById(id: string): PirZoneFeature | undefined {
-  return zoneCollection.features.find(f => f.id === id);
+  return allFeatures.find(f => f.id === id);
+}
+
+export function getPirZoneStats() {
+  const kek = allFeatures.filter(f => f.properties.type === 'KEK').length;
+  const ki = allFeatures.filter(f => f.properties.type === 'KI').length;
+  return { total: allFeatures.length, kek, ki };
 }
 
 // ── Spatial Queries ─────────────────────────────────────────────────────────
 
 export interface ZoneContainmentResult {
-  /** Is the point inside any PIR zone? */
   insideZone: boolean;
-  /** All zones that contain this point */
   containingZones: PirZoneFeature[];
-  /** Best matching zone (by sector compatibility) */
   bestMatch: PirZoneFeature | null;
-  /** Alignment score 0-100 based on sector match */
   sectorAlignmentScore: number;
 }
 
-/**
- * Check if a coordinate point is inside any PIR zone,
- * and find the best matching zone for a given sector.
- */
 export function checkZoneContainment(
   lat: number,
   lng: number,
@@ -125,20 +212,17 @@ export function checkZoneContainment(
 ): ZoneContainmentResult {
   const containingZones: PirZoneFeature[] = [];
 
-  for (const zone of zoneCollection.features) {
-    if (zone.geometry.type === 'Polygon') {
-      if (pointInPolygon(lat, lng, zone.geometry.coordinates)) {
-        containingZones.push(zone);
-      }
+  for (const zone of allFeatures) {
+    if (pointInGeometry(lat, lng, zone.geometry)) {
+      containingZones.push(zone);
     }
   }
 
-  // Find best match by sector compatibility
   let bestMatch: PirZoneFeature | null = null;
   let bestScore = 0;
 
   for (const zone of containingZones) {
-    const score = sectorMatchScore(sector, zone.properties.sectors);
+    const score = sectorMatchScore(sector, zone.properties.sectors, zone.properties.type);
     if (score > bestScore) {
       bestScore = score;
       bestMatch = zone;
@@ -153,10 +237,6 @@ export function checkZoneContainment(
   };
 }
 
-/**
- * Find nearest PIR zones to a point, sorted by distance.
- * Returns up to `limit` zones with distance in km.
- */
 export interface NearbyZone {
   zone: PirZoneFeature;
   distanceKm: number;
@@ -167,16 +247,18 @@ export function findNearestZones(
   lat: number,
   lng: number,
   sector: string,
-  limit: number = 3
+  limit: number = 5
 ): NearbyZone[] {
   const results: NearbyZone[] = [];
 
-  for (const zone of zoneCollection.features) {
+  for (const zone of allFeatures) {
     const dist = distanceToZoneCentroid(lat, lng, zone);
     results.push({
       zone,
       distanceKm: dist,
-      sectorAlignmentScore: Math.round(sectorMatchScore(sector, zone.properties.sectors) * 100),
+      sectorAlignmentScore: Math.round(
+        sectorMatchScore(sector, zone.properties.sectors, zone.properties.type) * 100
+      ),
     });
   }
 
@@ -184,39 +266,42 @@ export function findNearestZones(
   return results.slice(0, limit);
 }
 
-/**
- * Find all PIR zones compatible with a given sector,
- * sorted by distance to the point.
- */
 export function findCompatibleZones(
   lat: number,
   lng: number,
   sector: string,
-  limit: number = 5
+  limit: number = 10
 ): NearbyZone[] {
-  return findNearestZones(lat, lng, sector, limit)
+  return findNearestZones(lat, lng, sector, 100)
     .filter(z => z.sectorAlignmentScore > 0)
     .sort((a, b) => {
-      // Sort by a combination of sector match and distance
-      const scoreA = a.sectorAlignmentScore * 0.6 + (1 - a.distanceKm / 500) * 40;
-      const scoreB = b.sectorAlignmentScore * 0.6 + (1 - b.distanceKm / 500) * 40;
+      const scoreA = a.sectorAlignmentScore * 0.6 + Math.max(0, 100 - a.distanceKm / 5) * 0.4;
+      const scoreB = b.sectorAlignmentScore * 0.6 + Math.max(0, 100 - b.distanceKm / 5) * 0.4;
       return scoreB - scoreA;
-    });
+    })
+    .slice(0, limit);
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
-function sectorMatchScore(projectSector: string, zoneSectors: string[]): number {
+function sectorMatchScore(
+  projectSector: string,
+  zoneSectors: string[],
+  zoneType: 'KEK' | 'KI'
+): number {
+  // KI zones from Kemenperin don't have sector data — treat as general-industrial compatible
+  if (zoneType === 'KI' && zoneSectors.length === 0) {
+    return 0.4; // Moderate default compatibility for any sector in industrial zones
+  }
+
   const normalizedProject = projectSector.toLowerCase().trim();
 
-  // Direct match
   for (const zs of zoneSectors) {
     if (normalizedProject === zs.toLowerCase()) return 1.0;
     if (normalizedProject.includes(zs.toLowerCase())) return 0.9;
     if (zs.toLowerCase().includes(normalizedProject)) return 0.8;
   }
 
-  // Fuzzy match with known mappings
   const aliases: Record<string, string[]> = {
     'manufacturing': ['industri', 'pabrik', 'konstruksi', 'manufaktur', 'perindustrian'],
     'agroindustry': ['pertanian', 'perkebunan', 'pangan', 'agro', 'agro industri', 'agrobisnis', 'peternakan', 'hortikultura'],
@@ -233,7 +318,6 @@ function sectorMatchScore(projectSector: string, zoneSectors: string[]): number 
   };
 
   for (const [key, synonyms] of Object.entries(aliases)) {
-    // Check if project sector matches this alias group
     const projectMatchesGroup = synonyms.some(s => normalizedProject.includes(s));
     if (projectMatchesGroup) {
       for (const zs of zoneSectors) {
@@ -247,12 +331,13 @@ function sectorMatchScore(projectSector: string, zoneSectors: string[]): number 
 }
 
 function distanceToZoneCentroid(lat: number, lng: number, zone: PirZoneFeature): number {
-  // Calculate polygon centroid from coordinates
-  const ring = zone.geometry.coordinates[0]; // Outer ring
+  const ring = getOuterRing(zone.geometry);
+  if (!ring) return 9999;
+
   let cx = 0, cy = 0;
   for (const pt of ring) {
-    cx += pt[0]; // lng
-    cy += pt[1]; // lat
+    cx += pt[0];
+    cy += pt[1];
   }
   cx /= ring.length;
   cy /= ring.length;
@@ -260,7 +345,16 @@ function distanceToZoneCentroid(lat: number, lng: number, zone: PirZoneFeature):
   return haversineDistance(lat, lng, cy, cx);
 }
 
-// Haversine distance in km
+function getOuterRing(geom: GeoJsonGeometry): number[][] | null {
+  if (geom.type === 'Polygon' && geom.coordinates.length > 0) {
+    return geom.coordinates[0];
+  }
+  if (geom.type === 'MultiPolygon' && geom.coordinates.length > 0 && geom.coordinates[0].length > 0) {
+    return geom.coordinates[0][0];
+  }
+  return null;
+}
+
 function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
   const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
@@ -275,29 +369,20 @@ function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: numbe
   return R * c;
 }
 
-// ── GeoJSON Loader (Async, for future dynamic loading) ─────────────────────
+// ── GeoJSON Loader ─────────────────────────────────────────────────────────
 
-/**
- * Load a GeoJSON file from URL.
- * Use for dynamic loading of updated shapefiles in production.
- */
 export async function loadGeoJsonFromUrl(url: string): Promise<PirZoneCollection> {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`Failed to load GeoJSON from ${url}: ${response.statusText}`);
   }
-  const data = await response.json();
-  if (data.type !== 'FeatureCollection') {
-    throw new Error(`Invalid GeoJSON: expected FeatureCollection, got ${data.type}`);
-  }
-  return data as PirZoneCollection;
+  return response.json();
 }
 
-/**
- * Merge an external GeoJSON collection into the current one.
- * Useful for incrementally adding new zones without redeploy.
- */
-export function mergeZones(base: PirZoneCollection, overlay: PirZoneCollection): PirZoneCollection {
+export function mergeZones(
+  base: PirZoneCollection,
+  overlay: PirZoneCollection
+): PirZoneCollection {
   const existingIds = new Set(base.features.map(f => f.id));
   const newFeatures = overlay.features.filter(f => !existingIds.has(f.id));
   return {

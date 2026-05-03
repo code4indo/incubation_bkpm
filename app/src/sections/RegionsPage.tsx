@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { MapVisualization } from '@/components/MapVisualization';
 import { regions, projects } from '@/data/realData';
+import { regions as mockRegions } from '@/data/mockData';
 import { typedPorts as ports, typedAirports as airports } from '@/data/infrastructureData';
 import { computeRegionalScores, scoreProjectRegionAlignment } from '@/lib/scoringEngine';
 import type { ProjectRegionAlignment } from '@/lib/scoringEngine';
@@ -14,10 +15,20 @@ export function RegionsPage() {
   const [showProjects, setShowProjects] = useState(true);
   const [showInfrastructure, setShowInfrastructure] = useState(false);
   const [showZones, setShowZones] = useState(false);
-  const [showKawasanIndustri, setShowKawasanIndustri] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
-  const scores = useMemo(() => computeRegionalScores(regions, ports, airports), []);
+  const alignmentPanelRef = useRef<HTMLDivElement>(null);
+
+  const scores = useMemo(() => computeRegionalScores(mockRegions, ports, airports), []);
+
+  const handleProjectSelect = useCallback((projectId: string) => {
+    setSelectedProjectId(projectId ? Number(projectId) : null);
+    if (projectId) {
+      setTimeout(() => {
+        alignmentPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 800);
+    }
+  }, []);
 
   const selectedProject = useMemo(() =>
     projects.find(p => p.id === selectedProjectId) || null,
@@ -27,7 +38,7 @@ export function RegionsPage() {
   // Compute project-region alignment for selected project
   const alignments = useMemo(() => {
     if (!selectedProject) return [] as ProjectRegionAlignment[];
-    return regions.map(region =>
+    return mockRegions.map(region =>
       scoreProjectRegionAlignment(selectedProject, region)
     ).sort((a, b) => b.alignmentScore - a.alignmentScore);
   }, [selectedProject]);
@@ -35,7 +46,7 @@ export function RegionsPage() {
   // Sort regions by score for ranking table
   const rankedRegions = useMemo(() => {
     return scores
-      .map(s => ({ ...s, region: regions.find(r => r.id === s.regionId)! }))
+      .map(s => ({ ...s, region: mockRegions.find(r => r.id === s.regionId)! }))
       .sort((a, b) => b.overallScore - a.overallScore);
   }, [scores]);
 
@@ -77,24 +88,20 @@ export function RegionsPage() {
             <div className="flex items-center gap-3">
               <Switch checked={showZones} onCheckedChange={setShowZones} id="zones" />
               <label htmlFor="zones" className="text-sm font-medium cursor-pointer flex items-center gap-1">
-                🟩 PIR Zones
-              </label>
-            </div>
-            <div className="flex items-center gap-3">
-              <Switch checked={showKawasanIndustri} onCheckedChange={setShowKawasanIndustri} id="ki" />
-              <label htmlFor="ki" className="text-sm font-medium cursor-pointer flex items-center gap-1">
-                🟪 Kawasan Industri (114)
+                🟩🟪 KEK + Kawasan Industri
               </label>
             </div>
             <div className="ml-auto">
               <select
-                className="border rounded-lg px-3 py-1.5 text-sm bg-white"
+                className="border rounded-lg px-3 py-1.5 text-sm bg-white max-w-xs"
                 value={selectedProjectId || ''}
-                onChange={(e) => setSelectedProjectId(e.target.value ? Number(e.target.value) : null)}
+                onChange={(e) => handleProjectSelect(e.target.value)}
               >
-                <option value="">Select project for alignment...</option>
+                <option value="">🔍 Find project on map...</option>
                 {projects.map(p => (
-                  <option key={p.id} value={p.id}>{p.nameEn}</option>
+                  <option key={p.id} value={p.id}>
+                    {p.nameEn} — {p.province} | Rp{(p.investmentValue / 1000).toFixed(1)}T
+                  </option>
                 ))}
               </select>
             </div>
@@ -109,12 +116,12 @@ export function RegionsPage() {
             showProjects={showProjects}
             showInfrastructure={showInfrastructure}
             showZones={showZones}
-            showKawasanIndustri={showKawasanIndustri}
             height="100%"
           />
         </div>
 
         {/* Project-Region Alignment Panel */}
+        <div ref={alignmentPanelRef}>
         {selectedProject && alignments.length > 0 && (
           <div className="mt-8">
             <Card className="border-0 shadow-md">
@@ -158,6 +165,7 @@ export function RegionsPage() {
             </Card>
           </div>
         )}
+        </div>
 
         {/* Scoring Methodology */}
         <div className="mt-10 bg-white rounded-xl shadow-sm border p-6">
@@ -231,7 +239,7 @@ export function RegionsPage() {
         <div className="mt-10">
           <h3 className="text-xl font-bold text-[#1B4D5C] mb-6">Regional Profiles</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {regions.map((region) => {
+            {mockRegions.map((region) => {
               const score = scores.find(s => s.regionId === region.id);
               return (
                 <Card key={region.id} className="border-0 shadow-lg hover:shadow-xl transition-all">

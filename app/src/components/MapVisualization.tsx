@@ -6,8 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { projects, regions } from '@/data/mockData';
 import { ports, airports, keks, tollRoads, typedPorts, typedAirports } from '@/data/infrastructureData';
 import { computeRegionalScores } from '@/lib/scoringEngine';
-import { getPirZoneFeatures } from '@/lib/geoJsonUtil';
-import { getKawasanIndustriFeatures } from '@/data/kemenperinKILoader';
+import { getPirZones } from '@/lib/geoJsonUtil';
 import { formatIdrCompact } from '@/lib/formatters';
 import type { Project, Region } from '@/types';
 import type { GeoJSON as LeafletGeoJSON } from 'leaflet';
@@ -74,13 +73,26 @@ function MapBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   return null;
 }
 
+// Fly to selected project location
+function MapFlyTo({ lat, lng, enabled }: { lat: number; lng: number; enabled: boolean }) {
+  const map = useMap();
+  const prevRef = useRef<{ lat: number; lng: number } | null>(null);
+  useEffect(() => {
+    if (!enabled) return;
+    const key = `${lat}:${lng}`;
+    if (prevRef.current && prevRef.current.lat === lat && prevRef.current.lng === lng) return;
+    prevRef.current = { lat, lng };
+    map.flyTo([lat, lng], 8, { duration: 1.2 });
+  }, [map, lat, lng, enabled]);
+  return null;
+}
+
 interface MapVisualizationProps {
   selectedProject?: Project | null;
   showHeatmap?: boolean;
   showProjects?: boolean;
   showInfrastructure?: boolean;
   showZones?: boolean;
-  showKawasanIndustri?: boolean;
   height?: string;
 }
 
@@ -90,7 +102,6 @@ export function MapVisualization({
   showProjects = true,
   showInfrastructure = false,
   showZones = false,
-  showKawasanIndustri = false,
   height = '500px'
 }: MapVisualizationProps) {
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
@@ -99,10 +110,10 @@ export function MapVisualization({
 
   const scores = useMemo(() => computeRegionalScores(regions, typedPorts, typedAirports), []);
 
-  // Load PIR zone features from GeoJSON
+  // Load merged PIR zones (KEK + KI from Kemenperin)
   const pirZones = useMemo(() => {
     try {
-      return getPirZoneFeatures();
+      return getPirZones().features;
     } catch {
       return [];
     }
@@ -114,40 +125,24 @@ export function MapVisualization({
     features: pirZones,
   }), [pirZones]);
 
-  // Load Kawasan Industri features from Kemenperin
-  const kiFeatures = useMemo(() => {
-    try {
-      return getKawasanIndustriFeatures();
-    } catch {
-      return [];
-    }
-  }, []);
-
-  const kiGeoJsonData = useMemo(() => ({
-    type: 'FeatureCollection' as const,
-    features: kiFeatures,
-  }), [kiFeatures]);
-
-  // Style function for Kawasan Industri polygons
-  const kiStyle = (feature: any) => {
-    const isHovered = hoveredZone === feature?.properties?.name;
-    return {
-      fillColor: '#9333ea',
-      fillOpacity: isHovered ? 0.4 : 0.2,
-      color: '#7c3aed',
-      weight: isHovered ? 3 : 1.5,
-      dashArray: '4, 4',
-    };
-  };
+  // Style function for PIR zone polygons — color by zone type
   const zoneStyle = (feature: any) => {
     const isHovered = hoveredZone === feature?.properties?.name;
     const isKEK = feature?.properties?.type === 'KEK';
+    if (isKEK) {
+      return {
+        fillColor: '#22c55e',
+        fillOpacity: isHovered ? 0.4 : 0.2,
+        color: '#16a34a',
+        weight: isHovered ? 3 : 1.5,
+      };
+    }
     return {
-      fillColor: isKEK ? '#22c55e' : '#3b82f6',
+      fillColor: '#9333ea',
       fillOpacity: isHovered ? 0.35 : 0.15,
-      color: isKEK ? '#16a34a' : '#2563eb',
-      weight: isHovered ? 3 : 1.5,
-      dashArray: isKEK ? undefined : '5, 5',
+      color: '#7c3aed',
+      weight: isHovered ? 2.5 : 1,
+      dashArray: '4, 4',
     };
   };
 
@@ -157,9 +152,18 @@ export function MapVisualization({
     [6.5, 141.0]
   ], []);
 
-  const selectedProjectRegion = selectedProject
-    ? regions.find(r => r.name === selectedProject.province)
-    : null;
+  const selectedProjectRegion = useMemo(() =>
+    selectedProject
+      ? regions.find(r => r.name === selectedProject.province)
+      : null,
+    [selectedProject]
+  );
+
+  // Check if project has valid coordinates for highlight/fly-to
+  const hasValidCoords = selectedProject
+    && selectedProject.coordinates
+    && selectedProject.coordinates.lat !== 0
+    && selectedProject.coordinates.lng !== 0;
 
   return (
     <div className="space-y-4">
@@ -336,7 +340,7 @@ export function MapVisualization({
             </Marker>
           ))}
 
-          {/* PIR Zone GeoJSON Polygon Overlay */}
+          {/* PIR Zone GeoJSON Polygon Overlay — merged KEK + KI (Kemenperin) */}
           {showZones && (
             <GeoJSON
               key="pir-zones"
@@ -344,81 +348,92 @@ export function MapVisualization({
               style={zoneStyle}
               onEachFeature={(feature: any, layer: LeafletGeoJSON) => {
                 const props = feature.properties;
+                const isKEK = props.type === 'KEK';
+                const statusOrLuas = isKEK
+                  ? `<p style="font-size:12px;color:#666;margin-bottom:2px"><b>Status:</b> ${props.status || '-'}</p>`
+                  : `<p style="font-size:12px;color:#666;margin-bottom:2px"><b>Luas:</b> ${props.luas_ha || '-'} ha</p>`;
+                const pengelolaOrDesc = isKEK
+                  ? `<p style="font-size:12px;color:#444;margin-bottom:4px">${props.description || ''}</p>`
+                  : `<p style="font-size:12px;color:#444;margin-bottom:4px"><b>Pengelola:</b> ${props.pengelola || '-'}</p>`;
+                const kabOrProv = isKEK
+                  ? ''
+                  : `<p style="font-size:12px;color:#666;margin-bottom:2px">${props.kabupaten || ''}</p>`;
+
                 layer.bindPopup(`
-                  <div style="min-width:200px">
-                    <h4 style="font-weight:700;margin-bottom:4px;color:#1B4D5C">
-                      ${props.name} [${props.type}]
+                  <div style="min-width:220px">
+                    <h4 style="font-weight:700;margin-bottom:2px;color:#1B4D5C">
+                      ${props.name} <span style="font-size:10px;color:${isKEK ? '#16a34a' : '#7c3aed'}">[${props.type}]</span>
                     </h4>
-                    <p style="font-size:12px;color:#666;margin-bottom:6px">${props.province} — ${props.status}</p>
-                    <p style="font-size:12px;color:#444;margin-bottom:4px">${props.description}</p>
-                    <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px">
+                    <p style="font-size:12px;color:#666;margin-bottom:4px">${props.province}</p>
+                    ${kabOrProv}
+                    ${statusOrLuas}
+                    ${pengelolaOrDesc}
+                    ${(props.sectors || []).length > 0 ? `
+                    <div style="display:flex;flex-wrap:wrap;gap:3px;margin-bottom:4px">
                       ${props.sectors.map((s: string) =>
                         `<span style="background:#f0f0f0;padding:1px 6px;border-radius:3px;font-size:10px">${s}</span>`
                       ).join('')}
-                    </div>
+                    </div>` : ''}
+                    ${(props.incentives || []).length > 0 ? `
                     <div style="display:flex;flex-wrap:wrap;gap:3px">
-                      ${(props.incentives || []).map((inc: string) =>
+                      ${props.incentives.map((inc: string) =>
                         `<span style="background:#dcfce7;color:#166534;padding:1px 6px;border-radius:3px;font-size:10px">${inc}</span>`
                       ).join('')}
+                    </div>` : ''}
+                  </div>
+                `);
+                layer.on({
+                  mouseover: () => setHoveredZone(props.name),
+                  mouseout: () => setHoveredZone(null),
+                });
+              }}
+            />
+          )}
+
+          {/* Selected project highlight — visible marker + pulsing ring + fly-to */}
+          {hasValidCoords && (
+            <>
+              <MapFlyTo lat={selectedProject!.coordinates.lat} lng={selectedProject!.coordinates.lng} enabled={true} />
+              <CircleMarker
+                center={[selectedProject!.coordinates.lat, selectedProject!.coordinates.lng]}
+                radius={30}
+                pathOptions={{
+                  fillColor: '#C9963B',
+                  fillOpacity: 0.12,
+                  color: '#C9963B',
+                  weight: 4,
+                  dashArray: '8, 4'
+                }}
+              />
+              <CircleMarker
+                center={[selectedProject!.coordinates.lat, selectedProject!.coordinates.lng]}
+                radius={8}
+                pathOptions={{
+                  fillColor: '#C9963B',
+                  fillOpacity: 0.9,
+                  color: '#1B4D5C',
+                  weight: 3,
+                }}
+              />
+              <Popup
+                position={[selectedProject!.coordinates.lat, selectedProject!.coordinates.lng]}
+              >
+                <div className="min-w-[220px]">
+                  <h4 className="font-bold text-[#1B4D5C] text-sm mb-1">{selectedProject!.nameEn}</h4>
+                  <p className="text-xs text-gray-500 mb-2">{selectedProject!.province} — {selectedProject!.location}</p>
+                  <div className="grid grid-cols-2 gap-2 text-xs">
+                    <div>
+                      <span className="text-gray-500">Investment</span>
+                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(selectedProject!.investmentValue * 1_000_000)}</p>
+                    </div>
+                    <div>
+                      <span className="text-gray-500">IRR</span>
+                      <p className="font-bold text-[#C9963B]">{selectedProject!.irr}%</p>
                     </div>
                   </div>
-                `);
-                layer.on({
-                  mouseover: () => setHoveredZone(props.name),
-                  mouseout: () => setHoveredZone(null),
-                });
-              }}
-            />
-          )}
-
-          {/* Kawasan Industri GeoJSON Polygon Overlay */}
-          {showKawasanIndustri && (
-            <GeoJSON
-              key="kawasan-industri"
-              data={kiGeoJsonData as any}
-              style={kiStyle}
-              onEachFeature={(feature: any, layer: LeafletGeoJSON) => {
-                const props = feature.properties;
-                layer.bindPopup(`
-                  <div style="min-width:200px">
-                    <h4 style="font-weight:700;margin-bottom:4px;color:#7c3aed">
-                      ${props.name}
-                    </h4>
-                    <p style="font-size:12px;color:#666;margin-bottom:4px">
-                      ${props.kabupaten}, ${props.provinsi}
-                    </p>
-                    <p style="font-size:12px;color:#444;margin-bottom:4px">
-                      <b>Pengelola:</b> ${props.pengelola}
-                    </p>
-                    <p style="font-size:12px;color:#444;margin-bottom:6px">
-                      <b>Luas:</b> ${props.luas_ha}
-                    </p>
-                    <span style="background:#f3e8ff;color:#7c3aed;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600">
-                      KAWASAN INDUSTRI RESMI
-                    </span>
-                  </div>
-                `);
-                layer.on({
-                  mouseover: () => setHoveredZone(props.name),
-                  mouseout: () => setHoveredZone(null),
-                });
-              }}
-            />
-          )}
-
-          {/* Selected project highlight */}
-          {selectedProject && selectedProjectRegion && (
-            <CircleMarker
-              center={[selectedProject.coordinates.lat, selectedProject.coordinates.lng]}
-              radius={25}
-              pathOptions={{
-                fillColor: '#C9963B',
-                fillOpacity: 0.15,
-                color: '#C9963B',
-                weight: 3,
-                dashArray: '5, 5'
-              }}
-            />
+                </div>
+              </Popup>
+            </>
           )}
         </MapContainer>
       </div>
