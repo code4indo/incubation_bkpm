@@ -19,13 +19,15 @@ import { runAnalystAgent } from '@/lib/analystAgent';
 import { runEnhancedAnalystAgent } from '@/lib/analystLLM';
 import type { AnalystReport } from '@/lib/analystAgent';
 import type { EnhancedAnalystReport } from '@/lib/analystLLM';
-import { projects, regions, ports, airports } from '@/data/mockData';
+import { projects, regions, ports, airports } from '@/data/realData';
+import { SuitabilityOverlayPanel } from './SuitabilityOverlayPanel';
 import {
   Activity,
   FileSearch,
   BarChart3,
   Cpu,
   Sparkles,
+  BarChart3,
   Bot,
   AlertTriangle,
 } from 'lucide-react';
@@ -40,6 +42,7 @@ export function AnalysisPage() {
   // Default AI as available — will verify during actual analysis call
   const [llmHealth, setLlmHealth] = useState<{ available: boolean; model: string }>({ available: true, model: 'qwen2.5:14b' });
   const [aiError, setAiError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'analyst' | 'suitability'>('analyst');
 
   // Find selected project
   const selectedProject = useMemo(() => {
@@ -155,8 +158,43 @@ export function AnalysisPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-16 py-8">
-        {/* Project Selector */}
-        <Card className="border-0 shadow-md mb-6">
+        {/* Tab Navigation */}
+        <div className="flex gap-2 mb-6">
+          <button
+            onClick={() => setActiveTab('analyst')}
+            className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 ${
+              activeTab === 'analyst'
+                ? 'bg-[#1B4D5C] text-white shadow-md'
+                : 'bg-white text-gray-600 hover:bg-gray-50 border'
+            }`}
+          >
+            <Cpu className="w-4 h-4" />
+            Analyst Report
+          </button>
+          <button
+            onClick={() => setActiveTab('suitability')}
+            className={`px-5 py-2.5 rounded-lg font-semibold text-sm transition-colors flex items-center gap-2 ${
+              activeTab === 'suitability'
+                ? 'bg-[#1B4D5C] text-white shadow-md'
+                : 'bg-white text-gray-600 hover:bg-gray-50 border'
+            }`}
+          >
+            <BarChart3 className="w-4 h-4" />
+            Suitability Overlay GIS
+          </button>
+        </div>
+
+        {/* Suitability Tab */}
+        {activeTab === 'suitability' && (
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <SuitabilityOverlayPanel />
+          </motion.div>
+        )}
+        {/* Analyst Tab Content */}
+        {activeTab === 'analyst' && (
+          <>
+            {/* Project Selector */}
+            <Card className="border-0 shadow-md mb-6">
           <CardContent className="p-5">
             <div className="flex flex-col md:flex-row gap-4 items-end">
               <div className="flex-1 w-full">
@@ -264,6 +302,8 @@ export function AnalysisPage() {
 
         {/* Analyst Report */}
         <AnalystReportPanel report={report} enhancedReport={enhancedReport} />
+        </>
+      )}
       </div>
     </motion.main>
   );
