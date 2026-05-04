@@ -45,7 +45,7 @@ export function Hero({ onNavigate }: HeroProps) {
           <Button
             size="lg"
             variant="outline"
-            className="border-white/40 text-white hover:bg-white/10 px-8 py-6 text-lg"
+            className="border-[#C9963B]/60 text-[#C9963B] hover:bg-[#C9963B]/10 hover:text-[#C9963B] px-8 py-6 text-lg font-semibold"
             onClick={() => onNavigate('dashboard')}
           >
             <TrendingUp className="mr-2 w-5 h-5" />
