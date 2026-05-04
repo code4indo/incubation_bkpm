@@ -1,6 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
+import { useInvestor } from '@/context/InvestorContext';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Badge } from '@/components/ui/badge';
 import { MapPin, Search, BarChart3, LayoutDashboard, Activity, User, Globe, Menu, Shield, Database, Target } from 'lucide-react';
 import { useState } from 'react';
 
@@ -9,8 +12,21 @@ interface NavbarProps {
   onNavigate: (page: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors' | 'cms-matching') => void;
 }
 
+// Investor type badge colors
+const TYPE_COLORS: Record<string, string> = {
+  SWF: 'bg-amber-100 text-amber-800',
+  DFI: 'bg-teal-100 text-teal-800',
+  PE: 'bg-rose-100 text-rose-800',
+  VC: 'bg-purple-100 text-purple-800',
+  Corporate: 'bg-sky-100 text-sky-800',
+  FamilyOffice: 'bg-orange-100 text-orange-800',
+  Institutional: 'bg-emerald-100 text-emerald-800',
+  HNWI: 'bg-pink-100 text-pink-800',
+};
+
 export function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const { language, toggleLanguage } = useLanguage();
+  const { investor, investorId, setInvestorById, allInvestors } = useInvestor();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -48,8 +64,8 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </div>
           </div>
 
-          {/* Desktop Nav + Language Toggle */}
-          <div className="hidden md:flex items-center gap-1 sm:gap-2">
+          {/* Desktop Nav + Investor Selector + Language Toggle */}
+          <div className="hidden lg:flex items-center gap-1">
             {navItems.map((item) => (
               <Button
                 key={item.id}
@@ -57,20 +73,43 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 size="sm"
                 className={
                   currentPage === item.id
-                    ? 'bg-[#1B4D5C] text-white hover:bg-[#163E4A] text-xs lg:text-sm'
-                    : 'text-[#6B7B8D] hover:text-[#1B4D5C] hover:bg-[#1B4D5C]/5 text-xs lg:text-sm'
+                    ? 'bg-[#1B4D5C] text-white hover:bg-[#163E4A] text-xs'
+                    : 'text-[#6B7B8D] hover:text-[#1B4D5C] hover:bg-[#1B4D5C]/5 text-xs'
                 }
                 onClick={() => onNavigate(item.id as any)}
               >
-                <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" />
+                <item.icon className="w-3.5 h-3.5 mr-1" />
                 {item.label}
               </Button>
             ))}
+
+            {/* Investor Selector (Desktop) */}
+            <div className="flex items-center gap-1 ml-2 pl-2 border-l border-gray-200">
+              <User className="w-3.5 h-3.5 text-[#1B4D5C]" />
+              <Select value={investorId} onValueChange={setInvestorById}>
+                <SelectTrigger className="w-[160px] h-8 text-xs border-[#1B4D5C]/30 bg-[#1B4D5C]/5 hover:bg-[#1B4D5C]/10">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  {allInvestors.map(inv => (
+                    <SelectItem key={inv.id} value={inv.id}>
+                      <span className="flex items-center gap-1.5 text-xs">
+                        <Badge variant="outline" className={`text-[9px] px-1 py-0 ${TYPE_COLORS[inv.investorType] || 'bg-gray-100 text-gray-700'}`}>
+                          {inv.investorType}
+                        </Badge>
+                        {inv.company}
+                      </span>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
             {/* Language Toggle */}
             <Button
               variant="outline"
               size="sm"
-              className="ml-1 sm:ml-2 border-[#C9963B]/50 text-[#1B4D5C] hover:bg-[#C9963B]/10 text-xs font-bold"
+              className="ml-1 border-[#C9963B]/50 text-[#1B4D5C] hover:bg-[#C9963B]/10 text-xs font-bold"
               onClick={toggleLanguage}
             >
               <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 mr-1" />
@@ -78,8 +117,27 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </Button>
           </div>
 
-          {/* Mobile: Language Toggle + Hamburger */}
-          <div className="flex md:hidden items-center gap-2">
+          {/* Mobile: Investor + Language + Hamburger */}
+          <div className="flex lg:hidden items-center gap-2">
+            {/* Mobile Investor Selector (compact) */}
+            <Select value={investorId} onValueChange={setInvestorById}>
+              <SelectTrigger className="w-[110px] h-8 text-xs border-[#1B4D5C]/30 bg-[#1B4D5C]/5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {allInvestors.map(inv => (
+                  <SelectItem key={inv.id} value={inv.id}>
+                    <span className="flex items-center gap-1 text-xs">
+                      <Badge variant="outline" className={`text-[9px] px-1 py-0 ${TYPE_COLORS[inv.investorType] || 'bg-gray-100 text-gray-700'}`}>
+                        {inv.investorType}
+                      </Badge>
+                      {inv.company}
+                    </span>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
             <Button
               variant="outline"
               size="sm"
@@ -109,6 +167,22 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
                         <h1 className="text-sm font-bold text-[#1B4D5C]">AI Investment</h1>
                         <p className="text-[10px] text-[#6B7B8D]">Matching Platform</p>
                       </div>
+                    </div>
+                  </div>
+
+                  {/* Current Investor Display */}
+                  <div className="p-3 bg-[#1B4D5C]/5 border-b">
+                    <div className="flex items-center gap-2">
+                      <User className="w-4 h-4 text-[#1B4D5C]" />
+                      <div>
+                        <div className="text-xs text-[#6B7B8D]">
+                          {language === 'id' ? 'Simulasi sebagai' : 'Simulating as'}
+                        </div>
+                        <div className="text-sm font-semibold text-[#1B4D5C]">{investor.company}</div>
+                      </div>
+                      <Badge className={`text-[9px] ml-auto ${TYPE_COLORS[investor.investorType] || 'bg-gray-100 text-gray-700'}`}>
+                        {investor.investorType}
+                      </Badge>
                     </div>
                   </div>
 

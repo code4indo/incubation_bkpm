@@ -14,6 +14,7 @@ import { AdminInvestorPage } from '@/sections/AdminInvestorPage';
 import { CMSMatchingPage } from '@/sections/CMSMatchingPage';
 import { Footer } from '@/sections/Footer';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { InvestorProvider } from '@/context/InvestorContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -83,6 +84,7 @@ export function App() {
 
   return (
     <LanguageProvider>
+    <InvestorProvider>
       <div className="min-h-screen bg-[#F5F3EF] text-[#1C2A33] font-sans">
         <Navbar currentPage={page} onNavigate={handleNavigateFromNav} />
 
@@ -300,6 +302,7 @@ export function App() {
 
       <Footer onNavigate={handleNavigate} />
     </div>
+    </InvestorProvider>
     </LanguageProvider>
   );
 }

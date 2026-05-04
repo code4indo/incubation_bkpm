@@ -11,6 +11,7 @@
  */
 
 import { useState, useMemo } from 'react';
+import { useInvestor } from '@/context/InvestorContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Target, ChevronDown, ChevronUp, Layers, Eye, Leaf,
@@ -74,17 +75,14 @@ const INVESTOR_TYPE_LABELS: Record<InvestorType, string> = {
 // ═════════════════════════════════════════════════════════════════════════════
 
 export function CMSMatchingPage() {
-  const [selectedInvestorId, setSelectedInvestorId] = useState<string>(ALL_SYNTHETIC_INVESTORS[0].id);
+  const { investor: contextInvestor, investorId, setInvestorById, allInvestors } = useInvestor();
   const [compareInvestorId, setCompareInvestorId] = useState<string | null>(null);
   const [topN, setTopN] = useState(10);
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
   // ── Compute recommendations ──────────────────────────────────────────
 
-  const selectedInvestor = useMemo(
-    () => ALL_SYNTHETIC_INVESTORS.find(i => i.id === selectedInvestorId)!,
-    [selectedInvestorId]
-  );
+  const selectedInvestor = contextInvestor;
 
   const recommendations = useMemo(
     () => getCMSRecommendations(selectedInvestor, SAMPLE_PROJECTS, ALL_SYNTHETIC_INVESTORS, SYNTHETIC_INTERACTIONS, topN),
@@ -158,13 +156,13 @@ export function CMSMatchingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Primary investor */}
               <div>
-                <label className="text-xs text-gray-500 mb-1 block">Primary Investor</label>
-                <Select value={selectedInvestorId} onValueChange={setSelectedInvestorId}>
+                <label className="text-xs text-gray-500 mb-1 block">Primary Investor (Global)</label>
+                <Select value={investorId} onValueChange={setInvestorById}>
                   <SelectTrigger className="bg-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {ALL_SYNTHETIC_INVESTORS.map(inv => (
+                    {allInvestors.map(inv => (
                       <SelectItem key={inv.id} value={inv.id}>
                         <span className="flex items-center gap-2">
                           <Badge variant="outline" className={`text-xs ${INVESTOR_TYPE_COLORS[inv.investorType]}`}>
@@ -186,8 +184,8 @@ export function CMSMatchingPage() {
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="_none">No comparison</SelectItem>
-                    {ALL_SYNTHETIC_INVESTORS
-                      .filter(i => i.id !== selectedInvestorId)
+                    {allInvestors
+                      .filter(i => i.id !== investorId)
                       .map(inv => (
                         <SelectItem key={inv.id} value={inv.id}>
                           <span className="flex items-center gap-2">
@@ -207,7 +205,7 @@ export function CMSMatchingPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <InvestorInfoCard investor={selectedInvestor} />
               {compareInvestorId && (() => {
-                const cmp = ALL_SYNTHETIC_INVESTORS.find(i => i.id === compareInvestorId);
+                const cmp = allInvestors.find(i => i.id === compareInvestorId);
                 return cmp ? <InvestorInfoCard investor={cmp} isCompare /> : null;
               })()}
             </div>
