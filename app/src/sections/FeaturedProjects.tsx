@@ -16,7 +16,7 @@ interface FeaturedProjectsProps {
 
 export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
   const { getRecommendations, trackInteraction } = useRecommendations();
-  const { language: _lang } = useLanguage(); void _lang; // subscribe for re-render
+  const { language } = useLanguage();
   
   const recommendations = useMemo(() => {
     return getRecommendations(3);
@@ -152,7 +152,7 @@ export function FeaturedProjects({ onProjectClick }: FeaturedProjectsProps) {
                 <div className="grid grid-cols-3 gap-3 pt-3 border-t">
                   <div className="text-center">
                     <p className="text-xs text-[#6B7B8D]">Investment</p>
-                    <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(rec.project.investmentValue * 1_000_000)}</p>
+                    <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(rec.project.investmentValue * 1_000_000, language)}</p>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-[#6B7B8D]">IRR</p>

@@ -41,7 +41,7 @@ interface ProjectDetailProps {
 }
 
 export function ProjectDetail({ project, onBack, analystReport, enhancedAnalystReport }: ProjectDetailProps) {
-  const { language: _lang } = useLanguage(); void _lang; // subscribe for re-render
+  const { language } = useLanguage();
   const { getMatchScore, trackInteraction } = useRecommendations();
   
   const score = useMemo(() => getMatchScore(project), [getMatchScore, project]);
@@ -311,7 +311,7 @@ export function ProjectDetail({ project, onBack, analystReport, enhancedAnalystR
                       <DollarSign className="w-5 h-5 text-[#C9963B]" />
                       <span className="text-white/80">Investment Value</span>
                     </div>
-                    <span className="font-bold text-lg">{formatIdr(project.investmentValue * 1_000_000)}</span>
+                    <span className="font-bold text-lg">{formatIdr(project.investmentValue * 1_000_000, language)}</span>
                   </div>
                   <div className="flex items-center justify-between pb-3 border-b border-white/20">
                     <div className="flex items-center gap-2">
@@ -325,7 +325,7 @@ export function ProjectDetail({ project, onBack, analystReport, enhancedAnalystR
                       <BarChart3 className="w-5 h-5 text-[#C9963B]" />
                       <span className="text-white/80">NPV</span>
                     </div>
-                    <span className="font-bold text-lg">{formatIdr(project.npv * 1_000_000)}</span>
+                    <span className="font-bold text-lg">{formatIdr(project.npv * 1_000_000, language)}</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">

@@ -27,6 +27,7 @@ import { ALL_SYNTHETIC_INVESTORS, SYNTHETIC_INTERACTIONS } from '@/data/semiSynt
 import { SAMPLE_PROJECTS } from '@/data/sampleProjects';
 import { calculateCMS, getCMSRecommendations, type CMSScoreBreakdown } from '@/lib/cmsEngine';
 import { KBLI_TABLE } from '@/data/referenceData';
+import { useLanguage, type Language } from '@/context/LanguageContext';
 import type { InvestorProfile, InvestorType } from '@/types';
 import type { Project } from '@/types';
 
@@ -107,10 +108,13 @@ export function CMSMatchingPage() {
     : '0';
   const coldStartCount = recommendations.filter(r => r.score.isColdStart).length;
 
+  const { language } = useLanguage();
+
   function kbliLabel(code: string): string {
     const entry = KBLI_TABLE.find(k => k.code === code);
     if (!entry) return code;
-    return `${code} – ${entry.label_id}`;
+    const label = language === 'en' ? entry.label_en : entry.label_id;
+    return `${code} – ${label}`;
   }
 
   // ═════════════════════════════════════════════════════════════════════
@@ -494,7 +498,7 @@ function RecommendationCard({
                   <div className="space-y-1 text-xs text-gray-600">
                     <div><span className="text-gray-400">IRR:</span> {project.irr}%</div>
                     <div><span className="text-gray-400">Payback:</span> {project.paybackPeriod} years</div>
-                    <div><span className="text-gray-400">Investment Value:</span> Rp {(project.investmentValue / 1000).toLocaleString('id-ID', { maximumFractionDigits: 1 })}T</div>
+                    <div><span className="text-gray-400">Investment Value:</span> Rp {(project.investmentValue / 1000).toLocaleString(language === 'en' ? 'en-US' : 'id-ID', { maximumFractionDigits: 1 })}T</div>
                     <div><span className="text-gray-400">KBLI:</span> {(project.kbliCodes || []).map(kbliLabel).join(', ')}</div>
                     <div><span className="text-gray-400">Tags:</span> {project.tags.join(', ')}</div>
                   </div>

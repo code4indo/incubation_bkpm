@@ -20,12 +20,14 @@ import {
   Building2,
   User,
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface ProjectEnrichmentProps {
   project: EnrichedProject;
 }
 
 export function ProjectEnrichment({ project }: ProjectEnrichmentProps) {
+  const { language } = useLanguage();
   const hasIncentives = project.incentives && project.incentives.length > 0;
   const hasContacts = project.contacts && project.contacts.length > 0;
   const hasGallery = project.galleryUrls && project.galleryUrls.length > 0;
@@ -59,7 +61,7 @@ export function ProjectEnrichment({ project }: ProjectEnrichmentProps) {
           </Badge>
           {project.kbliCode && (
             <Badge variant="outline" className="text-[#6B7B8D]">
-              KBLI: {project.kbliCode}
+              {language === 'en' ? 'KBLI' : 'KBLI'}: {project.kbliCode}
             </Badge>
           )}
           {project.status && (

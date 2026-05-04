@@ -1,7 +1,14 @@
 /**
  * Currency & Number Formatters
  * Formats IDR values with adaptive units (M, B, T)
+ * All functions accept an optional locale parameter for i18n-aware formatting
  */
+
+type Locale = 'id' | 'en';
+
+function intlLocale(locale?: Locale): string {
+  return locale === 'en' ? 'en-US' : 'id-ID';
+}
 
 /**
  * Format raw IDR value to human-readable string
@@ -10,7 +17,7 @@
  *   1_200_000_000_000 → "Rp 1.2T"
  *   19_500_000_000_000 → "Rp 19.5T"
  */
-export function formatIdr(value: number): string {
+export function formatIdr(value: number, locale?: Locale): string {
   if (!value || value <= 0) return "—";
 
   const abs = Math.abs(value);
@@ -24,13 +31,13 @@ export function formatIdr(value: number): string {
   if (abs >= 1_000_000) {
     return `Rp ${(abs / 1_000_000).toFixed(1).replace(/\.0$/, '')}M`;
   }
-  return `Rp ${abs.toLocaleString('id-ID')}`;
+  return `Rp ${abs.toLocaleString(intlLocale(locale))}`;
 }
 
 /**
  * Format raw IDR value for compact display (1 decimal max)
  */
-export function formatIdrCompact(value: number): string {
+export function formatIdrCompact(value: number, locale?: Locale): string {
   if (!value || value <= 0) return "—";
 
   const abs = Math.abs(value);
@@ -53,7 +60,7 @@ export function formatIdrCompact(value: number): string {
 /**
  * Format percentage (IRR)
  */
-export function formatPercent(value: number): string {
+export function formatPercent(value: number, _locale?: Locale): string {
   if (!value && value !== 0) return "—";
   return `${value.toFixed(1)}%`;
 }
@@ -61,15 +68,25 @@ export function formatPercent(value: number): string {
 /**
  * Format years (payback period)
  */
-export function formatYears(value: number): string {
+export function formatYears(value: number, locale?: Locale): string {
   if (!value && value !== 0) return "—";
-  return `${value.toFixed(1)} yr`;
+  const yrLabel = locale === 'id' ? 'thn' : 'yr';
+  return `${value.toFixed(1)} ${yrLabel}`;
 }
 
 /**
- * Format number with Indonesian locale
+ * Format number with locale-aware formatting
  */
-export function formatNumber(value: number): string {
+export function formatNumber(value: number, locale?: Locale): string {
   if (!value && value !== 0) return "—";
-  return value.toLocaleString('id-ID');
+  return value.toLocaleString(intlLocale(locale));
+}
+
+/**
+ * Format USD value in millions
+ * Example: 500 → "$500M"
+ */
+export function formatUsdM(value: number): string {
+  if (!value && value !== 0) return "—";
+  return `$${value}M`;
 }

@@ -8,6 +8,7 @@ import { ports, airports, keks, tollRoads, railwayStations, typedPorts, typedAir
 import { computeRegionalScores } from '@/lib/scoringEngine';
 import { getPirZones } from '@/lib/geoJsonUtil';
 import { formatIdrCompact } from '@/lib/formatters';
+import { useLanguage } from '@/context/LanguageContext';
 import type { Project, Region } from '@/types';
 import type { GeoJSON as LeafletGeoJSON } from 'leaflet';
 import { Anchor, TrendingUp, DollarSign, Users, Factory } from 'lucide-react';
@@ -113,6 +114,7 @@ export function MapVisualization({
   showRailways = false,
   height = '500px'
 }: MapVisualizationProps) {
+  const { language } = useLanguage();
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const [selectedRegion, setSelectedRegion] = useState<Region | null>(null);
   const [hoveredZone, setHoveredZone] = useState<string | null>(null);
@@ -271,7 +273,7 @@ export function MapVisualization({
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <span className="text-gray-500">Investment</span>
-                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000)}</p>
+                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000, language)}</p>
                     </div>
                     <div>
                       <span className="text-gray-500">IRR</span>
@@ -449,7 +451,7 @@ export function MapVisualization({
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div>
                       <span className="text-gray-500">Investment</span>
-                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(selectedProject!.investmentValue * 1_000_000)}</p>
+                      <p className="font-bold text-[#1B4D5C]">{formatIdrCompact(selectedProject!.investmentValue * 1_000_000, language)}</p>
                     </div>
                     <div>
                       <span className="text-gray-500">IRR</span>

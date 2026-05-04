@@ -190,15 +190,15 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
                   <div className="grid grid-cols-3 gap-3 pt-3 border-t">
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">Investment</p>
-                      <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000)}</p>
+                      <p className="text-sm font-bold text-[#1B4D5C]">{formatIdrCompact(project.investmentValue * 1_000_000, language)}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">IRR</p>
-                      <p className="text-sm font-bold text-[#C9963B]">{formatPercent(project.irr)}</p>
+                      <p className="text-sm font-bold text-[#C9963B]">{formatPercent(project.irr, language)}</p>
                     </div>
                     <div className="text-center">
                       <p className="text-xs text-[#6B7B8D]">Payback</p>
-                      <p className="text-sm font-bold text-[#1B4D5C]">{formatYears(project.paybackPeriod)}</p>
+                      <p className="text-sm font-bold text-[#1B4D5C]">{formatYears(project.paybackPeriod, language)}</p>
                     </div>
                   </div>
                 </CardContent>

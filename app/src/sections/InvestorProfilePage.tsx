@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { useRecommendations } from '@/hooks/useRecommendations';
 import { formatIdrCompact } from '@/lib/formatters';
+import { useLanguage } from '@/context/LanguageContext';
 import { 
   User, Building2, MapPin, DollarSign, TrendingUp, Calendar, 
   Target, Sparkles, Eye, Bookmark, Share2, MessageSquare, 
@@ -12,6 +13,7 @@ import {
 
 export function InvestorProfilePage() {
   const { investor } = useRecommendations();
+  const { language } = useLanguage();
 
   // Mock interaction history (in production: from API)
   const interactionHistory = [
@@ -92,12 +94,12 @@ export function InvestorProfilePage() {
                   <div className="flex items-center gap-4 p-4 bg-[#F5F3EF] rounded-lg">
                     <div className="text-center flex-1">
                       <p className="text-xs text-[#6B7B8D]">Minimum</p>
-                      <p className="text-xl font-bold text-[#1B4D5C]">{formatIdrCompact(investor.minTicketSize * 1_000_000_000)}</p>
+                      <p className="text-xl font-bold text-[#1B4D5C]">{formatIdrCompact(investor.minTicketSize * 1_000_000_000, language)}</p>
                     </div>
                     <div className="w-8 h-0.5 bg-[#C9963B]" />
                     <div className="text-center flex-1">
                       <p className="text-xs text-[#6B7B8D]">Maximum</p>
-                      <p className="text-xl font-bold text-[#1B4D5C]">{formatIdrCompact(investor.maxTicketSize * 1_000_000_000)}</p>
+                      <p className="text-xl font-bold text-[#1B4D5C]">{formatIdrCompact(investor.maxTicketSize * 1_000_000_000, language)}</p>
                     </div>
                   </div>
                   <p className="text-xs text-[#6B7B8D] mt-2">

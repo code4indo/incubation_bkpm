@@ -19,6 +19,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ALL_SYNTHETIC_INVESTORS, INVESTOR_STATS } from '@/data/semiSyntheticInvestors';
 import type { InvestorProfile, InvestorType, RiskAppetite, CapexRange, InvestmentHorizon } from '@/types';
 import { formatIdrCompact } from '@/lib/formatters';
+import { useLanguage } from '@/context/LanguageContext';
 import {
   Shield, Search, Users, Building2, Globe2, TrendingUp, DollarSign,
   ChevronLeft, ChevronRight, X, Eye, Database, BarChart3, MapPin,
@@ -71,6 +72,7 @@ type SortDir = 'asc' | 'desc';
 // ═══════════════════════════════════════════════════════════════════════════
 
 export function AdminInvestorPage() {
+  const { language } = useLanguage();
   const investors = ALL_SYNTHETIC_INVESTORS;
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState<InvestorType | 'all'>('all');
@@ -635,6 +637,7 @@ function InvestorCard({ investor, onSelect }: { investor: InvestorProfile; onSel
 // ═══════════════════════════════════════════════════════════════════════════
 
 function InvestorDetailDrawer({ investor, onClose }: { investor: InvestorProfile; onClose: () => void }) {
+  const { language } = useLanguage();
   const typeMeta = INVESTOR_TYPE_META[investor.investorType];
   const riskMeta = RISK_META[investor.riskAppetite];
   const isColdStart = investor.totalInvestments < 3;
@@ -741,11 +744,11 @@ function InvestorDetailDrawer({ investor, onClose }: { investor: InvestorProfile
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-gray-50 rounded-lg p-3 text-center">
                   <p className="text-[10px] text-gray-400">Minimum</p>
-                  <p className="text-lg font-bold text-[#1B4D5C]">{formatIdrCompact(investor.minTicketSize * 1_000_000_000)}</p>
+                  <p className="text-lg font-bold text-[#1B4D5C]">{formatIdrCompact(investor.minTicketSize * 1_000_000_000, language)}</p>
                 </div>
                 <div className="bg-gray-50 rounded-lg p-3 text-center">
                   <p className="text-[10px] text-gray-400">Maksimum</p>
-                  <p className="text-lg font-bold text-[#1B4D5C]">{formatIdrCompact(investor.maxTicketSize * 1_000_000_000)}</p>
+                  <p className="text-lg font-bold text-[#1B4D5C]">{formatIdrCompact(investor.maxTicketSize * 1_000_000_000, language)}</p>
                 </div>
               </div>
               <div className="flex items-center justify-between">

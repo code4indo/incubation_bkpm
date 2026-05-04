@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import type { Project } from '@/types';
 import { formatIdr } from '@/lib/formatters';
+import { useLanguage, type Language } from '@/context/LanguageContext';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
@@ -30,7 +31,7 @@ interface LegalDocumentChatbotProps {
 }
 
 // Mock RAG pipeline responses based on project
-function generateMockResponse(query: string, project: Project): { content: string; sources: SourceCitation[]; model: string } {
+function generateMockResponse(query: string, project: Project, locale?: Language): { content: string; sources: SourceCitation[]; model: string } {
   const q = query.toLowerCase();
   
   // Tax holiday queries
@@ -47,7 +48,7 @@ function generateMockResponse(query: string, project: Project): { content: strin
 3. **Duration:** ${project.sector === 'Manufacturing' ? '20 years' : project.sector === 'Digital' ? '10 years' : '15 years'}
 
 4. **Minimum Investment Required:** ${project.sector === 'Energy' || project.sector === 'Infrastructure' ? 'Rp 700B - 1T' : 'Rp 500B'}
-   • Your project: ${formatIdr(project.investmentValue * 1_000_000)}
+   • Your project: ${formatIdr(project.investmentValue * 1_000_000, locale)}
 
 5. **Application Process:**
    • Submit via OSS RBA (Online Single Submission)
@@ -150,7 +151,7 @@ Based on the regulatory framework for ${project.sector} sector in ${project.prov
    • ${project.tags.includes('KEK') ? 'KEK-registered: Eligible for 100% tax allowance, import duty exemption, and streamlined OSS processing.' : 'Non-KEK: Standard incentive regime applies.'}
 
 3. **Investment Value Context:**
-   • Your project: ${formatIdr(project.investmentValue * 1_000_000)}
+   • Your project: ${formatIdr(project.investmentValue * 1_000_000, locale)}
    • Tax holiday threshold: Rp 500B - 1T (depending on sector)
    • ${project.investmentValue >= 500_000 ? '✅ Above threshold — tax holiday available' : '⚠️ Below threshold — consider phasing investment to reach threshold'}
 
@@ -169,6 +170,7 @@ Would you like me to deep-dive into any specific aspect — tax, permits, land a
 }
 
 export function LegalDocumentChatbot({ project }: LegalDocumentChatbotProps) {
+  const { language } = useLanguage();
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
@@ -199,7 +201,7 @@ I can analyze Indonesian legal documents (Perda, AMDAL, OSS regulations) and ans
     // Simulate RAG pipeline processing
     await new Promise(r => setTimeout(r, 1500));
     
-    const response = generateMockResponse(input, project);
+    const response = generateMockResponse(input, project, language);
     
     const assistantMsg: ChatMessage = {
       role: 'assistant',

@@ -9,7 +9,7 @@ import type { Project } from '@/types';
 import { Star, Target, Zap, Bookmark, Eye, ThumbsUp } from 'lucide-react';
 
 export function Dashboard() {
-  const { language: _lang } = useLanguage(); void _lang; // subscribe to context changes for re-render
+  const { language } = useLanguage();
   
   const recommendedProjects = projects.slice(0, 3);
   const savedProjects = projects.slice(2, 4);
@@ -107,7 +107,7 @@ export function Dashboard() {
                     <h3 className="font-bold text-[#1B4D5C] mb-1">{getDisplayName(project)}</h3>
                     <p className="text-sm text-[#6B7B8D] mb-3">{project.province} — {project.location}</p>
                     <div className="flex items-center justify-between text-sm">
-                      <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000)}</span>
+                      <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000, language)}</span>
                       <span className="text-[#C9963B] font-semibold">{project.irr}% IRR</span>
                     </div>
                   </CardContent>
@@ -128,7 +128,7 @@ export function Dashboard() {
                       <h3 className="font-bold text-[#1B4D5C] mb-1">{getDisplayName(project)}</h3>
                       <p className="text-sm text-[#6B7B8D] mb-2">{project.province}</p>
                       <div className="flex gap-4 text-sm">
-                        <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000)}</span>
+                        <span className="text-[#1B4D5C] font-semibold">{formatIdrCompact(project.investmentValue * 1_000_000, language)}</span>
                         <span className="text-[#C9963B] font-semibold">{project.irr}% IRR</span>
                       </div>
                     </CardContent>
