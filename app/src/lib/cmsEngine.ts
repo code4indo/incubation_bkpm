@@ -421,7 +421,7 @@ function calculateSBehavior(
 // 3. S_POLICY — PSN + DNI + KEK + Sectoral Priority + Job Creation
 // ═══════════════════════════════════════════════════════════════════════════
 
-function calculateSPolicy(investor: InvestorProfile, project: Project): {
+function calculateSPolicy(_investor: InvestorProfile, project: Project): {
   score: number;
   details: CMSScoreBreakdown['policyDetails'];
   reasons: string[];

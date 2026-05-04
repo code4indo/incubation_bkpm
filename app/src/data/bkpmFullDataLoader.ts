@@ -71,7 +71,7 @@ export interface EnrichedProject extends Project {
   sourceUrl: string;
   roi?: number;
   riskLevel?: string;
-  projectType?: string;
+  projectType?: 'PID' | 'PPI' | 'IPRO';
 }
 
 // Map sector names from scraped data to our sector system
@@ -174,7 +174,7 @@ export function loadEnrichedProjects(): EnrichedProject[] {
       sourceUrl: sp.source_url,
       roi: irr * 1.2,
       riskLevel: irr > 15 ? 'Low' : irr > 10 ? 'Medium' : 'High',
-      projectType: 'detailed',
+      projectType: undefined,
     };
   });
 }
