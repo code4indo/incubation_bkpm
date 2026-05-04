@@ -9,6 +9,13 @@ export default defineConfig({
   plugins: [inspectAttr(), react()],
   server: {
     port: 3000,
+    proxy: {
+      '/api/llm': {
+        target: 'http://localhost:11434',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/llm/, ''),
+      },
+    },
   },
   build: {
     minify: false,

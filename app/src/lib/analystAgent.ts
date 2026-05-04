@@ -227,8 +227,8 @@ export function validateFinancials(
 export function validateZone(
   project: Project,
   region: Region,
-  ports: Port[],
-  airports: Airport[],
+  ports: { lat: number; lng: number }[],
+  airports: { lat: number; lng: number }[],
 ): ZoneValidation {
   const conflicts: string[] = [];
   const alternativeZones: string[] = [];
@@ -258,6 +258,12 @@ export function validateZone(
     infrastructureStatus = 'Minimal';
   }
 
+  // ── Geospatial: project-to-region-centroid proximity ──
+  const regionDistanceKm = haversineDistance(
+    project.coordinates.lat, project.coordinates.lng,
+    region.coordinates.lat, region.coordinates.lng
+  );
+
   // Check sector compatibility with region
   const sectorMatch = region.topSectors.some(s =>
     project.sector.toLowerCase().includes(s.toLowerCase()) ||
@@ -265,7 +271,6 @@ export function validateZone(
   );
   if (!sectorMatch) {
     conflicts.push(`Project sector "${project.sector}" is not among region's top sectors: ${region.topSectors.join(', ')}`);
-    // Suggest alternative zones
     alternativeZones.push(`Consider regions with ${project.sector} focus`);
   }
 
@@ -311,8 +316,17 @@ export function validateZone(
     }
   }
 
+  // + Region proximity bonus (geospatial)
+  if (regionDistanceKm <= 50) {
+    alignmentScore += 12;
+  } else if (regionDistanceKm <= 150) {
+    alignmentScore += 8;
+  } else if (regionDistanceKm <= 400) {
+    alignmentScore += 4;
+  }
+  
   // + Sector match with region
-  if (sectorMatch) alignmentScore += 15;
+  if (sectorMatch) alignmentScore += 12;
 
   // + Zone sector compatibility
   if (compatibleZones.length > 0) {
@@ -363,8 +377,8 @@ export function validateZone(
 export function analyzeInfrastructureGaps(
   project: Project,
   region: Region,
-  ports: Port[],
-  airports: Airport[],
+  ports: { lat: number; lng: number }[],
+  airports: { lat: number; lng: number }[],
 ): InfrastructureGap[] {
   const gaps: InfrastructureGap[] = [];
 
@@ -556,8 +570,8 @@ export function calculateRiskFlags(
 export function runAnalystAgent(
   project: Project,
   region: Region,
-  ports: Port[],
-  airports: Airport[],
+  ports: { lat: number; lng: number }[],
+  airports: { lat: number; lng: number }[],
 ): AnalystReport {
   const traceId = generateTraceId();
   const timestamp = new Date().toISOString();

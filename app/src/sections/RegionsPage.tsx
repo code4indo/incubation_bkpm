@@ -16,6 +16,7 @@ export function RegionsPage() {
   const [showInfrastructure, setShowInfrastructure] = useState(false);
   const [showZones, setShowZones] = useState(false);
   const [showRailways, setShowRailways] = useState(false);
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
   const alignmentPanelRef = useRef<HTMLDivElement>(null);
 

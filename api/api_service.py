@@ -615,6 +615,295 @@ def delete_project(project_id: int, x_api_key: Optional[str] = Header(None)):
 
 
 # ============================================================================
+# AGENTIC ARCHITECTURE — Multi-Agent Pipeline Endpoints
+# ============================================================================
+
+import asyncio
+import json as _json
+import logging
+
+from sse_starlette.sse import EventSourceResponse
+
+# Initialize agent memory (Qdrant-backed)
+agent_memory = None
+orchestrator = None
+
+@app.on_event("startup")
+async def startup_agents():
+    """Initialize agent memory and orchestrator on startup."""
+    global agent_memory, orchestrator
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("agents")
+    
+    try:
+        from agents.memory import AgentMemory
+        from agents.orchestrator import OrchestratorAgent
+        
+        agent_memory = AgentMemory()
+        # Seed glossary with standard BKPM terms on first run
+        glossary = agent_memory.get_all_glossary()
+        if len(glossary) == 0:
+            count = agent_memory.seed_glossary()
+            logger.info(f"Seeded {count} glossary terms to Qdrant")
+        else:
+            logger.info(f"Glossary already has {len(glossary)} terms")
+        
+        orchestrator = OrchestratorAgent(memory=agent_memory)
+        logger.info("✅ Agentic architecture initialized (Scout + Harmonizer + Guardian)")
+    except Exception as e:
+        logger.error(f"⚠️ Agent initialization failed: {e}. API still works without agents.")
+
+@app.on_event("shutdown")
+async def shutdown_agents():
+    global orchestrator
+    if orchestrator:
+        await orchestrator.close()
+
+
+# ── Translation Persistence ──
+
+@app.patch("/projects/{project_id}/translation", tags=["Agents"])
+def update_project_translation(
+    project_id: int,
+    name_en: Optional[str] = None,
+    description_en: Optional[str] = None,
+):
+    """Persist translation results from agent pipeline to project data."""
+    project = store.get_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    
+    if name_en is not None:
+        project["name_en"] = name_en
+    if description_en is not None:
+        project["description_en"] = description_en
+    
+    project["last_verified_at"] = datetime.now().isoformat()
+    store.projects[project_id] = project
+    
+    return {
+        "status": "updated",
+        "project_id": project_id,
+        "name_en": project.get("name_en"),
+        "description_en": (project.get("description_en") or "")[:200],
+    }
+
+
+# ── Agent Pipeline: Single Project ──
+
+@app.post("/agents/harmonize/{project_id}", tags=["Agents"])
+async def agent_harmonize_project(project_id: int):
+    """
+    Run the full agentic pipeline for a single project:
+    Orchestrator → Scout → Harmonizer (with self-correction) → Guardian
+    
+    Returns the complete pipeline result with audit trail.
+    """
+    if not orchestrator:
+        raise HTTPException(status_code=503, detail="Agent system not initialized")
+    
+    project = store.get_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    
+    project_data = {
+        "project_id": project_id,
+        "name_id": project.get("name_id", ""),
+        "name_en": project.get("name_en", ""),
+        "description_id": project.get("description_id", ""),
+        "description_en": project.get("description_en", ""),
+    }
+    
+    # Run pipeline, collect all events
+    events = []
+    final_result = None
+    
+    async for event in orchestrator.run_pipeline(project_data):
+        events.append(event)
+        if event.get("event") == "pipeline_complete":
+            final_result = event.get("result", {})
+    
+    if not final_result:
+        raise HTTPException(status_code=500, detail="Pipeline produced no result")
+    
+    # Persist translation if approved
+    if final_result.get("guardian_verdict") in ("APPROVE", "FLAG"):
+        name_en = final_result.get("name_en")
+        desc_en = final_result.get("description_en")
+        if name_en:
+            project["name_en"] = name_en
+        if desc_en:
+            project["description_en"] = desc_en
+        project["last_verified_at"] = datetime.now().isoformat()
+        store.projects[project_id] = project
+    
+    return {
+        "status": "completed",
+        "project_id": project_id,
+        "result": final_result,
+        "events": events,
+        "persisted": final_result.get("guardian_verdict") in ("APPROVE", "FLAG"),
+    }
+
+
+# ── Agent Pipeline: SSE Stream ──
+
+@app.get("/agents/harmonize/{project_id}/stream", tags=["Agents"])
+async def agent_harmonize_stream(project_id: int):
+    """
+    Run the agentic pipeline with Server-Sent Events for real-time progress.
+    Each agent completion is streamed as an SSE event.
+    """
+    if not orchestrator:
+        raise HTTPException(status_code=503, detail="Agent system not initialized")
+    
+    project = store.get_by_id(project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail=f"Project {project_id} not found")
+    
+    project_data = {
+        "project_id": project_id,
+        "name_id": project.get("name_id", ""),
+        "name_en": project.get("name_en", ""),
+        "description_id": project.get("description_id", ""),
+        "description_en": project.get("description_en", ""),
+    }
+    
+    async def event_generator():
+        async for event in orchestrator.run_pipeline(project_data):
+            event_type = event.get("event", "update")
+            yield {
+                "event": event_type,
+                "data": _json.dumps(event, default=str),
+            }
+            
+            # Persist on completion
+            if event_type == "pipeline_complete":
+                result = event.get("result", {})
+                if result.get("guardian_verdict") in ("APPROVE", "FLAG"):
+                    name_en = result.get("name_en")
+                    desc_en = result.get("description_en")
+                    if name_en:
+                        project["name_en"] = name_en
+                    if desc_en:
+                        project["description_en"] = desc_en
+                    project["last_verified_at"] = datetime.now().isoformat()
+                    store.projects[project_id] = project
+    
+    return EventSourceResponse(event_generator())
+
+
+# ── Agent Pipeline: Batch ──
+
+@app.post("/agents/harmonize/batch", tags=["Agents"])
+async def agent_harmonize_batch(project_ids: List[int]):
+    """
+    Run agentic pipeline for multiple projects sequentially.
+    Returns summary of all results.
+    """
+    if not orchestrator:
+        raise HTTPException(status_code=503, detail="Agent system not initialized")
+    
+    results = []
+    for pid in project_ids:
+        project = store.get_by_id(pid)
+        if not project:
+            results.append({"project_id": pid, "status": "not_found"})
+            continue
+        
+        project_data = {
+            "project_id": pid,
+            "name_id": project.get("name_id", ""),
+            "name_en": project.get("name_en", ""),
+            "description_id": project.get("description_id", ""),
+            "description_en": project.get("description_en", ""),
+        }
+        
+        final_result = None
+        async for event in orchestrator.run_pipeline(project_data):
+            if event.get("event") == "pipeline_complete":
+                final_result = event.get("result", {})
+        
+        if final_result:
+            # Persist if approved
+            if final_result.get("guardian_verdict") in ("APPROVE", "FLAG"):
+                if final_result.get("name_en"):
+                    project["name_en"] = final_result["name_en"]
+                if final_result.get("description_en"):
+                    project["description_en"] = final_result["description_en"]
+                project["last_verified_at"] = datetime.now().isoformat()
+                store.projects[pid] = project
+            
+            results.append({
+                "project_id": pid,
+                "status": "completed",
+                "verdict": final_result.get("guardian_verdict"),
+                "name_en": final_result.get("name_en", ""),
+            })
+        else:
+            results.append({"project_id": pid, "status": "failed"})
+    
+    return {
+        "total": len(project_ids),
+        "completed": sum(1 for r in results if r.get("status") == "completed"),
+        "results": results,
+    }
+
+
+# ── Audit Trail ──
+
+@app.get("/agents/audit/{trace_id}", tags=["Agents"])
+def get_audit_trail(trace_id: str):
+    """Get full audit trail for a pipeline execution."""
+    if not agent_memory:
+        raise HTTPException(status_code=503, detail="Agent memory not initialized")
+    
+    from agents.audit import AuditTrail
+    audit = AuditTrail(agent_memory)
+    decisions = audit.get_trace(trace_id)
+    
+    return {
+        "trace_id": trace_id,
+        "decisions": decisions,
+        "count": len(decisions),
+    }
+
+
+# ── Glossary Management ──
+
+@app.get("/agents/glossary", tags=["Agents"])
+def get_glossary():
+    """Get all translation glossary terms."""
+    if not agent_memory:
+        raise HTTPException(status_code=503, detail="Agent memory not initialized")
+    
+    terms = agent_memory.get_all_glossary()
+    return {"terms": terms, "count": len(terms)}
+
+
+@app.post("/agents/glossary", tags=["Agents"])
+def add_glossary_term(term_id: str, term_en: str, domain: str = "custom"):
+    """Add a custom term to the translation glossary."""
+    if not agent_memory:
+        raise HTTPException(status_code=503, detail="Agent memory not initialized")
+    
+    agent_memory.add_glossary_term(term_id, term_en, domain)
+    return {"status": "added", "term_id": term_id, "term_en": term_en}
+
+
+# ── Translation Cache ──
+
+@app.get("/agents/translations", tags=["Agents"])
+def get_cached_translations():
+    """Get all cached translation results from agent pipeline."""
+    if not agent_memory:
+        raise HTTPException(status_code=503, detail="Agent memory not initialized")
+    
+    translations = agent_memory.get_all_translations()
+    return {"translations": translations, "count": len(translations)}
+
+
+# ============================================================================
 # MAIN
 # ============================================================================
 

@@ -13,7 +13,7 @@ export function haversineDistance(lat1: number, lng1: number, lat2: number, lng2
 }
 
 // Find nearest port distance
-export function nearestPortDistance(regionLat: number, regionLng: number, ports: Port[]): number {
+export function nearestPortDistance(regionLat: number, regionLng: number, ports: { lat: number; lng: number }[]): number {
   let minDist = Infinity;
   for (const port of ports) {
     const d = haversineDistance(regionLat, regionLng, port.lat, port.lng);
@@ -23,7 +23,7 @@ export function nearestPortDistance(regionLat: number, regionLng: number, ports:
 }
 
 // Find nearest airport distance
-export function nearestAirportDistance(regionLat: number, regionLng: number, airports: Airport[]): number {
+export function nearestAirportDistance(regionLat: number, regionLng: number, airports: { lat: number; lng: number }[]): number {
   let minDist = Infinity;
   for (const airport of airports) {
     const d = haversineDistance(regionLat, regionLng, airport.lat, airport.lng);
@@ -57,8 +57,8 @@ export interface RegionalScore {
 // Compute comprehensive regional scores
 export function computeRegionalScores(
   regions: Region[],
-  ports: Port[],
-  airports: Airport[]
+  ports: { lat: number; lng: number }[],
+  airports: { lat: number; lng: number }[]
 ): RegionalScore[] {
   // Find min/max for normalization
   const allUmr = regions.map(r => r.umr);
@@ -149,12 +149,33 @@ export function scoreProjectRegionAlignment(project: Project, region: Region): P
   const reasons: string[] = [];
   let score = 50; // Base score
 
-  // Check if project sector matches region top sectors
+  // ── PRIMARY: Geospatial proximity to region centroid ──
+  const distanceKm = haversineDistance(
+    project.coordinates.lat, project.coordinates.lng,
+    region.coordinates.lat, region.coordinates.lng
+  );
+  
+  // Score proximity: 0-100km = +25, 100-300km = +15, 300-600km = +8, 600-1000km = +3, >1000km = 0
+  if (distanceKm <= 100) {
+    score += 25;
+    reasons.push(`Project is within 100km of ${region.name} (${Math.round(distanceKm)}km)`);
+  } else if (distanceKm <= 300) {
+    score += 15;
+    reasons.push(`Project is within 300km of ${region.name} (${Math.round(distanceKm)}km)`);
+  } else if (distanceKm <= 600) {
+    score += 8;
+    reasons.push(`Project is within 600km of ${region.name}`);
+  } else if (distanceKm <= 1000) {
+    score += 3;
+    reasons.push(`Project is within 1000km of ${region.name}`);
+  }
+
+  // ── SECONDARY: Sector match with region top sectors ──
   if (region.topSectors.some(s =>
     project.sector.toLowerCase().includes(s.toLowerCase()) ||
     s.toLowerCase().includes(project.sector.toLowerCase())
   )) {
-    score += 20;
+    score += 15;
     reasons.push(`Sector "${project.sector}" matches regional strength`);
   }
 
@@ -162,16 +183,16 @@ export function scoreProjectRegionAlignment(project: Project, region: Region): P
   if (project.tags.some(tag =>
     region.commodities.some(c => c.toLowerCase().includes(tag.toLowerCase()))
   )) {
-    score += 15;
+    score += 10;
     reasons.push("Commodity supply chain available in region");
   }
 
   // Infrastructure score contribution
   if (region.infrastructureScore >= 75) {
-    score += 10;
+    score += 8;
     reasons.push("High infrastructure readiness");
   } else if (region.infrastructureScore >= 60) {
-    score += 5;
+    score += 4;
     reasons.push("Moderate infrastructure");
   }
 

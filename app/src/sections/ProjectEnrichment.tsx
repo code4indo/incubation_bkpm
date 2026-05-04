@@ -80,7 +80,7 @@ export function ProjectEnrichment({ project }: ProjectEnrichmentProps) {
       {hasGallery && <GalleryCard urls={project.galleryUrls} mainImage={project.mainImageUrl} />}
 
       {/* Video Section */}
-      {hasVideo && <VideoCard url={project.videoUrl} />}
+      {hasVideo && <VideoCard url={project.videoUrl || ''} />}
 
       {/* Documents Section */}
       {hasDocuments && <DocumentsCard urls={project.documentUrls} />}

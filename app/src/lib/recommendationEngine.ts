@@ -10,8 +10,8 @@
  * Ready for: Dummy data now, real data later via swappable data adapters
  */
 
-import type { Project } from '@/types';
-import { projects } from '@/data/mockData';
+import type { Project, Region } from '@/types';
+import { projects, regions } from '@/data/mockData';
 
 // ============================================================================
 // TYPES
@@ -91,6 +91,25 @@ const EVENT_WEIGHTS: Record<string, number> = {
   site_visit: 8,
   invest: 10,
 };
+
+// Haversine distance in km
+function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) * Math.sin(dLng / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+// Score proximity: 0km = 100, 3000km = 0 (linear decay)
+function proximityScore(distanceKm: number): number {
+  return Math.max(0, Math.round(100 - (distanceKm / 30)));
+}
 
 // Risk mapping: IRR ranges → risk categories
 const RISK_IRR_MAP: Record<string, [number, number]> = {
@@ -239,49 +258,93 @@ function calculateTicketSizeFit(
 }
 
 /**
- * Calculate region match score
+ * Calculate region match score — combines geospatial proximity + province name matching
+ * Primary: haversine distance from project coordinates to region centroids
+ * Bonus: province name exact/partial/island match
  */
 function calculateRegionMatch(
   preferredProvinces: string[],
   preferredRegions: string[],
-  projectProvince: string
+  projectProvince: string,
+  projectLat: number,
+  projectLng: number
 ): { score: number; reason: string } {
   const provinceLower = projectProvince.toLowerCase();
   
-  // Exact province match
-  if (preferredProvinces.some(p => p.toLowerCase() === provinceLower)) {
-    return { score: 100, reason: `Preferred province: ${projectProvince}` };
-  }
+  // ── Geospatial: distance to nearest preferred region centroid ──
+  let bestGeoScore = 0;
+  let bestGeoReason = '';
   
-  // Partial province match
-  if (preferredProvinces.some(p => provinceLower.includes(p.toLowerCase()) || p.toLowerCase().includes(provinceLower))) {
-    return { score: 85, reason: `Related to preferred region: ${projectProvince}` };
-  }
-  
-  // Region/island match (e.g., "Sumatra", "Java", "Kalimantan")
-  const islandMap: Record<string, string[]> = {
-    'sumatra': ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Jambi', 'Sumatera Selatan', 'Bengkulu', 'Lampung'],
-    'java': ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'DI Yogyakarta', 'Jawa Timur', 'Banten'],
-    'kalimantan': ['Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara'],
-    'sulawesi': ['Sulawesi Utara', 'Sulawesi Tengah', 'Sulawesi Selatan', 'Sulawesi Tenggara', 'Gorontalo'],
-    'papua': ['Papua', 'Papua Barat'],
-    'bali': ['Bali', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur'],
-  };
-  
-  for (const [island, provinces] of Object.entries(islandMap)) {
-    if (preferredRegions.some(r => r.toLowerCase().includes(island))) {
-      if (provinces.some(p => p.toLowerCase() === provinceLower)) {
-        return { score: 70, reason: `In preferred island (${island}): ${projectProvince}` };
+  if (preferredProvinces.length > 0 || preferredRegions.length > 0) {
+    for (const region of regions) {
+      const isPreferred = 
+        preferredProvinces.some(p => p.toLowerCase() === region.name.toLowerCase()) ||
+        preferredRegions.some(r => region.name.toLowerCase().includes(r.toLowerCase()) || r.toLowerCase().includes(region.name.toLowerCase()));
+      
+      if (!isPreferred) continue;
+      
+      const dist = haversineDistance(projectLat, projectLng, region.coordinates.lat, region.coordinates.lng);
+      const geoScore = proximityScore(dist);
+      
+      if (geoScore > bestGeoScore) {
+        bestGeoScore = geoScore;
+        bestGeoReason = `${Math.round(dist)}km to ${region.name}`;
       }
     }
   }
   
-  // "Anywhere" or "Indonesia" preference
-  if (preferredRegions.some(r => ['anywhere', 'indonesia', 'all'].includes(r.toLowerCase()))) {
-    return { score: 75, reason: 'Open to all regions' };
+  // ── Province name matching (bonus layer) ──
+  let nameScore = 0;
+  let nameReason = '';
+  
+  // Exact province match
+  if (preferredProvinces.some(p => p.toLowerCase() === provinceLower)) {
+    nameScore = 30;
+    nameReason = `Preferred province: ${projectProvince}`;
+  }
+  // Partial province match
+  else if (preferredProvinces.some(p => provinceLower.includes(p.toLowerCase()) || p.toLowerCase().includes(provinceLower))) {
+    nameScore = 20;
+    nameReason = `Related to preferred: ${projectProvince}`;
+  }
+  // Island match
+  else {
+    const islandMap: Record<string, string[]> = {
+      'sumatra': ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Jambi', 'Sumatera Selatan', 'Bengkulu', 'Lampung'],
+      'java': ['DKI Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Daerah Istimewa Yogyakarta', 'Jawa Timur', 'Banten'],
+      'kalimantan': ['Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara'],
+      'sulawesi': ['Sulawesi Utara', 'Sulawesi Tengah', 'Sulawesi Selatan', 'Sulawesi Tenggara', 'Gorontalo'],
+      'papua': ['Papua', 'Papua Barat', 'Papua Barat Daya'],
+      'bali': ['Bali', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur'],
+    };
+    
+    for (const [island, provinces] of Object.entries(islandMap)) {
+      if (preferredRegions.some(r => r.toLowerCase().includes(island))) {
+        if (provinces.some(p => p.toLowerCase() === provinceLower)) {
+          nameScore = 25;
+          nameReason = `In preferred island (${island}): ${projectProvince}`;
+          break;
+        }
+      }
+    }
   }
   
-  return { score: 20, reason: 'Outside preferred regions' };
+  // "Anywhere" preference
+  if (nameScore === 0 && preferredRegions.some(r => ['anywhere', 'indonesia', 'all'].includes(r.toLowerCase()))) {
+    nameScore = 15;
+    nameReason = 'Open to all regions';
+  }
+  
+  // ── Combine: geospatial (70%) + name matching (30%) ──
+  const finalScore = Math.min(100, Math.round(bestGeoScore * 0.7 + nameScore * 0.3 + 10));
+  
+  if (finalScore >= 70) {
+    return { score: finalScore, reason: bestGeoReason || nameReason || 'Regional match' };
+  } else if (finalScore >= 40) {
+    return { score: finalScore, reason: `${bestGeoReason ? bestGeoReason + '; ' : ''}${nameReason || 'Moderate region fit'}` };
+  }
+  
+  return { score: Math.max(5, finalScore), reason: 'Outside preferred regions' };
 }
 
 /**
@@ -414,7 +477,9 @@ export function contentBasedScore(
   const region = calculateRegionMatch(
     investor.preferredProvinces,
     investor.preferredRegions,
-    project.province
+    project.province,
+    project.coordinates.lat,
+    project.coordinates.lng
   );
   
   const risk = calculateRiskAlignment(investor.riskAppetite, project.irr);

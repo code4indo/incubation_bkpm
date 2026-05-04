@@ -55,10 +55,10 @@ export const defaultWeights = {
   projectDensityIndex: 4,
   sectorSpecializationScore: 4,
   commodityMatchScore: 4,
-} as const;
+};
 
 // Sector-specific weight adjustments
-export const sectorWeightOverrides: Record<string, Partial<typeof defaultWeights>> = {
+export const sectorWeightOverrides: Record<string, Partial<typeof defaultWeights> & Record<string, number>> = {
   Manufacturing: { portDistanceIndex: 15, umrCompetitivenessIndex: 10 },
   Agroindustry: { commodityMatchScore: 15, landSuitabilityIndex: 12 },
   Mining: { slopeIndex: 0, miningConstraint: 0 },

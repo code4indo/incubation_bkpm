@@ -9,6 +9,7 @@ import { RegionsPage } from '@/sections/RegionsPage';
 import { Dashboard } from '@/sections/Dashboard';
 import { InvestorProfilePage } from '@/sections/InvestorProfilePage';
 import { AnalysisPage } from '@/sections/AnalysisPage';
+import { AdminPage } from '@/sections/AdminPage';
 import { Footer } from '@/sections/Footer';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -16,16 +17,21 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { projects, sectors, provinces } from '@/data/mockData';
 import type { Project } from '@/types';
+import type { AnalystReport } from '@/lib/analystAgent';
+import type { EnhancedAnalystReport } from '@/lib/analystLLM';
+import { getHarmonizedResult } from '@/lib/harmonizationStore';
 import { Search, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function App() {
-  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'analysis' | 'profile'>('home');
+  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin'>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSector, setSelectedSector] = useState('All Sectors');
   const [selectedProvince, setSelectedProvince] = useState('All Provinces');
   const [filteredProjects, setFilteredProjects] = useState(projects);
+  const [analysisReport, setAnalysisReport] = useState<AnalystReport | null>(null);
+  const [enhancedAnalysisReport, setEnhancedAnalysisReport] = useState<EnhancedAnalystReport | null>(null);
 
   useEffect(() => {
     let filtered = projects;
@@ -47,17 +53,29 @@ export function App() {
   }, [searchQuery, selectedSector, selectedProvince]);
 
   const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
+    // Merge harmonized translations from AdminPage if available
+    const harmonized = getHarmonizedResult(project.id);
+    const merged = harmonized ? {
+      ...project,
+      nameEn: harmonized.nameEn || project.nameEn,
+      descriptionEn: harmonized.descriptionEn || project.descriptionEn,
+      hasTranslation: true,
+    } : project;
+    setSelectedProject(merged);
     setPage('project');
     window.scrollTo(0, 0);
   };
 
   const handleNavigate = (target: typeof page) => {
     setPage(target);
-    if (target !== 'project') setSelectedProject(null);
+    if (target !== 'project') {
+      setSelectedProject(null);
+      setAnalysisReport(null);
+      setEnhancedAnalysisReport(null);
+    }
     window.scrollTo(0, 0);
   };
-  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile') => {
+  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin') => {
     handleNavigate(target);
   };
 
@@ -116,48 +134,50 @@ export function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="pt-24 pb-12 px-4 sm:px-8 lg:px-16 bg-[#1B4D5C]">
+            <div className="pt-20 pb-8 md:pt-24 md:pb-12 px-4 sm:px-8 lg:px-16 bg-[#1B4D5C]">
               <div className="max-w-7xl mx-auto">
-                <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                <h1 className="text-2xl md:text-4xl font-bold text-white mb-2 md:mb-4">
                   Investment Projects
                 </h1>
-                <p className="text-white/80 text-lg">
+                <p className="text-white/70 text-sm md:text-lg">
                   Discover 181+ verified investment-ready projects across Indonesia
                 </p>
               </div>
             </div>
-            <div className="py-8 px-4 sm:px-8 lg:px-16 bg-white border-b">
+            <div className="sticky top-14 md:top-16 z-30 py-4 md:py-8 px-4 sm:px-8 lg:px-16 bg-white/90 backdrop-blur-md border-b shadow-sm">
               <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-4">
                   <div className="relative flex-1">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <Input
-                      placeholder="Search projects, sectors, or provinces..."
-                      className="pl-10 py-6 text-lg"
+                      placeholder="Search projects..."
+                      className="pl-9 py-5 md:py-6 text-sm md:text-lg h-10 md:h-12"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
                   </div>
-                  <Select value={selectedSector} onValueChange={setSelectedSector}>
-                    <SelectTrigger className="w-full md:w-48 py-6">
-                      <SelectValue placeholder="Sector" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {sectors.map(s => (
-                        <SelectItem key={s} value={s}>{s}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <Select value={selectedProvince} onValueChange={setSelectedProvince}>
-                    <SelectTrigger className="w-full md:w-48 py-6">
-                      <SelectValue placeholder="Province" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {provinces.map(p => (
-                        <SelectItem key={p} value={p}>{p}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <div className="flex gap-2">
+                    <Select value={selectedSector} onValueChange={setSelectedSector}>
+                      <SelectTrigger className="flex-1 md:w-48 py-5 md:py-6 h-10 md:h-12 text-xs md:text-base">
+                        <SelectValue placeholder="Sector" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {sectors.map(s => (
+                          <SelectItem key={s} value={s}>{s}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <Select value={selectedProvince} onValueChange={setSelectedProvince}>
+                      <SelectTrigger className="flex-1 md:w-48 py-5 md:py-6 h-10 md:h-12 text-xs md:text-base">
+                        <SelectValue placeholder="Province" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {provinces.map(p => (
+                          <SelectItem key={p} value={p}>{p}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,6 +199,8 @@ export function App() {
             <ProjectDetail
               project={selectedProject}
               onBack={() => handleNavigate('projects')}
+              analystReport={analysisReport}
+              enhancedAnalystReport={enhancedAnalysisReport}
             />
           </motion.main>
         )}
@@ -215,7 +237,13 @@ export function App() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <AnalysisPage />
+            <AnalysisPage
+              onProjectClick={handleProjectClick}
+              onAnalysisComplete={(report, enhanced) => {
+                setAnalysisReport(report);
+                setEnhancedAnalysisReport(enhanced);
+              }}
+            />
           </motion.main>
         )}
 
@@ -228,6 +256,18 @@ export function App() {
             transition={{ duration: 0.3 }}
           >
             <InvestorProfilePage />
+          </motion.main>
+        )}
+
+        {page === 'admin' && (
+          <motion.main
+            key="admin"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <AdminPage onProjectClick={handleProjectClick} />
           </motion.main>
         )}
       </AnimatePresence>

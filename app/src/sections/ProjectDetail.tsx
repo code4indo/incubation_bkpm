@@ -2,6 +2,9 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import type { Project } from '@/types';
+import type { AnalystReport, RiskFlag } from '@/lib/analystAgent';
+import type { EnhancedAnalystReport } from '@/lib/analystLLM';
+import { getRiskSeverityColor, getFeasibilityColor, getFeasibilityLabel } from '@/lib/analystAgent';
 import { getProjectImage } from '@/lib/projectImage';
 import { formatIdr } from '@/lib/formatters';
 import { useLanguage, getStoredLanguage } from '@/context/LanguageContext';
@@ -16,13 +19,28 @@ import { assessTechnical } from '@/lib/technicalAssessmentEngine';
 import { ProductionAssessmentDashboard } from '@/sections/ProductionAssessmentDashboard';
 import { LegalDocumentChatbot } from '@/sections/LegalDocumentChatbot';
 import { useMemo } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+const DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41]
+});
+L.Marker.prototype.options.icon = DefaultIcon;
 
 interface ProjectDetailProps {
   project: Project;
   onBack: () => void;
+  analystReport?: AnalystReport | null;
+  enhancedAnalystReport?: EnhancedAnalystReport | null;
 }
 
-export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
+export function ProjectDetail({ project, onBack, analystReport, enhancedAnalystReport }: ProjectDetailProps) {
   const { language: _lang } = useLanguage(); void _lang; // subscribe for re-render
   const { getMatchScore, trackInteraction } = useRecommendations();
   
@@ -179,6 +197,37 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
                     </div>
                   </div>
                 </div>
+                {/* Project Location Map */}
+                {project.coordinates.lat !== 0 && project.coordinates.lng !== 0 ? (
+                  <div className="mt-4 rounded-lg overflow-hidden border border-gray-200" style={{ height: '280px' }}>
+                    <MapContainer
+                      center={[project.coordinates.lat, project.coordinates.lng]}
+                      zoom={12}
+                      scrollWheelZoom={false}
+                      style={{ height: '100%', width: '100%' }}
+                    >
+                      <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      />
+                      <Marker position={[project.coordinates.lat, project.coordinates.lng]}>
+                        <Popup>
+                          <div className="min-w-[180px]">
+                            <p className="font-bold text-sm text-[#1B4D5C]">{project.nameEn || project.name}</p>
+                            <p className="text-xs text-gray-500">{project.province} — {project.location}</p>
+                            <p className="text-xs text-gray-400 mt-1">
+                              {project.coordinates.lat.toFixed(4)}, {project.coordinates.lng.toFixed(4)}
+                            </p>
+                          </div>
+                        </Popup>
+                      </Marker>
+                    </MapContainer>
+                  </div>
+                ) : (
+                  <div className="mt-4 p-4 bg-gray-50 rounded-lg text-center text-sm text-gray-400">
+                    Map coordinates not available for this project
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -434,6 +483,11 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
               <ProjectEnrichment project={enrichedProject} />
             )}
 
+            {/* Analyst Report (from Analysis Page) */}
+            {analystReport && (
+              <AnalystReportCard report={analystReport} enhanced={enhancedAnalystReport} />
+            )}
+
             <div className="space-y-3">
               <Button 
                 className="w-full bg-[#C9963B] hover:bg-[#B0802F] text-white py-6 text-lg font-semibold"
@@ -454,5 +508,92 @@ export function ProjectDetail({ project, onBack }: ProjectDetailProps) {
         </div>
       </div>
     </div>
+  );
+}
+
+function AnalystReportCard({ report, enhanced }: { report: AnalystReport; enhanced?: EnhancedAnalystReport | null }) {
+  const color = getFeasibilityColor(report.overallFeasibility);
+  const label = getFeasibilityLabel(report.overallFeasibility);
+  const summary = enhanced?.llmSuccess ? enhanced.llmSummary : report.summary;
+
+  return (
+    <Card className="border-0 shadow-md mt-6" style={{ borderLeft: `4px solid ${color}` }}>
+      <CardContent className="p-5">
+        <div className="flex items-center gap-2 mb-3">
+          <Bot className="w-5 h-5 text-[#1B4D5C]" />
+          <h3 className="font-bold text-[#1C2A33] text-lg">Analyst Report</h3>
+          {enhanced?.llmSuccess && (
+            <Badge className="bg-purple-100 text-purple-700 border-purple-200 text-[10px]">
+              <Sparkles className="w-3 h-3 mr-1" /> AI Enhanced
+            </Badge>
+          )}
+        </div>
+
+        {/* Overall Score */}
+        <div className="flex items-center gap-3 mb-3">
+          <div
+            className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg"
+            style={{ backgroundColor: color }}
+          >
+            {report.overallFeasibility}
+          </div>
+          <div>
+            <p className="font-semibold text-[#1C2A33]">{label}</p>
+            <p className="text-xs text-gray-500">Confidence: {Math.round(report.confidenceScore * 100)}%</p>
+          </div>
+        </div>
+
+        {/* Four-dimension scores */}
+        <div className="grid grid-cols-4 gap-2 mb-3">
+          <div className="text-center p-2 bg-gray-50 rounded-lg">
+            <p className="text-[10px] text-gray-500">Financial</p>
+            <p className="font-bold text-sm text-[#1B4D5C]">{report.financial.score}</p>
+          </div>
+          <div className="text-center p-2 bg-gray-50 rounded-lg">
+            <p className="text-[10px] text-gray-500">Zone</p>
+            <p className="font-bold text-sm text-[#1B4D5C]">{report.zone.alignmentScore}</p>
+          </div>
+          <div className="text-center p-2 bg-gray-50 rounded-lg">
+            <p className="text-[10px] text-gray-500">Infra</p>
+            <p className="font-bold text-sm text-[#1B4D5C]">{report.zone.infrastructureStatus === 'Ready' ? '✓' : report.zone.infrastructureStatus}</p>
+          </div>
+          <div className="text-center p-2 bg-gray-50 rounded-lg">
+            <p className="text-[10px] text-gray-500">Risks</p>
+            <p className="font-bold text-sm text-red-600">{report.riskFlags.length}</p>
+          </div>
+        </div>
+
+        {/* Summary */}
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">{summary}</p>
+
+        {/* Zones */}
+        {report.zone.nearestIndustrialZones.length > 0 && (
+          <div className="text-xs text-gray-500 mb-2">
+            <span className="font-semibold">Nearest KEK/KI: </span>
+            {report.zone.nearestIndustrialZones.slice(0, 2).join(', ')}
+          </div>
+        )}
+
+        {/* Risk quick view */}
+        {report.riskFlags.filter(r => r.severity === 'Critical' || r.severity === 'High').length > 0 && (
+          <div className="space-y-1">
+            {report.riskFlags
+              .filter(r => r.severity === 'Critical' || r.severity === 'High')
+              .slice(0, 3)
+              .map((r, i) => (
+                <div key={i} className="flex items-start gap-2 text-xs">
+                  <Badge
+                    className="text-[10px] px-1.5 py-0 flex-shrink-0"
+                    style={{ backgroundColor: getRiskSeverityColor(r.severity), color: 'white' }}
+                  >
+                    {r.severity}
+                  </Badge>
+                  <span className="text-gray-600">{r.description}</span>
+                </div>
+              ))}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy application code — agents module + main service
+COPY agents/ ./agents/
 COPY api_service.py .
 
 # Create data directory

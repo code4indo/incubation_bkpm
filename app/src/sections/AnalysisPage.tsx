@@ -19,7 +19,10 @@ import { runAnalystAgent } from '@/lib/analystAgent';
 import { runEnhancedAnalystAgent } from '@/lib/analystLLM';
 import type { AnalystReport } from '@/lib/analystAgent';
 import type { EnhancedAnalystReport } from '@/lib/analystLLM';
-import { projects, regions, ports, airports } from '@/data/realData';
+import type { Project } from '@/types';
+import { projects } from '@/data/realData';
+import { regions } from '@/data/mockData';
+import { typedPorts as ports, typedAirports as airports } from '@/data/infrastructureData';
 import { SuitabilityOverlayPanel } from './SuitabilityOverlayPanel';
 import {
   Activity,
@@ -27,13 +30,16 @@ import {
   BarChart3,
   Cpu,
   Sparkles,
-  BarChart3,
   Bot,
   AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export function AnalysisPage() {
+export function AnalysisPage({ onProjectClick, onAnalysisComplete }: {
+  onProjectClick: (project: Project) => void;
+  onAnalysisComplete: (report: AnalystReport, enhanced: EnhancedAnalystReport | null) => void;
+}) {
   const [selectedProjectId, setSelectedProjectId] = useState<string>('');
   const [report, setReport] = useState<AnalystReport | null>(null);
   const [enhancedReport, setEnhancedReport] = useState<EnhancedAnalystReport | null>(null);
@@ -74,6 +80,7 @@ export function AnalysisPage() {
     // Step 1: Rule-based analysis (always runs — fast & deterministic)
     const baseReport = runAnalystAgent(selectedProject, matchingRegion, ports, airports);
     setReport(baseReport);
+    onAnalysisComplete(baseReport, null);
 
     // Step 2: LLM enhancement (if enabled)
     if (useAI) {
@@ -85,6 +92,7 @@ export function AnalysisPage() {
           selectedProject.province,
         );
         setEnhancedReport(enhanced);
+        onAnalysisComplete(baseReport, enhanced);
         if (!enhanced.llmSuccess) {
           setAiError('AI enhancement unavailable (CORS/network). Showing rule-based analysis only.');
         }
@@ -294,6 +302,14 @@ export function AnalysisPage() {
                 <div>
                   <p className="text-[10px] text-gray-500 uppercase font-semibold">Region Match</p>
                   <p className="text-sm text-gray-700">{matchingRegion?.name || 'N/A'}</p>
+                </div>
+                <div className="flex items-end ml-auto">
+                  <button
+                    onClick={() => onProjectClick(selectedProject)}
+                    className="flex items-center gap-1 text-sm font-semibold text-[#1B4D5C] hover:text-[#C9963B] transition-colors py-1 px-2 rounded hover:bg-[#1B4D5C]/10"
+                  >
+                    Full Details <ExternalLink className="w-4 h-4" />
+                  </button>
                 </div>
               </motion.div>
             )}

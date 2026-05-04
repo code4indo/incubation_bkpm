@@ -13,7 +13,9 @@
 import type { AnalystReport } from './analystAgent';
 
 // Ollama configuration
-const OLLAMA_BASE_URL = 'https://llm.jatnikonm.tech';
+// Uses local proxy (/api/llm → localhost:11434) via nginx or vite dev proxy
+// to avoid routing through internet (Cloudflare Tunnel)
+const OLLAMA_BASE_URL = import.meta.env.VITE_LLM_URL || '/api/llm';
 const DEFAULT_MODEL = 'qwen2.5:14b';
 const FALLBACK_MODEL = 'qwen2.5:7b';
 const TIMEOUT_MS = 30000;

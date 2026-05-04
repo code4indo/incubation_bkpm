@@ -12,20 +12,6 @@
       "validation_rules": "REQUIRED_FIELDS + FINANCIAL_FIELDS + COORDINATE_VALIDATION",
       "quality_threshold": 60.0,
       "enrichment_pipeline": "API_PRIMARY + PLAYWRIGHT_FALLBACK"
-    },
-    "kbli_enriched_at": "2026-05-02T21:41:33Z",
-    "kbli_enrichment_stats": {
-      "original_empty": 109,
-      "enriched": 38,
-      "still_empty": 71,
-      "failed": 0
-    },
-    "contacts_enriched_at": "2026-05-02T21:51:22Z",
-    "contacts_enrichment_stats": {
-      "original_empty": 181,
-      "enriched": 142,
-      "still_empty": 39,
-      "failed": 0
     }
   },
   "projects": [
@@ -36,9 +22,7 @@
       "district": "",
       "province": "Jawa Timur",
       "province_code": "35",
-      "kbli_codes": [
-        "10801"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 1,2T",
       "investment_value_idr": 1200000000000.0,
       "year": 2025,
@@ -60,24 +44,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/384",
       "scraped_at": "2026-05-01T20:51:57Z",
-      "last_verified_at": "2026-05-02T21:50:58Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kantor DPMPTSP Kabupaten Tuban",
-          "Alamat": "Jl. DR. Wahidin Sudirohusodo No.55, Latsari, Kec. Tuban, Kabupaten Tuban, Jawa Timur",
-          "Telepon": "3568837666",
-          "Email": "dpmptsp.tuban@gmail.com",
-          "Website": "http://ptsp.tubankab.go.id/"
-        },
-        {
-          "Kontak": "Kantor DPMPTSP Provinsi Jawa Timur",
-          "Alamat": "Jl. Pahlawan No.116, Krembangan Selatan, Kec. Krembangan Kota SBY, Jawa Timur",
-          "Telepon": "3135967047",
-          "Email": "dpmptsp@jatimprov.go.id",
-          "Website": "https://dpmptsp.jatimprov.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:57Z",
+      "project_type": "PID"
     },
     {
       "id": 1131,
@@ -110,45 +78,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1131",
       "scraped_at": "2026-05-01T20:51:57Z",
-      "last_verified_at": "2026-05-02T21:50:59Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Bappeda Kabupaten Jayapura",
-          "Alamat": "Jl. Bandara Sentani Kota, Jayapura, Papua",
-          "Telepon": "",
-          "Email": "kabupatenjayapura@gmail.com",
-          "Website": "https://bappeda.jayapurakab.go.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "Pemda Provinsi Gorontalo",
-          "Alamat": "Jl. Jend. Sudirman No. 57 Gorontalo",
-          "Telepon": "(0435) 821277",
-          "Email": "admin@humas.gorontaloprov.go.id",
-          "Website": "https://gorontaloprov.go.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No. 44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "+62 8071002576",
-          "Email": "info@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Polewali Mandar",
-          "Alamat": "Jln. Manunggal No. 11 Polewali",
-          "Telepon": "(0811) 444 5238",
-          "Email": "dpmptspmpp558@gmail.com",
-          "Website": "https://dpmptsp.polmankab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:57Z",
+      "project_type": "PPI"
     },
     {
       "id": 385,
@@ -157,9 +88,7 @@
       "district": "",
       "province": "Sulawesi Barat",
       "province_code": "76",
-      "kbli_codes": [
-        "10761"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 483,3M",
       "investment_value_idr": 483300000.0,
       "year": 2025,
@@ -181,24 +110,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/385",
       "scraped_at": "2026-05-01T20:51:57Z",
-      "last_verified_at": "2026-05-02T21:50:59Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Sulawesi Barat",
-          "Alamat": "Rangas, Kec. Simboro Dan Kepulauan, Kabupaten Mamuju, Sulawesi Barat 91512",
-          "Telepon": "4262322065",
-          "Email": "dpmptsp.sulbarprov.go.id",
-          "Website": "https://dpmptsp.sulbarprov.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Mamasa",
-          "Alamat": "Jl. Demmantande No. 2, Kantor Gabungan Dinas Lt. 1, Kec. Mamasa, Kab. Mamasa 91362",
-          "Telepon": "82292574267",
-          "Email": "dpmptspmamasa@gmail.com",
-          "Website": "http://dpmptsp.mamasakab.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:57Z",
+      "project_type": "PID"
     },
     {
       "id": 1516,
@@ -231,17 +144,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1516",
       "scraped_at": "2026-05-01T20:51:57Z",
-      "last_verified_at": "2026-05-02T21:51:00Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:57Z",
+      "project_type": "IPRO"
     },
     {
       "id": 1141,
@@ -274,24 +178,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1141",
       "scraped_at": "2026-05-01T20:51:57Z",
-      "last_verified_at": "2026-05-02T21:51:02Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "PT Pantai Timur Sungailiat",
-          "Alamat": "Jl. S. Parman No. 76, Sungailiat, Kabupaten Bangka, Provinsi Kepulauan Bangka Belitung",
-          "Telepon": "(0717) 95555",
-          "Email": "info-pts@pantaitimursungailiat.co.id",
-          "Website": "http://www.pantaitimursungailiat.co.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:57Z",
+      "project_type": "PPI"
     },
     {
       "id": 1140,
@@ -324,31 +212,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1140",
       "scraped_at": "2026-05-01T20:51:59Z",
-      "last_verified_at": "2026-05-02T21:51:01Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Maluku Tengah",
-          "Alamat": "JalanImam Bonjol, No. 6 Kelurahan Namaelo Kecamatan Kota Masohi - Kabupaten Maluku Tengah, Kode Pos 97511",
-          "Telepon": "(0914) 22543",
-          "Email": "dpmptsp@maltengkab.go.id",
-          "Website": "https://dpmptsp.maltengkab.go.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "PT. Bukit Asam Tbk",
-          "Alamat": "Jl. Parigi No. 1, Tanjung Enim, Sumatera Selatan",
-          "Telepon": "+62 7344 51096",
-          "Email": "corsec@bukitasam.co.id",
-          "Website": "www.ptba.co.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:59Z",
+      "project_type": "PPI"
     },
     {
       "id": 387,
@@ -379,24 +244,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/387",
       "scraped_at": "2026-05-01T20:51:59Z",
-      "last_verified_at": "2026-05-02T21:51:02Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Panajam Paser Utara",
-          "Alamat": "Gedung Asisten III Jl. Provinsi KM. 09 Kel. Nipah-Nipah, Kec. Penajam, Kab. Penajam Paser Utara",
-          "Telepon": "81253001793",
-          "Email": "dpmptsp@penajamkab.go.id",
-          "Website": "https://dpmptsp.penajamkab.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Provinsi Kalimantan Timur",
-          "Alamat": "Jl. Basuki Rahmat No.56, Sungai Pinang Luar, Kec. Samarinda Kota, Kota Samarinda, Kalimantan Timur",
-          "Telepon": "541748399",
-          "Email": "dpmpts@kaltimprov.go.id",
-          "Website": "https://dpmptsp.kaltimprov.go.id/portal"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:59Z",
+      "project_type": "PID"
     },
     {
       "id": 1128,
@@ -461,24 +310,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/386",
       "scraped_at": "2026-05-01T20:51:58Z",
-      "last_verified_at": "2026-05-02T21:51:03Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Jambi",
-          "Alamat": "Jl. R.M Noer Atmadibrata No. 05 Telanaipura",
-          "Telepon": "74162455",
-          "Email": "dpmptsp.jambiprov.go.id",
-          "Website": "https://dpmptsp.jambiprov.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Tanjung Jabung Timur",
-          "Alamat": "Jl. Ki Hajar Dewantara Komplek Perkantoran Bukit Menderang",
-          "Telepon": "82249513992",
-          "Email": "dpmptsptanjabtim@gmail.com",
-          "Website": "https://dpmptsp.tanjabtimkab.go.id/video/index/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:58Z",
+      "project_type": "PID"
     },
     {
       "id": 388,
@@ -509,24 +342,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/388",
       "scraped_at": "2026-05-01T20:51:59Z",
-      "last_verified_at": "2026-05-02T21:51:06Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Daerah Istimewa Yogyakarta",
-          "Alamat": "Jl. Janti no. 8 Banguntapan Bantul Yogyakarta 55198",
-          "Telepon": "2744538737",
-          "Email": "dpmptsp@jogjaprov.go.id",
-          "Website": "https://jogjainvest.jogjaprov.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Kulon Progo",
-          "Alamat": "Jl KH Ahmad Dahlan No. Km 1, Dipan, Wates, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55651",
-          "Telepon": "274774402",
-          "Email": "dpmptsp@kulonprogokab.go.id",
-          "Website": "https://dpmptsp.kulonprogokab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:51:59Z",
+      "project_type": "PID"
     },
     {
       "id": 1144,
@@ -562,24 +379,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1144",
       "scraped_at": "2026-05-01T20:52:00Z",
-      "last_verified_at": "2026-05-02T21:51:05Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "M Syarif Hidayatullah (Hida)",
-          "Alamat": "Ruko Villa Bukit Mas, RD 15 Jl. KH Abdul Wahab Siamin Surabaya Kelurahan Dukuh Pakis, Kecamatan Dukuh Pakis, Kota Surabaya, Jawa Timur",
-          "Telepon": "+62 857-0478-3337",
-          "Email": "pratamajatimlestari@gmail.com",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:00Z",
+      "project_type": "PPI"
     },
     {
       "id": 390,
@@ -588,13 +389,7 @@
       "district": "Kota Jakarta Timur",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "68111",
-        "55900",
-        "68200",
-        "68112",
-        "93119"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 824,1M",
       "investment_value_idr": 824100000.0,
       "year": 2025,
@@ -616,24 +411,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/390",
       "scraped_at": "2026-05-01T20:52:01Z",
-      "last_verified_at": "2026-05-02T21:51:06Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT Pulo Mas Jaya",
-          "Alamat": "Jl. Jenderal Ahmad Yani No.2, Kayu Putih, Kec. Pulo Gadung",
-          "Telepon": "21214750905",
-          "Email": "",
-          "Website": "https://pulomasjaya.co.id/"
-        },
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:01Z",
+      "project_type": "PID"
     },
     {
       "id": 389,
@@ -642,9 +421,7 @@
       "district": "",
       "province": "Aceh",
       "province_code": "11",
-      "kbli_codes": [
-        "86101"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 805,2M",
       "investment_value_idr": 805200000.0,
       "year": 2025,
@@ -666,24 +443,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/389",
       "scraped_at": "2026-05-01T20:52:00Z",
-      "last_verified_at": "2026-05-02T21:51:07Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Aceh",
-          "Alamat": "Jl. Tgk Imeum Lueung Bata, Gampong Cot Masjid, Kec. Lueung Bata, Kota Banda Aceh, Aceh",
-          "Telepon": "8116781139",
-          "Email": "dpmptspaceh@gmail.com",
-          "Website": "https://dpmptsp.acehprov.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Kota Sabang",
-          "Alamat": "Jl. Diponegoro no. 23. Kuta Ateueh, Sukakarya, Kota Sabang, Aceh",
-          "Telepon": "65222633",
-          "Email": "dpmptspnaker@mail.sabangkota.go.id",
-          "Website": "https://dpmptspnaker-dev.sabangkota.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:00Z",
+      "project_type": "PID"
     },
     {
       "id": 1147,
@@ -726,11 +487,7 @@
       "district": "Kota Jakarta Timur",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "52101",
-        "52109",
-        "52299"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 170,3M",
       "investment_value_idr": 170300000.0,
       "year": 2025,
@@ -752,17 +509,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/391",
       "scraped_at": "2026-05-01T20:52:02Z",
-      "last_verified_at": "2026-05-02T21:51:08Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Jakarta Industrial Estate Pulogadung",
-          "Alamat": "Jl. Pulobuaran V, Blok JJ-4, Kawasan Industri Pulogadung Jakarta Timur",
-          "Telepon": "39711973",
-          "Email": "customercare@jiep.co.id",
-          "Website": "https://jiep.co.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:02Z",
+      "project_type": "PID"
     },
     {
       "id": 1139,
@@ -796,24 +544,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1139",
       "scraped_at": "2026-05-01T20:52:01Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Pelindo Pelabuhan Benoa",
-          "Alamat": "Jl. Raya Pelabuhan Benoa,Pedungan, Denpasar Selatan,Bali.\n(80222)",
-          "Telepon": "0361-720560",
-          "Email": "benoa@pelindo.co.id",
-          "Website": "www.pelindo.co.id"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:01Z",
+      "project_type": "PPI"
     },
     {
       "id": 394,
@@ -844,17 +576,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/394",
       "scraped_at": "2026-05-01T20:52:03Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Bengkulu Utara",
-          "Alamat": "Jl. Jendral Sudirman Kecamatan Arga Makmur",
-          "Telepon": "6285268054774",
-          "Email": "",
-          "Website": "https://ptspkabupatenbengkuluutara.com/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:03Z",
+      "project_type": "PID"
     },
     {
       "id": 1138,
@@ -954,17 +677,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/397",
       "scraped_at": "2026-05-01T20:52:04Z",
-      "last_verified_at": "2026-05-02T21:51:13Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Infrastruktur",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5288 0389",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:04Z",
+      "project_type": "PID"
     },
     {
       "id": 1135,
@@ -1031,17 +745,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/210",
       "scraped_at": "2026-05-01T20:52:06Z",
-      "last_verified_at": "2026-05-02T21:51:14Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:06Z",
+      "project_type": "PID"
     },
     {
       "id": 1152,
@@ -1075,38 +780,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1152",
       "scraped_at": "2026-05-01T20:52:06Z",
-      "last_verified_at": "2026-05-02T21:51:15Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Fakfak",
-          "Alamat": "JL.Jendral Sudirman, Wagom, Fakfak, Papua Barat",
-          "Telepon": "",
-          "Email": "dpmptsp_ff@yahoo.co.id",
-          "Website": "https://dpmptsp.fakfakkab.go.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "PT. Bukit Asam Tbk",
-          "Alamat": "Jl. Parigi No. 1, Tanjung Enim, Sumatera Selatan",
-          "Telepon": "+62 7344 51096",
-          "Email": "corsec@bukitasam.co.id",
-          "Website": "www.ptba.co.id"
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Maluku Tengah",
-          "Alamat": "JalanImam Bonjol, No. 6 Kelurahan Namaelo Kecamatan Kota Masohi - Kabupaten Maluku Tengah, Kode Pos 97511",
-          "Telepon": "(0914) 22543",
-          "Email": "dpmptsp@maltengkab.go.id",
-          "Website": "https://dpmptsp.maltengkab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:06Z",
+      "project_type": "PPI"
     },
     {
       "id": 369,
@@ -1137,17 +812,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/369",
       "scraped_at": "2026-05-01T20:52:06Z",
-      "last_verified_at": "2026-05-02T21:51:15Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:06Z",
+      "project_type": "PID"
     },
     {
       "id": 361,
@@ -1178,17 +844,8 @@
       "data_quality_score": 69.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/361",
       "scraped_at": "2026-05-01T20:52:05Z",
-      "last_verified_at": "2026-05-02T21:51:16Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:05Z",
+      "project_type": "PID"
     },
     {
       "id": 1137,
@@ -1289,31 +946,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1145",
       "scraped_at": "2026-05-01T20:52:07Z",
-      "last_verified_at": "2026-05-02T21:50:39Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "PT. Banten West Java",
-          "Alamat": "Menara Batavia, Jl. K.H. Mas Mansyur No.Kav. 126, Karet Tengsin, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10230",
-          "Telepon": "-5727304",
-          "Email": "mkt@tanjunglesung.com",
-          "Website": "www.tanjunglesung.com"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Jayapura",
-          "Alamat": "Jl. Bandara - Sentani Kota - Kabupaten Jayapura - Papua",
-          "Telepon": "8114826222",
-          "Email": "admin@ptsp.jayapurakab.go.id",
-          "Website": "https://ptsp.jayapurakab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:07Z",
+      "project_type": "PPI"
     },
     {
       "id": 366,
@@ -1344,17 +978,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/366",
       "scraped_at": "2026-05-01T20:52:09Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:09Z",
+      "project_type": "PID"
     },
     {
       "id": 365,
@@ -1385,17 +1010,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/365",
       "scraped_at": "2026-05-01T20:52:07Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:07Z",
+      "project_type": "PID"
     },
     {
       "id": 392,
@@ -1426,17 +1042,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/392",
       "scraped_at": "2026-05-01T20:52:07Z",
-      "last_verified_at": "2026-05-02T21:50:41Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Bengkulu Utara",
-          "Alamat": "Jl. Jendral Sudirman Kecamatan Arga Makmur",
-          "Telepon": "6285268054774",
-          "Email": "",
-          "Website": "https://ptspkabupatenbengkuluutara.com/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:07Z",
+      "project_type": "PID"
     },
     {
       "id": 1132,
@@ -1479,9 +1086,7 @@
       "district": "",
       "province": "Sumatera Utara",
       "province_code": "12",
-      "kbli_codes": [
-        "41014"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 466,9M",
       "investment_value_idr": 466900000.0,
       "year": 2024,
@@ -1503,17 +1108,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/282",
       "scraped_at": "2026-05-01T20:52:10Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:10Z",
+      "project_type": "PID"
     },
     {
       "id": 393,
@@ -1544,17 +1140,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/393",
       "scraped_at": "2026-05-01T20:52:10Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Bengkulu Utara",
-          "Alamat": "Jl. Jendral Sudirman Kecamatan Arga Makmur",
-          "Telepon": "6285268054774",
-          "Email": "",
-          "Website": "https://ptspkabupatenbengkuluutara.com/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:10Z",
+      "project_type": "PID"
     },
     {
       "id": 1146,
@@ -1587,24 +1174,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1146",
       "scraped_at": "2026-05-01T20:52:10Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Dinas Penanaman Modal dan Perizinan Terpadu Satu Pintu",
-          "Alamat": "Morotai Selatan, Kabupaten Pulau Morotai",
-          "Telepon": "",
-          "Email": "",
-          "Website": "https://www.pulaumorotaikab.go.id/"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:10Z",
+      "project_type": "PPI"
     },
     {
       "id": 1134,
@@ -1669,17 +1240,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/357",
       "scraped_at": "2026-05-01T20:52:11Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:11Z",
+      "project_type": "PID"
     },
     {
       "id": 1153,
@@ -1716,24 +1278,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1153",
       "scraped_at": "2026-05-01T20:52:11Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Anggi",
-          "Alamat": "Jl KH Ahmad Dahlan No. Km 1, Dipan, Wates, Kabupaten Kulon Progo, Daerah Istimewa Yogyakarta 55651",
-          "Telepon": "8816585910",
-          "Email": "yektianggi.com@gmail.com",
-          "Website": "dpmpt.kulonprogokab.go.id"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:11Z",
+      "project_type": "PPI"
     },
     {
       "id": 358,
@@ -1764,17 +1310,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/358",
       "scraped_at": "2026-05-01T20:52:11Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:11Z",
+      "project_type": "PID"
     },
     {
       "id": 1150,
@@ -1807,24 +1344,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1150",
       "scraped_at": "2026-05-01T20:52:11Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Lumajang",
-          "Alamat": "Jl. Jendral Panjaitan No.89, Citrodiwangsan, Kec. Lumajang, Kabupaten Lumajang, Jawa Timur 67312",
-          "Telepon": "(0334) 889882",
-          "Email": "dpm.ptsp@lumajangkab.go.id",
-          "Website": "dpmptsp.lumajangkab.go.id"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:11Z",
+      "project_type": "PPI"
     },
     {
       "id": 1143,
@@ -1925,17 +1446,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/359",
       "scraped_at": "2026-05-01T20:52:12Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:12Z",
+      "project_type": "PID"
     },
     {
       "id": 235,
@@ -1966,17 +1478,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/235",
       "scraped_at": "2026-05-01T20:52:13Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:13Z",
+      "project_type": "PID"
     },
     {
       "id": 298,
@@ -2007,17 +1510,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/298",
       "scraped_at": "2026-05-01T20:52:14Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:14Z",
+      "project_type": "PID"
     },
     {
       "id": 1148,
@@ -2050,24 +1544,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1148",
       "scraped_at": "2026-05-01T20:52:14Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Samosir",
-          "Alamat": "Jalan Raya Rianiate Km 5.5, Hutanamora, Pangururan, Kabupaten Samosir, Sumatera Utara 22392",
-          "Telepon": "",
-          "Email": "",
-          "Website": "samosirkab.go.id"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:14Z",
+      "project_type": "PPI"
     },
     {
       "id": 931,
@@ -2164,17 +1642,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/289",
       "scraped_at": "2026-05-01T20:52:16Z",
-      "last_verified_at": "2026-05-02T21:50:48Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:16Z",
+      "project_type": "PID"
     },
     {
       "id": 368,
@@ -2205,17 +1674,8 @@
       "data_quality_score": 78.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/368",
       "scraped_at": "2026-05-01T20:52:15Z",
-      "last_verified_at": "2026-05-02T21:50:48Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:15Z",
+      "project_type": "PID"
     },
     {
       "id": 928,
@@ -2278,17 +1738,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/283",
       "scraped_at": "2026-05-01T20:52:17Z",
-      "last_verified_at": "2026-05-02T21:50:48Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:17Z",
+      "project_type": "PID"
     },
     {
       "id": 1317,
@@ -2321,17 +1772,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1317",
       "scraped_at": "2026-05-01T20:52:19Z",
-      "last_verified_at": "2026-05-02T21:50:49Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No. 44, Jakarta 12190",
-          "Telepon": "",
-          "Email": "opportunity@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:19Z",
+      "project_type": "PPI"
     },
     {
       "id": 965,
@@ -2372,9 +1814,7 @@
       "district": "",
       "province": "Sumatera Selatan",
       "province_code": "16",
-      "kbli_codes": [
-        "35103"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 254,3M",
       "investment_value_idr": 254300000.0,
       "year": 2023,
@@ -2396,17 +1836,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/308",
       "scraped_at": "2026-05-01T20:52:18Z",
-      "last_verified_at": "2026-05-02T21:50:51Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Sumatera Utara",
-          "Alamat": "Jl. K.H. Wahid Hasyim No. 8 A Medan , Kecamatan Medan Baru, Kelurahan Merdeka",
-          "Telepon": "",
-          "Email": "",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:18Z",
+      "project_type": "PID"
     },
     {
       "id": 933,
@@ -2501,17 +1932,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/208",
       "scraped_at": "2026-05-01T20:52:19Z",
-      "last_verified_at": "2026-05-02T21:50:52Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:19Z",
+      "project_type": "PID"
     },
     {
       "id": 307,
@@ -2520,9 +1942,7 @@
       "district": "",
       "province": "Sumatera Selatan",
       "province_code": "16",
-      "kbli_codes": [
-        "10610"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 98,7M",
       "investment_value_idr": 98700000.0,
       "year": 2023,
@@ -2544,17 +1964,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/307",
       "scraped_at": "2026-05-01T20:52:21Z",
-      "last_verified_at": "2026-05-02T21:50:52Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Provinsi Sumatera Utara",
-          "Alamat": "Jl. K.H. Wahid Hasyim No. 8 A Medan , Kecamatan Medan Baru, Kelurahan Merdeka",
-          "Telepon": "",
-          "Email": "",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:21Z",
+      "project_type": "PID"
     },
     {
       "id": 964,
@@ -2617,17 +2028,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/211",
       "scraped_at": "2026-05-01T20:52:21Z",
-      "last_verified_at": "2026-05-02T21:50:53Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:21Z",
+      "project_type": "PID"
     },
     {
       "id": 934,
@@ -2658,24 +2060,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/934",
       "scraped_at": "2026-05-01T20:52:21Z",
-      "last_verified_at": "2026-05-02T21:50:53Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "82188061234",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:21Z",
+      "project_type": "PPI"
     },
     {
       "id": 1525,
@@ -2710,17 +2096,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1525",
       "scraped_at": "2026-05-01T20:52:21Z",
-      "last_verified_at": "2026-05-02T21:50:54Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:21Z",
+      "project_type": "IPRO"
     },
     {
       "id": 138,
@@ -2751,17 +2128,8 @@
       "data_quality_score": 44.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/138",
       "scraped_at": "2026-05-01T20:52:23Z",
-      "last_verified_at": "2026-05-02T21:50:54Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:23Z",
+      "project_type": "PID"
     },
     {
       "id": 930,
@@ -2792,38 +2160,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/930",
       "scraped_at": "2026-05-01T20:52:24Z",
-      "last_verified_at": "2026-05-02T21:50:54Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "humas@inaport4.co.id",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "83262718860",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:24Z",
+      "project_type": "PPI"
     },
     {
       "id": 937,
@@ -2854,24 +2192,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/937",
       "scraped_at": "2026-05-01T20:52:23Z",
-      "last_verified_at": "2026-05-02T21:50:55Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "(0370) 653648",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:23Z",
+      "project_type": "PPI"
     },
     {
       "id": 1311,
@@ -2936,17 +2258,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/212",
       "scraped_at": "2026-05-01T20:52:23Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:23Z",
+      "project_type": "PID"
     },
     {
       "id": 1526,
@@ -2980,17 +2293,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1526",
       "scraped_at": "2026-05-01T20:52:23Z",
-      "last_verified_at": "2026-05-02T21:50:58Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:23Z",
+      "project_type": "IPRO"
     },
     {
       "id": 121,
@@ -3021,17 +2325,8 @@
       "data_quality_score": 71.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/121",
       "scraped_at": "2026-05-01T20:52:25Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:25Z",
+      "project_type": "PID"
     },
     {
       "id": 864,
@@ -3062,24 +2357,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/864",
       "scraped_at": "2026-05-01T20:52:26Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "83262718860",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:26Z",
+      "project_type": "PPI"
     },
     {
       "id": 1531,
@@ -3112,17 +2391,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1531",
       "scraped_at": "2026-05-01T20:52:25Z",
-      "last_verified_at": "2026-05-02T21:50:58Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Gatot Subroto No. 44 Jakarta",
-          "Telepon": "",
-          "Email": "opportunity@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/pir"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:25Z",
+      "project_type": "IPRO"
     },
     {
       "id": 219,
@@ -3153,17 +2423,8 @@
       "data_quality_score": 61.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/219",
       "scraped_at": "2026-05-01T20:52:27Z",
-      "last_verified_at": "2026-05-02T21:50:58Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Pati",
-          "Alamat": "Jl. Sudirman No.12, Plangitan, Kec. Pati, Pati Regency, Central Java 59113",
-          "Telepon": "0295 381196",
-          "Email": "pm.dpmptsppati@gmail.com",
-          "Website": "https://dpmptsp.patikab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:27Z",
+      "project_type": "PID"
     },
     {
       "id": 1310,
@@ -3228,17 +2489,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/218",
       "scraped_at": "2026-05-01T20:52:26Z",
-      "last_verified_at": "2026-05-02T21:50:59Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Rembang",
-          "Alamat": "Jl. Pemuda Km.3, Kec. Rembang, Kabupaten Rembang, Jawa Tengah 59219",
-          "Telepon": "0295 691349",
-          "Email": "rembangdpmptsp@gmail.com",
-          "Website": "https://dpmptsp.rembangkab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:26Z",
+      "project_type": "PID"
     },
     {
       "id": 1527,
@@ -3271,17 +2523,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1527",
       "scraped_at": "2026-05-01T20:52:28Z",
-      "last_verified_at": "2026-05-02T21:51:00Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:28Z",
+      "project_type": "IPRO"
     },
     {
       "id": 944,
@@ -3381,17 +2624,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1301",
       "scraped_at": "2026-05-01T20:52:27Z",
-      "last_verified_at": "2026-05-02T21:51:02Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Infrastruktur",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5288 0389",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:27Z",
+      "project_type": "PPI"
     },
     {
       "id": 943,
@@ -3489,17 +2723,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1288",
       "scraped_at": "2026-05-01T20:52:30Z",
-      "last_verified_at": "2026-05-02T21:51:05Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:30Z",
+      "project_type": "PPI"
     },
     {
       "id": 221,
@@ -3508,9 +2733,7 @@
       "district": "",
       "province": "Sumatera Selatan",
       "province_code": "16",
-      "kbli_codes": [
-        "10423"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 20,4M",
       "investment_value_idr": 20400000.0,
       "year": 2023,
@@ -3532,17 +2755,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/221",
       "scraped_at": "2026-05-01T20:52:29Z",
-      "last_verified_at": "2026-05-02T21:51:05Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:29Z",
+      "project_type": "PID"
     },
     {
       "id": 144,
@@ -3573,17 +2787,8 @@
       "data_quality_score": 0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/144",
       "scraped_at": "2026-05-01T20:52:32Z",
-      "last_verified_at": "2026-05-02T21:51:06Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP PROVINSI KALIMANTAN TENGAH",
-          "Alamat": "jalan cilik riwut no 5,5 Palangak raya",
-          "Telepon": "",
-          "Email": "",
-          "Website": "hhtps://dpmptsp.kalteng.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:32Z",
+      "project_type": "PID"
     },
     {
       "id": 233,
@@ -3614,17 +2819,8 @@
       "data_quality_score": 38.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/233",
       "scraped_at": "2026-05-01T20:52:30Z",
-      "last_verified_at": "2026-05-02T21:51:07Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:30Z",
+      "project_type": "PID"
     },
     {
       "id": 949,
@@ -3719,17 +2915,8 @@
       "data_quality_score": 12.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/145",
       "scraped_at": "2026-05-01T20:52:33Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP PROVINSI KALIMANTAN TENGAH",
-          "Alamat": "jalan cilik riwut no 5,5 Palangak raya",
-          "Telepon": "",
-          "Email": "",
-          "Website": "hhtps://dpmptsp.kalteng.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:33Z",
+      "project_type": "PID"
     },
     {
       "id": 1523,
@@ -3766,17 +2953,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1523",
       "scraped_at": "2026-05-01T20:52:32Z",
-      "last_verified_at": "2026-05-02T21:51:10Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:32Z",
+      "project_type": "IPRO"
     },
     {
       "id": 1522,
@@ -3811,17 +2989,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1522",
       "scraped_at": "2026-05-01T20:52:33Z",
-      "last_verified_at": "2026-05-02T21:51:12Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:33Z",
+      "project_type": "IPRO"
     },
     {
       "id": 1308,
@@ -3854,17 +3023,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1308",
       "scraped_at": "2026-05-01T20:52:35Z",
-      "last_verified_at": "2026-05-02T21:51:12Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Infrastruktur",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5288 0389",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:35Z",
+      "project_type": "PPI"
     },
     {
       "id": 863,
@@ -3905,9 +3065,7 @@
       "district": "",
       "province": "Jawa Tengah",
       "province_code": "33",
-      "kbli_codes": [
-        "55110"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 180,6M",
       "investment_value_idr": 180600000.0,
       "year": 2023,
@@ -3929,17 +3087,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/199",
       "scraped_at": "2026-05-01T20:52:36Z",
-      "last_verified_at": "2026-05-02T21:51:14Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "TKL Ecopark - Taman Kyai Langgeng - Tempat Wisata Magelang",
-          "Alamat": "Jl. Cemp. No.6, Kemirirejo, Kec. Magelang Tengah, Kota Magelang, Jawa Tengah 56122",
-          "Telepon": "2933192642",
-          "Email": "",
-          "Website": "https://www.tklecopark.com/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:36Z",
+      "project_type": "PID"
     },
     {
       "id": 161,
@@ -3970,17 +3119,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/161",
       "scraped_at": "2026-05-01T20:52:35Z",
-      "last_verified_at": "2026-05-02T21:51:14Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:35Z",
+      "project_type": "PID"
     },
     {
       "id": 935,
@@ -4011,24 +3151,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/935",
       "scraped_at": "2026-05-01T20:52:35Z",
-      "last_verified_at": "2026-05-02T21:51:17Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "+62 853 4209 1076",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:35Z",
+      "project_type": "PPI"
     },
     {
       "id": 1304,
@@ -4061,17 +3185,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1304",
       "scraped_at": "2026-05-01T20:52:35Z",
-      "last_verified_at": "2026-05-02T21:51:16Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:35Z",
+      "project_type": "PPI"
     },
     {
       "id": 1521,
@@ -4109,17 +3224,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1521",
       "scraped_at": "2026-05-01T20:52:38Z",
-      "last_verified_at": "2026-05-02T21:51:16Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:38Z",
+      "project_type": "IPRO"
     },
     {
       "id": 207,
@@ -4150,17 +3256,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/207",
       "scraped_at": "2026-05-01T20:52:38Z",
-      "last_verified_at": "2026-05-02T21:51:17Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:38Z",
+      "project_type": "PID"
     },
     {
       "id": 1524,
@@ -4193,17 +3290,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1524",
       "scraped_at": "2026-05-01T20:52:38Z",
-      "last_verified_at": "2026-05-02T21:51:18Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:38Z",
+      "project_type": "IPRO"
     },
     {
       "id": 1316,
@@ -4270,17 +3358,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1312",
       "scraped_at": "2026-05-01T20:52:39Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Jasa dan Kawasan",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5252008 ext.3867",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:39Z",
+      "project_type": "PPI"
     },
     {
       "id": 866,
@@ -4311,52 +3390,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/866",
       "scraped_at": "2026-05-01T20:52:38Z",
-      "last_verified_at": "2026-05-02T21:50:39Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "+62 813-2872-4455",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "(0293)-788249",
-          "Alamat": "",
-          "Telepon": "+62 813-2872-4455",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "PT Pantai Timur Sungailiat",
-          "Alamat": "Jl. S. Parman No. 76, Sungailiat, Kabupaten Bangka, Provinsi Kepulauan Bangka Belitung",
-          "Telepon": "(0717) 95555",
-          "Email": "info-pts@pantaitimursungailiat.co.id",
-          "Website": "http://www.pantaitimursungailiat.co.id/"
-        },
-        {
-          "Kontak": "PT. Kaltim Industrial Estate",
-          "Alamat": "Wisma KIE Lt. 3 Jalan Ammonia Bontang, Kalimantan Timur 75313, Indonesia",
-          "Telepon": "+62 548 41368 / +62 548 41370",
-          "Email": "contact@kie.co.id",
-          "Website": "www.kie.co.id"
-        },
-        {
-          "Kontak": "PT. Suryacipta Swadaya",
-          "Alamat": "The Manor Building, Jl. Surya Utama Kav. C-1, Suryacipta Square Karawang 41363 Jawa Barat, Indonesia",
-          "Telepon": "+62 267 440088 / +62 267 440077 (fax)",
-          "Email": "info@smartpolitan.com",
-          "Website": "smartpolitan.com"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:38Z",
+      "project_type": "PPI"
     },
     {
       "id": 867,
@@ -4387,31 +3422,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/867",
       "scraped_at": "2026-05-01T20:52:40Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "81284443854",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "81322771117",
-          "Alamat": "",
-          "Telepon": "81284443854",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:40Z",
+      "project_type": "PPI"
     },
     {
       "id": 868,
@@ -4442,24 +3454,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/868",
       "scraped_at": "2026-05-01T20:52:39Z",
-      "last_verified_at": "2026-05-02T21:50:42Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "humas@inaport4.co.id",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:39Z",
+      "project_type": "PPI"
     },
     {
       "id": 93,
@@ -4490,17 +3486,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/93",
       "scraped_at": "2026-05-01T20:52:41Z",
-      "last_verified_at": "2026-05-02T21:50:42Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DINAS PENANAMAN MODAL DAN PTSP PROVINSI BALI",
-          "Alamat": "JL. NITI MANDALA RENON DENPASAR",
-          "Telepon": "81338408150",
-          "Email": "alpardshn@gmail.com",
-          "Website": "www.dpmptsp.baliprov.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:41Z",
+      "project_type": "PID"
     },
     {
       "id": 203,
@@ -4531,17 +3518,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/203",
       "scraped_at": "2026-05-01T20:52:39Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:39Z",
+      "project_type": "PID"
     },
     {
       "id": 1302,
@@ -4574,17 +3552,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1302",
       "scraped_at": "2026-05-01T20:52:42Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Jasa dan Kawasan",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5252008 ext.3867",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:42Z",
+      "project_type": "PPI"
     },
     {
       "id": 120,
@@ -4615,17 +3584,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/120",
       "scraped_at": "2026-05-01T20:52:42Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:42Z",
+      "project_type": "PID"
     },
     {
       "id": 1309,
@@ -4658,17 +3618,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1309",
       "scraped_at": "2026-05-01T20:52:41Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Jasa dan Kawasan",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5252008 ext.3867",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:41Z",
+      "project_type": "PPI"
     },
     {
       "id": 336,
@@ -4677,11 +3628,7 @@
       "district": "Kota Jakarta Selatan",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "52215",
-        "47111",
-        "93114"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 37,3M",
       "investment_value_idr": 37300000.0,
       "year": 2026,
@@ -4703,17 +3650,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/336",
       "scraped_at": "2026-05-01T20:52:43Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:43Z",
+      "project_type": "PID"
     },
     {
       "id": 950,
@@ -4744,80 +3682,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/950",
       "scraped_at": "2026-05-01T20:52:41Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "(0385) 2443143",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "(0552) 23412",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "(0370) 653648",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "82188061234",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "7718080015",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "81284443854",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "81322771117",
-          "Alamat": "",
-          "Telepon": "81284443854",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "(0518) 21269",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "",
-          "Alamat": "",
-          "Telepon": "0812-7688-6995",
-          "Email": "",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:41Z",
+      "project_type": "PPI"
     },
     {
       "id": 323,
@@ -4848,17 +3714,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/323",
       "scraped_at": "2026-05-01T20:52:42Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:42Z",
+      "project_type": "PID"
     },
     {
       "id": 1307,
@@ -4891,17 +3748,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1307",
       "scraped_at": "2026-05-01T20:52:43Z",
-      "last_verified_at": "2026-05-02T21:50:45Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Infrastruktur",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5288 0389",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:43Z",
+      "project_type": "PPI"
     },
     {
       "id": 119,
@@ -4910,9 +3758,7 @@
       "district": "",
       "province": "Kalimantan Timur",
       "province_code": "64",
-      "kbli_codes": [
-        "22123"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 57,3M",
       "investment_value_idr": 57300000.0,
       "year": 2022,
@@ -4934,17 +3780,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/119",
       "scraped_at": "2026-05-01T20:52:43Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:43Z",
+      "project_type": "PID"
     },
     {
       "id": 118,
@@ -4953,9 +3790,7 @@
       "district": "Kabupaten Lombok Tengah",
       "province": "Nusa Tenggara Barat",
       "province_code": "52",
-      "kbli_codes": [
-        "55110"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 909,5M",
       "investment_value_idr": 909500000.0,
       "year": 2022,
@@ -4977,17 +3812,8 @@
       "data_quality_score": 71.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/118",
       "scraped_at": "2026-05-01T20:52:44Z",
-      "last_verified_at": "2026-05-02T21:50:45Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:44Z",
+      "project_type": "PID"
     },
     {
       "id": 108,
@@ -4996,9 +3822,7 @@
       "district": "",
       "province": "Sumatera Utara",
       "province_code": "12",
-      "kbli_codes": [
-        "86101"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 209,3M",
       "investment_value_idr": 209300000.0,
       "year": 2022,
@@ -5020,17 +3844,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/108",
       "scraped_at": "2026-05-01T20:52:46Z",
-      "last_verified_at": "2026-05-02T21:50:45Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:46Z",
+      "project_type": "PID"
     },
     {
       "id": 333,
@@ -5039,12 +3854,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "68111",
-        "47111",
-        "91022",
-        "41012"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "0,0",
       "investment_value_idr": null,
       "year": 2026,
@@ -5066,17 +3876,8 @@
       "data_quality_score": 20.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/333",
       "scraped_at": "2026-05-01T20:52:46Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:46Z",
+      "project_type": "PID"
     },
     {
       "id": 1520,
@@ -5109,17 +3910,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1520",
       "scraped_at": "2026-05-01T20:52:44Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:44Z",
+      "project_type": "IPRO"
     },
     {
       "id": 1303,
@@ -5152,17 +3944,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1303",
       "scraped_at": "2026-05-01T20:52:46Z",
-      "last_verified_at": "2026-05-02T21:50:47Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:46Z",
+      "project_type": "PPI"
     },
     {
       "id": 330,
@@ -5171,10 +3954,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "49441",
-        "42103"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 780,0M",
       "investment_value_idr": 780000000.0,
       "year": 2026,
@@ -5196,17 +3976,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/330",
       "scraped_at": "2026-05-01T20:52:47Z",
-      "last_verified_at": "2026-05-02T21:50:46Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:47Z",
+      "project_type": "PID"
     },
     {
       "id": 335,
@@ -5215,16 +3986,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "68111",
-        "41011",
-        "55110",
-        "55194",
-        "47111",
-        "56101",
-        "82301",
-        "93119"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "0,0",
       "investment_value_idr": null,
       "year": 2026,
@@ -5246,17 +4008,8 @@
       "data_quality_score": 20.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/335",
       "scraped_at": "2026-05-01T20:52:45Z",
-      "last_verified_at": "2026-05-02T21:50:47Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:45Z",
+      "project_type": "PID"
     },
     {
       "id": 1278,
@@ -5289,24 +4042,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1278",
       "scraped_at": "2026-05-01T20:52:48Z",
-      "last_verified_at": "2026-05-02T21:50:47Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Karo",
-          "Alamat": "",
-          "Telepon": "81361056524",
-          "Email": "dpmpptspkaro1@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:48Z",
+      "project_type": "PPI"
     },
     {
       "id": 1510,
@@ -5339,17 +4076,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1510",
       "scraped_at": "2026-05-01T20:52:47Z",
-      "last_verified_at": "2026-05-02T21:50:48Z",
-      "project_type": "IPRO",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:47Z",
+      "project_type": "IPRO"
     },
     {
       "id": 105,
@@ -5380,17 +4108,8 @@
       "data_quality_score": 36.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/105",
       "scraped_at": "2026-05-01T20:52:49Z",
-      "last_verified_at": "2026-05-02T21:50:48Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:49Z",
+      "project_type": "PID"
     },
     {
       "id": 107,
@@ -5399,9 +4118,7 @@
       "district": "",
       "province": "Riau",
       "province_code": "14",
-      "kbli_codes": [
-        "68130"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 1,8T",
       "investment_value_idr": 1800000000000.0,
       "year": 2022,
@@ -5423,17 +4140,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/107",
       "scraped_at": "2026-05-01T20:52:47Z",
-      "last_verified_at": "2026-05-02T21:50:49Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:47Z",
+      "project_type": "PID"
     },
     {
       "id": 106,
@@ -5464,17 +4172,8 @@
       "data_quality_score": 44.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/106",
       "scraped_at": "2026-05-01T20:52:48Z",
-      "last_verified_at": "2026-05-02T21:50:49Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:48Z",
+      "project_type": "PID"
     },
     {
       "id": 1273,
@@ -5507,24 +4206,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1273",
       "scraped_at": "2026-05-01T20:52:49Z",
-      "last_verified_at": "2026-05-02T21:50:49Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Maluku Tengah",
-          "Alamat": "Jl. Trunojoyo Blok M1 /135, Kebayoran Baru, Jakarta Selatan",
-          "Telepon": "(0914) 22543",
-          "Email": "dpmptspmalteng.pengaduan@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:49Z",
+      "project_type": "PPI"
     },
     {
       "id": 329,
@@ -5533,10 +4216,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "49441",
-        "42103"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 290,0M",
       "investment_value_idr": 290000000.0,
       "year": 2026,
@@ -5558,17 +4238,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/329",
       "scraped_at": "2026-05-01T20:52:48Z",
-      "last_verified_at": "2026-05-02T21:50:50Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:48Z",
+      "project_type": "PID"
     },
     {
       "id": 328,
@@ -5599,17 +4270,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/328",
       "scraped_at": "2026-05-01T20:52:50Z",
-      "last_verified_at": "2026-05-02T21:50:50Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:50Z",
+      "project_type": "PID"
     },
     {
       "id": 160,
@@ -5640,17 +4302,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/160",
       "scraped_at": "2026-05-01T20:52:50Z",
-      "last_verified_at": "2026-05-02T21:50:51Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:50Z",
+      "project_type": "PID"
     },
     {
       "id": 1282,
@@ -5693,9 +4346,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 34,5M",
       "investment_value_idr": 34500000.0,
       "year": 2026,
@@ -5717,17 +4368,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/322",
       "scraped_at": "2026-05-01T20:52:51Z",
-      "last_verified_at": "2026-05-02T21:50:52Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:51Z",
+      "project_type": "PID"
     },
     {
       "id": 321,
@@ -5736,10 +4378,7 @@
       "district": "Kota Jakarta Timur",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110",
-        "47111"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 70,4T",
       "investment_value_idr": 70400000000000.0,
       "year": 2026,
@@ -5761,17 +4400,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/321",
       "scraped_at": "2026-05-01T20:52:52Z",
-      "last_verified_at": "2026-05-02T21:50:52Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:52Z",
+      "project_type": "PID"
     },
     {
       "id": 1284,
@@ -5804,24 +4434,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1284",
       "scraped_at": "2026-05-01T20:52:53Z",
-      "last_verified_at": "2026-05-02T21:50:53Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "Otorita Ibu Kota Negara",
-          "Alamat": "",
-          "Telepon": "+62 811 811 58 888",
-          "Email": "investasi@ikn.or.id",
-          "Website": "ikn.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:53Z",
+      "project_type": "PPI"
     },
     {
       "id": 213,
@@ -5852,17 +4466,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/213",
       "scraped_at": "2026-05-01T20:52:53Z",
-      "last_verified_at": "2026-05-02T21:50:53Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:53Z",
+      "project_type": "PID"
     },
     {
       "id": 1286,
@@ -5927,17 +4532,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/209",
       "scraped_at": "2026-05-01T20:52:52Z",
-      "last_verified_at": "2026-05-02T21:50:54Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:52Z",
+      "project_type": "PID"
     },
     {
       "id": 216,
@@ -5968,17 +4564,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/216",
       "scraped_at": "2026-05-01T20:52:54Z",
-      "last_verified_at": "2026-05-02T21:50:54Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:54Z",
+      "project_type": "PID"
     },
     {
       "id": 313,
@@ -5987,17 +4574,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "93111",
-        "93113",
-        "93114",
-        "93115",
-        "93119",
-        "68111",
-        "55194",
-        "55110",
-        "82301"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 38,7T",
       "investment_value_idr": 38700000000000.0,
       "year": 2026,
@@ -6019,17 +4596,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/313",
       "scraped_at": "2026-05-01T20:52:53Z",
-      "last_verified_at": "2026-05-02T21:50:56Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:53Z",
+      "project_type": "PID"
     },
     {
       "id": 1264,
@@ -6072,10 +4640,7 @@
       "district": "Kota Jakarta Pusat",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110",
-        "82301"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 6,1T",
       "investment_value_idr": 6100000000000.0,
       "year": 2026,
@@ -6097,17 +4662,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/312",
       "scraped_at": "2026-05-01T20:52:55Z",
-      "last_verified_at": "2026-05-02T21:50:56Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:55Z",
+      "project_type": "PID"
     },
     {
       "id": 310,
@@ -6116,10 +4672,7 @@
       "district": "Kota Jakarta Pusat",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110",
-        "82301"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "11,7",
       "investment_value_idr": null,
       "year": 2026,
@@ -6141,17 +4694,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/310",
       "scraped_at": "2026-05-01T20:52:55Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:55Z",
+      "project_type": "PID"
     },
     {
       "id": 1272,
@@ -6184,24 +4728,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1272",
       "scraped_at": "2026-05-01T20:52:56Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Kupang",
-          "Alamat": "Jl. Timor Raya Km.37, Kab Kupang, Nusa Tenggara Timur",
-          "Telepon": "0813 3447 3617",
-          "Email": "kabupatenkupangdpmptsp@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:56Z",
+      "project_type": "PPI"
     },
     {
       "id": 103,
@@ -6210,9 +4738,7 @@
       "district": "",
       "province": "Banten",
       "province_code": "36",
-      "kbli_codes": [
-        "10633"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 42,7M",
       "investment_value_idr": 42700000.0,
       "year": 2021,
@@ -6234,17 +4760,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/103",
       "scraped_at": "2026-05-01T20:52:55Z",
-      "last_verified_at": "2026-05-02T21:50:57Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:55Z",
+      "project_type": "PID"
     },
     {
       "id": 1267,
@@ -6317,24 +4834,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1268",
       "scraped_at": "2026-05-01T20:52:56Z",
-      "last_verified_at": "2026-05-02T21:50:58Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Sumbawa",
-          "Alamat": "Jl. Garuda No.8, Kab. Sumbawa, Nusa Tenggara Barat. 84316",
-          "Telepon": "0812 3731 9552",
-          "Email": "sekretariatdpmptspksb@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:56Z",
+      "project_type": "PPI"
     },
     {
       "id": 110,
@@ -6365,17 +4866,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/110",
       "scraped_at": "2026-05-01T20:52:56Z",
-      "last_verified_at": "2026-05-02T21:50:59Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:56Z",
+      "project_type": "PID"
     },
     {
       "id": 398,
@@ -6406,17 +4898,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/398",
       "scraped_at": "2026-05-01T20:52:57Z",
-      "last_verified_at": "2026-05-02T21:50:59Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM  Direktorat Perencanaan Infrastruktur",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "(021) 5252008 ext.3709",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": "www.bkpm.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:57Z",
+      "project_type": "PID"
     },
     {
       "id": 326,
@@ -6425,10 +4908,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "68111",
-        "55194"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 21,7T",
       "investment_value_idr": 21700000000000.0,
       "year": 0,
@@ -6450,17 +4930,8 @@
       "data_quality_score": 54.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/326",
       "scraped_at": "2026-05-01T20:52:57Z",
-      "last_verified_at": "2026-05-02T21:51:00Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:57Z",
+      "project_type": "PID"
     },
     {
       "id": 304,
@@ -6491,17 +4962,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/304",
       "scraped_at": "2026-05-01T20:52:59Z",
-      "last_verified_at": "2026-05-02T21:51:01Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:59Z",
+      "project_type": "PID"
     },
     {
       "id": 1276,
@@ -6535,24 +4997,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1276",
       "scraped_at": "2026-05-01T20:52:59Z",
-      "last_verified_at": "2026-05-02T21:51:01Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Musi Banyuasin",
-          "Alamat": "4V53+37M, Jl. Kol. Wahid Udin, Kayu Ara, Kec. Sekayu, Kabupaten Musi Banyuasin, Sumatera Selatan 30711",
-          "Telepon": "62 821-8525-9846",
-          "Email": "dpmptsp@mubakab.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:59Z",
+      "project_type": "PPI"
     },
     {
       "id": 360,
@@ -6583,17 +5029,8 @@
       "data_quality_score": 69.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/360",
       "scraped_at": "2026-05-01T20:53:01Z",
-      "last_verified_at": "2026-05-02T21:51:02Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:01Z",
+      "project_type": "PID"
     },
     {
       "id": 315,
@@ -6602,10 +5039,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110",
-        "82301"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 441,0M",
       "investment_value_idr": 441000000.0,
       "year": 2025,
@@ -6627,17 +5061,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/315",
       "scraped_at": "2026-05-01T20:53:01Z",
-      "last_verified_at": "2026-05-02T21:51:03Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:01Z",
+      "project_type": "PID"
     },
     {
       "id": 320,
@@ -6646,11 +5071,7 @@
       "district": "Kota Jakarta Selatan",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "47111",
-        "68112",
-        "73100"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 40,8M",
       "investment_value_idr": 40800000.0,
       "year": 0,
@@ -6672,17 +5093,8 @@
       "data_quality_score": 71.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/320",
       "scraped_at": "2026-05-01T20:52:59Z",
-      "last_verified_at": "2026-05-02T21:51:04Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:52:59Z",
+      "project_type": "PID"
     },
     {
       "id": 1270,
@@ -6715,24 +5127,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1270",
       "scraped_at": "2026-05-01T20:53:01Z",
-      "last_verified_at": "2026-05-02T21:51:05Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Malang",
-          "Alamat": "Jl. Trunojoyo No.4, Kepanjen, Kabupaten Malang, Jawa Timur 65163",
-          "Telepon": "(0341) 396633",
-          "Email": "pm-ptsp@webmail.malangkab.go.id",
-          "Website": "https://pm-ptsp.malangkab.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:01Z",
+      "project_type": "PPI"
     },
     {
       "id": 314,
@@ -6741,9 +5137,7 @@
       "district": "Kabupaten Jeneponto",
       "province": "Sulawesi Selatan",
       "province_code": "73",
-      "kbli_codes": [
-        "10774"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 181,6M",
       "investment_value_idr": 181600000.0,
       "year": 2025,
@@ -6765,17 +5159,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/314",
       "scraped_at": "2026-05-01T20:53:00Z",
-      "last_verified_at": "2026-05-02T21:51:05Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:00Z",
+      "project_type": "PID"
     },
     {
       "id": 316,
@@ -6784,9 +5169,7 @@
       "district": "",
       "province": "Sulawesi Selatan",
       "province_code": "73",
-      "kbli_codes": [
-        "10298"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 103,6M",
       "investment_value_idr": 103600000.0,
       "year": 2025,
@@ -6808,17 +5191,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/316",
       "scraped_at": "2026-05-01T20:53:02Z",
-      "last_verified_at": "2026-05-02T21:51:06Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:02Z",
+      "project_type": "PID"
     },
     {
       "id": 1283,
@@ -6861,9 +5235,7 @@
       "district": "Kota Jakarta Selatan",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "55110"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 27,5M",
       "investment_value_idr": 27500000.0,
       "year": 0,
@@ -6885,17 +5257,8 @@
       "data_quality_score": 71.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/311",
       "scraped_at": "2026-05-01T20:53:02Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:02Z",
+      "project_type": "PID"
     },
     {
       "id": 317,
@@ -6904,10 +5267,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "93114",
-        "93129"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 10,7M",
       "investment_value_idr": 10700000.0,
       "year": 2025,
@@ -6929,17 +5289,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/317",
       "scraped_at": "2026-05-01T20:53:03Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:03Z",
+      "project_type": "PID"
     },
     {
       "id": 1280,
@@ -6972,24 +5323,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1280",
       "scraped_at": "2026-05-01T20:53:03Z",
-      "last_verified_at": "2026-05-02T21:51:09Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "PT. PLN (Persero)",
-          "Alamat": "Jl. Trunojoyo Blok M1 /135, Kebayoran Baru, Jakarta Selatan",
-          "Telepon": "(+6221) 7261122",
-          "Email": "dpt.anekaenergi.pln@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:03Z",
+      "project_type": "PPI"
     },
     {
       "id": 1266,
@@ -7089,17 +5424,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/325",
       "scraped_at": "2026-05-01T20:53:05Z",
-      "last_verified_at": "2026-05-02T21:51:13Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:05Z",
+      "project_type": "PID"
     },
     {
       "id": 331,
@@ -7108,11 +5434,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "47111",
-        "52215",
-        "73100"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 27,2M",
       "investment_value_idr": 27200000.0,
       "year": 2025,
@@ -7134,17 +5456,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/331",
       "scraped_at": "2026-05-01T20:53:06Z",
-      "last_verified_at": "2026-05-02T21:51:13Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:06Z",
+      "project_type": "PID"
     },
     {
       "id": 334,
@@ -7153,11 +5466,7 @@
       "district": "",
       "province": "DKI Jakarta",
       "province_code": "31",
-      "kbli_codes": [
-        "91022",
-        "90011",
-        "47789"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "0,0",
       "investment_value_idr": null,
       "year": 2025,
@@ -7179,17 +5488,8 @@
       "data_quality_score": 20.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/334",
       "scraped_at": "2026-05-01T20:53:07Z",
-      "last_verified_at": "2026-05-02T21:51:14Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "PT MRT Jakarta (Perseroda)",
-          "Alamat": "Ciputat Raya street, No. 14, Lebak Bulus, South Jakarta",
-          "Telepon": "",
-          "Email": "dbaskara@jakartamrt.co.id",
-          "Website": "https://jakartamrt.co.id/id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:07Z",
+      "project_type": "PID"
     },
     {
       "id": 1277,
@@ -7222,24 +5522,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1277",
       "scraped_at": "2026-05-01T20:53:06Z",
-      "last_verified_at": "2026-05-02T21:51:15Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Maros",
-          "Alamat": "Jl. Andi Pangeran Pettarani Kabupaten Maros, Sulawesi Selatan 90516",
-          "Telepon": "(0411) 3882396",
-          "Email": "",
-          "Website": "dpmptsp.maroskab.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:06Z",
+      "project_type": "PPI"
     },
     {
       "id": 337,
@@ -7248,9 +5532,7 @@
       "district": "Kabupaten Ogan Ilir",
       "province": "Sumatera Selatan",
       "province_code": "16",
-      "kbli_codes": [
-        "03224"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "0,0",
       "investment_value_idr": null,
       "year": 2025,
@@ -7272,24 +5554,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/337",
       "scraped_at": "2026-05-01T20:53:07Z",
-      "last_verified_at": "2026-05-02T21:51:15Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Luwu",
-          "Alamat": "Jl. Soekarno Hatta, Puncak Indah, Kec. Malili, Kab. Luwu Timur",
-          "Telepon": "628123477756",
-          "Email": "dpmptsp@luwutimurkab.go.id",
-          "Website": "https://dpmptsp.luwutimurkab.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Provinsi Sumatera Utara",
-          "Alamat": "Jl. K.H. Wahid Hasyim No. 8 A Medan , Kecamatan Medan Baru, Kelurahan Merdeka",
-          "Telepon": "",
-          "Email": "",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:07Z",
+      "project_type": "PID"
     },
     {
       "id": 1265,
@@ -7358,24 +5624,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1279",
       "scraped_at": "2026-05-01T20:53:08Z",
-      "last_verified_at": "2026-05-02T21:51:17Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Takalar",
-          "Alamat": "Jl. Kalabbirang, Kec. Pattallasang, Kabupaten Takalar, Sulawesi Selatan 90615",
-          "Telepon": "",
-          "Email": "dpmptsptakalar@gmail.com",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:08Z",
+      "project_type": "PPI"
     },
     {
       "id": 1269,
@@ -7418,9 +5668,7 @@
       "district": "",
       "province": "Sulawesi Selatan",
       "province_code": "73",
-      "kbli_codes": [
-        "10631"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 185,9M",
       "investment_value_idr": 185900000.0,
       "year": 2025,
@@ -7442,24 +5690,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/372",
       "scraped_at": "2026-05-01T20:53:09Z",
-      "last_verified_at": "2026-05-02T21:50:39Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Luwu",
-          "Alamat": "Jl. Soekarno Hatta, Puncak Indah, Kec. Malili, Kab. Luwu Timur",
-          "Telepon": "628123477756",
-          "Email": "dpmptsp@luwutimurkab.go.id",
-          "Website": "https://dpmptsp.luwutimurkab.go.id/"
-        },
-        {
-          "Kontak": "DPMPTSP Provinsi Sulawesi Selatan",
-          "Alamat": "Jl. Bougenville No. 5, Masale, Kec. Panakkukang",
-          "Telepon": "24192410044",
-          "Email": "dpmptsp@sulselprov.go.id",
-          "Website": "https://dpmptsp.sulselprov.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:09Z",
+      "project_type": "PID"
     },
     {
       "id": 1281,
@@ -7524,24 +5756,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/373",
       "scraped_at": "2026-05-01T20:53:10Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kantor DPMPTSP Provinsi Jawa Tengah",
-          "Alamat": "Jl. Mgr Sugiyopranoto No.1, Pendrikan Kidul, Kec. Semarang Tengah, Kota Semarang",
-          "Telepon": "243547091",
-          "Email": "dpmptsp@jatengprov.go.id",
-          "Website": "https://web.dpmptsp.jatengprov.go.id/"
-        },
-        {
-          "Kontak": "Kantor DPMPTSP Kabupaten Grobogan",
-          "Alamat": "Jalan Paramedis Kompleks Simpang Lima Purwodadi Grobogan",
-          "Telepon": "292421193",
-          "Email": "dpmptsp@grobogan.go.id",
-          "Website": "https://www.dpmptsp.grobogan.go.id/id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:10Z",
+      "project_type": "PID"
     },
     {
       "id": 362,
@@ -7572,17 +5788,8 @@
       "data_quality_score": 71.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/362",
       "scraped_at": "2026-05-01T20:53:09Z",
-      "last_verified_at": "2026-05-02T21:50:40Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi /BKPM Direktorat Perencanaan Sumber Daya Alam",
-          "Alamat": "Jl. Gatot Subroto No. 44, Jakarta 12190, Indonesia",
-          "Telepon": "(021) 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": "https://regionalinvestment.bkpm.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:09Z",
+      "project_type": "PID"
     },
     {
       "id": 1275,
@@ -7649,24 +5856,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1274",
       "scraped_at": "2026-05-01T20:53:10Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jendral Gatot Subroto No. 44, Jakarta",
-          "Telepon": "021 5225837",
-          "Email": "tu.ditpiasl@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Sumbawa Barat",
-          "Alamat": "Jalan Bung Karno No. 3, Komplek KTC, Kuang, Kec. Taliwang, Kabupaten Sumbawa Barat, Nusa Tenggara Barat 84455",
-          "Telepon": "(0372) 8281831",
-          "Email": "sekretariatdpmptspksb@gmail.com",
-          "Website": "www.dpmptsp.sumbawabaratkab.go.id"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:10Z",
+      "project_type": "PPI"
     },
     {
       "id": 1149,
@@ -7699,24 +5890,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1149",
       "scraped_at": "2026-05-01T20:53:12Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "Bakrie & Brothers Tbk.",
-          "Alamat": "Jl. Epicentrum Boulevard Tim. RT.5/RW.011, Menteng Atas, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12960",
-          "Telepon": "(021) 29912222",
-          "Email": "",
-          "Website": ""
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpi@bkpm.go.id",
-          "Website": ""
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:12Z",
+      "project_type": "PPI"
     },
     {
       "id": 374,
@@ -7725,9 +5900,7 @@
       "district": "",
       "province": "Kalimantan Utara",
       "province_code": "65",
-      "kbli_codes": [
-        "20115"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 12,6M",
       "investment_value_idr": 12600000.0,
       "year": 2025,
@@ -7749,24 +5922,8 @@
       "data_quality_score": 63.3,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/374",
       "scraped_at": "2026-05-01T20:53:10Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "Kantor DPMPTSP Provinsi Kalimantan Utara",
-          "Alamat": "Jl. Rambutan, tj. Selor Hilir, Kab. Bulungan, Kalimantan Utara",
-          "Telepon": "5522029748",
-          "Email": "dpmptsp@provkaltara.go.id",
-          "Website": "https://dpmptsp.kaltaraprov.go.id/"
-        },
-        {
-          "Kontak": "Kantor DPMPTSP Kabupaten Bulungan",
-          "Alamat": "Jl. Meranti No.112, Tj. Selor Hilir, Kec. Tj. Selor, Kabupaten Bulungan, Kalimantan Utara",
-          "Telepon": "82128043321",
-          "Email": "dpmptsp@bulungan.go.id",
-          "Website": "https://dpmptsp.bulungan.go.id/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:10Z",
+      "project_type": "PID"
     },
     {
       "id": 383,
@@ -7775,9 +5932,7 @@
       "district": "Kabupaten Bengkulu Utara",
       "province": "Bengkulu",
       "province_code": "17",
-      "kbli_codes": [
-        "10801"
-      ],
+      "kbli_codes": [],
       "investment_value_text": "Rp 19,1M",
       "investment_value_idr": 19100000.0,
       "year": 2025,
@@ -7799,17 +5954,8 @@
       "data_quality_score": 80.0,
       "source_url": "https://regionalinvestment.bkpm.go.id/daerah/peluang_investasi/383",
       "scraped_at": "2026-05-01T20:53:12Z",
-      "last_verified_at": "2026-05-02T21:50:43Z",
-      "project_type": "PID",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Bengkulu Utara",
-          "Alamat": "Jl. Jendral Sudirman Kecamatan Arga Makmur",
-          "Telepon": "6285268054774",
-          "Email": "",
-          "Website": "https://ptspkabupatenbengkuluutara.com/"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:12Z",
+      "project_type": "PID"
     },
     {
       "id": 1175,
@@ -7842,38 +5988,8 @@
       "data_quality_score": 86.7,
       "source_url": "https://regionalinvestment.bkpm.go.id/peluang_investasi/ipro/1175",
       "scraped_at": "2026-05-01T20:53:13Z",
-      "last_verified_at": "2026-05-02T21:50:44Z",
-      "project_type": "PPI",
-      "contacts": [
-        {
-          "Kontak": "DPMPTSP Kabupaten Pesawaran",
-          "Alamat": "Jl. Raya Kedondong, Desa Way Layap, Binong, Gedung Tataan, Kabupaten Pesawaran, Lampung (35366)",
-          "Telepon": "+62 721 94585 / +62 813 8911 197",
-          "Email": "dpmpt11@gmail.com",
-          "Website": "https://dpmptsp.pesawarankab.go.id"
-        },
-        {
-          "Kontak": "Kementerian Investasi Dan Hilirisasi/BKPM",
-          "Alamat": "Jl. Jend. Gatot Subroto No.44, Jakarta 12190 P.O. Box 3186, Indonesia",
-          "Telepon": "6.28071E+11",
-          "Email": "tu.ditpjk@bkpm.go.id",
-          "Website": ""
-        },
-        {
-          "Kontak": "DPMPTSP Kabupaten Jayapura",
-          "Alamat": "Jl. Bandara - Sentani Kota - Kabupaten Jayapura - Papua",
-          "Telepon": "8114826222",
-          "Email": "admin@ptsp.jayapurakab.go.id",
-          "Website": "https://ptsp.jayapurakab.go.id/"
-        },
-        {
-          "Kontak": "PT. Banten West Java",
-          "Alamat": "Menara Batavia, Jl. K.H. Mas Mansyur No.Kav. 126, Karet Tengsin, Kecamatan Tanah Abang, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10230",
-          "Telepon": "-5727304",
-          "Email": "mkt@tanjunglesung.com",
-          "Website": "www.tanjunglesung.com"
-        }
-      ]
+      "last_verified_at": "2026-05-01T20:53:13Z",
+      "project_type": "PPI"
     }
   ]
 }

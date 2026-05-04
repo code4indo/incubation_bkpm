@@ -67,13 +67,6 @@ const railIcon = L.divIcon({
   iconAnchor: [3, 3]
 });
 
-const railIcon = L.divIcon({
-  className: 'custom-div-icon',
-  html: '<div style="background:#f59e0b;width:7px;height:7px;border-radius:1px;border:1.5px solid white;transform:rotate(45deg);"></div>',
-  iconSize: [7, 7],
-  iconAnchor: [3, 3]
-});
-
 // Map bounds fitter — only fires on initial mount, not on every re-render
 function MapBounds({ bounds }: { bounds: L.LatLngBoundsExpression }) {
   const map = useMap();

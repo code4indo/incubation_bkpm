@@ -55,26 +55,22 @@ export function ProjectsPage({ projects, onProjectClick }: ProjectsPageProps) {
   return (
     <section className="py-12 px-4 sm:px-8 lg:px-16 bg-[#F5F3EF] min-h-screen">
       <div className="max-w-7xl mx-auto">
-        {/* DEBUG: Language State */}
-        <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 rounded-lg">
-          <p className="text-sm font-mono text-yellow-800">
-            DEBUG: language=<strong>{language}</strong> (from Context) | localStorage=<strong>{getStoredLanguage()}</strong> | 
-            project384 descEn={scoredProjects.find(s => s.project.id === 384)?.project.descriptionEn?.length || 0} chars | 
-            descId={scoredProjects.find(s => s.project.id === 384)?.project.descriptionId?.length || 0} chars
-          </p>
-        </div>
 
         {/* Engine info banner */}
-        <div className="mb-6 p-4 bg-[#1B4D5C]/5 rounded-xl border border-[#1B4D5C]/10">
-          <div className="flex items-center gap-4">
-            <Sparkles className="w-5 h-5 text-[#C9963B]" />
-            <div>
-              <p className="text-sm font-semibold text-[#1B4D5C]">AI-Powered Project Ranking</p>
-              <p className="text-xs text-[#6B7B8D]">
-                Sorted by hybrid score: Content-Based (60%) + Collaborative Filtering (40%)
-              </p>
+        <div className="mb-6 p-3 md:p-4 bg-[#1B4D5C]/5 rounded-xl border border-[#1B4D5C]/10">
+          <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-[#C9963B]/10 flex items-center justify-center shrink-0">
+                <Sparkles className="w-4 h-4 text-[#C9963B]" />
+              </div>
+              <div>
+                <p className="text-xs md:text-sm font-semibold text-[#1B4D5C]">AI-Powered Project Ranking</p>
+                <p className="text-[10px] md:text-xs text-[#6B7B8D]">
+                  Sorted by hybrid score: Content + Collaborative Filtering
+                </p>
+              </div>
             </div>
-            <div className="ml-auto flex gap-3 text-xs text-[#6B7B8D]">
+            <div className="md:ml-auto flex gap-3 text-[10px] text-[#6B7B8D] border-t md:border-t-0 pt-2 md:pt-0">
               <span className="flex items-center gap-1">
                 <Cpu className="w-3 h-3" /> Content-Based
               </span>
