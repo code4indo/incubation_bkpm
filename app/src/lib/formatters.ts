@@ -37,7 +37,7 @@ export function formatIdr(value: number, locale?: Locale): string {
 /**
  * Format raw IDR value for compact display (1 decimal max)
  */
-export function formatIdrCompact(value: number, locale?: Locale): string {
+export function formatIdrCompact(value: number, _locale?: Locale): string {
   if (!value || value <= 0) return "—";
 
   const abs = Math.abs(value);

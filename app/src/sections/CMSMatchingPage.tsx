@@ -270,6 +270,7 @@ export function CMSMatchingPage() {
                 isExpanded={expandedProject === rec.project.id}
                 onToggle={() => setExpandedProject(expandedProject === rec.project.id ? null : rec.project.id)}
                 kbliLabel={kbliLabel}
+                locale={language}
               />
             );
           })}
@@ -344,12 +345,14 @@ function RecommendationCard({
   isExpanded,
   onToggle,
   kbliLabel,
+  locale,
 }: {
   recommendation: { project: Project; score: CMSScoreBreakdown; rank: number };
   compareScore?: CMSScoreBreakdown;
   isExpanded: boolean;
   onToggle: () => void;
   kbliLabel: (code: string) => string;
+  locale: 'id' | 'en';
 }) {
   const { project, score, rank } = recommendation;
   const cmsPct = (score.cms * 100).toFixed(1);
@@ -498,7 +501,7 @@ function RecommendationCard({
                   <div className="space-y-1 text-xs text-gray-600">
                     <div><span className="text-gray-400">IRR:</span> {project.irr}%</div>
                     <div><span className="text-gray-400">Payback:</span> {project.paybackPeriod} years</div>
-                    <div><span className="text-gray-400">Investment Value:</span> Rp {(project.investmentValue / 1000).toLocaleString(language === 'en' ? 'en-US' : 'id-ID', { maximumFractionDigits: 1 })}T</div>
+                    <div><span className="text-gray-400">Investment Value:</span> Rp {(project.investmentValue / 1000).toLocaleString(locale === 'en' ? 'en-US' : 'id-ID', { maximumFractionDigits: 1 })}T</div>
                     <div><span className="text-gray-400">KBLI:</span> {(project.kbliCodes || []).map(kbliLabel).join(', ')}</div>
                     <div><span className="text-gray-400">Tags:</span> {project.tags.join(', ')}</div>
                   </div>
@@ -577,7 +580,7 @@ function SubScoreCard({ title, score, alpha, beta, gamma, delta, icon, color, bg
   bg: string;
   details: React.ReactNode;
 }) {
-  const weight = alpha ?? beta ?? gamma ?? delta;
+  const weight = alpha ?? beta ?? gamma ?? delta ?? 0;
   const weightLabel = alpha !== undefined ? 'α' : beta !== undefined ? 'β' : gamma !== undefined ? 'γ' : 'δ';
   return (
     <div className={`p-3 rounded-lg border ${bg}`}>
