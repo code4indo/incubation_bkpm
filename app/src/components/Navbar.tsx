@@ -1,12 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { MapPin, Search, BarChart3, LayoutDashboard, Activity, User, Globe, Menu, Shield, Database } from 'lucide-react';
+import { MapPin, Search, BarChart3, LayoutDashboard, Activity, User, Globe, Menu, Shield, Database, Target } from 'lucide-react';
 import { useState } from 'react';
 
 interface NavbarProps {
   currentPage: string;
-  onNavigate: (page: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors') => void;
+  onNavigate: (page: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors' | 'cms-matching') => void;
 }
 
 export function Navbar({ currentPage, onNavigate }: NavbarProps) {
@@ -22,6 +22,7 @@ export function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { id: 'profile', label: 'My Profile', labelId: 'Profil', icon: User },
     { id: 'admin', label: 'Admin', labelId: 'Admin', icon: Shield },
     { id: 'admin-investors', label: 'Data Investor', labelId: 'Data Investor', icon: Database },
+    { id: 'cms-matching', label: 'CMS Match', labelId: 'CMS Matching', icon: Target },
   ];
 
   const handleNav = (page: string) => {

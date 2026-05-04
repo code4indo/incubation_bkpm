@@ -11,6 +11,7 @@ import { InvestorProfilePage } from '@/sections/InvestorProfilePage';
 import { AnalysisPage } from '@/sections/AnalysisPage';
 import { AdminPage } from '@/sections/AdminPage';
 import { AdminInvestorPage } from '@/sections/AdminInvestorPage';
+import { CMSMatchingPage } from '@/sections/CMSMatchingPage';
 import { Footer } from '@/sections/Footer';
 import { LanguageProvider } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
@@ -25,7 +26,7 @@ import { Search, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export function App() {
-  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors'>('home');
+  const [page, setPage] = useState<'home' | 'projects' | 'project' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors' | 'cms-matching'>('home');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSector, setSelectedSector] = useState('All Sectors');
@@ -76,7 +77,7 @@ export function App() {
     }
     window.scrollTo(0, 0);
   };
-  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors') => {
+  const handleNavigateFromNav = (target: 'home' | 'projects' | 'regions' | 'dashboard' | 'analysis' | 'profile' | 'admin' | 'admin-investors' | 'cms-matching') => {
     handleNavigate(target);
   };
 
@@ -281,6 +282,18 @@ export function App() {
             transition={{ duration: 0.3 }}
           >
             <AdminInvestorPage />
+          </motion.main>
+        )}
+
+        {page === 'cms-matching' && (
+          <motion.main
+            key="cms-matching"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CMSMatchingPage />
           </motion.main>
         )}
       </AnimatePresence>
